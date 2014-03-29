@@ -51,21 +51,21 @@
 				score = 0;
 				status = 1;
 				shipX = 0;
-				shipY = 0;					
+				shipY = 0;	
 				view = 1;
 				score = 0;
 				maxspeed = 52;
 				speedlimit = 100;
 				zcamera2 = 0;
 				
-				for ( var i = 0, l = objs.children.length; i < l; i++ ) {
+				for ( i = 0, l = objs.children.length; i < l; i++ ) {
 					var obj = objs.children[ i ];
 					obj.position.x = Math.random()*5000-2500;
 					obj.position.y = -300;					
 				}
 				
 				html("score",score);
-								if (music) html("musicplayer", "<iframe width='560' height='315' src='http://www.youtube.com/embed/1gMWVMrgNQA?autoplay=1' frameborder='0' allowfullscreen></iframe>");				
+				if (music) html("musicplayer", "<iframe width='560' height='315' src='http://www.youtube.com/embed/1gMWVMrgNQA?autoplay=1' frameborder='0' allowfullscreen></iframe>");				
 			}
 		
 			function introReset( gamecompleted ) {
@@ -235,7 +235,7 @@
 				var geometry = new THREE.CubeGeometry( 10, 10, 10 );
 				var mesh = new THREE.Mesh( geometry );
 				
-				for ( var i = 0; i < cubes ; i++ ) {
+				for ( i = 0; i < cubes ; i++ ) {
 					mesh.scale.x = mesh.scale.y = mesh.scale.z = 1+Math.random()*sizeVariance; 
 				
 					mesh.position.x = Math.cos( i/cubes*Math.PI*2 )*radius + Math.random()* spreading - spreading/2 ;
@@ -269,7 +269,7 @@
 				var mergedGeo;
 				mergedGeo = new THREE.Geometry();
 			
-				var geometry_cube = new THREE.CubeGeometry( 50, 50, 50 );
+				var geometry_cube = new THREE.CubeGeometry( 10, 10, 10 );
 				var geometry_cyl = new THREE.CylinderGeometry( 50, 20, 50 , 8 , 1 );
 				var geometry_cyl2 = new THREE.CylinderGeometry( 50, 40, 50 , 4 , 1 );
 				
@@ -290,7 +290,7 @@
 					mesh2.scale.x = 0.25; 
 					THREE.GeometryUtils.merge(mergedGeo, mesh2);
 
-					// siedewings
+					// sidewings
 					mesh3.position.x = 0;
 					mesh3.position.y = 0;
 					mesh3.position.z = 16;
@@ -575,7 +575,7 @@
 				objs = new THREE.Object3D();
 				scene.add( objs );
 
-				for ( var i = 0; i<200; i++ ) {
+				for ( i = 0; i<200; i++ ) {
 					var obs = generateObstacle();
 					obs.position.z = -i*(fogdepth/200);
 					obs.position.x = Math.random()*5000-2500;
