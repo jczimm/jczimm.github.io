@@ -79,13 +79,13 @@
 					hiscore = score;
 					localStorage.setItem("omhiscore", hiscore);
 					html("score","new highscore "+hiscore+"!");
+					
+					group2color.color.setRGB( 1,1,0 );
+					group2.matrixAutoUpdate = true;
+					group2.updateMatrix();
 				} else {
 					html("score","highscore "+hiscore);
 				}
-				
-				group2color.color.setRGB( 1,1,0 );
-				group2.matrixAutoUpdate = true;
-				group2.updateMatrix();
 				
 				hide("hud");
 				hide("panel2");
