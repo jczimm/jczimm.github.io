@@ -10,6 +10,7 @@
 		<script src="stats.js"></script>
 
 		<script type="text/javascript">
+			
 			var status = 0;
 			var health,speed,maxspeed,speedlimit,view,tm,score,hiscore;
 			var shipX=shipY=0;
@@ -20,20 +21,20 @@
 			var music=0;
 			var bdy;
 			var key_up=key_down=key_left=key_right=key_space=false;
-
+		
 			var sens_list = new Array( "low" , "default" , "high" , "very high" , "extreme" );
 			var sens_values = new Array( 1 , 1.3 , 1.6 , 2 , 4 );
-
+		
 			function bind(id){
 				var o = document.getElementById(id);
 				o.addEventListener( 'click', buttonClick, false );
 			}
-
+		
 			function show(id) {
 				var o = document.getElementById(id);
 				o.style.display='block';
 			}
-
+			
 			function hide(id) {
 				var o = document.getElementById(id);
 				o.style.display='none';
@@ -43,7 +44,7 @@
 				var o = document.getElementById(id);
 				o.innerHTML = txt;
 			}
-
+			
 			function gameReset() {
 				health = 100;
 				speed = 0;
@@ -56,36 +57,36 @@
 				maxspeed = 52;
 				speedlimit = 100;
 				zcamera2 = 0;
-
-				for ( i=0, l = objs.children.length; i < l; i++ ) {
+				
+				for ( var i = 0, l = objs.children.length; i < l; i++ ) {
 					var obj = objs.children[ i ];
 					obj.position.x = Math.random()*5000-2500;
 					obj.position.y = -300;					
 				}
-
+				
 				html("score",score);
-				if (music) html("musicplayer", "<iframe width='560' height='315' src='http://www.youtube.com/embed/1gMWVMrgNQA?autoplay=1' frameborder='0' allowfullscreen></iframe>");				
+								if (music) html("musicplayer", "<iframe width='560' height='315' src='http://www.youtube.com/embed/1gMWVMrgNQA?autoplay=1' frameborder='0' allowfullscreen></iframe>");				
 			}
-
+		
 			function introReset( gamecompleted ) {
 				speed = 0;
 				view = 2;
 				status = 0;
 				hiscore = localStorage.getItem("omhiscore");
 				if ( hiscore == 0 || hiscore == undefined || hiscore == null ) hiscore = 0;
-
+				
 				if ( gamecompleted && hiscore < score ) {
 					hiscore = score;
 					localStorage.setItem("omhiscore", hiscore);
 				}
-
+				
 				html("score","hi-score "+hiscore);
 				hide("hud");
 				show("panel1");
 				html("player","");
 				html("musicplayer","");
 			}
-
+			
 			function onWindowResize(){
 				windowX = window.innerWidth;
 				windowY = window.innerHeight;
@@ -98,7 +99,7 @@
 			}			
 
 // UI
-
+			
 			function get(id,def) {
 				var v = localStorage.getItem(id);
 				if ( v == undefined || v == null || isNaN(v) ) v = def;
@@ -109,10 +110,10 @@
 				if ( v == undefined || v == null || isNaN(v) ) v = 0;
 				localStorage.setItem(id,v);
 			}
-
+			
 			function buttonClick(e){
-				//console.log (e.currentTarget.id);
-
+				console.log (e.currentTarget.id);
+				
 				switch ( e.currentTarget.id ) {
 					case "start":
 						gameReset();
@@ -120,7 +121,7 @@
 						show("score");
 						hide("panel1");
 						break;
-
+						
 					case "options":
 						hide("panel1");
 						show("panel2");
@@ -131,7 +132,7 @@
 						if ( sensitivity > 4 ) sensitivity = 0;
 						updateUI();
 						break;
-
+						
 					case "op_1stperson":
 						autoswitch = 1-autoswitch;
 						updateUI();
@@ -146,21 +147,21 @@
 						yinvert = 1-yinvert;
 						updateUI();
 						break;
-
+						
 					case "op_close":
 						hide("panel2");
 						show("panel1");
 						break;						
-
+				
 					case "music":
 						music = 1-music;
 						html('music','in-game music ' + ( music == 0 ? "off" : "on" ) );
 						set("music",music);
 						break;
-
+				
 				}
 			}			
-
+			
 			function updateUI(){
 				html('op_sensitivity','controls sensitivity : ' + sens_list[sensitivity]);
 				sen = sens_values[sensitivity];
@@ -172,9 +173,9 @@
 				set("omautoswitch",autoswitch);
 				set("omcontrols",controls);
 				set("omyinvert",yinvert);
-
+				
 			}
-
+			
 			function drawSector( centerX , centerY , r , a1 , a2 , color ) {
 				ctx.save();
 
@@ -203,7 +204,7 @@
 				ctx.fillStyle = "#ff0000";
 				ctx.fill();
 
-
+				
 				if ( health > 0 ) {
 					ctx.beginPath();
 					ctx.moveTo(centerX, centerY);
@@ -212,50 +213,50 @@
 					ctx.fillStyle = "#ffffff";
 					ctx.fill();
 				}
-
+				
 				ctx.restore();
 			}				
-
+			
 // GEOMETRY/COLORS
-
+			
 			function rgbColor(r,g,b){
 				return b + (256*g)|0 + (256*256*r)|0;
 			}			
-
+			
 			function generateCubesRing( cubes , y , radius , spreading , depthspread , sizeVariance ){
 				// cubes qt.
 				// y offset
 				// radius
 				// spreading
 				// objects size variance
-
+				
 				var mergedGeo = new THREE.Geometry();	// container
 
 				var geometry = new THREE.CubeGeometry( 10, 10, 10 );
 				var mesh = new THREE.Mesh( geometry );
-
-				for ( i=0; i < cubes ; i++ ) {
+				
+				for ( var i = 0; i < cubes ; i++ ) {
 					mesh.scale.x = mesh.scale.y = mesh.scale.z = 1+Math.random()*sizeVariance; 
-
+				
 					mesh.position.x = Math.cos( i/cubes*Math.PI*2 )*radius + Math.random()* spreading - spreading/2 ;
 					mesh.position.y = y + Math.random()* (depthspread);
 					mesh.position.z = Math.sin( i/cubes*Math.PI*2 )*radius + Math.random()* spreading - spreading/2;
-
+					
 					mesh.rotation.x = Math.random() * 360 * ( Math.PI / 180 );
 					mesh.rotation.y = Math.random() * 360 * ( Math.PI / 180 );
 					THREE.GeometryUtils.merge(mergedGeo, mesh);
 				}
-
+				
 				return mergedGeo;
 
 			}
-
+			
 			function generateObstacle(){
 				var geometry 	= new THREE.SphereGeometry( 50, 5 , 3 );
-
+				
 				var material = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0xffffff, shininess: 150, opacity:1 , shading: THREE.FlatShading } );
 				var mesh = new THREE.Mesh( geometry, material );
-
+				
 				mesh.matrixAutoUpdate = true;
 				mesh.updateMatrix();
 				objs.add( mesh );
@@ -263,19 +264,19 @@
 				return mesh;
 
 			}			
-
+			
 			function generateShip(){
 				var mergedGeo;
 				mergedGeo = new THREE.Geometry();
-
+			
 				var geometry_cube = new THREE.CubeGeometry( 50, 50, 50 );
-				var geometry_cyl = new THREE.CylinderGeometry( 500, 20, 50 , 8 , 1 );
+				var geometry_cyl = new THREE.CylinderGeometry( 50, 20, 50 , 8 , 1 );
 				var geometry_cyl2 = new THREE.CylinderGeometry( 50, 40, 50 , 4 , 1 );
-
+				
 				var material = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0xffffff, shininess: 50, opacity:1 , shading: THREE.FlatShading } );
 
 					// Building the space ship, LEGO style!
-
+					
 					var mesh = new THREE.Mesh( geometry_cube, material );
 					var mesh2 = new THREE.Mesh( geometry_cyl, material );
 					var mesh3 = new THREE.Mesh( geometry_cyl2, material );
@@ -312,21 +313,21 @@
 					mesh.position.x = 20;
 					mesh.rotation.z = -Math.PI/20;
 					THREE.GeometryUtils.merge(mergedGeo, mesh);
-
+					
 					mesh.position.x = -20;
 					mesh.rotation.z = Math.PI/20;
 					THREE.GeometryUtils.merge(mergedGeo, mesh);
-
-
+					
+				
 				mergedGeo.computeFaceNormals();
 				var group = new THREE.Mesh( mergedGeo, material );
 				group.matrixAutoUpdate = true;
 				group.updateMatrix();
-
+				
 				scene.add( group );
 
 				scale = 0.08;
-				var enginepng = THREE.ImageUtils.loadTexture( /*"engine_small.png"*/ );
+				var enginepng = THREE.ImageUtils.loadTexture( "engine_small.png" );
 				
 				engine_lt = new THREE.Sprite( { map:enginepng, useScreenCoordinates:false } );
 				engine_lt.position.set( -20 , 0 , 35 );
@@ -339,11 +340,11 @@
 				engine_rt.scale.set( scale, scale, scale );
 				engine_rt.blending = THREE.AdditiveBlending;
 				group.add( engine_rt );
-
+				
 				return group;
 
 			}			
-
+			
 // INPUT
 
 			function keyDown( event ) {
@@ -370,16 +371,16 @@
 						console.log("C");
 						//var tempcanvas = document.getElementsByTagName("canvas");
 						//window.open(tempcanvas[1].toDataURL('image/png'))
-
+						
 						/*
 						var new_window = window.open( 'about:blank' );
 						var image = new_window.document.createElement( 'img' );
 						image.src = renderer.domElement.toDataURL();
 						new_window.document.body.appendChild( image );						
 						*/
-
+						
 						break;
-
+						
 				}
 			}
 
@@ -399,7 +400,7 @@
 						key_right = false; break;
 				}
 			}
-
+			
 			function keyPress( event ) {
 				switch (event.keyCode) {
 					case 32://space
@@ -426,6 +427,8 @@
 				mouseX = ( event.clientX - windowHalfX ) / windowX * 2;
 				mouseY = ( event.clientY - windowHalfY ) / windowY * 2;
 			}
+			
+		
 
 		</script>
 
