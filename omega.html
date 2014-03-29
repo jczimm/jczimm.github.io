@@ -78,10 +78,13 @@
 				if ( gamecompleted && hiscore < score ) {
 					hiscore = score;
 					localStorage.setItem("omhiscore", hiscore);
+					html("score","new highscore "+hiscore+"!");
+				} else {
+					html("score","highscore "+hiscore);
 				}
 				
-				html("score","hi-score "+hiscore);
 				hide("hud");
+				hide("panel2");
 				show("panel1");
 				html("player","");
 				html("musicplayer","");
@@ -269,8 +272,8 @@
 				var mergedGeo;
 				mergedGeo = new THREE.Geometry();
 			
-				var geometry_cube = new THREE.CubeGeometry( 10, 10, 10 );
-				var geometry_cyl = new THREE.CylinderGeometry( 50, 20, 50 , 8 , 1 );
+				var geometry_cube = new THREE.CubeGeometry( 50, 10, 50 );
+				var geometry_cyl = new THREE.CylinderGeometry( 50, 20, 80 , 8 , 1 );
 				var geometry_cyl2 = new THREE.CylinderGeometry( 50, 40, 50 , 4 , 1 );
 				
 				var material = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0xffffff, shininess: 50, opacity:1 , shading: THREE.FlatShading } );
@@ -302,7 +305,7 @@
 					THREE.GeometryUtils.merge(mergedGeo, mesh3);
 
 					// wings up
-					mesh.position.y = 15;
+					mesh.position.y = 10;
 					mesh.position.z = 12;
 					mesh.scale.x = 0.015; 
 					mesh.scale.y = 0.4; 
@@ -562,7 +565,7 @@
 				group2color = new THREE.MeshPhongMaterial( { color: 0xff0000, specular: 0xffffff, shininess: 150, shading: THREE.FlatShading } );
 				
 				group2 = new THREE.Mesh( mesh_tmp, group2color );
-				group2color.color.setRGB( 0,1,0 );
+				group2color.color.setRGB( 1,1,0 );
 				group2.matrixAutoUpdate = true;
 				group2.updateMatrix();
 				background.add( group2 );
