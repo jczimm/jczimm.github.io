@@ -801,11 +801,11 @@
 								object.position.x = Math.cos(next_frame/p[1])*r;
 								object.position.y = Math.sin(next_frame/p[1])*r;
 								break;
-							case 5:
+							/*case 5:
 								object.position.x = Math.cos(next_frame/p[0])*p[1] + Math.cos(next_frame/p[2])*p[3];
 								object.position.y = Math.sin(next_frame/p[4])*p[5] + Math.sin(next_frame/p[6])*p[7];
-								break;
-							case 6:
+								break;*/
+							case 5:
 								if ( Math.random() < 0.95 ) {
 									object.position.x = ship.position.x;
 									object.position.y = ship.position.y;
@@ -892,7 +892,7 @@
 							p[1] = (Math.random()*500+40) * ( Math.random() > 0.5 ? 1 : -1 );
 							break;
 							
-						case 5: // twirl 2
+						/*case 5: // twirl 2
 							p[0] = Math.random()*3+0.01;
 							p[1] = 300+Math.random()*500;
 							p[4] = p[0];
@@ -903,7 +903,7 @@
 							p[6] = 8+Math.random()*77;	// y secondary
 							p[7] = Math.random()*800;	// y secondary
 							
-							break;
+							break;*/
 					}
 					
 				}
