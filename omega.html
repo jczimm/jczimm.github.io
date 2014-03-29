@@ -326,7 +326,7 @@
 				scene.add( group );
 
 				scale = 0.08;
-				var enginepng = THREE.ImageUtils.loadTexture( "engine_small.png" );
+				var enginepng = THREE.ImageUtils.loadTexture( /*"engine_small.png"*/ );
 				
 				engine_lt = new THREE.Sprite( { map:enginepng, useScreenCoordinates:false } );
 				engine_lt.position.set( -20 , 0 , 35 );
@@ -491,28 +491,28 @@
 			animate();
 
 			function init() {
-
+			
 				sensitivity=get("omsensitivity",1);
 				autoswitch=get("omautoswitch",1);
 				controls=get("omcontrols",0);
 				yinvert=get("omyinvert",0);
 				music=get("music",0);
-
+				
 				window.addEventListener( 'keyup', keyUp, true );
 				window.addEventListener( 'keydown', keyDown, true );
 				window.addEventListener( 'keypress', keyPress, true );
 				window.addEventListener( 'mousemove', onDocumentMouseMove, false );			
-
+			
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 
 				camera = new THREE.PerspectiveCamera( 90, window.innerWidth / window.innerHeight, 1, fogdepth );
 				camera.position.z = 0;
-
+				
 				scene = new THREE.Scene();
-
+				
 				// LIGHTS / FOG
-
+				
 				light1 = new THREE.DirectionalLight( 0xddddff );
 				light1.position.set( 2, -3, 1.5 );
 				light1.position.normalize();
@@ -523,11 +523,11 @@
 				light2.position.set( -1.5, 2, 0 );
 				light2.position.normalize();
 				scene.add( light2 );
-
+				
 				scene.fog = new THREE.Fog( 0x000000, 1, fogdepth );
 
 				// DUST
-
+				
 				dust = new THREE.Geometry();
 				for ( i = 0; i < 2000; i ++ ) {
 					var r = 850+Math.random()*2100;
@@ -535,10 +535,10 @@
 					vector = new THREE.Vector3( Math.cos(a)*r, Math.sin(a)*r , Math.random() * fogdepth );
 					dust.vertices.push( new THREE.Vertex( vector ) );
 				}
-
+				
 				materials = new THREE.ParticleBasicMaterial( { size: 15 , opacity:0.1 } );
 				materials.color.setRGB( 1,1,1 );
-
+				
 				particles[0] = new THREE.ParticleSystem( dust, materials );
 				particles[0].position.z = 0;
 				scene.add( particles[0] );
@@ -547,32 +547,32 @@
 				particles[1].position.z = -fogdepth;
 				scene.add( particles[1] );
 
-
+				
 				// BACKGROUND
 
 				background = new THREE.Object3D();
 				scene.add( background );
-
+				
 				var mesh_tmp = generateCubesRing(300 , 0 , 1200 , 200 , 1500 , 5  );
 
 				mesh_tmp.computeFaceNormals();
 				group2color = new THREE.MeshPhongMaterial( { color: 0xff0000, specular: 0xffffff, shininess: 150, shading: THREE.FlatShading } );
-
+				
 				group2 = new THREE.Mesh( mesh_tmp, group2color );
 				group2color.color.setRGB( 0,1,0 );
 				group2.matrixAutoUpdate = true;
 				group2.updateMatrix();
 				background.add( group2 );
-
+				
 				group2.position.z = -fogdepth;
 				group2.rotation.x = Math.PI/2;
 
 				// OBJECTS
-
+				
 				objs = new THREE.Object3D();
 				scene.add( objs );
 
-				for (i = 0; i<200; i++) {
+				for ( var i = 0; i<200; i++ ) {
 					var obs = generateObstacle();
 					obs.position.z = -i*(fogdepth/200);
 					obs.position.x = Math.random()*5000-2500;
@@ -580,17 +580,17 @@
 					obs.rotation.x = Math.random()*Math.PI;
 					obs.rotation.y = Math.random()*Math.PI;
 				}
-
+				
 				// SHIP
-
+				
 				ship = generateShip();
-
+				
 				// RENDERER
 				renderer = new THREE.WebGLRenderer( {antialias:true } ); // preserveDrawingBuffer: true
-
+				
 				var canvas = document.getElementById('hud');
 				ctx = canvas.getContext('2d');  
-
+				
 				renderer.autoClear = true;
 				renderer.sortObjects = false;
 				container.appendChild( renderer.domElement );
@@ -602,21 +602,20 @@
 				stats.domElement.style.zIndex = 100;
 				stats.domElement.style.opacity = 0.5;
 				container.appendChild( stats.domElement );
-
+				
 				window.addEventListener( 'resize', onWindowResize, false );
 				onWindowResize();
-
+				
 				tm = (new Date).getTime();
 				track = 10000;
 				next_frame = 0;
 				phase = 1;
-
+				
 				updateUI();
 				html('music','in-game music ' + ( music == 0 ? "off" : "on" ) );
-
+				
 			}
-
-
+			
 
 			//
 
