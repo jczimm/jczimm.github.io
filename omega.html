@@ -271,14 +271,26 @@
 
 				return mesh;
 
-			}			
+			}
 			
-			function generateShip(){
+			function generateShip( type ) {
+				switch ( type ) {
+					case 1:
+						generateShip01();
+						break;
+					case 2:
+						generateShip02();
+						break;
+				}
+					
+			}
+			
+			function generateShip01() {
 				var mergedGeo;
 				mergedGeo = new THREE.Geometry();
-			
+				
 				var geometry_cube = new THREE.CubeGeometry( 50, 10, 50 );
-				var geometry_cyl = new THREE.CylinderGeometry( 50, 20, 80 , 8 , 1 );
+				var geometry_cyl = new THREE.CylinderGeometry( 50, 20, 50 , 8 , 1 );
 				var geometry_cyl2 = new THREE.CylinderGeometry( 50, 40, 50 , 4 , 1 );
 				
 				var material = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0xffffff, shininess: 50, opacity:1 , shading: THREE.FlatShading } );
@@ -351,7 +363,98 @@
 				
 				return group;
 
-			}			
+			}
+			
+			function generateShip02() {
+				var mergedGeo;
+				mergedGeo = new THREE.Geometry();
+				
+				var t1 = new THREE.CylinderGeometry( 7, 5, 75, 10 );
+				var t2 = new THREE.CylinderGeometry( 7, 5, 75, 10 );
+				
+				var geometry_cyl = new THREE.CylinderGeometry( 30, 20, 60 , 8 , 1 );
+				var geometry_cyl2 = new THREE.CylinderGeometry( 30, 30, 50 , 4 , 1 );
+				
+				var material = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0xffffff, shininess: 50, opacity:1 , shading: THREE.FlatShading } );
+
+					// Building the space ship, LEGO style!
+					
+					var mesh_t1 = new THREE.Mesh( t1, material );
+					var mesh_t2 = new THREE.Mesh( t2, material );
+					
+					var mesh2 = new THREE.Mesh( geometry_cyl, material );
+					var mesh3 = new THREE.Mesh( geometry_cyl2, material );
+
+					// body
+					mesh2.position.x = 0;
+					mesh2.position.y = 0;
+					mesh2.position.z = 0;
+					mesh2.rotation.x = Math.PI/2;
+					mesh2.rotation.y = Math.PI/2;
+					mesh2.scale.x = 0.25; 
+					THREE.GeometryUtils.merge(mergedGeo, mesh2);
+
+					// connectors
+					mesh3.position.x = 5;
+					mesh3.position.y = 0;
+					mesh3.position.z = 16;
+					mesh3.rotation.x = Math.PI/2;
+					mesh3.rotation.y = Math.PI/2;
+					mesh3.scale.x = 0.1;
+					mesh3.scale.y = 0.5;
+					mesh3.scale.z = 1.6;
+					THREE.GeometryUtils.merge(mergedGeo, mesh3);
+
+					// thruster 1
+					mesh_t1.position.x = 50;
+					mesh_t1.position.y = 0;
+					mesh_t1.position.z = 0;
+					mesh_t1.scale.x = 1; 
+					mesh_t1.scale.y = 1; 
+					mesh_t1.scale.z = 1;
+					mesh_t1.rotation.y = Math.PI/2;
+					mesh_t1.rotation.x = Math.PI/2;
+					mesh_t1.rotation.z = 0;
+					THREE.GeometryUtils.merge(mergedGeo, mesh_t1);
+					
+					// thruster 2
+					mesh_t2.position.x = -50;
+					mesh_t2.position.y = 0;
+					mesh_t2.position.z = 0;
+					mesh_t2.scale.x = 1; 
+					mesh_t2.scale.y = 1; 
+					mesh_t2.scale.z = 1;
+					mesh_t2.rotation.y = Math.PI/2;
+					mesh_t2.rotation.x = Math.PI/2;
+					mesh_t2.rotation.z = 0;
+					THREE.GeometryUtils.merge(mergedGeo, mesh_t2);
+					
+				
+				mergedGeo.computeFaceNormals();
+				var group = new THREE.Mesh( mergedGeo, material );
+				group.matrixAutoUpdate = true;
+				group.updateMatrix();
+				
+				scene.add( group );
+
+				scale = 0.08;
+				var enginepng = THREE.ImageUtils.loadTexture( "engine_small.png" );
+				
+				engine_lt = new THREE.Sprite( { map:enginepng, useScreenCoordinates:false } );
+				engine_lt.position.set( -20 , 0 , 35 );
+				engine_lt.scale.set( scale, scale, scale );
+				engine_lt.blending = THREE.AdditiveBlending;
+				group.add( engine_lt );
+				
+				engine_rt = new THREE.Sprite( { map:enginepng, useScreenCoordinates:false } );
+				engine_rt.position.set( 20 , 0 , 35 );
+				engine_rt.scale.set( scale, scale, scale );
+				engine_rt.blending = THREE.AdditiveBlending;
+				group.add( engine_rt );
+				
+				return group;
+
+			}
 			
 // INPUT
 
@@ -594,7 +697,7 @@
 				
 				// SHIP
 				
-				ship = generateShip();
+				ship = generateShip(1);
 				
 				// RENDERER
 				renderer = new THREE.WebGLRenderer( {antialias:true } ); // preserveDrawingBuffer: true
