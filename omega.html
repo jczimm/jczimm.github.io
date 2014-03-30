@@ -8,6 +8,8 @@
 		<script src="three.js"></script>
 		<script src="requestAnimationFrame.js"></script>
 		<script src="stats.js"></script>
+		
+		<script src='https://rawgithub.com/jeromeetienne/threex.spaceships/master/threex.spaceships.js'></script>
 
 		<script type="text/javascript">
 			
@@ -145,6 +147,10 @@
 					
 					case "pioneer":
 						setShip("pioneer");
+						break;
+						
+					case "hugo":
+						setShip("hugo");
 						break;
 						
 					case "options":
@@ -302,6 +308,11 @@
 						break;
 					case 2:
 						return generateShip02();
+						break;
+					case 3:
+						return THREEx.SpaceShips.loadSpaceFighter01(function(obj){
+						    return obj;
+						});
 						break;
 				}
 					
@@ -591,6 +602,7 @@
 		<div id='ships_panel'>
 			<span class='click' id='classic'>classic</span><br>
 			<span class='click' id='pioneer'>the pioneer</span><br>
+			<span class='click' id='hugo'>hugo</span>
 			<br>
 			<span class='click' id='close_ships_panel'>&lsaquo;back&rsaquo;</span>
 		</div>
@@ -613,6 +625,7 @@
 			
 			bind("classic");
 			bind("pioneer");
+			bind("hugo");
 
 			bdy = document.getElementById("body");
 
@@ -1091,6 +1104,10 @@
 						break;
 					case "pioneer":
 						set("ship",2);
+						window.location.reload();
+						break;
+					case "hugo":
+						set("ship",3);
 						window.location.reload();
 						break;
 				}
