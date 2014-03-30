@@ -8,10 +8,7 @@
 		<script src="three.js"></script>
 		<script src="requestAnimationFrame.js"></script>
 		<script src="stats.js"></script>
-		<script src="https://rawgithub.com/mrdoob/three.js/master/examples/js/loaders/OBJMTLLoader.js"></script>
 		
-		<script src='https://rawgithub.com/jeromeetienne/threex.spaceships/master/threex.spaceships.js'></script>
-
 		<script type="text/javascript">
 			
 			var status = 0;
@@ -311,9 +308,7 @@
 						return generateShip02();
 						break;
 					case 3:
-						return THREEx.SpaceShips.loadSpaceFighter01(function(obj){
-						    return obj;
-						});
+						return generateShip02();
 						break;
 				}
 					
