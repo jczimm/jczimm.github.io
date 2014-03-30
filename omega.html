@@ -17,7 +17,7 @@
 			var fullscreen,windowHalfX,windowHalfY,windowX,windowY;
 			var mx=my=0;
 			var light1,light2;
-			var sensitivity=1,sen=1,autoswitch=1,controls=0,yinvert=0;
+			var sensitivity=1,sen=1,autoswitch=0,controls=0,yinvert=0;
 			var music=0;
 			var bdy;
 			var key_up=key_down=key_left=key_right=key_space=false;
@@ -697,7 +697,8 @@
 				
 				// SHIP
 				
-				ship = generateShip(1);
+				if(!get("ship")) set("ship",1);
+				ship = generateShip( get("ship") );
 				
 				// RENDERER
 				renderer = new THREE.WebGLRenderer( {antialias:true } ); // preserveDrawingBuffer: true
