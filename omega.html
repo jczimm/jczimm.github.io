@@ -173,11 +173,15 @@
 						updateUI();
 						break;
 						
-					case "close":
+					case "close_panel2":
 						hide("panel2");
-						hide("ships_panel");
 						show("panel1");
 						break;						
+					
+					case "close_ships_panel":
+						hide("ships_panel");
+						show("panel1");
+						break;
 				
 					case "music":
 						music = 1-music;
@@ -582,13 +586,13 @@
 			<span class='click' id='op_yinvert'>yinvert</span><br>
 			<span class='click' id='op_1stperson'>pov</span><br>
 			<br>
-			<span class='click' id='close'>&lsaquo;back&rsaquo;</span>
+			<span class='click' id='close_panel2'>&lsaquo;back&rsaquo;</span>
 		</div>
 		<div id='ships_panel'>
 			<span class='click' id='classic'>classic</span><br>
 			<span class='click' id='pioneer'>the pioneer</span>
 			<br>
-			<span class='click' id='close'>&lsaquo;back&rsaquo;</span>
+			<span class='click' id='close_ships_panel'>&lsaquo;back&rsaquo;</span>
 		</div>
 		<div id='player'></div>
 
@@ -600,7 +604,8 @@
 			bind("choose_ship");
 			bind("options");
 			bind("op_sensitivity");
-			bind("close");
+			bind("close_panel2");
+			bind("close_ships_panel");
 			bind("op_1stperson");
 			bind("op_controls");
 			bind("op_yinvert");
