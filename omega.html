@@ -24,6 +24,8 @@
 		
 			var sens_list = new Array( "low" , "default" , "high" , "very high" , "extreme" );
 			var sens_values = new Array( 1 , 1.3 , 1.6 , 2 , 4 );
+			
+			var ships_list new Array( "classic" , "pioneer" );
 		
 			function bind(id){
 				var o = document.getElementById(id);
@@ -90,6 +92,7 @@
 				
 				hide("hud");
 				hide("panel2");
+				hide("ships_panel")
 				show("panel1");
 				html("player","");
 				html("musicplayer","");
@@ -129,6 +132,20 @@
 						show("score");
 						hide("panel1");
 						break;
+					
+					case "choose_ship":
+						hide("panel1");
+						hide("panel2");
+						show("ships_panel");
+						break;
+						
+					case "classic":
+						setShip("classic");
+						break;
+					
+					case "pioneer":
+						setShip("pioneer");
+						break;
 						
 					case "options":
 						hide("panel1");
@@ -156,8 +173,9 @@
 						updateUI();
 						break;
 						
-					case "op_close":
+					case "close":
 						hide("panel2");
+						hide("ships_panel");
 						show("panel1");
 						break;						
 				
@@ -290,7 +308,7 @@
 				mergedGeo = new THREE.Geometry();
 				
 				var geometry_cube = new THREE.CubeGeometry( 50, 10, 50 );
-				var geometry_cyl = new THREE.CylinderGeometry( 50, 20, 50 , 8 , 1 );
+				var geometry_cyl = new THREE.CylinderGeometry( 50, 35, 50 , 8 , 1 );
 				var geometry_cyl2 = new THREE.CylinderGeometry( 50, 40, 50 , 4 , 1 );
 				
 				var material = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0xffffff, shininess: 50, opacity:1 , shading: THREE.FlatShading } );
@@ -553,6 +571,7 @@
 			<span id='omlogo'>Omega</span><br>
 			<span class='click' id='start'>start</span><br>
 			<span class='click' id='music' style='color:#8FFF00'></span><br>
+			<span class='click' id='choose_ship'>choose ship</span>
 			<span class='click' id='options'>options</span>
 
 			<br>
@@ -563,7 +582,15 @@
 			<span class='click' id='op_yinvert'>yinvert</span><br>
 			<span class='click' id='op_1stperson'>pov</span><br>
 			<br>
-			<span class='click' id='op_close'>&lsaquo;back&rsaquo;</span>
+			<span class='click' id='close'>&lsaquo;back&rsaquo;</span>
+		</div>
+		<div id='ships_panel'>
+			<table>
+				<tr>
+					<td class='click' id='classic'>classic</td>
+					<td class='click' id='pioneer'>the pioneer</td>
+				</tr>
+			</table>
 		</div>
 		<div id='player'></div>
 
@@ -572,13 +599,17 @@
 			introReset(false);
 
 			bind("start");
+			bind("choose_ship");
 			bind("options");
 			bind("op_sensitivity");
-			bind("op_close");
+			bind("close");
 			bind("op_1stperson");
 			bind("op_controls");
 			bind("op_yinvert");
 			bind("music");
+			
+			bind("classic");
+			bind("pioneer");
 
 			bdy = document.getElementById("body");
 
@@ -1047,6 +1078,19 @@
 				fpsEvent = setTimeout("doFpsEvent();",30000)
 			}
 			fpsEvent = setTimeout("doFpsEvent();",3000)
+			
+			function setShip( ship ) {
+				switch ( ship ) {
+					case "classic":
+						set("ship",1);
+						window.location.reload();
+						break;
+					case "pioneer":
+						set("ship",2);
+						window.location.reload();
+						break;
+				}
+			}
 
 		</script>
 
