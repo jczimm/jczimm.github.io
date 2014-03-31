@@ -25,7 +25,7 @@ span {text-shadow: 0 0 2px white, 0 0px 10px white; letter-spacing:0.05em; user-
 #panel1, #panel2, #ships_panel {position:absolute; z-index:999; top:50%; left:0px; width:100%; text-align:center; color:white; font-size:30px;}
 #panel1 {margin-top:-190px; line-height:220%;}
 #panel2 {margin-top:-190px; line-height:200%; display:none}
-#ships_panel {margin-top:-100px; line-height:200%; display:none}
+#shop_panel {margin-top:-100px; line-height:200%; display:none}
 #omlogo {font-size:500%; letter-spacing:0px; opacity:0.95; cursor:default;}
 #start {font-size:300%;}
 #options {font-size:150%;}
