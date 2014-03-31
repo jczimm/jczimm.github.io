@@ -103,7 +103,7 @@
 			
 			function onWindowResize(){
 				windowX = window.innerWidth;
-				windowY = window.innerHeight;
+				windowY = window.innerHeight-5;
 				windowHalfX = windowX / 2;
 				windowHalfY = windowY / 2;
 				camera.aspect = windowX / windowY;
@@ -585,7 +585,7 @@
 			<span id='omlogo'>Omega</span><br>
 			<span class='click' id='start'>start</span><br>
 			<span class='click' id='music' style='color:#8FFF00'></span><br>
-			<span class='click' id='choose_ship'>choose ship</span><br>
+			<span class='click' id='choose_ship'>shop</span><br>
 			<span class='click' id='options'>options</span>
 
 			<br>
@@ -610,9 +610,9 @@
 					<span>Upgrades</span><br><br>
 				</td>
 			</tr>
-			<tr>
+			<tr colspan="2">
 				<td>
-					<br><br><span class='click' id='close_shop'>&lsaquo;close shop&rsaquo;</span>
+					<span class='click' id='close_shop'>&lsaquo;close shop&rsaquo;</span>
 				</td>
 			</tr>
 		</table>
