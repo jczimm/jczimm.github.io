@@ -91,6 +91,8 @@
 					html("score","highscore "+hiscore);
 				}
 				
+				set("gold", gamecompleted ? gold : get("gold") );
+				
 				hide("hud");
 				hide("panel2");
 				hide("shop_panel");
@@ -992,7 +994,7 @@
 								break;		
 						}
 						
-						if ( Math.random() < 0.5 ) {
+						if ( Math.random() < 0.01 ) {
 							object.name = "gold";
 							object.material.color.setRGB(1,1,0);
 						}
