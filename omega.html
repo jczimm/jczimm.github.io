@@ -92,7 +92,7 @@
 				
 				hide("hud");
 				hide("panel2");
-				hide("ships_panel")
+				hide("shop_panel");
 				show("panel1");
 				html("player","");
 				html("musicplayer","");
@@ -136,7 +136,7 @@
 					case "choose_ship":
 						hide("panel1");
 						hide("panel2");
-						show("ships_panel");
+						show("shop_panel");
 						break;
 						
 					case "classic":
@@ -182,8 +182,8 @@
 						show("panel1");
 						break;						
 					
-					case "close_ships_panel":
-						hide("ships_panel");
+					case "close_shop":
+						hide("shop_panel");
 						show("panel1");
 						break;
 				
@@ -595,13 +595,21 @@
 			<br>
 			<span class='click' id='close_panel2'>&lsaquo;back&rsaquo;</span>
 		</div>
-		<div id='ships_panel'>
-			<span class='click' id='classic'>classic</span><br>
-			<span class='click' id='pioneer'>the pioneer</span><br>
-			<span class='click' id='hugo'>hugo</span>
-			<br>
-			<span class='click' id='close_ships_panel'>&lsaquo;back&rsaquo;</span>
-		</div>
+		<table id='shop_panel'>
+			<tr>
+				<td valign="top">
+					<span>Ships</span><br><br>
+					<span class='click' id='classic'>classic</span><br>
+					<span class='click' id='pioneer'>the pioneer</span><br>
+					<span class='click' id='hugo'>hugo</span>
+				</td>
+				<td valign="top">
+					<span>Upgrades</span><br><br>
+				</td>
+			
+				<br><br><span class='click' id='close_shop'>&lsaquo;close shop&rsaquo;</span>
+			</tr>
+		</table>
 		<div id='player'></div>
 
 		<script type="text/javascript">
@@ -613,7 +621,7 @@
 			bind("options");
 			bind("op_sensitivity");
 			bind("close_panel2");
-			bind("close_ships_panel");
+			bind("close_shop");
 			bind("op_1stperson");
 			bind("op_controls");
 			bind("op_yinvert");
