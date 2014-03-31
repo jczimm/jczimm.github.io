@@ -91,7 +91,9 @@
 					html("score","highscore "+hiscore);
 				}
 				
-				set("gold", gamecompleted ? gold : get("gold") );
+				if( gamecompleted ) {
+					set("gold",gold);
+				}
 				
 				hide("hud");
 				hide("panel2");
@@ -580,6 +582,7 @@
 	</head>
 	<body id="body">
 		<div id="musicplayer"></div>
+		<span id='gold'></span>
 		<canvas id='hud' width=100 height=100></canvas>
 		<span id='score'></span>
 		<div id='panel1'>
@@ -994,7 +997,7 @@
 								break;		
 						}
 						
-						if ( Math.random() < 0.025 ) {
+						if ( Math.random() < 0.025 && (phase == 1 || phase == 6) ) {
 							object.name = "gold";
 							object.material.color.setRGB(1,1,0);
 						}
@@ -1003,7 +1006,7 @@
 
 					// Collision check
 					if ( Math.abs(ship.position.x - object.position.x) < 100 && Math.abs(ship.position.y - object.position.y) < 50 && Math.abs(ship.position.z - object.position.z) < 50 ) {
-						if ( object.name == "gold" ) {
+						if ( object.name == "gold" && object.visible ) {
 							gold += 1;
 							object.visible = false;
 							//play some gold sound
@@ -1016,6 +1019,8 @@
 					}
 
 				}
+				
+				html("gold",gold);
 
 				if ( health < 0 && speed > 0 ) introReset(true);
 
@@ -1026,7 +1031,6 @@
 					speed = maxspeed;
 					maxspeed = Math.min( maxspeed + (dtm/1500) , 100 );
 				}
-
 
 				if ( speed > 25 ) {
 					score ++;
