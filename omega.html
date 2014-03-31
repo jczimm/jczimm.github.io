@@ -678,6 +678,7 @@
 				music=get("music",0);
 				
 				gold=get("gold",0);
+				html("gold",gold);
 				
 				window.addEventListener( 'keyup', keyUp, true );
 				window.addEventListener( 'keydown', keyDown, true );
@@ -1006,10 +1007,12 @@
 
 					// Collision check
 					if ( Math.abs(ship.position.x - object.position.x) < 100 && Math.abs(ship.position.y - object.position.y) < 50 && Math.abs(ship.position.z - object.position.z) < 50 ) {
-						if ( object.name == "gold" && object.visible ) {
-							gold += 1;
-							object.visible = false;
-							//play some gold sound
+						if ( object.name == "gold" ) {
+							if( object.visible ) {
+								gold += 1;
+								object.visible = false;
+								//play some gold sound
+							}
 						} else {
 							if ( speed > 25 ) {
 								health -= speed/1.3;
