@@ -994,7 +994,7 @@
 								break;		
 						}
 						
-						if ( Math.random() < 0.05 ) {
+						if ( Math.random() < 0.025 ) {
 							object.name = "gold";
 							object.material.color.setRGB(1,1,0);
 						}
@@ -1003,9 +1003,10 @@
 
 					// Collision check
 					if ( Math.abs(ship.position.x - object.position.x) < 100 && Math.abs(ship.position.y - object.position.y) < 50 && Math.abs(ship.position.z - object.position.z) < 50 ) {
-						if ( object.name == "gold") {
+						if ( object.name == "gold" ) {
 							gold += 1;
-							scene.remove( object );
+							object.visible = false;
+							//play some gold sound
 						} else {
 							if ( speed > 25 ) {
 								health -= speed/1.3;
