@@ -15,7 +15,7 @@
 		<script type="text/javascript">
 			
 			var status = 0;
-			var health,speed,maxspeed,speedlimit,view,tm,score,hiscore;
+			var health,speed,maxspeed,speedlimit,view,tm,score,hiscore,gold;
 			var shipX=shipY=0;
 			var fullscreen,windowHalfX,windowHalfY,windowX,windowY;
 			var mx=my=0;
@@ -671,6 +671,8 @@
 				controls=get("omcontrols",0);
 				yinvert=get("omyinvert",0);
 				music=get("music",0);
+				
+				gold=get("gold",0);
 				
 				window.addEventListener( 'keyup', keyUp, true );
 				window.addEventListener( 'keydown', keyDown, true );
