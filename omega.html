@@ -26,12 +26,20 @@
 			var key_up=key_down=key_left=key_right=key_space=false;
 			
 			var pause,paused,oldspeed;
+			
+			var prices =
+			{
+				"classic": 0,
+				"pioneer": 30
+			}
+			
+			
+			var owned_items = new Array( "classic" );
+			if(!localStorage["owned_items"]) localStorage["owned_items"] = JSON.stringify(owned_items);
+			else owned_items = JSON.parse(localStorage["owned_items"]);
 		
 			var sens_list = new Array( "low" , "default" , "high" , "very high" , "extreme" );
 			var sens_values = new Array( 1 , 1.3 , 1.6 , 2 , 4 );
-			
-			if(!get("owned_ships")) set("owned_ships","classic");
-			var owned_ships = get("owned_ships").split(",");
 		
 			function bind(id){
 				var o = document.getElementById(id);
@@ -155,18 +163,12 @@
 						break;
 					
 					case "pioneer":
-						/*if(!owned_ships.contains("pioneer")){
-							transact(30);
-							owned_ships.push("pioneer");
-							set("owned_ships",owned_ships.join(","));
-						}
-						if(owned_ships.contains("pioneer")) setShip("pioneer");*/
-						setShip("pioneer");
+						if(buyItem("pioneer")) setShip("pioneer");
 						break;
 						
-					case "hugo":
+					/*case "hugo":
 						setShip("hugo");
-						break;
+						break;*/
 						
 					case "options":
 						hide("panel1");
@@ -699,10 +701,7 @@
 				gold=get("gold",0);
 				html("gold",gold);
 				
-				owned_ships = get("owned_ships");
-				for ( i = 0; i < owned_ships.length; i++ ) {
-					html(owned_ships[i], owned_ships[i]);
-				}
+				
 				
 				window.addEventListener( 'keyup', keyUp, true );
 				window.addEventListener( 'keydown', keyDown, true );
@@ -1201,10 +1200,12 @@
 			}
 			
 			function transact( amount ) {
-				if ( gold >= amount) {
+				if ( gold >= amount ) {
 					gold -= amount;
+					return true;
 				} else {
-					alert("Bummer, ya don't have enough loot.  Get back to work!")
+					alert("Bummer, ya don't have enough loot.  Get back to work!");
+					return false;
 				}
 				html("gold",gold);
 				set("gold",gold);
@@ -1213,11 +1214,24 @@
 			Array.prototype.contains = function(obj) {
 			    var i = this.length;
 			    while (i--) {
-			        if (this[i] === obj) {
-			            return true;
-			        }
+			        if (this[i] === obj) return true;
 			    }
 			    return false;
+			}
+			
+			function buyItem( item ) {
+				if( transact(prices[item]) && !owned_items.contains(item) ) {
+					owned_items.push( item );
+					localStorage["owned_items"] = JSON.stringify(owned_items);
+					updateShop();
+					return true;
+				}
+				return false;
+			}
+			
+			function updateShop() {
+				var i = owned_items.length;
+				while (i--) html(owned_items[i],owned_items[i]);
 			}
 			
 
