@@ -24,6 +24,8 @@
 			var music=0;
 			var bdy;
 			var key_up=key_down=key_left=key_right=key_space=false;
+			
+			var pause,paused;
 		
 			var sens_list = new Array( "low" , "default" , "high" , "very high" , "extreme" );
 			var sens_values = new Array( 1 , 1.3 , 1.6 , 2 , 4 );
@@ -558,7 +560,7 @@
 			
 			function keyPress( event ) {
 				switch (event.keyCode) {
-					case 32://space
+					case 18: // alt
 						if ( view == 2 ) {
 							view = 1;
 							zcamera2 = 0;
@@ -568,6 +570,17 @@
 							
 						}
 						break;
+					
+					case 32: // space
+						if(paused){
+							clearInterval(pause);
+							paused = false;
+						} else {
+							pause = setInterval(function(){speed=0},10);
+							paused = true;
+						}
+						break;
+					
 					case 102: // f
 						var stpos = stats.domElement.style.top;
 						if ( stpos == "0px" ) {
