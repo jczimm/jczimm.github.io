@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<link href='http://fonts.googleapis.com/css?family=Jockey+One' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Jockey+One' rel='sbuytylesheet' type='text/css'>
 		<title>Omega</title>
 		<meta charset="utf-8">
 		
@@ -163,7 +163,8 @@
 						break;
 					
 					case "pioneer":
-						if(buyItem("pioneer") && owned_ships.contains("pioneer")) setShip("pioneer");
+						if(owned_ships.contains("pioneer")) setShip("pioneer");
+						else if(buyItem("pioneer")) setShip("pioneer");
 						break;
 						
 					/*case "hugo":
