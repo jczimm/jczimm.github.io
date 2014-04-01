@@ -153,12 +153,13 @@
 						break;
 					
 					case "pioneer":
-						if(!owned_ships.contains("pioneer")){
+						/*if(!owned_ships.contains("pioneer")){
 							transact(30);
 							owned_ships.push("pioneer");
 							set("owned_ships",owned_ships.join(","));
 						}
-						if(owned_ships.contains("pioneer")) setShip("pioneer");
+						if(owned_ships.contains("pioneer")) setShip("pioneer");*/
+						setShip("pioneer");
 						break;
 						
 					case "hugo":
@@ -616,8 +617,8 @@
 				<tr>
 					<td valign="top">
 						<span>Ships</span><br><br>
-						<span class='click' id='classic'>classic - free</span><br>
-						<span class='click' id='pioneer'>the pioneer - 30&#128794;</span><br>
+						<span class='click' id='classic'>classic</span><br>
+						<span class='click' id='pioneer'>the pioneer</span><br>
 						<span class='' id='hugo'>hugo - Coming Soon!</span>
 					</td>
 					<td valign="top">
