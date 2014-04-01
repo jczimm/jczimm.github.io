@@ -163,7 +163,7 @@
 						break;
 					
 					case "pioneer":
-						if(buyItem("pioneer")) setShip("pioneer");
+						if(buyItem("pioneer") && owned_ships.contains("pioneer")) setShip("pioneer");
 						break;
 						
 					/*case "hugo":
@@ -701,7 +701,7 @@
 				gold=get("gold",0);
 				html("gold",gold);
 				
-				
+				updateShop();
 				
 				window.addEventListener( 'keyup', keyUp, true );
 				window.addEventListener( 'keydown', keyDown, true );
