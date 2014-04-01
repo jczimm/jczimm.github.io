@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<link href='http://fonts.googleapis.com/css?family=Jockey+One' rel='sbuytylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Jockey+One' rel='stylesheet' type='text/css'>
 		<title>Omega</title>
 		<meta charset="utf-8">
 		
@@ -636,7 +636,7 @@
 					<td valign="top">
 						<span>Ships</span><br><br>
 						<span class='click' id='classic'>classic</span><br>
-						<span class='click' id='pioneer'>the pioneer</span><br>
+						<span class='click' id='pioneer'>pioneer - 30☉</span><br>
 						<span class='' id='hugo'>hugo - Coming Soon!</span>
 					</td>
 					<td valign="top">
@@ -1233,6 +1233,7 @@
 			function updateShop() {
 				var i = owned_items.length;
 				while (i--) html(owned_items[i],owned_items[i]);
+				bdy.innerHTML = bdy.replace("☉","<object type='image/svg+xml' data='www.fileformat.info/info/unicode/char/1f71a/alchemical_symbol_for_gold.svg'></object>");
 			}
 			
 
