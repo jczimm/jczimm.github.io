@@ -28,8 +28,8 @@
 			var sens_list = new Array( "low" , "default" , "high" , "very high" , "extreme" );
 			var sens_values = new Array( 1 , 1.3 , 1.6 , 2 , 4 );
 			
-			if(!get("owned_ships")) set("owned_ships",["classic"]);
-			var owned_ships = get("owned_ships");
+			if(!get("owned_ships")) set("owned_ships","classic");
+			var owned_ships = get("owned_ships").split(",");
 		
 			function bind(id){
 				var o = document.getElementById(id);
@@ -156,7 +156,7 @@
 						if(!owned_ships.contains("pioneer")){
 							transact(30);
 							owned_ships.push("pioneer");
-							set("owned_ships",owned_ships);
+							set("owned_ships",owned_ships.join(","));
 						}
 						if(owned_ships.contains("pioneer")) setShip("pioneer");
 						break;
