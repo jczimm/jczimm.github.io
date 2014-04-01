@@ -27,6 +27,9 @@
 		
 			var sens_list = new Array( "low" , "default" , "high" , "very high" , "extreme" );
 			var sens_values = new Array( 1 , 1.3 , 1.6 , 2 , 4 );
+			
+			if(!get("owned_ships")) set("owned_ships",["classic"]);
+			var owned_ships = get("owned_ships");
 		
 			function bind(id){
 				var o = document.getElementById(id);
@@ -70,6 +73,7 @@
 				}
 				
 				html("score",score);
+				html("gold",gold);
 				
 				group2color.color.setRGB( 1,1,0 );
 				group2.matrixAutoUpdate = true;
@@ -149,8 +153,12 @@
 						break;
 					
 					case "pioneer":
-						setShip("pioneer");
-						transact(30);
+						if(!owned_ships.contains("pioneer")){
+							transact(30);
+							owned_ships.push("pioneer");
+							set("owned_ships",owned_ships);
+						}
+						if(owned_ships.contains("pioneer")) setShip("pioneer");
 						break;
 						
 					case "hugo":
@@ -675,6 +683,11 @@
 				gold=get("gold",0);
 				html("gold",gold);
 				
+				owned_ships = get("owned_ships");
+				for ( i = 0; i < owned_ships.length; i++ ) {
+					html(owned_ships[i], owned_ships[i]);
+				}
+				
 				window.addEventListener( 'keyup', keyUp, true );
 				window.addEventListener( 'keydown', keyDown, true );
 				window.addEventListener( 'keypress', keyPress, true );
@@ -1172,6 +1185,16 @@
 				}
 				html("gold",gold);
 				set("gold",gold);
+			}
+			
+			Array.prototype.contains = function(obj) {
+			    var i = this.length;
+			    while (i--) {
+			        if (this[i] === obj) {
+			            return true;
+			        }
+			    }
+			    return false;
 			}
 			
 
