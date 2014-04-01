@@ -1000,10 +1000,10 @@
 								break;		
 						}
 						
-						//choose
+						//choose powerup
 						rand = Math.random();
-						if ( rand < 0.025 && (phase == 1 || phase == 6) ) {
-							if ( rand < 0.018 ) {
+						if ( rand < 0.01 && (phase == 1 || phase == 6) ) {
+							if ( rand < 0.008 ) {
 								object.name = "gold";
 								object.material.color.setRGB(1,1,0);
 							} else {
