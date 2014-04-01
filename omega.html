@@ -954,6 +954,13 @@
 				ship.position.z = -200;
 
 				ship.rotation.z = -shipX/1000;
+				
+				if ( speed >= 100 ) {
+					ship.material.color.setRGB(1,0,1);
+					ship.material.color.setRGB(1,1,0);
+				} else {
+					ship.material.color.setRGB(1,1,1);
+				}
 
 				group2.position.z += speed;
 				group2.rotation.y = - new Date().getTime() * 0.0004;
