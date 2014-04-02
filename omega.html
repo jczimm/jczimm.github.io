@@ -608,8 +608,13 @@
 							stats.domElement.style.top = "0px"
 						}
 						break;
-						
-					case 16: // shift
+				}
+			}
+			
+			function brake( event ) {
+				switch (event.keyCode) {
+					case 16:
+						// shift
 						if(owned_items.contains("brakes")) speed = 3;
 						break;
 				}
@@ -1229,8 +1234,7 @@
 			}
 			
 			function useBrakes() {
-				window.removeEventListener( 'keypress', keyPress, true );
-				window.addEventListener( 'keypress', keyPress, true );
+				window.addEventListener( 'keypress', brake, true );
 			}
 			
 			function transact( amount ) {
