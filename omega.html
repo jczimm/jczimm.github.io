@@ -13,6 +13,14 @@
 		<script src="stats.js"></script>
 		
 		<script type="text/javascript">
+		
+			Array.prototype.contains = function(obj) {
+			    var i = this.length;
+			    while (i--) {
+			        if (this[i] === obj) return true;
+			    }
+			    return false;
+			}
 			
 			var status = 0;
 			var health,speed,maxspeed,speedlimit,view,tm,score,hiscore,gold;
@@ -1233,14 +1241,6 @@
 				}
 				html("gold",gold);
 				set("gold",gold);
-			}
-			
-			Array.prototype.contains = function(obj) {
-			    var i = this.length;
-			    while (i--) {
-			        if (this[i] === obj) return true;
-			    }
-			    return false;
 			}
 			
 			function buyItem( item ) {
