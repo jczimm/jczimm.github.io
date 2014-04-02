@@ -1214,9 +1214,10 @@
 
 			var fpsEvent;
 			function doFpsEvent(){
-				fpsEvent = setTimeout("doFpsEvent();",30000)
+				fpsEvent = setTimeout("doFpsEvent();",10000);
+				loadNeedle();
 			}
-			fpsEvent = setTimeout("doFpsEvent();",3000)
+			fpsEvent = setTimeout("doFpsEvent();",3000);
 			
 			function setShip( ship ) {
 				switch ( ship ) {
