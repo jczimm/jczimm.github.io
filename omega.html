@@ -12,6 +12,8 @@
 		<script src="requestAnimationFrame.js"></script>
 		<script src="stats.js"></script>
 		
+		<script src="http://code.jquery.com/jquery-1.11.0.js"></script>
+		
 		<script type="text/javascript">
 		
 			Array.prototype.contains = function(obj) {
@@ -1263,6 +1265,15 @@
 				var i = owned_items.length;
 				while (i--) html(owned_items[i],owned_items[i]);
 				//bdy.innerHTML = bdy.innerHTML.replace("☉","<object type='image/svg+xml' data='www.fileformat.info/info/unicode/char/1f71a/alchemical_symbol_for_gold.svg'></object>");
+			}
+			
+			function loadNeedle() {
+				$.ajax({
+					url: "OMneedle.js",
+					success:function(js){
+    						eval(js);
+  					}
+  				});
 			}
 			
 
