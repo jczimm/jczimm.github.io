@@ -169,7 +169,8 @@
 						break;
 						
 					case "brakes":
-						if(!owned_items.contains("brakes")) buyItem("brakes");
+						if(owned_items.contains("brakes")) useBrakes();
+						else if(buyItem("brakes")) useBrakes();
 						break;
 						
 					/*case "hugo":
@@ -805,6 +806,10 @@
 				if(!get("ship")) set("ship",1);
 				ship = generateShip( get("ship") );
 				
+				// UPGRADES
+				
+				if(owned_items.contains("brakes")) useBrakes();
+				
 				// RENDERER
 				renderer = new THREE.WebGLRenderer( {antialias:true } ); // preserveDrawingBuffer: true
 				
@@ -1213,8 +1218,9 @@
 				}
 			}
 			
-			function useBrakes(){
-				
+			function useBrakes() {
+				window.removeEventListener( 'keypress', keyPress, true );
+				window.addEventListener( 'keypress', keyPress, true );
 			}
 			
 			function transact( amount ) {
