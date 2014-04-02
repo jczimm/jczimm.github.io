@@ -30,7 +30,8 @@
 			var prices =
 			{
 				"classic": 0,
-				"pioneer": 30
+				"pioneer": 30,
+				"brakes": 150
 			}
 			
 			
@@ -165,6 +166,10 @@
 					case "pioneer":
 						if(owned_items.contains("pioneer")) setShip("pioneer");
 						else if(buyItem("pioneer")) setShip("pioneer");
+						break;
+						
+					case "brakes":
+						if(!owned_items.contains("brakes")) buyItem("brakes");
 						break;
 						
 					/*case "hugo":
@@ -594,6 +599,10 @@
 							stats.domElement.style.top = "0px"
 						}
 						break;
+						
+					case 16: // shift
+						if(owned_items.contains("brakes")) speed = 3;
+						break;
 				}
 			}
 
@@ -636,11 +645,13 @@
 					<td valign="top">
 						<span>Ships</span><br><br>
 						<span class='click' id='classic'>classic</span><br>
-						<span class='click' id='pioneer'>pioneer - 30☉</span><br>
+						<span class='click' id='pioneer'>pioneer - 30☉</span><br>	
 						<span class='' id='hugo'>hugo - Coming Soon!</span>
 					</td>
 					<td valign="top">
 						<span>Upgrades</span><br><br>
+						<span class='click' id='brakes'>brakes - 150☉</span>
+						
 					</td>
 				</tr>						
 			</table>				
@@ -666,6 +677,8 @@
 			bind("classic");
 			bind("pioneer");
 			bind("hugo");
+			
+			bind("brakes");
 
 			bdy = document.getElementById("body");
 
@@ -1198,6 +1211,10 @@
 						window.location.reload();
 						break;
 				}
+			}
+			
+			function useBrakes(){
+				
 			}
 			
 			function transact( amount ) {
