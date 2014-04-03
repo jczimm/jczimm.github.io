@@ -85,7 +85,7 @@
 			function gameReset() {
 				if (music) html("musicplayer", "<iframe width='560' height='315' src='http://www.youtube.com/embed/1gMWVMrgNQA?autoplay=1' frameborder='0' allowfullscreen></iframe>");				
 
-				health = ship.boundRadius*1.2;
+				health = health[ship.name];
 				speed = 0;
 				score = 0;
 				status = 1;
@@ -352,15 +352,22 @@
 			}
 			
 			function generateShip( type ) {
+				var _ship;
 				switch ( type ) {
 					case 1:
-						return generateShip01();
+						_ship = generateShip01();
+						_ship.name = "classic";
+						return _ship;
 						break;
 					case 2:
-						return generateShip02();
+						_ship = generateShip02();
+						_ship.name = "pioneer";
+						return _ship;
 						break;
 					case 3:
-						return generateShip03();
+						_ship = generateShip03();
+						_ship.name = "hugo";
+						return _ship;
 						break;
 				}
 					
