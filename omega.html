@@ -1185,7 +1185,8 @@
 							}
 	
 						}
-	
+						
+						health = health==NaN?0:health;
 						// Collision check
 						if ( Math.abs(ship.position.x - object.position.x) < 100 && Math.abs(ship.position.y - object.position.y) < 50 && Math.abs(ship.position.z - object.position.z) < 50 ) {
 							var vis = object.visible;
