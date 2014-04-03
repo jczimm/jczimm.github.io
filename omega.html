@@ -42,6 +42,7 @@
 			{
 				"classic": 0,
 				"pioneer": 30,
+				"hugo": 150,
 				"brakes": 150
 			}
 			
@@ -191,9 +192,10 @@
 						else if(buyItem("brakes")) useBrakes();
 						break;
 						
-					/*case "hugo":
-						setShip("hugo");
-						break;*/
+					case "hugo":
+						if(owned_items.contains("hugo")) setShip("hugo");
+						else if(buyItem("hugo")) setShip("hugo");
+						break;
 						
 					case "options":
 						hide("panel1");
@@ -358,7 +360,7 @@
 						return generateShip02();
 						break;
 					case 3:
-						return generateShip02();
+						return generateShip03();
 						break;
 				}
 					
@@ -535,6 +537,73 @@
 
 			}
 			
+			function generateShip03() {
+				var mergedGeo;
+				mergedGeo = new THREE.Geometry();
+				
+				var body = new THREE.SphereGeometry(75,32,16);
+				var engine = new THREE.TorusKnotGeometry(100,70);
+				var wings = new THREE.CylinderGeometry(20,20,170);
+				var t1 = new THREE.CylinderGeometry(10.42,30);
+				var t2 = new THREE.CylinderGeometry(10.42,30);
+				
+				var white_material = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0xffffff, shininess: 50, opacity:1, shading: THREE.FlatShading } );
+				var black_material = new THREE.MeshPhongMaterial( { color: 0x000000, specular: 0x000000, shininess: 50, opacity:1, shading: THREE.FlatShading } );
+				var trans_material = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0xffffff, shininess: 50, opacity:0.58, transparent:true, shading: THREE.FlatShading } );
+				
+					// Building the space ship, LEGO style!
+					
+					var mesh_body = new THREE.Mesh( body, trans_material );
+					var mesh_engine = new THREE.Mesh( engine, black_material );
+					var mesh_wings = new THREE.Mesh( wings, white_material );
+					var mesh_t1 = new THREE.Mesh ( t1, white_material );
+					var mesh_t2 = new THREE.Mesh ( t2, white_material );
+					
+					with(mesh_body){
+						scale.y = 0.5;
+						scale.z = 1.52;
+					}
+					THREE.GeometryUtils.merge(mergedGeo, mesh_body);
+					
+					with(mesh_engine){
+						rotation.x = Math.PI/2;
+						scale.x = 0.28;
+						scale.y = 0.44;
+						scale.z = 0.24;
+					}
+					THREE.GeometryUtils.merge(mergedGeo, mesh_engine);
+					
+					with(mesh_wings){
+						position.y = 22;
+						rotation.x = 0.18;
+						rotation.z = Math.PI/2;
+					}
+					THREE.GeometryUtils.merge(mergedGeo, mesh_wings);
+					
+					with(mesh_t1){
+						position.x = 40;
+						position.z = -81.27;
+						rotation.x = Math.PI/2;
+					}
+					THREE.GeometryUtils.merge(mergedGeo, mesh_t1);
+					
+					with(mesh_t2){
+						position.x = -40;
+						position.z = -81.27;
+						rotation.x = Math.PI/2;
+					}
+					THREE.GeometryUtils.merge(mergedGeo, mesh_t2);
+				
+				mergedGeo.computeFaceNormals();
+				var group = new THREE.Mesh( mergedGeo, white_material );
+				group.matrixAutoUpdate = true;
+				group.updateMatrix();
+				
+				scene.add( group );
+				
+				return group;
+			}
+			
 // INPUT
 
 			function keyDown( event ) {
@@ -677,7 +746,7 @@
 						<span>Ships</span><br><br>
 						<span class='click' id='classic'>classic</span><br>
 						<span class='click' id='pioneer'>pioneer - 30☉</span><br>	
-						<span class='' id='hugo'>hugo - Coming Soon!</span><br>
+						<span class='click' id='hugo'>hugo - 150☉</span><br>
 						<span class='' id='velu'>velu - Coming Soon!</span>
 					</td>
 					<td valign="top">
