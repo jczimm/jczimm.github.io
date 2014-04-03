@@ -57,3 +57,60 @@ div.square { position: absolute;
 div.square div.msg { color: #3e6bc2;
                      font-size: 15px;
                      padding: 15px; }
+                     
+.onoffswitch {
+    position: relative; width: 186px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+
+.onoffswitch-checkbox {
+    display: none;
+}
+
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #999999; border-radius: 6px;
+}
+
+.onoffswitch-inner {
+    width: 200%; margin-left: -100%;
+    -moz-transition: margin 0.3s ease-in 0s; -webkit-transition: margin 0.3s ease-in 0s;
+    -o-transition: margin 0.3s ease-in 0s; transition: margin 0.3s ease-in 0s;
+}
+
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    float: left; width: 50%; height: 43px; padding: 0; line-height: 43px;
+    font-size: 23px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+
+.onoffswitch-inner:before {
+    content: "Normal";
+    padding-left: 8px;
+    background-color: #8FFF00; color: #FFFFFF;
+}
+
+.onoffswitch-inner:after {
+    content: "Hard";
+    padding-right: 8px;
+    background-color: #8A8A8A; color: #C4C4C4;
+    text-align: right;
+}
+
+.onoffswitch-switch {
+    width: 13px; margin: 15px;
+    background: #B3B3B3;
+    border: 2px solid #999999; border-radius: 6px;
+    position: absolute; top: 0; bottom: 0; right: 139px;
+    -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
+    -o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s; 
+}
+
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px; 
+}
+
