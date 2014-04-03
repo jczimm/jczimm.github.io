@@ -1136,8 +1136,9 @@
 					if ( health < 0 && speed > 0 ) introReset(true);
 	
 					renderer.render( scene, camera );
-	
-					speed = speed + (dtm/(mode==1?300:mode==2?Math.random()*100:300));
+					
+					var factor = track%100?Math.random()*100;
+					speed = speed + (dtm/(mode==1?300:mode==2?factor:300));
 					if ( speed > maxspeed ) {
 						speed = maxspeed;
 						maxspeed = Math.min( maxspeed + (dtm/1500) , 100 );
