@@ -221,6 +221,11 @@
 						updateUI();
 						break;
 						
+					case "op_difficulty":
+						mode = mode==1?2:mode==2?1:1;
+						updateUI();
+						break;
+					
 					case "close_panel2":
 						hide("panel2");
 						show("panel1");
@@ -246,6 +251,7 @@
 				html('op_1stperson','automatic 1st/3th person : ' + ( autoswitch ? "yes" : "no" ) );
 				html('op_controls','controls : ' + ( controls == 0 ? "mouse" : "arrows / WASD" ) );
 				html('op_yinvert','invert Y axis : ' + ( yinvert == 0 ? "no" : "yes" ) );
+				html('op_difficulty','difficulty: ' + ( mode == 1 ? "normal" : "hard" ) );
 
 				set("omsensitivity",sensitivity);
 				set("omautoswitch",autoswitch);
@@ -660,6 +666,7 @@
 			<span class='click' id='op_sensitivity'>sensitivity</span><br>
 			<span class='click' id='op_yinvert'>yinvert</span><br>
 			<span class='click' id='op_1stperson'>pov</span><br>
+			<span class='click' id='op_difficulty'>difficulty</span><br>
 			<br>
 			<span class='click' id='close_panel2'>&lsaquo;back&rsaquo;</span>
 		</div>
@@ -697,6 +704,8 @@
 			bind("op_1stperson");
 			bind("op_controls");
 			bind("op_yinvert");
+			bind("op_difficulty");
+			
 			bind("music");
 			
 			bind("classic");
