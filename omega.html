@@ -1137,8 +1137,8 @@
 	
 					renderer.render( scene, camera );
 					
-					var factor = track%100?Math.random()*100:factor;
-					speed = speed + (dtm/(mode==1?300:mode==2?factor:300));
+					//var factor = track%100?Math.random()*100:factor;
+					speed = speed + (dtm/(mode==1?300:mode==2?Math.random()*100:300));
 					if ( speed > maxspeed ) {
 						speed = maxspeed;
 						maxspeed = Math.min( maxspeed + (dtm/1500) , 100 );
