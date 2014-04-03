@@ -190,10 +190,6 @@
 					case "options":
 						hide("panel1");
 						show("panel2");
-						Object.defineProperty( window, "console", {
-							get : function(){},
-							set : function(){}
-						});
 						break;
 
 					case "op_sensitivity":
@@ -680,19 +676,6 @@
 		<div id='player'></div>
 
 		<script type="text/javascript">
-			
-			var _z = console;
-			Object.defineProperty( window, "console", {
-				get : function(){
-				    if( _z._commandLineAPI ){
-					throw "Whoops!";
-			            }
-				    return _z;
-				},
-				set : function(val){
-				    _z = val;
-				}
-			});
 
 			introReset(false);
 
