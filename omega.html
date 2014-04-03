@@ -25,7 +25,7 @@
 			}
 			
 			var status = 0;
-			var health,speed,maxspeed,speedlimit,view,tm,score,hiscore,gold;
+			var health,speed,maxspeed,speedlimit,view,tm,score,hiscore,gold,sail;
 			var shipX=shipY=0;
 			var fullscreen,windowHalfX,windowHalfY,windowX,windowY;
 			var mx=my=0;
@@ -116,9 +116,8 @@
 					html("score","highscore "+hiscore);
 				}
 				
-				if( gamecompleted ) {
+				if( gamecompleted )
 					set("gold",gold);
-				}
 				
 				hide("hud");
 				hide("panel2");
@@ -617,7 +616,7 @@
 				switch (event.keyCode) {
 					case 16:
 						// shift
-						if(owned_items.contains("brakes")) speed = 3;
+						if(owned_items.contains("brakes")) speed = 3; health -= 10;
 						break;
 				}
 			}
@@ -730,6 +729,9 @@
 				
 				gold=get("gold",0);
 				html("gold",gold);
+				
+				sail=get("sail",0);
+				html("sail",sail);
 				
 				updateShop();
 				
