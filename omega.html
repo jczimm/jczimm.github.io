@@ -53,23 +53,31 @@
 			var sens_values = new Array( 1 , 1.3 , 1.6 , 2 , 4 );
 		
 			function bind(id){
-				var o = document.getElementById(id);
-				o.addEventListener( 'click', buttonClick, false );
+				if(document.getElementById(id)){
+					var o = document.getElementById(id);
+					o.addEventListener( 'click', buttonClick, false );
+				}
 			}
 		
 			function show(id) {
-				var o = document.getElementById(id);
-				o.style.display='block';
+				if(document.getElementById(id)){
+					var o = document.getElementById(id);
+					o.style.display='block';
+				}
 			}
 			
 			function hide(id) {
-				var o = document.getElementById(id);
-				o.style.display='none';
+				if(document.getElementById(id)){
+					var o = document.getElementById(id);
+					o.style.display='none';
+				}
 			}
 
 			function html(id,txt) {
-				var o = document.getElementById(id);
-				o.innerHTML = txt;
+				if(document.getElementById(id)){
+					var o = document.getElementById(id);
+					o.innerHTML = txt;
+				}
 			}
 			
 			function gameReset() {
