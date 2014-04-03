@@ -594,6 +594,7 @@
 					}
 					THREE.GeometryUtils.merge(mergedGeo, mesh_t2);
 				
+				mergedGeo.rotation.x = -Math.PI;
 				mergedGeo.computeFaceNormals();
 				var group = new THREE.Mesh( mergedGeo, white_material );
 				group.matrixAutoUpdate = true;
@@ -1288,7 +1289,7 @@
 					camera.updateProjectionMatrix();
 	
 					// engines
-					engine_lt.scale.x=engine_lt.scale.y=engine_rt.scale.x=engine_rt.scale.y = (70/fov)/5 ;
+					//engine_lt.scale.x=engine_lt.scale.y=engine_rt.scale.x=engine_rt.scale.y = (70/fov)/5 ;
 					var engop = Math.random()/10+0.9
 					engine_lt.opacity=engine_rt.opacity = engop;
 	
