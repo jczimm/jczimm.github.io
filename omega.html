@@ -610,10 +610,6 @@
 							stats.domElement.style.top = "0px"
 						}
 						break;
-					case 90:
-						// shift
-						speed = 3;
-						break;
 				}
 			}
 			
@@ -1241,7 +1237,7 @@
 			}
 			
 			function useBrakes() {
-				window.addEventListener( 'keypress', brake, true );
+				window.addEventListener( 'keydown', brake, true );
 			}
 			
 			function transact( amount ) {
