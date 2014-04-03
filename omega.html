@@ -555,7 +555,7 @@
 				var mergedGeo;
 				mergedGeo = new THREE.Geometry();
 				
-				var body = new THREE.SphereGeometry(75,32,16);
+				//var body = new THREE.SphereGeometry(75,32,16);
 				var engine = new THREE.TorusKnotGeometry(100,70);
 				var wings = new THREE.CylinderGeometry(20,20,170);
 				var t1 = new THREE.CylinderGeometry(10.42,30);
@@ -567,17 +567,17 @@
 				
 					// Building the space ship, LEGO style!
 					
-					var mesh_body = new THREE.Mesh( body, trans_material );
+					//var mesh_body = new THREE.Mesh( body, trans_material );
 					var mesh_engine = new THREE.Mesh( engine, black_material );
 					var mesh_wings = new THREE.Mesh( wings, white_material );
 					var mesh_t1 = new THREE.Mesh ( t1, white_material );
 					var mesh_t2 = new THREE.Mesh ( t2, white_material );
 					
-					with(mesh_body){
+					/*with(mesh_body){
 						scale.y = 0.5;
 						scale.z = 1.52;
 					}
-					THREE.GeometryUtils.merge(mergedGeo, mesh_body);
+					THREE.GeometryUtils.merge(mergedGeo, mesh_body);*/
 					
 					with(mesh_engine){
 						rotation.x = Math.PI/2;
