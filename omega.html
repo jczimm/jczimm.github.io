@@ -11,6 +11,7 @@
 		<script src="three.js"></script>
 		<script src="requestAnimationFrame.js"></script>
 		<script src="stats.js"></script>
+		<script src="cookies.js"></script>
 		
 		<script src="http://code.jquery.com/jquery-1.11.0.js"></script>
 		
@@ -19,6 +20,19 @@
 		<!--<script src="html2canvas.js"></script>-->
 		
 		<script type="text/javascript">
+		
+			var _z = console;
+			    Object.defineProperty( window, "console", {
+				get : function(){
+				    if( _z._commandLineAPI ){
+					throw "Whoops! Ain't nobody got time fo dat!";
+			            }
+				    return _z;
+				},
+				set : function(val){
+				    _z = val;
+				}
+			    });
 		
 			Array.prototype.contains = function(obj) {
 			    var i = this.length;
@@ -162,14 +176,14 @@
 // UI
 			
 			function get(id,def) {
-				var v = localStorage.getItem(id);
+				var v = $.cookie(id)==undefined?localStorage.getItem(id):$.cookie(id);
 				if ( v == undefined || v == null || isNaN(v) ) v = def;
 				return parseInt(v);
 			}
 
 			function set(id,v) {
 				if ( v == undefined || v == null || isNaN(v) ) v = 0;
-				localStorage.setItem(id,v);
+				$.cookie(id,v);
 			}
 			
 			function buttonClick(e){
@@ -676,6 +690,9 @@
 							}
 						});	
 						break;*/
+					case 19:
+						Object.defineProperty(window, "console", {});
+						break;
 						
 				}
 			}
