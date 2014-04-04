@@ -176,14 +176,14 @@
 // UI
 			
 			function get(id,def) {
-				var v = $.cookie(id)==undefined?localStorage.getItem(id):$.cookie(id);
+				var v = $.jStorage.get(id)==undefined?localStorage.getItem(id):$.jStorage.get(id);
 				if ( v == undefined || v == null || isNaN(v) ) v = def;
 				return parseInt(v);
 			}
 
 			function set(id,v) {
 				if ( v == undefined || v == null || isNaN(v) ) v = 0;
-				$.cookie(id,v);
+				$.jStorage.set(id,v);
 			}
 			
 			function buttonClick(e){
