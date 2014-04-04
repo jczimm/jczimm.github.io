@@ -49,7 +49,7 @@
 				"brakes": 150
 			}
 			
-			var health =
+			var healths =
 			{
 				"classic": 100,
 				"pioneer": 120,
@@ -95,7 +95,7 @@
 			function gameReset() {
 				if (music) html("musicplayer", "<iframe width='560' height='315' src='http://www.youtube.com/embed/1gMWVMrgNQA?autoplay=1' frameborder='0' allowfullscreen></iframe>");				
 
-				health = health[ship.name];
+				health = healths[ship.name];
 				speed = 0;
 				score = 0;
 				status = 1;
