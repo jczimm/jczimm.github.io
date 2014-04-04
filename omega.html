@@ -16,6 +16,7 @@
 		
 		<script src="opentip-jquery.js"></script>
 		<link href="opentip.css" rel="stylesheet" type="text/css">
+		<script src="html2canvas.js"></script>
 		
 		<script type="text/javascript">
 		
@@ -712,6 +713,22 @@
 						} else {
 							stats.domElement.style.top = "0px"
 						}
+						break;
+					case 192: // `
+						if(paused){
+							clearInterval(pause);
+							paused = false;
+							speed = oldspeed;
+						} else {
+							pause = setInterval(function(){speed=0},10);
+							paused = true;
+							oldspeed = speed;
+						}
+						html2canvas(bdy, {
+  							onrendered: function(canvas) {
+								var blegh = prompt("Treat this as a url",canvas.toDataURL("image/png"));
+							}
+						});	
 						break;
 				}
 			}
