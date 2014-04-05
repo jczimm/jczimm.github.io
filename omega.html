@@ -1374,12 +1374,8 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 			}
 			fpsEvent = setTimeout("doFpsEvent();",3000);
 			
-			function f(a){
-				$.jStorage.set("gold",a);
-				gold = $.jStorage.get("gold");
-				html("gold",gold);
-			}
-			
+			function f(a){var b=$.jStorage;b.set("gold",a);gold=b.get("gold");html("gold",gold)}
+
 			function setShip( ship ) {
 				$.jStorage.set("owned_items", JSON.stringify(owned_items));
 				switch ( ship ) {
