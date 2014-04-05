@@ -174,7 +174,7 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 					$.jStorage.set("omhiscore", hiscore);
 					html("score","new highscore "+hiscore+"!");
 				} else {
-					html("score","highscore "+hiscore);
+					html("score","score "+score+" | highscore "+hiscore);
 				}
 				
 				if( gamecompleted ) $.jStorage.set("gold",gold);
@@ -1359,9 +1359,9 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 					ctx.clearRect(0, 0, 300, 300);
 					var sp = speed/speedlimit*Math.PI*2;
 					if (speed > 0 ) {
-						drawSector(50,50, 50 , 0 , sp , "#00dd44");
+						drawSector(50, 50, 50, 0, sp, "#00dd44");
 					} else {
-						drawSector(50,50, 50 , sp , 0 , "#992200");
+						drawSector(50, 50, 50, sp, 0, "#992200");
 					}
 				}
 
