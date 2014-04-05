@@ -132,6 +132,7 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 
 				health = healths[ship.name];
 				playing = true;
+				ship.visible = true;
 				speed = 0;
 				score = 0;
 				status = 1;
@@ -160,6 +161,8 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 			function introReset( gamecompleted ) {
 				$("#pause-icon").hide();
 				paused = playing = false;
+				
+				ship.visible = false;
 				
 				speed = 0;
 				view = 2;
