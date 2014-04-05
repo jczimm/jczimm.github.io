@@ -1409,7 +1409,7 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 			function buyItem( item ) {
 				if( transact(prices[item]) && !owned_items.contains(item) ) {
 					owned_items.push( item );
-					set("owned_items", JSON.stringify(owned_items));
+					$.jStorage.set("owned_items", JSON.stringify(owned_items));
 					updateShop();
 					return true;
 				}
