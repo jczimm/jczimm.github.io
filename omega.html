@@ -19,6 +19,8 @@
 		<link href="opentip.css" rel="stylesheet" type="text/css">
 		<!--<script src="html2canvas.js"></script>-->
 		
+		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+		
 		<script type="text/javascript">
 
 //cookies		
@@ -91,8 +93,8 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 			
 			
 			var owned_items = new Array( "classic" );
-			if(!localStorage["owned_items"]) localStorage["owned_items"] = JSON.stringify(owned_items);
-			else owned_items = JSON.parse(localStorage["owned_items"]);
+			if(!get("owned_items")) set("owned_items", JSON.stringify(owned_items));
+			else owned_items = JSON.parse(get("owned_items"));
 		
 			var sens_list = new Array( "low" , "default" , "high" , "very high" , "extreme" );
 			var sens_values = new Array( 1 , 1.3 , 1.6 , 2 , 4 );
@@ -158,19 +160,18 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 				speed = 0;
 				view = 2;
 				status = 0;
-				hiscore = localStorage.getItem("omhiscore");
+				hiscore = get("omhiscore");
 				if ( hiscore == 0 || hiscore == undefined || hiscore == null ) hiscore = 0;
 				
 				if ( gamecompleted && hiscore < score ) {
 					hiscore = score;
-					localStorage.setItem("omhiscore", hiscore);
+					set("omhiscore", hiscore);
 					html("score","new highscore "+hiscore+"!");
 				} else {
 					html("score","highscore "+hiscore);
 				}
 				
-				if( gamecompleted )
-					set("gold",gold);
+				if( gamecompleted ) set("gold",gold);
 				
 				hide("hud");
 				hide("panel2");
@@ -692,22 +693,6 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 						*/
 						
 						break;
-					/*case 192: // `
-						if(paused){
-							clearInterval(pause);
-							paused = false;
-							speed = oldspeed;
-						} else {
-							pause = setInterval(function(){speed=0},10);
-							paused = true;
-							oldspeed = speed;
-						}
-						html2canvas(bdy, {
-  							onrendered: function(canvas) {
-								var blegh = prompt("Treat this as a url",canvas.toDataURL("image/png"));
-							}
-						});	
-						break;*/
 					/*case 19:
 						Object.defineProperty(window, "console", {});
 						break;*/
@@ -747,13 +732,11 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 					
 					case 32: // space
 						if(paused){
-							clearInterval(pause);
+							$("#pause-icon").fadeOut();
 							paused = false;
-							speed = oldspeed;
 						} else {
-							pause = setInterval(function(){speed=0},10);
+							$("#pause-icon").fadeIn();
 							paused = true;
-							oldspeed = speed;
 						}
 						break;
 					
@@ -830,11 +813,13 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 			</table>				
 			<span align='center' class='click' id='close_shop'>&lsaquo;close shop&rsaquo;</span>
 		</div>
+		<div id="pause-icon"><i class="fa fa-pause"></i></div>
 		<div id='player'></div>
 
 		<script type="text/javascript">
 
 			introReset(false);
+			$("#pause-icon").hide();
 
 			bind("start");
 			bind("shop");
@@ -1419,7 +1404,7 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 			function buyItem( item ) {
 				if( transact(prices[item]) && !owned_items.contains(item) ) {
 					owned_items.push( item );
-					localStorage["owned_items"] = JSON.stringify(owned_items);
+					set("owned_items", JSON.stringify(owned_items));
 					updateShop();
 					return true;
 				}
