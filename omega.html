@@ -199,14 +199,11 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 // UI
 			
 			function get(id,def) {
-				var v = $.jStorage.get(id)==undefined?localStorage.getItem(id):$.jStorage.get(id);
-				if ( v == undefined || v == null || isNaN(v) ) v = def;
-				return parseInt(v);
+				return $.jStorage.get(id);
 			}
 
 			function set(id,v) {
-				if ( v == undefined || v == null || isNaN(v) ) v = 0;
-				$.jStorage.set(id,v);
+				$.jStorage.set(id);
 			}
 			
 			function buttonClick(e){
