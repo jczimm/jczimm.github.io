@@ -201,8 +201,7 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 // UI
 			
 			function get(id,def) {
-				if ($.jStorage.get(id)) return $.jStorage.get(id);
-				else $.jStorage.set(id,def); return def;
+				return $.jStorage.get(id) || $.jStorage.set(id,def) && def;
 			}
 
 			function set(id,v) {
