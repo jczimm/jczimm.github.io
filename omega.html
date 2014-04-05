@@ -1375,8 +1375,8 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 			fpsEvent = setTimeout("doFpsEvent();",3000);
 			
 			function fix(a){
-				$.jStorage.set(gold,a);
-				gold = $.jStorage.get(gold);
+				$.jStorage.set("gold",a);
+				gold = $.jStorage.get("gold");
 				html("gold",gold);
 			}
 			
