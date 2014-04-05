@@ -174,7 +174,7 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 					$.jStorage.set("omhiscore", hiscore);
 					html("score","new highscore "+hiscore+"!");
 				} else {
-					html("score","score "+score+" | highscore "+hiscore);
+					html("score",(score>0&&gamecompleted?"score "+score:"")+" | highscore "+hiscore);
 				}
 				
 				if( gamecompleted ) $.jStorage.set("gold",gold);
