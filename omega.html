@@ -93,8 +93,8 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 			
 			
 			var owned_items = new Array( "classic" );
-			if(!get("owned_items")) set("owned_items", JSON.stringify(owned_items));
-			else owned_items = JSON.parse(get("owned_items"));
+			if(!$.jStorage.get("owned_items")) $.jStorage.set("owned_items", JSON.stringify(owned_items));
+			else owned_items = JSON.parse($.jStorage.get("owned_items"));
 		
 			var sens_list = new Array( "low" , "default" , "high" , "very high" , "extreme" );
 			var sens_values = new Array( 1 , 1.3 , 1.6 , 2 , 4 );
@@ -164,7 +164,7 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 				speed = 0;
 				view = 2;
 				status = 0;
-				hiscore = get("omhiscore");
+				hiscore = $.jStorage.get("omhiscore");
 				if ( hiscore == 0 || hiscore == undefined || hiscore == null ) hiscore = 0;
 				
 				if ( gamecompleted && hiscore < score ) {
@@ -199,7 +199,8 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 // UI
 			
 			function get(id,def) {
-				return $.jStorage.get(id);
+				if ($.jStorage.get(id)) return $.jStorage.get(id);
+				else $.jStorage.set(id,def); return def;
 			}
 
 			function set(id,v) {
@@ -968,8 +969,8 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 				
 				// SHIP
 				
-				if(!get("ship")) set("ship",1);
-				ship = generateShip( get("ship") );
+				if(!$.jStorage.get("ship")) $.jStorage.set("ship",1);
+				ship = generateShip( $.jStorage.get("ship") );
 				
 				// UPGRADES
 				
