@@ -5883,21 +5883,78 @@ a, *:before, i, .krown-text-icon *, .krown-tabs .titles *, .top-menu li, .top-me
       background-size: 29px 37px;
    }
 
-}
 
-/* DELETE THIS ! :) */
 
-#ribbon {
-  position: fixed;
-  display: block;
-  top: 0;
-  right: 0;
-  width: 117px;
-  height: 117px;
-  z-index: 999999;
-  text-indent: -9999px;
-  background: url(images/ribbon.png) no-repeat 0 0 transparent;
+
+
+
+			/* CUSTOM FONTS */
+
+			h1, h2, h3, h4, h5, h6, .krown-pie .holder span {
+			  font-family: 'Raleway', sans-serif;;
+			}
+
+			body, input, textarea, button {
+			  font-family: 'Raleway', sans-serif;;
+			}
+
+			/* CUSTOM COLORS */
+
+			a, #primary-header a:hover, .header_email:hover:before, .header_phone:hover:before, .krown-social.default a:hover i:before, .top-menu > li:hover > a, #breadcrumbs a:hover, #primary-footer a, #tertiary-footer .collapsed-title:hover, .post-meta a:hover, .folio.like a:hover, .post-meta a:hover i, .krown-widget a:hover i, .folio.like a:hover i, .post-title:hover h2, .post-title:hover h1, .single-like:hover .krown-icon-heart-1:before, .single-like .post-like.liked:before, .comment-title a:hover, .comment-reply-link:hover, .widget ul a:hover, .krown-latest-posts a:hover h3, .portfolio-item.classic .caption > a:hover, .krown-text-icon a:hover h3, .krown-text-icon.style-one a:hover i, .krown-text-icon.style-three h3, .krown-text-icon.style-four i, .krown-twitter li a:hover, .krown-twitter .time:hover, .krown-twitter > a:hover span, .single-product .product_meta a:hover, .star-rating .star:before, .comment-form-rating a.star:before, .cart-contents:before, .cart_item a:hover, p.out-of-stock {
+			   color: #e5493a;
+			}
+			.top-menu > li:hover span, .sub-menu li:hover, .sub-menu li:hover + li, blockquote, .ui-slider-horizontal .ui-slider-handle:hover {
+				border-color: #e5493a;
+			}
+			.sub-menu li:hover, .pagination a:hover, .post-nav a:hover, .filter li:hover, .krown-accordion > section.opened h5:before, .krown-button:hover, input[type="submit"]:hover, .flex-control-nav li a.flex-active, .flexslider.krown-tour .flex-direction-nav a:hover, .tp-bullets.simplebullets.round .bullet.selected, .krown-tabs .titles li:hover, .krown-toggle.opened h5:before, .mejs-controls .mejs-time-rail .mejs-time-current, .mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-current, .mejs-controls .mejs-volume-button .mejs-volume-slider .mejs-volume-current, .mejs-overlay:hover .mejs-overlay-button, .third-menu li:hover > a, .krown-button.empty:hover, .fancybox-nav span:hover, .fancybox-close:hover, ul.products li .button:hover, ul.products li .add_to_cart_button.added, .single-product .cart input:hover, .product-quantity input:hover, .single-product .cart .button:hover, .product-quantity .button:hover, .onsale, .woocommerce-pagination li a:hover, .woocommerce .buttons a:hover, .woocommerce button.button:hover, .woocommerce a.button:hover, .shop_table .product-remove a:hover, .checkout-button.button, .woocommerce-message .button:hover, .woocommerce-error .button:hover, .woocommerce-info .button:hover, .krown-progress-bars .bar, #pager-nav a.selected {
+			   background-color: #e5493a;
+			}
+			#top:hover, .author-avatar .caption, .portfolio-item.classic > a .hover, .alt-hover  {
+			   background-color: #e5493a;
+			   background-color: rgba(229,73,58,.9);
+			}
+			.krown-text-icon.style-two a:hover i {
+			   background-color: #e5493a !important;
+			}
+
+			/* CUSTOM CSS */
+
+		.page-template-template-blog-php #tertiary-footer, .archive #tertiary-footer, .single #tertiary-footer, .single-portfolio #tertiary-footer, .search #tertiary-footer, .page-id-27 #tertiary-footer, .page-id-1029 #tertiary-footer, .page-id-1509 #tertiary-footer, .page-id-1514 #tertiary-footer, .page-id-1519 #tertiary-footer {
+    display: none;
 }
-#ribbon:hover {
-  background-position: 0 -117px;
+.page-id-1547 .krown-button {
+    clear: left;
+    float: left;
+    margin-bottom: 7px;
+}
+.page-id-10 .pie-blank {
+    border-color: rgba(255, 255, 255, 0) rgba(255, 255, 255, 0) #f7f7f7;
+}
+@media all and (max-width: 768px){
+    .page-id-7 #content > .krown-column-row, .page-id-10 #content > .krown-column-row, .page-id-12 #content > .krown-column-row, .page-id-14 #content > .krown-column-row {
+        padding: 90px 0 !important;
+    }
+}
+#text-4 .textwidget {
+    font-weight: 700;
+}
+.page-id-2851 .filter, .page-id-2851 .pagination {
+   text-align: left !important;
+   margin-left: -5px;
+}
+@media all and (min-width: 1160px){
+  body:not(.page-id-1509) .full-width-portfolio .portfolio-item:last-child {
+      overflow: visible;
+  }
+}
+.dark-arrow .flex-direction-nav a {
+    border: 0px solid #202020;
+    background: none repeat scroll 0% 0% #202020;
+    color: #B1B1B1;
+}
+.regular-lighter span.regular {
+    font-weight: 300;
+}
+.regular-lighter span.large {
+    font-weight: 600;
 }
