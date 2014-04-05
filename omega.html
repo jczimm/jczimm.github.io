@@ -289,7 +289,7 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 					case "music":
 						music = 1-music;
 						html('music','in-game music ' + ( music == 0 ? "off" : "on" ) );
-						set("music",music);
+						$.jStorage.set("music",music);
 						break;
 				
 				}
@@ -303,10 +303,10 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 				html('op_yinvert','invert Y axis : ' + ( yinvert == 0 ? "no" : "yes" ) );
 				html('op_difficulty','difficulty: ' + ( mode == 1 ? "normal" : "hard" ) );
 
-				set("omsensitivity",sensitivity);
-				set("omautoswitch",autoswitch);
-				set("omcontrols",controls);
-				set("omyinvert",yinvert);
+				$.jStorage.set("omsensitivity",sensitivity);
+				$.jStorage.set("omautoswitch",autoswitch);
+				$.jStorage.set("omcontrols",controls);
+				$.jStorage.set("omyinvert",yinvert);
 				
 			}
 			
@@ -1090,7 +1090,7 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 						bdy.style.backgroundColor = '#000';
 					} else {
 						clight = 0;
-						tmp = -Math.floor( Math.random()*speed*100);
+						tmp = -((Math.random()*speed*100)|0);
 						bdy.style.backgroundColor = 'rgb('+tmp+','+(tmp/2)+',0)';
 					}
 					light2.color.setHSV( clight , 0.3,1 );
@@ -1292,8 +1292,8 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 					if ( track < 0 ) {
 						track = 5000 + Math.random()*5000;
 	
-						phase = Math.floor(Math.random()*5)+1;
-						phase = ( phase == 5 ? Math.floor(Math.random()*5)+1 : phase );
+						phase = (Math.random()*5)+1|0;
+						phase = ( phase == 5 ? (Math.random()*5)+1|0 : phase );
 	
 						switch (phase) {
 							case 1:
