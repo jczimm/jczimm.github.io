@@ -169,13 +169,13 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 				
 				if ( gamecompleted && hiscore < score ) {
 					hiscore = score;
-					set("omhiscore", hiscore);
+					$.jStorage.set("omhiscore", hiscore);
 					html("score","new highscore "+hiscore+"!");
 				} else {
 					html("score","highscore "+hiscore);
 				}
 				
-				if( gamecompleted ) set("gold",gold);
+				if( gamecompleted ) $.jStorage.set("gold",gold);
 				
 				hide("hud");
 				hide("panel2");
@@ -1373,18 +1373,18 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 			fpsEvent = setTimeout("doFpsEvent();",3000);
 			
 			function setShip( ship ) {
-				set("owned_items", JSON.stringify(owned_items));
+				$.jStorage.set("owned_items", JSON.stringify(owned_items));
 				switch ( ship ) {
 					case "classic":
-						set("ship",1);
+						$.jStorage.set("ship",1);
 						window.location.reload();
 						break;
 					case "pioneer":
-						set("ship",2);
+						$.jStorage.set("ship",2);
 						window.location.reload();
 						break;
 					case "hugo":
-						set("ship",3);
+						$.jStorage.set("ship",3);
 						window.location.reload();
 						break;
 				}
@@ -1403,7 +1403,7 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 					return false;
 				}
 				html("gold",gold);
-				set("gold",gold);
+				$.jStorage.set("gold",gold);
 			}
 			
 			function buyItem( item ) {
