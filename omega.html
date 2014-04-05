@@ -73,7 +73,7 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 			var bdy;
 			var key_up=key_down=key_left=key_right=key_space=false;
 			
-			var pause,paused,oldspeed;
+			var pause,paused,oldspeed,playing;
 			var mode = 1;
 			
 			var prices =
@@ -131,6 +131,7 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 				if (music) html("musicplayer", "<iframe width='560' height='315' src='http://www.youtube.com/embed/1gMWVMrgNQA?autoplay=1' frameborder='0' allowfullscreen></iframe>");				
 
 				health = healths[ship.name];
+				playing = true;
 				speed = 0;
 				score = 0;
 				status = 1;
@@ -157,6 +158,9 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 			}
 		
 			function introReset( gamecompleted ) {
+				$("#pause-icon").hide();
+				paused = playing = false;
+				
 				speed = 0;
 				view = 2;
 				status = 0;
@@ -731,12 +735,14 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 						break;
 					
 					case 32: // space
-						if(paused){
-							$("#pause-icon").fadeOut();
-							paused = false;
-						} else {
-							$("#pause-icon").fadeIn();
-							paused = true;
+						if(playing){
+							if(paused){
+								$("#pause-icon").fadeOut();
+								paused = false;
+							} else {
+								$("#pause-icon").fadeIn();
+								paused = true;
+							}
 						}
 						break;
 					
@@ -813,7 +819,7 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 			</table>				
 			<span align='center' class='click' id='close_shop'>&lsaquo;close shop&rsaquo;</span>
 		</div>
-		<div id="pause-icon"><i class="fa fa-pause"></i></div>
+		<div id="pause-icon" align="center"><i class="fa fa-pause"></i></div>
 		<div id='player'></div>
 
 		<script type="text/javascript">
