@@ -161,7 +161,7 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 				$("#pause-icon").hide();
 				paused = playing = false;
 				
-				ship.visible = false;
+				if(ship) ship.visible = false;
 				
 				speed = 0;
 				view = 2;
