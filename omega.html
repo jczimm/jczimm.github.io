@@ -1375,8 +1375,8 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 			fpsEvent = setTimeout("doFpsEvent();",3000);
 			
 			function setShip( ship ) {
+				set("owned_items", JSON.stringify(owned_items));
 				switch ( ship ) {
-					set("owned_items", JSON.stringify(owned_items));
 					case "classic":
 						set("ship",1);
 						window.location.reload();
