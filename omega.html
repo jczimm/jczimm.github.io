@@ -132,7 +132,6 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 
 				health = healths[ship.name];
 				playing = true;
-				ship.visible = true;
 				speed = 0;
 				score = 0;
 				status = 1;
@@ -219,6 +218,7 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 						show("hud");
 						show("score");
 						hide("panel1");
+						ship.visible = true;
 						break;
 					
 					case "shop":
