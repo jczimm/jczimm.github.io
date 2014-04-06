@@ -654,7 +654,8 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 				group.matrixAutoUpdate = true;
 				group.rotation.x = -Math.PI;
 				group.rotation.z = Math.PI/2
-				group.scale.x=group.scale.y=group.scale.z=0.5;
+				group.scale.z=0.5;
+				group.scale.x=group.scale.y=0.3;
 				group.updateMatrix();
 				
 				scene.add( group );
@@ -1401,13 +1402,14 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 			function transact( amount ) {
 				if ( gold >= amount ) {
 					gold -= amount;
+					html("gold",gold);
+					$.jStorage.set("gold",gold);
 					return true;
 				} else {
 					alert("Bummer, ya don't have enough loot.  Get back to work!");
 					return false;
 				}
-				html("gold",gold);
-				$.jStorage.set("gold",gold);
+				
 			}
 			
 			function buyItem( item ) {
