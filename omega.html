@@ -783,11 +783,11 @@
             case 32: // space
                 if (playing) {
                     if (paused) {
-                        $("#pause-icon").fadeOut(400,function(){$("#pause-icon").finish();});
+                        $("#pause-icon").fadeOut();
                         paused = false;
                         sound.play();
                     } else {
-                        $("#pause-icon").fadeIn();
+                        $("#pause-icon").fadeIn(400,function(){$("#pause-icon").finish();});
                         paused = true;
                         sound.pause();
                     }
