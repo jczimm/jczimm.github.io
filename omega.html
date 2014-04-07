@@ -60,7 +60,7 @@
             autoswitch = 0,
             controls = 0,
             yinvert = 0;
-        var music = 0;
+        var music = 0, sound;
         var bdy;
         var key_up = key_down = key_left = key_right = key_space = false;
 
@@ -117,7 +117,7 @@
         }
 
         function gameReset() {
-            if (music) SC.stream("/tracks/61866639",function(sound){sound.play();}); //html("musicplayer", "<iframe width='560' height='315' src='http://www.youtube.com/embed/1gMWVMrgNQA?autoplay=1' frameborder='0' allowfullscreen></iframe>");
+            if (music) SC.stream("/tracks/61866639",function(_sound){sound=_sound;_sound.play();}); //html("musicplayer", "<iframe width='560' height='315' src='http://www.youtube.com/embed/1gMWVMrgNQA?autoplay=1' frameborder='0' allowfullscreen></iframe>");
 
             health = healths[ship.name];
             playing = true;
@@ -785,9 +785,11 @@
                     if (paused) {
                         $("#pause-icon").fadeOut();
                         paused = false;
+                        sound.play();
                     } else {
                         $("#pause-icon").fadeIn();
                         paused = true;
+                        sound.pause();
                     }
                 }
                 break;
