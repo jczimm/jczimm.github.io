@@ -785,11 +785,11 @@
                     if (paused) {
                         $("#pause-icon").fadeOut();
                         paused = false;
-                        sound.play();
+                        if(sound)sound.play();
                     } else {
                         $("#pause-icon").fadeIn(400,function(){$("#pause-icon").finish();});
                         paused = true;
-                        sound.pause();
+                        if(sound)sound.pause();
                     }
                 }
                 break;
