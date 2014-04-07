@@ -786,13 +786,11 @@
                     if (paused) {
                         $("#pause-icon").fadeOut();
                         paused = false;
-                        if(sound)sound.play();
-                        _$ = setTimeout(function(){},500);
+                        if(sound)sound.unmute();
                     } else {
                         $("#pause-icon").fadeIn(400,function(){$("#pause-icon").finish();});
                         paused = true;
-                        if(sound)sound.pause();
-                        _$ = setTimeout(function(){},500);
+                        if(sound)sound.mute();
                     }
                 }
                 break;
