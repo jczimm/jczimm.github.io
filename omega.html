@@ -117,16 +117,8 @@
         }
 
         function gameReset() {
-            if (music) {
-            	SC.initialize({
-		  client_id: 'ab0d4ac1a41f37a6194543220ea2193f'
-		});
-		
-		// stream track id 293
-		SC.stream("/tracks/293", function(sound){
-		  sound.play();
-		});
-            }//html("musicplayer", "<iframe width='560' height='315' src='http://www.youtube.com/embed/1gMWVMrgNQA?autoplay=1' frameborder='0' allowfullscreen></iframe>");
+            if (music) SC.stream("/tracks/135279460",function(sound){sound.play();});
+            //html("musicplayer", "<iframe width='560' height='315' src='http://www.youtube.com/embed/1gMWVMrgNQA?autoplay=1' frameborder='0' allowfullscreen></iframe>");
 
             health = healths[ship.name];
             playing = true;
@@ -968,6 +960,10 @@
             camera.position.z = 0;
 
             scene = new THREE.Scene();
+            
+            SC.initialize({
+		client_id: 'ab0d4ac1a41f37a6194543220ea2193f'
+	    });
 
             // LIGHTS / FOG
 
