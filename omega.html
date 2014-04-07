@@ -1,47 +1,32 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<link href='http://fonts.googleapis.com/css?family=Jockey+One' rel='stylesheet' type='text/css'>
-		<title>ΩMEGA</title>
-		<meta charset="utf-8">
-		
-		<link rel="shortcut icon" href="http://www.iconj.com/ico/n/s/nst9wnm8de.ico" type="image/x-icon" />
-		
-		<link href="style.css" rel="stylesheet" type="text/css">
-		<script src="three.js"></script>
-		<script src="requestAnimationFrame.js"></script>
-		<script src="stats.js"></script>
-		<script src="cookies.js"></script>
-		
-		<script src="http://code.jquery.com/jquery-1.11.0.js"></script>
-		
-		<script src="opentip-jquery.js"></script>
-		<link href="opentip.css" rel="stylesheet" type="text/css">
-		<!--<script src="html2canvas.js"></script>-->
-		
-		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-		
-		<script type="text/javascript">
 
-//cookies		
-(function(){function D(){var a="{}";if("userDataBehavior"==k){d.load("jStorage");try{a=d.getAttribute("jStorage")}catch(b){}try{r=d.getAttribute("jStorage_update")}catch(c){}h.jStorage=a}E();x();F()}function u(){var a;clearTimeout(G);G=setTimeout(function(){if("localStorage"==k||"globalStorage"==k)a=h.jStorage_update;else if("userDataBehavior"==k){d.load("jStorage");try{a=d.getAttribute("jStorage_update")}catch(b){}}if(a&&a!=r){r=a;var l=m.parse(m.stringify(c.__jstorage_meta.CRC32)),p;D();p=m.parse(m.stringify(c.__jstorage_meta.CRC32));
-var e,z=[],f=[];for(e in l)l.hasOwnProperty(e)&&(p[e]?l[e]!=p[e]&&"2."==String(l[e]).substr(0,2)&&z.push(e):f.push(e));for(e in p)p.hasOwnProperty(e)&&(l[e]||z.push(e));s(z,"updated");s(f,"deleted")}},25)}function s(a,b){a=[].concat(a||[]);if("flushed"==b){a=[];for(var c in g)g.hasOwnProperty(c)&&a.push(c);b="deleted"}c=0;for(var p=a.length;c<p;c++){if(g[a[c]])for(var e=0,d=g[a[c]].length;e<d;e++)g[a[c]][e](a[c],b);if(g["*"])for(e=0,d=g["*"].length;e<d;e++)g["*"][e](a[c],b)}}function v(){var a=(+new Date).toString();
-if("localStorage"==k||"globalStorage"==k)try{h.jStorage_update=a}catch(b){k=!1}else"userDataBehavior"==k&&(d.setAttribute("jStorage_update",a),d.save("jStorage"));u()}function E(){if(h.jStorage)try{c=m.parse(String(h.jStorage))}catch(a){h.jStorage="{}"}else h.jStorage="{}";A=h.jStorage?String(h.jStorage).length:0;c.__jstorage_meta||(c.__jstorage_meta={});c.__jstorage_meta.CRC32||(c.__jstorage_meta.CRC32={})}function w(){if(c.__jstorage_meta.PubSub){for(var a=+new Date-2E3,b=0,l=c.__jstorage_meta.PubSub.length;b<
-l;b++)if(c.__jstorage_meta.PubSub[b][0]<=a){c.__jstorage_meta.PubSub.splice(b,c.__jstorage_meta.PubSub.length-b);break}c.__jstorage_meta.PubSub.length||delete c.__jstorage_meta.PubSub}try{h.jStorage=m.stringify(c),d&&(d.setAttribute("jStorage",h.jStorage),d.save("jStorage")),A=h.jStorage?String(h.jStorage).length:0}catch(p){}}function q(a){if("string"!=typeof a&&"number"!=typeof a)throw new TypeError("Key name must be string or numeric");if("__jstorage_meta"==a)throw new TypeError("Reserved key name");
-return!0}function x(){var a,b,l,d,e=Infinity,h=!1,f=[];clearTimeout(H);if(c.__jstorage_meta&&"object"==typeof c.__jstorage_meta.TTL){a=+new Date;l=c.__jstorage_meta.TTL;d=c.__jstorage_meta.CRC32;for(b in l)l.hasOwnProperty(b)&&(l[b]<=a?(delete l[b],delete d[b],delete c[b],h=!0,f.push(b)):l[b]<e&&(e=l[b]));Infinity!=e&&(H=setTimeout(x,e-a));h&&(w(),v(),s(f,"deleted"))}}function F(){var a;if(c.__jstorage_meta.PubSub){var b,l=B;for(a=c.__jstorage_meta.PubSub.length-1;0<=a;a--)if(b=c.__jstorage_meta.PubSub[a],
-b[0]>B){var l=b[0],d=b[1];b=b[2];if(t[d])for(var e=0,h=t[d].length;e<h;e++)try{t[d][e](d,m.parse(m.stringify(b)))}catch(f){}}B=l}}var y=window.jQuery||window.$||(window.$={}),m={parse:window.JSON&&(window.JSON.parse||window.JSON.decode)||String.prototype.evalJSON&&function(a){return String(a).evalJSON()}||y.parseJSON||y.evalJSON,stringify:Object.toJSON||window.JSON&&(window.JSON.stringify||window.JSON.encode)||y.toJSON};if(!("parse"in m&&"stringify"in m))throw Error("No JSON support found, include //cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js to page");
-var c={__jstorage_meta:{CRC32:{}}},h={jStorage:"{}"},d=null,A=0,k=!1,g={},G=!1,r=0,t={},B=+new Date,H,C={isXML:function(a){return(a=(a?a.ownerDocument||a:0).documentElement)?"HTML"!==a.nodeName:!1},encode:function(a){if(!this.isXML(a))return!1;try{return(new XMLSerializer).serializeToString(a)}catch(b){try{return a.xml}catch(c){}}return!1},decode:function(a){var b="DOMParser"in window&&(new DOMParser).parseFromString||window.ActiveXObject&&function(a){var b=new ActiveXObject("Microsoft.XMLDOM");b.async=
-"false";b.loadXML(a);return b};if(!b)return!1;a=b.call("DOMParser"in window&&new DOMParser||window,a,"text/xml");return this.isXML(a)?a:!1}};y.jStorage={version:"0.4.8",set:function(a,b,d){q(a);d=d||{};if("undefined"==typeof b)return this.deleteKey(a),b;if(C.isXML(b))b={_is_xml:!0,xml:C.encode(b)};else{if("function"==typeof b)return;b&&"object"==typeof b&&(b=m.parse(m.stringify(b)))}c[a]=b;for(var h=c.__jstorage_meta.CRC32,e=m.stringify(b),k=e.length,f=2538058380^k,g=0,n;4<=k;)n=e.charCodeAt(g)&255|
-(e.charCodeAt(++g)&255)<<8|(e.charCodeAt(++g)&255)<<16|(e.charCodeAt(++g)&255)<<24,n=1540483477*(n&65535)+((1540483477*(n>>>16)&65535)<<16),n^=n>>>24,n=1540483477*(n&65535)+((1540483477*(n>>>16)&65535)<<16),f=1540483477*(f&65535)+((1540483477*(f>>>16)&65535)<<16)^n,k-=4,++g;switch(k){case 3:f^=(e.charCodeAt(g+2)&255)<<16;case 2:f^=(e.charCodeAt(g+1)&255)<<8;case 1:f^=e.charCodeAt(g)&255,f=1540483477*(f&65535)+((1540483477*(f>>>16)&65535)<<16)}f^=f>>>13;f=1540483477*(f&65535)+((1540483477*(f>>>16)&
-65535)<<16);h[a]="2."+((f^f>>>15)>>>0);this.setTTL(a,d.TTL||0);s(a,"updated");return b},get:function(a,b){q(a);return a in c?c[a]&&"object"==typeof c[a]&&c[a]._is_xml?C.decode(c[a].xml):c[a]:"undefined"==typeof b?null:b},deleteKey:function(a){q(a);return a in c?(delete c[a],"object"==typeof c.__jstorage_meta.TTL&&a in c.__jstorage_meta.TTL&&delete c.__jstorage_meta.TTL[a],delete c.__jstorage_meta.CRC32[a],w(),v(),s(a,"deleted"),!0):!1},setTTL:function(a,b){var d=+new Date;q(a);b=Number(b)||0;return a in
-c?(c.__jstorage_meta.TTL||(c.__jstorage_meta.TTL={}),0<b?c.__jstorage_meta.TTL[a]=d+b:delete c.__jstorage_meta.TTL[a],w(),x(),v(),!0):!1},getTTL:function(a){var b=+new Date;q(a);return a in c&&c.__jstorage_meta.TTL&&c.__jstorage_meta.TTL[a]?(a=c.__jstorage_meta.TTL[a]-b)||0:0},flush:function(){c={__jstorage_meta:{CRC32:{}}};w();v();s(null,"flushed");return!0},storageObj:function(){function a(){}a.prototype=c;return new a},index:function(){var a=[],b;for(b in c)c.hasOwnProperty(b)&&"__jstorage_meta"!=
-b&&a.push(b);return a},storageSize:function(){return A},currentBackend:function(){return k},storageAvailable:function(){return!!k},listenKeyChange:function(a,b){q(a);g[a]||(g[a]=[]);g[a].push(b)},stopListening:function(a,b){q(a);if(g[a])if(b)for(var c=g[a].length-1;0<=c;c--)g[a][c]==b&&g[a].splice(c,1);else delete g[a]},subscribe:function(a,b){a=(a||"").toString();if(!a)throw new TypeError("Channel not defined");t[a]||(t[a]=[]);t[a].push(b)},publish:function(a,b){a=(a||"").toString();if(!a)throw new TypeError("Channel not defined");
-c.__jstorage_meta||(c.__jstorage_meta={});c.__jstorage_meta.PubSub||(c.__jstorage_meta.PubSub=[]);c.__jstorage_meta.PubSub.unshift([+new Date,a,b]);w();v()},reInit:function(){D()},noConflict:function(a){delete window.$.jStorage;a&&(window.jStorage=this);return this}};(function(){var a=!1;if("localStorage"in window)try{window.localStorage.setItem("_tmptest","tmpval"),a=!0,window.localStorage.removeItem("_tmptest")}catch(b){}if(a)try{window.localStorage&&(h=window.localStorage,k="localStorage",r=h.jStorage_update)}catch(c){}else if("globalStorage"in
-window)try{window.globalStorage&&(h="localhost"==window.location.hostname?window.globalStorage["localhost.localdomain"]:window.globalStorage[window.location.hostname],k="globalStorage",r=h.jStorage_update)}catch(g){}else if(d=document.createElement("link"),d.addBehavior){d.style.behavior="url(#default#userData)";document.getElementsByTagName("head")[0].appendChild(d);try{d.load("jStorage")}catch(e){d.setAttribute("jStorage","{}"),d.save("jStorage"),d.load("jStorage")}a="{}";try{a=d.getAttribute("jStorage")}catch(m){}try{r=
-d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}else{d=null;return}E();x();"localStorage"==k||"globalStorage"==k?"addEventListener"in window?window.addEventListener("storage",u,!1):document.attachEvent("onstorage",u):"userDataBehavior"==k&&setInterval(u,1E3);F();"addEventListener"in window&&window.addEventListener("pageshow",function(a){a.persisted&&u()},!1)})()})();
+<head>
+    <link href='http://fonts.googleapis.com/css?family=Jockey+One' rel='stylesheet' type='text/css'>
+    <title>ΩMEGA</title>
+    <meta charset="utf-8">
 
-		
-			/*var _z = console;
+    <link rel="shortcut icon" href="http://www.iconj.com/ico/n/s/nst9wnm8de.ico" type="image/x-icon" />
+
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="three.js"></script>
+    <script src="requestAnimationFrame.js"></script>
+    <script src="stats.js"></script>
+    <script src="cookies.js"></script>
+
+    <script src="http://code.jquery.com/jquery-1.11.0.js"></script>
+
+    <script src="opentip-jquery.js"></script>
+    <link href="opentip.css" rel="stylesheet" type="text/css">
+    <!--<script src="html2canvas.js"></script>-->
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+    <script type="text/javascript">
+        //cookies		
+        (function(){function e(){var e="{}";if("userDataBehavior"==v){p.load("jStorage");try{e=p.getAttribute("jStorage")}catch(t){}try{y=p.getAttribute("jStorage_update")}catch(n){}h.jStorage=e}i();u();a()}function t(){var t;clearTimeout(g);g=setTimeout(function(){if("localStorage"==v||"globalStorage"==v)t=h.jStorage_update;else if("userDataBehavior"==v){p.load("jStorage");try{t=p.getAttribute("jStorage_update")}catch(r){}}if(t&&t!=y){y=t;var i=l.parse(l.stringify(c.__jstorage_meta.CRC32)),s;e();s=l.parse(l.stringify(c.__jstorage_meta.CRC32));var o,u=[],a=[];for(o in i)i.hasOwnProperty(o)&&(s[o]?i[o]!=s[o]&&"2."==String(i[o]).substr(0,2)&&u.push(o):a.push(o));for(o in s)s.hasOwnProperty(o)&&(i[o]||u.push(o));n(u,"updated");n(a,"deleted")}},25)}function n(e,t){e=[].concat(e||[]);if("flushed"==t){e=[];for(var n in m)m.hasOwnProperty(n)&&e.push(n);t="deleted"}n=0;for(var r=e.length;n<r;n++){if(m[e[n]])for(var i=0,s=m[e[n]].length;i<s;i++)m[e[n]][i](e[n],t);if(m["*"])for(i=0,s=m["*"].length;i<s;i++)m["*"][i](e[n],t)}}function r(){var e=(+(new Date)).toString();if("localStorage"==v||"globalStorage"==v)try{h.jStorage_update=e}catch(n){v=!1}else"userDataBehavior"==v&&(p.setAttribute("jStorage_update",e),p.save("jStorage"));t()}function i(){if(h.jStorage)try{c=l.parse(String(h.jStorage))}catch(e){h.jStorage="{}"}else h.jStorage="{}";d=h.jStorage?String(h.jStorage).length:0;c.__jstorage_meta||(c.__jstorage_meta={});c.__jstorage_meta.CRC32||(c.__jstorage_meta.CRC32={})}function s(){if(c.__jstorage_meta.PubSub){for(var e=+(new Date)-2e3,t=0,n=c.__jstorage_meta.PubSub.length;t<n;t++)if(c.__jstorage_meta.PubSub[t][0]<=e){c.__jstorage_meta.PubSub.splice(t,c.__jstorage_meta.PubSub.length-t);break}c.__jstorage_meta.PubSub.length||delete c.__jstorage_meta.PubSub}try{h.jStorage=l.stringify(c),p&&(p.setAttribute("jStorage",h.jStorage),p.save("jStorage")),d=h.jStorage?String(h.jStorage).length:0}catch(r){}}function o(e){if("string"!=typeof e&&"number"!=typeof e)throw new TypeError("Key name must be string or numeric");if("__jstorage_meta"==e)throw new TypeError("Reserved key name");return!0}function u(){var e,t,i,o,a=Infinity,f=!1,l=[];clearTimeout(E);if(c.__jstorage_meta&&"object"==typeof c.__jstorage_meta.TTL){e=+(new Date);i=c.__jstorage_meta.TTL;o=c.__jstorage_meta.CRC32;for(t in i)i.hasOwnProperty(t)&&(i[t]<=e?(delete i[t],delete o[t],delete c[t],f=!0,l.push(t)):i[t]<a&&(a=i[t]));Infinity!=a&&(E=setTimeout(u,a-e));f&&(s(),r(),n(l,"deleted"))}}function a(){var e;if(c.__jstorage_meta.PubSub){var t,n=w;for(e=c.__jstorage_meta.PubSub.length-1;0<=e;e--)if(t=c.__jstorage_meta.PubSub[e],t[0]>w){var n=t[0],r=t[1];t=t[2];if(b[r])for(var i=0,s=b[r].length;i<s;i++)try{b[r][i](r,l.parse(l.stringify(t)))}catch(o){}}w=n}}var f=window.jQuery||window.$||(window.$={}),l={parse:window.JSON&&(window.JSON.parse||window.JSON.decode)||String.prototype.evalJSON&&function(e){return String(e).evalJSON()}||f.parseJSON||f.evalJSON,stringify:Object.toJSON||window.JSON&&(window.JSON.stringify||window.JSON.encode)||f.toJSON};if(!("parse"in l&&"stringify"in l))throw Error("No JSON support found, include //cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js to page");var c={__jstorage_meta:{CRC32:{}}},h={jStorage:"{}"},p=null,d=0,v=!1,m={},g=!1,y=0,b={},w=+(new Date),E,S={isXML:function(e){return(e=(e?e.ownerDocument||e:0).documentElement)?"HTML"!==e.nodeName:!1},encode:function(e){if(!this.isXML(e))return!1;try{return(new XMLSerializer).serializeToString(e)}catch(t){try{return e.xml}catch(n){}}return!1},decode:function(e){var t="DOMParser"in window&&(new DOMParser).parseFromString||window.ActiveXObject&&function(e){var t=new ActiveXObject("Microsoft.XMLDOM");t.async="false";t.loadXML(e);return t};if(!t)return!1;e=t.call("DOMParser"in window&&new DOMParser||window,e,"text/xml");return this.isXML(e)?e:!1}};f.jStorage={version:"0.4.8",set:function(e,t,r){o(e);r=r||{};if("undefined"==typeof t)return this.deleteKey(e),t;if(S.isXML(t))t={_is_xml:!0,xml:S.encode(t)};else{if("function"==typeof t)return;t&&"object"==typeof t&&(t=l.parse(l.stringify(t)))}c[e]=t;for(var i=c.__jstorage_meta.CRC32,s=l.stringify(t),u=s.length,a=2538058380^u,f=0,h;4<=u;)h=s.charCodeAt(f)&255|(s.charCodeAt(++f)&255)<<8|(s.charCodeAt(++f)&255)<<16|(s.charCodeAt(++f)&255)<<24,h=1540483477*(h&65535)+((1540483477*(h>>>16)&65535)<<16),h^=h>>>24,h=1540483477*(h&65535)+((1540483477*(h>>>16)&65535)<<16),a=1540483477*(a&65535)+((1540483477*(a>>>16)&65535)<<16)^h,u-=4,++f;switch(u){case 3:a^=(s.charCodeAt(f+2)&255)<<16;case 2:a^=(s.charCodeAt(f+1)&255)<<8;case 1:a^=s.charCodeAt(f)&255,a=1540483477*(a&65535)+((1540483477*(a>>>16)&65535)<<16)}a^=a>>>13;a=1540483477*(a&65535)+((1540483477*(a>>>16)&65535)<<16);i[e]="2."+((a^a>>>15)>>>0);this.setTTL(e,r.TTL||0);n(e,"updated");return t},get:function(e,t){o(e);return e in c?c[e]&&"object"==typeof c[e]&&c[e]._is_xml?S.decode(c[e].xml):c[e]:"undefined"==typeof t?null:t},deleteKey:function(e){o(e);return e in c?(delete c[e],"object"==typeof c.__jstorage_meta.TTL&&e in c.__jstorage_meta.TTL&&delete c.__jstorage_meta.TTL[e],delete c.__jstorage_meta.CRC32[e],s(),r(),n(e,"deleted"),!0):!1},setTTL:function(e,t){var n=+(new Date);o(e);t=Number(t)||0;return e in c?(c.__jstorage_meta.TTL||(c.__jstorage_meta.TTL={}),0<t?c.__jstorage_meta.TTL[e]=n+t:delete c.__jstorage_meta.TTL[e],s(),u(),r(),!0):!1},getTTL:function(e){var t=+(new Date);o(e);return e in c&&c.__jstorage_meta.TTL&&c.__jstorage_meta.TTL[e]?(e=c.__jstorage_meta.TTL[e]-t)||0:0},flush:function(){c={__jstorage_meta:{CRC32:{}}};s();r();n(null,"flushed");return!0},storageObj:function(){function e(){}e.prototype=c;return new e},index:function(){var e=[],t;for(t in c)c.hasOwnProperty(t)&&"__jstorage_meta"!=t&&e.push(t);return e},storageSize:function(){return d},currentBackend:function(){return v},storageAvailable:function(){return!!v},listenKeyChange:function(e,t){o(e);m[e]||(m[e]=[]);m[e].push(t)},stopListening:function(e,t){o(e);if(m[e])if(t)for(var n=m[e].length-1;0<=n;n--)m[e][n]==t&&m[e].splice(n,1);else delete m[e]},subscribe:function(e,t){e=(e||"").toString();if(!e)throw new TypeError("Channel not defined");b[e]||(b[e]=[]);b[e].push(t)},publish:function(e,t){e=(e||"").toString();if(!e)throw new TypeError("Channel not defined");c.__jstorage_meta||(c.__jstorage_meta={});c.__jstorage_meta.PubSub||(c.__jstorage_meta.PubSub=[]);c.__jstorage_meta.PubSub.unshift([+(new Date),e,t]);s();r()},reInit:function(){e()},noConflict:function(e){delete window.$.jStorage;e&&(window.jStorage=this);return this}};(function(){var e=!1;if("localStorage"in window)try{window.localStorage.setItem("_tmptest","tmpval"),e=!0,window.localStorage.removeItem("_tmptest")}catch(n){}if(e)try{window.localStorage&&(h=window.localStorage,v="localStorage",y=h.jStorage_update)}catch(r){}else if("globalStorage"in window)try{window.globalStorage&&(h="localhost"==window.location.hostname?window.globalStorage["localhost.localdomain"]:window.globalStorage[window.location.hostname],v="globalStorage",y=h.jStorage_update)}catch(s){}else if(p=document.createElement("link"),p.addBehavior){p.style.behavior="url(#default#userData)";document.getElementsByTagName("head")[0].appendChild(p);try{p.load("jStorage")}catch(o){p.setAttribute("jStorage","{}"),p.save("jStorage"),p.load("jStorage")}e="{}";try{e=p.getAttribute("jStorage")}catch(f){}try{y=p.getAttribute("jStorage_update")}catch(l){}h.jStorage=e;v="userDataBehavior"}else{p=null;return}i();u();"localStorage"==v||"globalStorage"==v?"addEventListener"in window?window.addEventListener("storage",t,!1):document.attachEvent("onstorage",t):"userDataBehavior"==v&&setInterval(t,1e3);a();"addEventListener"in window&&window.addEventListener("pageshow",function(e){e.persisted&&t()},!1)})()})()
+
+        /*var _z = console;
 			    Object.defineProperty( window, "console", {
 				get : function(){
 				    if( _z._commandLineAPI ){
@@ -53,1390 +38,1488 @@ d.getAttribute("jStorage_update")}catch(f){}h.jStorage=a;k="userDataBehavior"}el
 				    _z = val;
 				}
 			    });*/
-		
-			Array.prototype.contains = function(obj) {
-			    var i = this.length;
-			    while (i--) {
-			        if (this[i] === obj) return true;
-			    }
-			    return false;
-			}
-			
-			var status = 0;
-			var health,speed,maxspeed,speedlimit,view,tm,score,hiscore,gold,sail;
-			var shipX=shipY=0;
-			var fullscreen,windowHalfX,windowHalfY,windowX,windowY;
-			var mx=my=0;
-			var light1,light2;
-			var sensitivity=1,sen=1,autoswitch=0,controls=0,yinvert=0;
-			var music=0;
-			var bdy;
-			var key_up=key_down=key_left=key_right=key_space=false;
-			
-			var pause,paused,oldspeed,playing;
-			var mode = 1;
-			
-			var prices =
-			{
-				"classic": 0,
-				"pioneer": 30,
-				"hugo": 150,
-				"brakes": 150
-			}
-			
-			var healths =
-			{
-				"classic": 100,
-				"pioneer": 120,
-				"hugo": 80
-			}
-			
-			
-			var owned_items = new Array( "classic" );
-			if(!$.jStorage.get("owned_items")) $.jStorage.set("owned_items", JSON.stringify(owned_items));
-			else owned_items = JSON.parse($.jStorage.get("owned_items"));
-		
-			var sens_list = new Array( "low" , "default" , "high" , "very high" , "extreme" );
-			var sens_values = new Array( 1 , 1.3 , 1.6 , 2 , 4 );
-		
-			function bind(id){
-				if(document.getElementById(id)){
-					var o = document.getElementById(id);
-					o.addEventListener( 'click', buttonClick, false );
-				}
-			}
-		
-			function show(id) {
-				if(document.getElementById(id)){
-					var o = document.getElementById(id);
-					o.style.display='block';
-				}
-			}
-			
-			function hide(id) {
-				if(document.getElementById(id)){
-					var o = document.getElementById(id);
-					o.style.display='none';
-				}
-			}
 
-			function html(id,txt) {
-				if(document.getElementById(id)){
-					var o = document.getElementById(id);
-					o.innerHTML = txt;
-				}
-			}
-			
-			function gameReset() {
-				if (music) html("musicplayer", "<iframe width='560' height='315' src='http://www.youtube.com/embed/1gMWVMrgNQA?autoplay=1' frameborder='0' allowfullscreen></iframe>");				
+        Array.prototype.contains = function (obj) {
+            var i = this.length;
+            while (i--) {
+                if (this[i] === obj) return true;
+            }
+            return false;
+        }
 
-				health = healths[ship.name];
-				playing = true;
-				speed = 0;
-				score = 0;
-				status = 1;
-				shipX = 0;
-				shipY = 0;	
-				view = 1;
-				score = 0;
-				maxspeed = 52;
-				speedlimit = 100;
-				zcamera2 = 0;
-				
-				for ( i = 0, l = objs.children.length; i < l; i++ ) {
-					var obj = objs.children[ i ];
-					obj.position.x = Math.random()*5000-2500;
-					obj.position.y = -300;					
-				}
-				
-				html("score",score);
-				html("gold",gold);
-				
-				group2color.color.setRGB( 1,1,0 );
-				group2.matrixAutoUpdate = true;
-				group2.updateMatrix();
-			}
-		
-			function introReset( gamecompleted ) {
-				$("#pause-icon").hide();
-				paused = playing = false;
-				
-				if(ship) ship.visible = false;
-				
-				speed = 0;
-				view = 2;
-				status = 0;
-				hiscore = $.jStorage.get("omhiscore");
-				if ( hiscore == 0 || hiscore == undefined || hiscore == null ) hiscore = 0;
-				
-				if ( gamecompleted && hiscore < score ) {
-					hiscore = score;
-					$.jStorage.set("omhiscore", hiscore);
-					html("score","new highscore "+hiscore+"!");
-				} else {
-					html("score",(score>0&&gamecompleted?"score "+score+" | ":"")+"highscore "+hiscore);
-				}
-				
-				if( gamecompleted ) $.jStorage.set("gold",gold);
-				
-				hide("hud");
-				hide("panel2");
-				hide("shop_panel");
-				show("panel1");
-				html("player","");
-				html("musicplayer","");
-			}
-			
-			function onWindowResize(){
-				windowX = window.innerWidth;
-				windowY = window.innerHeight-5;
-				windowHalfX = windowX / 2;
-				windowHalfY = windowY / 2;
-				camera.aspect = windowX / windowY;
-				camera.updateProjectionMatrix();
-				renderer.setSize( windowX, windowY );
-				fullscreen = ( windowX == window.outerWidth )
-			}			
+        var status = 0;
+        var health, speed, maxspeed, speedlimit, view, tm, score, hiscore, gold, sail;
+        var shipX = shipY = 0;
+        var fullscreen, windowHalfX, windowHalfY, windowX, windowY;
+        var mx = my = 0;
+        var light1, light2;
+        var sensitivity = 1,
+            sen = 1,
+            autoswitch = 0,
+            controls = 0,
+            yinvert = 0;
+        var music = 0;
+        var bdy;
+        var key_up = key_down = key_left = key_right = key_space = false;
 
-// UI
-			
-			function get(id,def) {
-				return $.jStorage.get(id) || $.jStorage.set(id,def) && def;
-			}
+        var pause, paused, oldspeed, playing;
+        var mode = 1;
 
-			function set(id,v) {
-				$.jStorage.set(id);
-			}
-			
-			function buttonClick(e){
-				console.log (e.currentTarget.id);
-				
-				switch ( e.currentTarget.id ) {
-					case "start":
-						gameReset();
-						show("hud");
-						show("score");
-						hide("panel1");
-						ship.visible = true;
-						break;
-					
-					case "shop":
-						hide("panel1");
-						hide("panel2");
-						show("shop_panel");
-						break;
-						
-					case "classic":
-						setShip("classic");
-						break;
-					
-					case "pioneer":
-						if(owned_items.contains("pioneer")) setShip("pioneer");
-						else if(buyItem("pioneer")) setShip("pioneer");
-						break;
-						
-					case "brakes":
-						if(owned_items.contains("brakes")) useBrakes();
-						else if(buyItem("brakes")) useBrakes();
-						break;
-						
-					case "hugo":
-						if(owned_items.contains("hugo")) setShip("hugo");
-						else if(buyItem("hugo")) setShip("hugo");
-						break;
-						
-					case "options":
-						hide("panel1");
-						show("panel2");
-						break;
+        var prices = {
+            "classic": 0,
+            "pioneer": 30,
+            "hugo": 150,
+            "brakes": 150
+        }
 
-					case "op_sensitivity":
-						sensitivity ++;
-						if ( sensitivity > 4 ) sensitivity = 0;
-						updateUI();
-						break;
-						
-					case "op_1stperson":
-						autoswitch = 1-autoswitch;
-						updateUI();
-						break;
+        var healths = {
+            "classic": 100,
+            "pioneer": 120,
+            "hugo": 80
+        }
 
-					case "op_controls":
-						controls = 1-controls;
-						updateUI();
-						break;
 
-					case "op_yinvert":
-						yinvert = 1-yinvert;
-						updateUI();
-						break;
-						
-					case "op_difficulty":
-						mode = mode==1?2:mode==2?1:1;
-						updateUI();
-						break;
-					
-					case "close_panel2":
-						hide("panel2");
-						show("panel1");
-						break;						
-					
-					case "close_shop":
-						hide("shop_panel");
-						show("panel1");
-						break;
-				
-					case "music":
-						music = 1-music;
-						html('music','in-game music ' + ( music == 0 ? "off" : "on" ) );
-						$.jStorage.set("music",music);
-						break;
-				
-				}
-			}			
-			
-			function updateUI(){
-				html('op_sensitivity','controls sensitivity : ' + sens_list[sensitivity]);
-				sen = sens_values[sensitivity];
-				html('op_1stperson','automatic 1st/3th person : ' + ( autoswitch ? "yes" : "no" ) );
-				html('op_controls','controls : ' + ( controls == 0 ? "mouse" : "arrows / WASD" ) );
-				html('op_yinvert','invert Y axis : ' + ( yinvert == 0 ? "no" : "yes" ) );
-				html('op_difficulty','difficulty: ' + ( mode == 1 ? "normal" : "hard" ) );
+        var owned_items = new Array("classic");
+        if (!$.jStorage.get("owned_items")) $.jStorage.set("owned_items", JSON.stringify(owned_items));
+        else owned_items = JSON.parse($.jStorage.get("owned_items"));
 
-				$.jStorage.set("omsensitivity",sensitivity);
-				$.jStorage.set("omautoswitch",autoswitch);
-				$.jStorage.set("omcontrols",controls);
-				$.jStorage.set("omyinvert",yinvert);
-				
-			}
-			
-			function drawSector( centerX , centerY , r , a1 , a2 , color ) {
-				ctx.save();
+        var sens_list = new Array("low", "default", "high", "very high", "extreme");
+        var sens_values = new Array(1, 1.3, 1.6, 2, 4);
 
-				var startingAngle = a1;
-				var arcSize = a2-a1;
-				var endingAngle = a2;
+        function bind(id) {
+            if (document.getElementById(id)) {
+                var o = document.getElementById(id);
+                o.addEventListener('click', buttonClick, false);
+            }
+        }
 
-				ctx.beginPath();
-				ctx.moveTo(centerX, centerY);
-				ctx.arc(centerX, centerY, r, startingAngle, endingAngle, false);
-				ctx.closePath();
-				ctx.fillStyle = color;
-				ctx.fill();
+        function show(id) {
+            if (document.getElementById(id)) {
+                var o = document.getElementById(id);
+                o.style.display = 'block';
+            }
+        }
 
-				ctx.beginPath();
-				ctx.moveTo(centerX, centerY);
-				ctx.arc(centerX, centerY, r*0.65, 0, Math.PI*2, false);
-				ctx.closePath();
-				ctx.fillStyle = "#000000";
-				ctx.fill();
+        function hide(id) {
+            if (document.getElementById(id)) {
+                var o = document.getElementById(id);
+                o.style.display = 'none';
+            }
+        }
 
-				ctx.beginPath();
-				ctx.moveTo(centerX, centerY);
-				ctx.arc(centerX, centerY, r*0.60, 0, Math.PI*2, false);
-				ctx.closePath();
-				ctx.fillStyle = "#ff0000";
-				ctx.fill();
+        function html(id, txt) {
+            if (document.getElementById(id)) {
+                var o = document.getElementById(id);
+                o.innerHTML = txt;
+            }
+        }
 
-				
-				if ( health > 0 ) {
-					ctx.beginPath();
-					ctx.moveTo(centerX, centerY);
-					ctx.arc(centerX, centerY, r*0.60*(health/100), 0, Math.PI*2, false);
-					ctx.closePath();
-					ctx.fillStyle = "#ffffff";
-					ctx.fill();
-				}
-				
-				ctx.restore();
-			}				
-			
-// GEOMETRY/COLORS
-			
-			function rgbColor(r,g,b){
-				return b + (256*g)|0 + (256*256*r)|0;
-			}			
-			
-			function generateCubesRing( cubes , y , radius , spreading , depthspread , sizeVariance ){
-				// cubes qt.
-				// y offset
-				// radius
-				// spreading
-				// objects size variance
-				
-				var mergedGeo = new THREE.Geometry();	// container
+        function gameReset() {
+            if (music) html("musicplayer", "<iframe width='560' height='315' src='http://www.youtube.com/embed/1gMWVMrgNQA?autoplay=1' frameborder='0' allowfullscreen></iframe>");
 
-				var geometry = new THREE.CubeGeometry( 10, 10, 10 );
-				var mesh = new THREE.Mesh( geometry );
-				
-				for ( i = 0; i < cubes ; i++ ) {
-					mesh.scale.x = mesh.scale.y = mesh.scale.z = 1+Math.random()*sizeVariance; 
-				
-					mesh.position.x = Math.cos( i/cubes*Math.PI*2 )*radius + Math.random()* spreading - spreading/2 ;
-					mesh.position.y = y + Math.random()* (depthspread);
-					mesh.position.z = Math.sin( i/cubes*Math.PI*2 )*radius + Math.random()* spreading - spreading/2;
-					
-					mesh.rotation.x = Math.random() * 360 * ( Math.PI / 180 );
-					mesh.rotation.y = Math.random() * 360 * ( Math.PI / 180 );
-					THREE.GeometryUtils.merge(mergedGeo, mesh);
-				}
-				
-				return mergedGeo;
+            health = healths[ship.name];
+            playing = true;
+            speed = 0;
+            score = 0;
+            status = 1;
+            shipX = 0;
+            shipY = 0;
+            view = 1;
+            score = 0;
+            maxspeed = 52;
+            speedlimit = 100;
+            zcamera2 = 0;
 
-			}
-			
-			function generateObstacle(){
-				var geometry 	= new THREE.SphereGeometry( 50, 5 , 3 );
-				
-				var material = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0xffffff, shininess: 150, opacity:1 , shading: THREE.FlatShading } );
-				var mesh = new THREE.Mesh( geometry, material );
-				
-				mesh.matrixAutoUpdate = true;
-				mesh.updateMatrix();
-				objs.add( mesh );
+            for (i = 0, l = objs.children.length; i < l; i++) {
+                var obj = objs.children[i];
+                obj.position.x = Math.random() * 5000 - 2500;
+                obj.position.y = -300;
+            }
 
-				return mesh;
+            html("score", score);
+            html("gold", gold);
 
-			}
-			
-			function generateShip( type ) {
-				var _ship;
-				switch ( type ) {
-					case 1:
-						_ship = generateShip01();
-						_ship.name = "classic";
-						return _ship;
-						break;
-					case 2:
-						_ship = generateShip02();
-						_ship.name = "pioneer";
-						return _ship;
-						break;
-					case 3:
-						_ship = generateShip03();
-						_ship.name = "hugo";
-						return _ship;
-						break;
-				}
-					
-			}
-			
-			function generateShip01() {
-				var mergedGeo;
-				mergedGeo = new THREE.Geometry();
-				
-				var geometry_cube = new THREE.CubeGeometry( 50, 10, 50 );
-				var geometry_cyl = new THREE.CylinderGeometry( 50, 35, 50 , 8 , 1 );
-				var geometry_cyl2 = new THREE.CylinderGeometry( 50, 40, 50 , 4 , 1 );
-				
-				var material = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0xffffff, shininess: 50, opacity:1 , shading: THREE.FlatShading } );
+            group2color.color.setRGB(1, 1, 0);
+            group2.matrixAutoUpdate = true;
+            group2.updateMatrix();
+        }
 
-					// Building the space ship, LEGO style!
-					
-					var mesh = new THREE.Mesh( geometry_cube, material );
-					var mesh2 = new THREE.Mesh( geometry_cyl, material );
-					var mesh3 = new THREE.Mesh( geometry_cyl2, material );
+        function introReset(gamecompleted) {
+            $("#pause-icon").hide();
+            paused = playing = false;
 
-					// body
-					mesh2.position.x = 0;
-					mesh2.position.y = 0;
-					mesh2.position.z = 0;
-					mesh2.rotation.x = Math.PI/2;
-					mesh2.rotation.y = Math.PI/2;
-					mesh2.scale.x = 0.25; 
-					THREE.GeometryUtils.merge(mergedGeo, mesh2);
+            if (ship) ship.visible = false;
 
-					// sidewings
-					mesh3.position.x = 0;
-					mesh3.position.y = 0;
-					mesh3.position.z = 16;
-					mesh3.rotation.x = Math.PI/2;
-					mesh3.rotation.y = Math.PI/2;
-					mesh3.scale.x = 0.1;
-					mesh3.scale.y = 0.5;
-					mesh3.scale.z = 1.6;
-					THREE.GeometryUtils.merge(mergedGeo, mesh3);
+            speed = 0;
+            view = 2;
+            status = 0;
+            hiscore = $.jStorage.get("omhiscore");
+            if (hiscore == 0 || hiscore == undefined || hiscore == null) hiscore = 0;
 
-					// wings up
-					mesh.position.y = 10;
-					mesh.position.z = 12;
-					mesh.scale.x = 0.015; 
-					mesh.scale.y = 0.4; 
-					mesh.scale.z = 0.25;
-					mesh.rotation.y = 0;
-					mesh.rotation.x = -Math.PI/10;
+            if (gamecompleted && hiscore < score) {
+                hiscore = score;
+                $.jStorage.set("omhiscore", hiscore);
+                html("score", "new highscore " + hiscore + "!");
+            } else {
+                html("score", (score > 0 && gamecompleted ? "score " + score + " | " : "") + "highscore " + hiscore);
+            }
 
-					mesh.position.x = 20;
-					mesh.rotation.z = -Math.PI/20;
-					THREE.GeometryUtils.merge(mergedGeo, mesh);
-					
-					mesh.position.x = -20;
-					mesh.rotation.z = Math.PI/20;
-					THREE.GeometryUtils.merge(mergedGeo, mesh);
-					
-				
-				mergedGeo.computeFaceNormals();
-				var group = new THREE.Mesh( mergedGeo, material );
-				group.matrixAutoUpdate = true;
-				group.updateMatrix();
-				
-				scene.add( group );
+            if (gamecompleted) $.jStorage.set("gold", gold);
 
-				scale = 0.08;
-				var enginepng = THREE.ImageUtils.loadTexture( "engine_small.png" );
-				
-				engine_lt = new THREE.Sprite( { map:enginepng, useScreenCoordinates:false } );
-				engine_lt.position.set( -20 , 0 , 35 );
-				engine_lt.scale.set( scale, scale, scale );
-				engine_lt.blending = THREE.AdditiveBlending;
-				group.add( engine_lt );
-				
-				engine_rt = new THREE.Sprite( { map:enginepng, useScreenCoordinates:false } );
-				engine_rt.position.set( 20 , 0 , 35 );
-				engine_rt.scale.set( scale, scale, scale );
-				engine_rt.blending = THREE.AdditiveBlending;
-				group.add( engine_rt );
-				
-				return group;
+            hide("hud");
+            hide("panel2");
+            hide("shop_panel");
+            show("panel1");
+            html("player", "");
+            html("musicplayer", "");
+        }
 
-			}
-			
-			function generateShip02() {
-				var mergedGeo;
-				mergedGeo = new THREE.Geometry();
-				
-				var t1 = new THREE.CylinderGeometry( 7, 5, 75, 10 );
-				var t2 = new THREE.CylinderGeometry( 7, 5, 75, 10 );
-				
-				var geometry_cyl = new THREE.CylinderGeometry( 30, 20, 60 , 8 , 1 );
-				var geometry_cyl2 = new THREE.CylinderGeometry( 30, 30, 50 , 4 , 1 );
-				
-				var material = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0xffffff, shininess: 50, opacity:1 , shading: THREE.FlatShading } );
+        function onWindowResize() {
+            windowX = window.innerWidth;
+            windowY = window.innerHeight - 5;
+            windowHalfX = windowX / 2;
+            windowHalfY = windowY / 2;
+            camera.aspect = windowX / windowY;
+            camera.updateProjectionMatrix();
+            renderer.setSize(windowX, windowY);
+            fullscreen = (windowX == window.outerWidth)
+        }
 
-					// Building the space ship, LEGO style!
-					
-					var mesh_t1 = new THREE.Mesh( t1, material );
-					var mesh_t2 = new THREE.Mesh( t2, material );
-					
-					var mesh2 = new THREE.Mesh( geometry_cyl, material );
-					var mesh3 = new THREE.Mesh( geometry_cyl2, material );
+         // UI
 
-					// body
-					mesh2.position.x = 0;
-					mesh2.position.y = 0;
-					mesh2.position.z = 0;
-					mesh2.rotation.x = Math.PI/2;
-					mesh2.rotation.y = Math.PI/2;
-					mesh2.scale.x = 0.25; 
-					THREE.GeometryUtils.merge(mergedGeo, mesh2);
+        function get(id, def) {
+            return $.jStorage.get(id) || $.jStorage.set(id, def) && def;
+        }
 
-					// connectors
-					mesh3.position.x = 5;
-					mesh3.position.y = 0;
-					mesh3.position.z = 16;
-					mesh3.rotation.x = Math.PI/2;
-					mesh3.rotation.y = Math.PI/2;
-					mesh3.scale.x = 0.1;
-					mesh3.scale.y = 0.5;
-					mesh3.scale.z = 1.6;
-					THREE.GeometryUtils.merge(mergedGeo, mesh3);
+        function set(id, v) {
+            $.jStorage.set(id);
+        }
 
-					// thruster 1
-					mesh_t1.position.x = 50;
-					mesh_t1.position.y = 0;
-					mesh_t1.position.z = 0;
-					mesh_t1.scale.x = 1; 
-					mesh_t1.scale.y = 1; 
-					mesh_t1.scale.z = 1;
-					mesh_t1.rotation.y = Math.PI/2;
-					mesh_t1.rotation.x = Math.PI/2;
-					mesh_t1.rotation.z = 0;
-					THREE.GeometryUtils.merge(mergedGeo, mesh_t1);
-					
-					// thruster 2
-					mesh_t2.position.x = -50;
-					mesh_t2.position.y = 0;
-					mesh_t2.position.z = 0;
-					mesh_t2.scale.x = 1; 
-					mesh_t2.scale.y = 1; 
-					mesh_t2.scale.z = 1;
-					mesh_t2.rotation.y = Math.PI/2;
-					mesh_t2.rotation.x = Math.PI/2;
-					mesh_t2.rotation.z = 0;
-					THREE.GeometryUtils.merge(mergedGeo, mesh_t2);
-					
-				
-				mergedGeo.computeFaceNormals();
-				var group = new THREE.Mesh( mergedGeo, material );
-				group.matrixAutoUpdate = true;
-				group.updateMatrix();
-				
-				scene.add( group );
+        function buttonClick(e) {
+            console.log(e.currentTarget.id);
 
-				scale = 0.08;
-				var enginepng = THREE.ImageUtils.loadTexture( "engine_small.png" );
-				
-				engine_lt = new THREE.Sprite( { map:enginepng, useScreenCoordinates:false } );
-				engine_lt.position.set( -20 , 0 , 35 );
-				engine_lt.scale.set( scale, scale, scale );
-				engine_lt.blending = THREE.AdditiveBlending;
-				group.add( engine_lt );
-				
-				engine_rt = new THREE.Sprite( { map:enginepng, useScreenCoordinates:false } );
-				engine_rt.position.set( 20 , 0 , 35 );
-				engine_rt.scale.set( scale, scale, scale );
-				engine_rt.blending = THREE.AdditiveBlending;
-				group.add( engine_rt );
-				
-				return group;
+            switch (e.currentTarget.id) {
+            case "start":
+                gameReset();
+                show("hud");
+                show("score");
+                hide("panel1");
+                ship.visible = true;
+                break;
 
-			}
-			
-			function generateShip03() {
-				var mergedGeo;
-				mergedGeo = new THREE.Geometry();
-				
-				//var body = new THREE.SphereGeometry(75,32,16);
-				var engine = new THREE.TorusKnotGeometry(100,70);
-				var wings = new THREE.CylinderGeometry(20,20,30);
-				var t1 = new THREE.CylinderGeometry(3,4);
-				var t2 = new THREE.CylinderGeometry(3,4);
-				
-				var white_material = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0xffffff, shininess: 50, opacity:1, shading: THREE.FlatShading } );
-				var black_material = new THREE.MeshPhongMaterial( { color: 0x000000, specular: 0x000000, shininess: 50, opacity:1, shading: THREE.FlatShading } );
-				var trans_material = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0xffffff, shininess: 50, opacity:0.58, transparent:true, shading: THREE.FlatShading } );
-				
-					// Building the space ship, LEGO style!
-					
-					//var mesh_body = new THREE.Mesh( body, trans_material );
-					var mesh_engine = new THREE.Mesh( engine, black_material );
-					var mesh_wings = new THREE.Mesh( wings, white_material );
-					var mesh_t1 = new THREE.Mesh ( t1, white_material );
-					var mesh_t2 = new THREE.Mesh ( t2, white_material );
-					
-					/*with(mesh_body){
+            case "shop":
+                hide("panel1");
+                hide("panel2");
+                show("shop_panel");
+                break;
+
+            case "classic":
+                setShip("classic");
+                break;
+
+            case "pioneer":
+                if (owned_items.contains("pioneer")) setShip("pioneer");
+                else if (buyItem("pioneer")) setShip("pioneer");
+                break;
+
+            case "brakes":
+                if (owned_items.contains("brakes")) useBrakes();
+                else if (buyItem("brakes")) useBrakes();
+                break;
+
+            case "hugo":
+                if (owned_items.contains("hugo")) setShip("hugo");
+                else if (buyItem("hugo")) setShip("hugo");
+                break;
+
+            case "options":
+                hide("panel1");
+                show("panel2");
+                break;
+
+            case "op_sensitivity":
+                sensitivity++;
+                if (sensitivity > 4) sensitivity = 0;
+                updateUI();
+                break;
+
+            case "op_1stperson":
+                autoswitch = 1 - autoswitch;
+                updateUI();
+                break;
+
+            case "op_controls":
+                controls = 1 - controls;
+                updateUI();
+                break;
+
+            case "op_yinvert":
+                yinvert = 1 - yinvert;
+                updateUI();
+                break;
+
+            case "op_difficulty":
+                mode = mode == 1 ? 2 : mode == 2 ? 1 : 1;
+                updateUI();
+                break;
+
+            case "close_panel2":
+                hide("panel2");
+                show("panel1");
+                break;
+
+            case "close_shop":
+                hide("shop_panel");
+                show("panel1");
+                break;
+
+            case "music":
+                music = 1 - music;
+                html('music', 'in-game music ' + (music == 0 ? "off" : "on"));
+                $.jStorage.set("music", music);
+                break;
+
+            }
+        }
+
+        function updateUI() {
+            html('op_sensitivity', 'controls sensitivity : ' + sens_list[sensitivity]);
+            sen = sens_values[sensitivity];
+            html('op_1stperson', 'automatic 1st/3th person : ' + (autoswitch ? "yes" : "no"));
+            html('op_controls', 'controls : ' + (controls == 0 ? "mouse" : "arrows / WASD"));
+            html('op_yinvert', 'invert Y axis : ' + (yinvert == 0 ? "no" : "yes"));
+            html('op_difficulty', 'difficulty: ' + (mode == 1 ? "normal" : "hard"));
+
+            $.jStorage.set("omsensitivity", sensitivity);
+            $.jStorage.set("omautoswitch", autoswitch);
+            $.jStorage.set("omcontrols", controls);
+            $.jStorage.set("omyinvert", yinvert);
+
+        }
+
+        function drawSector(centerX, centerY, r, a1, a2, color) {
+            ctx.save();
+
+            var startingAngle = a1;
+            var arcSize = a2 - a1;
+            var endingAngle = a2;
+
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY);
+            ctx.arc(centerX, centerY, r, startingAngle, endingAngle, false);
+            ctx.closePath();
+            ctx.fillStyle = color;
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY);
+            ctx.arc(centerX, centerY, r * 0.65, 0, Math.PI * 2, false);
+            ctx.closePath();
+            ctx.fillStyle = "#000000";
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY);
+            ctx.arc(centerX, centerY, r * 0.60, 0, Math.PI * 2, false);
+            ctx.closePath();
+            ctx.fillStyle = "#ff0000";
+            ctx.fill();
+
+
+            if (health > 0) {
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.arc(centerX, centerY, r * 0.60 * (health / 100), 0, Math.PI * 2, false);
+                ctx.closePath();
+                ctx.fillStyle = "#ffffff";
+                ctx.fill();
+            }
+
+            ctx.restore();
+        }
+
+         // GEOMETRY/COLORS
+
+        function rgbColor(r, g, b) {
+            return b + (256 * g) | 0 + (256 * 256 * r) | 0;
+        }
+
+        function generateCubesRing(cubes, y, radius, spreading, depthspread, sizeVariance) {
+            // cubes qt.
+            // y offset
+            // radius
+            // spreading
+            // objects size variance
+
+            var mergedGeo = new THREE.Geometry(); // container
+
+            var geometry = new THREE.CubeGeometry(10, 10, 10);
+            var mesh = new THREE.Mesh(geometry);
+
+            for (i = 0; i < cubes; i++) {
+                mesh.scale.x = mesh.scale.y = mesh.scale.z = 1 + Math.random() * sizeVariance;
+
+                mesh.position.x = Math.cos(i / cubes * Math.PI * 2) * radius + Math.random() * spreading - spreading / 2;
+                mesh.position.y = y + Math.random() * (depthspread);
+                mesh.position.z = Math.sin(i / cubes * Math.PI * 2) * radius + Math.random() * spreading - spreading / 2;
+
+                mesh.rotation.x = Math.random() * 360 * (Math.PI / 180);
+                mesh.rotation.y = Math.random() * 360 * (Math.PI / 180);
+                THREE.GeometryUtils.merge(mergedGeo, mesh);
+            }
+
+            return mergedGeo;
+
+        }
+
+        function generateObstacle() {
+            var geometry = new THREE.SphereGeometry(50, 5, 3);
+
+            var material = new THREE.MeshPhongMaterial({
+                color: 0xffffff,
+                specular: 0xffffff,
+                shininess: 150,
+                opacity: 1,
+                shading: THREE.FlatShading
+            });
+            var mesh = new THREE.Mesh(geometry, material);
+
+            mesh.matrixAutoUpdate = true;
+            mesh.updateMatrix();
+            objs.add(mesh);
+
+            return mesh;
+
+        }
+
+        function generateShip(type) {
+            var _ship;
+            switch (type) {
+            case 1:
+                _ship = generateShip01();
+                _ship.name = "classic";
+                return _ship;
+                break;
+            case 2:
+                _ship = generateShip02();
+                _ship.name = "pioneer";
+                return _ship;
+                break;
+            case 3:
+                _ship = generateShip03();
+                _ship.name = "hugo";
+                return _ship;
+                break;
+            }
+
+        }
+
+        function generateShip01() {
+            var mergedGeo;
+            mergedGeo = new THREE.Geometry();
+
+            var geometry_cube = new THREE.CubeGeometry(50, 10, 50);
+            var geometry_cyl = new THREE.CylinderGeometry(50, 35, 50, 8, 1);
+            var geometry_cyl2 = new THREE.CylinderGeometry(50, 40, 50, 4, 1);
+
+            var material = new THREE.MeshPhongMaterial({
+                color: 0xffffff,
+                specular: 0xffffff,
+                shininess: 50,
+                opacity: 1,
+                shading: THREE.FlatShading
+            });
+
+            // Building the space ship, LEGO style!
+
+            var mesh = new THREE.Mesh(geometry_cube, material);
+            var mesh2 = new THREE.Mesh(geometry_cyl, material);
+            var mesh3 = new THREE.Mesh(geometry_cyl2, material);
+
+            // body
+            mesh2.position.x = 0;
+            mesh2.position.y = 0;
+            mesh2.position.z = 0;
+            mesh2.rotation.x = Math.PI / 2;
+            mesh2.rotation.y = Math.PI / 2;
+            mesh2.scale.x = 0.25;
+            THREE.GeometryUtils.merge(mergedGeo, mesh2);
+
+            // sidewings
+            mesh3.position.x = 0;
+            mesh3.position.y = 0;
+            mesh3.position.z = 16;
+            mesh3.rotation.x = Math.PI / 2;
+            mesh3.rotation.y = Math.PI / 2;
+            mesh3.scale.x = 0.1;
+            mesh3.scale.y = 0.5;
+            mesh3.scale.z = 1.6;
+            THREE.GeometryUtils.merge(mergedGeo, mesh3);
+
+            // wings up
+            mesh.position.y = 10;
+            mesh.position.z = 12;
+            mesh.scale.x = 0.015;
+            mesh.scale.y = 0.4;
+            mesh.scale.z = 0.25;
+            mesh.rotation.y = 0;
+            mesh.rotation.x = -Math.PI / 10;
+
+            mesh.position.x = 20;
+            mesh.rotation.z = -Math.PI / 20;
+            THREE.GeometryUtils.merge(mergedGeo, mesh);
+
+            mesh.position.x = -20;
+            mesh.rotation.z = Math.PI / 20;
+            THREE.GeometryUtils.merge(mergedGeo, mesh);
+
+
+            mergedGeo.computeFaceNormals();
+            var group = new THREE.Mesh(mergedGeo, material);
+            group.matrixAutoUpdate = true;
+            group.updateMatrix();
+
+            scene.add(group);
+
+            scale = 0.08;
+            var enginepng = THREE.ImageUtils.loadTexture("engine_small.png");
+
+            engine_lt = new THREE.Sprite({
+                map: enginepng,
+                useScreenCoordinates: false
+            });
+            engine_lt.position.set(-20, 0, 35);
+            engine_lt.scale.set(scale, scale, scale);
+            engine_lt.blending = THREE.AdditiveBlending;
+            group.add(engine_lt);
+
+            engine_rt = new THREE.Sprite({
+                map: enginepng,
+                useScreenCoordinates: false
+            });
+            engine_rt.position.set(20, 0, 35);
+            engine_rt.scale.set(scale, scale, scale);
+            engine_rt.blending = THREE.AdditiveBlending;
+            group.add(engine_rt);
+
+            return group;
+
+        }
+
+        function generateShip02() {
+            var mergedGeo;
+            mergedGeo = new THREE.Geometry();
+
+            var t1 = new THREE.CylinderGeometry(7, 5, 75, 10);
+            var t2 = new THREE.CylinderGeometry(7, 5, 75, 10);
+
+            var geometry_cyl = new THREE.CylinderGeometry(30, 20, 60, 8, 1);
+            var geometry_cyl2 = new THREE.CylinderGeometry(30, 30, 50, 4, 1);
+
+            var material = new THREE.MeshPhongMaterial({
+                color: 0xffffff,
+                specular: 0xffffff,
+                shininess: 50,
+                opacity: 1,
+                shading: THREE.FlatShading
+            });
+
+            // Building the space ship, LEGO style!
+
+            var mesh_t1 = new THREE.Mesh(t1, material);
+            var mesh_t2 = new THREE.Mesh(t2, material);
+
+            var mesh2 = new THREE.Mesh(geometry_cyl, material);
+            var mesh3 = new THREE.Mesh(geometry_cyl2, material);
+
+            // body
+            mesh2.position.x = 0;
+            mesh2.position.y = 0;
+            mesh2.position.z = 0;
+            mesh2.rotation.x = Math.PI / 2;
+            mesh2.rotation.y = Math.PI / 2;
+            mesh2.scale.x = 0.25;
+            THREE.GeometryUtils.merge(mergedGeo, mesh2);
+
+            // connectors
+            mesh3.position.x = 5;
+            mesh3.position.y = 0;
+            mesh3.position.z = 16;
+            mesh3.rotation.x = Math.PI / 2;
+            mesh3.rotation.y = Math.PI / 2;
+            mesh3.scale.x = 0.1;
+            mesh3.scale.y = 0.5;
+            mesh3.scale.z = 1.6;
+            THREE.GeometryUtils.merge(mergedGeo, mesh3);
+
+            // thruster 1
+            mesh_t1.position.x = 50;
+            mesh_t1.position.y = 0;
+            mesh_t1.position.z = 0;
+            mesh_t1.scale.x = 1;
+            mesh_t1.scale.y = 1;
+            mesh_t1.scale.z = 1;
+            mesh_t1.rotation.y = Math.PI / 2;
+            mesh_t1.rotation.x = Math.PI / 2;
+            mesh_t1.rotation.z = 0;
+            THREE.GeometryUtils.merge(mergedGeo, mesh_t1);
+
+            // thruster 2
+            mesh_t2.position.x = -50;
+            mesh_t2.position.y = 0;
+            mesh_t2.position.z = 0;
+            mesh_t2.scale.x = 1;
+            mesh_t2.scale.y = 1;
+            mesh_t2.scale.z = 1;
+            mesh_t2.rotation.y = Math.PI / 2;
+            mesh_t2.rotation.x = Math.PI / 2;
+            mesh_t2.rotation.z = 0;
+            THREE.GeometryUtils.merge(mergedGeo, mesh_t2);
+
+
+            mergedGeo.computeFaceNormals();
+            var group = new THREE.Mesh(mergedGeo, material);
+            group.matrixAutoUpdate = true;
+            group.updateMatrix();
+
+            scene.add(group);
+
+            scale = 0.08;
+            var enginepng = THREE.ImageUtils.loadTexture("engine_small.png");
+
+            engine_lt = new THREE.Sprite({
+                map: enginepng,
+                useScreenCoordinates: false
+            });
+            engine_lt.position.set(-20, 0, 35);
+            engine_lt.scale.set(scale, scale, scale);
+            engine_lt.blending = THREE.AdditiveBlending;
+            group.add(engine_lt);
+
+            engine_rt = new THREE.Sprite({
+                map: enginepng,
+                useScreenCoordinates: false
+            });
+            engine_rt.position.set(20, 0, 35);
+            engine_rt.scale.set(scale, scale, scale);
+            engine_rt.blending = THREE.AdditiveBlending;
+            group.add(engine_rt);
+
+            return group;
+
+        }
+
+        function generateShip03() {
+            var mergedGeo;
+            mergedGeo = new THREE.Geometry();
+
+            //var body = new THREE.SphereGeometry(75,32,16);
+            var engine = new THREE.TorusKnotGeometry(100, 70);
+            var wings = new THREE.CylinderGeometry(20, 20, 30);
+            var t1 = new THREE.CylinderGeometry(3, 4);
+            var t2 = new THREE.CylinderGeometry(3, 4);
+
+            var white_material = new THREE.MeshPhongMaterial({
+                color: 0xffffff,
+                specular: 0xffffff,
+                shininess: 50,
+                opacity: 1,
+                shading: THREE.FlatShading
+            });
+            var black_material = new THREE.MeshPhongMaterial({
+                color: 0x000000,
+                specular: 0x000000,
+                shininess: 50,
+                opacity: 1,
+                shading: THREE.FlatShading
+            });
+            var trans_material = new THREE.MeshPhongMaterial({
+                color: 0xffffff,
+                specular: 0xffffff,
+                shininess: 50,
+                opacity: 0.58,
+                transparent: true,
+                shading: THREE.FlatShading
+            });
+
+            // Building the space ship, LEGO style!
+
+            //var mesh_body = new THREE.Mesh( body, trans_material );
+            var mesh_engine = new THREE.Mesh(engine, black_material);
+            var mesh_wings = new THREE.Mesh(wings, white_material);
+            var mesh_t1 = new THREE.Mesh(t1, white_material);
+            var mesh_t2 = new THREE.Mesh(t2, white_material);
+
+            /*with(mesh_body){
 						scale.y = 0.5;
 						scale.z = 1.52;
 					}
 					THREE.GeometryUtils.merge(mergedGeo, mesh_body);*/
-					
-					with(mesh_engine){
-						rotation.x = Math.PI/2;
-						scale.x = 0.11;
-						scale.y = 0.44;
-						scale.z = 0.24;
-					}
-					THREE.GeometryUtils.merge(mergedGeo, mesh_engine);
-					
-					with(mesh_wings){
-						position.y = 22;
-						rotation.x = 0.18;
-						rotation.z = Math.PI/2;
-					}
-					THREE.GeometryUtils.merge(mergedGeo, mesh_wings);
-					
-					with(mesh_t1){
-						position.x = 10;
-						position.z = -81.27;
-						rotation.x = Math.PI/2;
-					}
-					THREE.GeometryUtils.merge(mergedGeo, mesh_t1);
-					
-					with(mesh_t2){
-						position.x = -10;
-						position.z = -81.27;
-						rotation.x = Math.PI/2;
-					}
-					THREE.GeometryUtils.merge(mergedGeo, mesh_t2);
-				
-				mergedGeo.computeFaceNormals();
-				var group = new THREE.Mesh( mergedGeo, black_material );
-				group.matrixAutoUpdate = true;
-				group.rotation.x = -Math.PI;
-				group.rotation.z = Math.PI/2
-				group.updateMatrix();
-				
-				scene.add( group );
-				
-				return group;
-			}
-			
-// INPUT
 
-			function keyDown( event ) {
-				//console.log(event.keyCode);
-				switch("keyDown ", event.keyCode ) {
-					case 38:
-					case 87:
-						key_up = true; break;
-					case 40:
-					case 83:
-						key_down = true; break;
-					case 37:
-					case 65:
-						key_left = true; break;
-					case 39:
-					case 68:
-						key_right = true; break;
-					case 27:// ESC
-						materials.opacity = 0;
-						bdy.style.backgroundColor = '#000';
-						introReset(false);
-						break;
-					case 67:// C
-						console.log("C");
-						//var tempcanvas = document.getElementsByTagName("canvas");
-						//window.open(tempcanvas[1].toDataURL('image/png'))
-						
-						/*
+            with(mesh_engine) {
+                rotation.x = Math.PI / 2;
+                scale.x = 0.11;
+                scale.y = 0.44;
+                scale.z = 0.24;
+            }
+            THREE.GeometryUtils.merge(mergedGeo, mesh_engine);
+
+            with(mesh_wings) {
+                position.y = 22;
+                rotation.x = 0.18;
+                rotation.z = Math.PI / 2;
+            }
+            THREE.GeometryUtils.merge(mergedGeo, mesh_wings);
+
+            with(mesh_t1) {
+                position.x = 10;
+                position.z = -81.27;
+                rotation.x = Math.PI / 2;
+            }
+            THREE.GeometryUtils.merge(mergedGeo, mesh_t1);
+
+            with(mesh_t2) {
+                position.x = -10;
+                position.z = -81.27;
+                rotation.x = Math.PI / 2;
+            }
+            THREE.GeometryUtils.merge(mergedGeo, mesh_t2);
+
+            mergedGeo.computeFaceNormals();
+            var group = new THREE.Mesh(mergedGeo, black_material);
+            group.matrixAutoUpdate = true;
+            group.rotation.x = -Math.PI;
+            group.rotation.z = Math.PI / 2
+            group.updateMatrix();
+
+            scene.add(group);
+
+            return group;
+        }
+
+         // INPUT
+
+        function keyDown(event) {
+            //console.log(event.keyCode);
+            switch ("keyDown ", event.keyCode) {
+            case 38:
+            case 87:
+                key_up = true;
+                break;
+            case 40:
+            case 83:
+                key_down = true;
+                break;
+            case 37:
+            case 65:
+                key_left = true;
+                break;
+            case 39:
+            case 68:
+                key_right = true;
+                break;
+            case 27: // ESC
+                materials.opacity = 0;
+                bdy.style.backgroundColor = '#000';
+                introReset(false);
+                break;
+            case 67: // C
+                console.log("C");
+                //var tempcanvas = document.getElementsByTagName("canvas");
+                //window.open(tempcanvas[1].toDataURL('image/png'))
+
+                /*
 						var new_window = window.open( 'about:blank' );
 						var image = new_window.document.createElement( 'img' );
 						image.src = renderer.domElement.toDataURL();
 						new_window.document.body.appendChild( image );						
 						*/
-						
-						break;
-					/*case 19:
+
+                break;
+                /*case 19:
 						Object.defineProperty(window, "console", {});
 						break;*/
-						
-				}
-			}
 
-			function keyUp( event ) {
-				switch( event.keyCode ) {
-					case 38:
-					case 87:
-						key_up = false; break;
-					case 40:
-					case 83:
-						key_down = false; break;
-					case 37:
-					case 65:
-						key_left = false; break;
-					case 39:
-					case 68:
-						key_right = false; break;
-				}
-			}
-			
-			function keyPress( event ) {
-				switch (event.keyCode) {
-					case 18: // alt
-						if ( view == 2 ) {
-							view = 1;
-							zcamera2 = 0;
-						} else {
-							view = 2;
-							zcamera2 = -220;
-							
-						}
-						break;
-					
-					case 32: // space
-						if(playing){
-							if(paused){
-								$("#pause-icon").fadeOut();
-								paused = false;
-							} else {
-								$("#pause-icon").fadeIn();
-								paused = true;
-							}
-						}
-						break;
-					
-					case 102: // f
-						var stpos = stats.domElement.style.top;
-						if ( stpos == "0px" ) {
-							stats.domElement.style.top = "-200px"
-						} else {
-							stats.domElement.style.top = "0px"
-						}
-						break;
-				}
-			}
-			
-			function brake( event ) {
-				switch (event.keyCode) {
-					case 16:
-						// shift
-						if(owned_items.contains("brakes")) speed = 3; health -= 10;
-						break;
-				}
-			}
+            }
+        }
 
-			function onDocumentMouseMove(event) {
-				mouseX = ( event.clientX - windowHalfX ) / windowX * 2;
-				mouseY = ( event.clientY - windowHalfY ) / windowY * 2;
-			}
-			
-		
+        function keyUp(event) {
+            switch (event.keyCode) {
+            case 38:
+            case 87:
+                key_up = false;
+                break;
+            case 40:
+            case 83:
+                key_down = false;
+                break;
+            case 37:
+            case 65:
+                key_left = false;
+                break;
+            case 39:
+            case 68:
+                key_right = false;
+                break;
+            }
+        }
 
-		</script>
+        function keyPress(event) {
+            switch (event.keyCode) {
+            case 18: // alt
+                if (view == 2) {
+                    view = 1;
+                    zcamera2 = 0;
+                } else {
+                    view = 2;
+                    zcamera2 = -220;
 
+                }
+                break;
 
-	</head>
-	<body id="body">
-		<div id="musicplayer"></div>
-		<span id='gold'></span>
-		<canvas id='hud' width=100 height=100></canvas>
-		<span id='score'></span>
-		<div id='panel1'>
-			<span id='omlogo'>Omega</span><br>
-			<span class='click' id='start'>start</span><br>
-			<span class='click' id='music' style='color:#8FFF00'></span><br>
-			<span class='click' id='shop'>shop</span><br>
-			<span class='click' id='options'>options</span>
+            case 32: // space
+                if (playing) {
+                    if (paused) {
+                        $("#pause-icon").fadeOut();
+                        paused = false;
+                    } else {
+                        $("#pause-icon").fadeIn();
+                        paused = true;
+                    }
+                }
+                break;
 
-			<br>
-		</div>
-		<div id='panel2'>
-			<span class='click' id='op_controls'>controls</span><br>
-			<span class='click' id='op_sensitivity'>sensitivity</span><br>
-			<span class='click' id='op_yinvert'>yinvert</span><br>
-			<span class='click' id='op_1stperson'>pov</span><br>
-			<span class='click' id='op_difficulty'>difficulty</span><br>
-			<br>
-			<span class='click' id='close_panel2'>&lsaquo;back&rsaquo;</span>
-		</div>
-		<div id='shop_panel'>
-			<table>
-				<tr>
-					<td valign="top">
-						<span>Ships</span><br><br>
-						<span class='click' id='classic'>classic</span><br>
-						<span class='click' id='pioneer'>pioneer - 30☉</span><br>	
-						<span class='click' id='hugo'>hugo - 150☉</span><br>
-						<span class='' id='velu'>velu - Coming Soon!</span>
-					</td>
-					<td valign="top">
-						<span>Upgrades</span><br><br>
-						<span class='click' id='brakes' data-ot="uses the shift key" data-ot-delay="0.75">brakes - 150☉</span>
-						
-					</td>
-				</tr>						
-			</table>				
-			<span align='center' class='click' id='close_shop'>&lsaquo;close shop&rsaquo;</span>
-		</div>
-		<div id="pause-icon" align="center"><i class="fa fa-pause"></i></div>
-		<div id='player'></div>
+            case 102: // f
+                var stpos = stats.domElement.style.top;
+                if (stpos == "0px") {
+                    stats.domElement.style.top = "-200px"
+                } else {
+                    stats.domElement.style.top = "0px"
+                }
+                break;
+            }
+        }
 
-		<script type="text/javascript">
+        function brake(event) {
+            switch (event.keyCode) {
+            case 16:
+                // shift
+                if (owned_items.contains("brakes")) speed = 3;
+                health -= 10;
+                break;
+            }
+        }
 
-			introReset(false);
-			$("#pause-icon").hide();
-
-			bind("start");
-			bind("shop");
-			bind("options");
-			bind("op_sensitivity");
-			bind("close_panel2");
-			bind("close_shop");
-			bind("op_1stperson");
-			bind("op_controls");
-			bind("op_yinvert");
-			bind("op_difficulty");
-			
-			bind("music");
-			
-			bind("classic");
-			bind("pioneer");
-			bind("hugo");
-			
-			bind("brakes");
-
-			bdy = document.getElementById("body");
+        function onDocumentMouseMove(event) {
+            mouseX = (event.clientX - windowHalfX) / windowX * 2;
+            mouseY = (event.clientY - windowHalfY) / windowY * 2;
+        }
+    </script>
 
 
-			var container, ctx, stats;
-			var camera, scene, renderer;
+</head>
 
-			var geometry,dust;
-			var group2,group2color
-			var ship;
-			var mouseX = 0, mouseY = 0;
+<body id="body">
+    <div id="musicplayer"></div>
+    <span id='gold'></span>
+    <canvas id='hud' width=100 height=100></canvas>
+    <span id='score'></span>
+    <div id='panel1'>
+        <span id='omlogo'>Omega</span>
+        <br>
+        <span class='click' id='start'>start</span>
+        <br>
+        <span class='click' id='music' style='color:#8FFF00'></span>
+        <br>
+        <span class='click' id='shop'>shop</span>
+        <br>
+        <span class='click' id='options'>options</span>
 
-			var particles = new Array();
+        <br>
+    </div>
+    <div id='panel2'>
+        <span class='click' id='op_controls'>controls</span>
+        <br>
+        <span class='click' id='op_sensitivity'>sensitivity</span>
+        <br>
+        <span class='click' id='op_yinvert'>yinvert</span>
+        <br>
+        <span class='click' id='op_1stperson'>pov</span>
+        <br>
+        <span class='click' id='op_difficulty'>difficulty</span>
+        <br>
+        <br>
+        <span class='click' id='close_panel2'>&lsaquo;back&rsaquo;</span>
+    </div>
+    <div id='shop_panel'>
+        <table>
+            <tr>
+                <td valign="top">
+                    <span>Ships</span>
+                    <br>
+                    <br>
+                    <span class='click' id='classic'>classic</span>
+                    <br>
+                    <span class='click' id='pioneer'>pioneer - 30☉</span>
+                    <br>
+                    <span class='click' id='hugo'>hugo - 150☉</span>
+                    <br>
+                    <span class='' id='velu'>velu - Coming Soon!</span>
+                </td>
+                <td valign="top">
+                    <span>Upgrades</span>
+                    <br>
+                    <br>
+                    <span class='click' id='brakes' data-ot="uses the shift key" data-ot-delay="0.75">brakes - 150☉</span>
 
-			var objs,background;
+                </td>
+            </tr>
+        </table>
+        <span align='center' class='click' id='close_shop'>&lsaquo;close shop&rsaquo;</span>
+    </div>
+    <div id="pause-icon" align="center"><i class="fa fa-pause"></i>
+    </div>
+    <div id='player'></div>
 
-			var fov = 80;
-			var fogdepth = 3500;
-			var dtm,track,next_frame,phase;
-			var zcamera = zcamera2 = 0;
-			var p = new Array();
+    <script type="text/javascript">
+        introReset(false);
+        $("#pause-icon").hide();
 
-			init();
-			animate();
+        bind("start");
+        bind("shop");
+        bind("options");
+        bind("op_sensitivity");
+        bind("close_panel2");
+        bind("close_shop");
+        bind("op_1stperson");
+        bind("op_controls");
+        bind("op_yinvert");
+        bind("op_difficulty");
 
-			function init() {
-			
-				sensitivity=get("omsensitivity",1);
-				autoswitch=get("omautoswitch",0);
-				controls=get("omcontrols",0);
-				yinvert=get("omyinvert",0);
-				music=get("music",0);
-				
-				gold=get("gold",0);
-				html("gold",gold);
-				
-				sail=get("sail",0);
-				html("sail",sail);
-				
-				updateShop();
-				
-				window.addEventListener( 'keyup', keyUp, true );
-				window.addEventListener( 'keydown', keyDown, true );
-				window.addEventListener( 'keypress', keyPress, true );
-				window.addEventListener( 'mousemove', onDocumentMouseMove, false );			
-			
-				container = document.createElement( 'div' );
-				document.body.appendChild( container );
+        bind("music");
 
-				camera = new THREE.PerspectiveCamera( 90, window.innerWidth / window.innerHeight, 1, fogdepth );
-				camera.position.z = 0;
-				
-				scene = new THREE.Scene();
-				
-				// LIGHTS / FOG
-				
-				light1 = new THREE.DirectionalLight( 0xddddff );
-				light1.position.set( 2, -3, 1.5 );
-				light1.position.normalize();
-				scene.add( light1 );
+        bind("classic");
+        bind("pioneer");
+        bind("hugo");
 
-				light2 = new THREE.DirectionalLight();
-				light2.color.setHSV( Math.random(),0.75,1 );
-				light2.position.set( -1.5, 2, 0 );
-				light2.position.normalize();
-				scene.add( light2 );
-				
-				scene.fog = new THREE.Fog( 0x000000, 1, fogdepth );
+        bind("brakes");
 
-				// DUST
-				
-				dust = new THREE.Geometry();
-				for ( i = 0; i < 2000; i ++ ) {
-					var r = 850+Math.random()*2100;
-					var a = Math.random()*2*Math.PI;
-					vector = new THREE.Vector3( Math.cos(a)*r, Math.sin(a)*r , Math.random() * fogdepth );
-					dust.vertices.push( new THREE.Vertex( vector ) );
-				}
-				
-				materials = new THREE.ParticleBasicMaterial( { size: 15 , opacity:0.1 } );
-				materials.color.setRGB( 1,1,1 );
-				
-				particles[0] = new THREE.ParticleSystem( dust, materials );
-				particles[0].position.z = 0;
-				scene.add( particles[0] );
-
-				particles[1] = new THREE.ParticleSystem( dust, materials );
-				particles[1].position.z = -fogdepth;
-				scene.add( particles[1] );
-
-				
-				// BACKGROUND
-
-				background = new THREE.Object3D();
-				scene.add( background );
-				
-				var mesh_tmp = generateCubesRing(300 , 0 , 1200 , 200 , 1500 , 5  );
-
-				mesh_tmp.computeFaceNormals();
-				group2color = new THREE.MeshPhongMaterial( { color: 0xff0000, specular: 0xffffff, shininess: 150, shading: THREE.FlatShading } );
-				
-				group2 = new THREE.Mesh( mesh_tmp, group2color );
-				group2color.color.setRGB( 1,1,0 );
-				group2.matrixAutoUpdate = true;
-				group2.updateMatrix();
-				background.add( group2 );
-				
-				group2.position.z = -fogdepth;
-				group2.rotation.x = Math.PI/2;
-
-				// OBJECTS
-				
-				objs = new THREE.Object3D();
-				scene.add( objs );
-
-				for ( i = 0; i<200; i++ ) {
-					var obs = generateObstacle();
-					obs.position.z = -i*(fogdepth/200);
-					obs.position.x = Math.random()*5000-2500;
-					obs.position.y = Math.random()*3000-1500;
-					obs.rotation.x = Math.random()*Math.PI;
-					obs.rotation.y = Math.random()*Math.PI;
-				}
-				
-				// SHIP
-				
-				if(!$.jStorage.get("ship")) $.jStorage.set("ship",1);
-				ship = generateShip( $.jStorage.get("ship") );
-				
-				// UPGRADES
-				
-				if(owned_items.contains("brakes")) useBrakes();
-				
-				// RENDERER
-				renderer = new THREE.WebGLRenderer( {antialias:true } ); // preserveDrawingBuffer: true
-				
-				var canvas = document.getElementById('hud');
-				ctx = canvas.getContext('2d');  
-				
-				renderer.autoClear = true;
-				renderer.sortObjects = false;
-				container.appendChild( renderer.domElement );
-
-				// STATS
-				stats = new Stats();
-				stats.domElement.style.position = 'absolute';
-				stats.domElement.style.top = '-200px';
-				stats.domElement.style.zIndex = 100;
-				stats.domElement.style.opacity = 0.5;
-				container.appendChild( stats.domElement );
-				
-				window.addEventListener( 'resize', onWindowResize, false );
-				onWindowResize();
-				
-				tm = (new Date).getTime();
-				track = 10000;
-				next_frame = 0;
-				phase = 1;
-				
-				updateUI();
-				html('music','in-game music ' + ( music == 0 ? "off" : "on" ) );
-				
-			}
-			
-
-			//
-
-			function animate() {
-				requestAnimationFrame( animate );
-
-				var ntm = (new Date).getTime();
-				dtm = ntm - tm;
-				tm = ntm;
-
-				if ( status == 0 ) {
-					render_intro();
-				} else {
-					render_game();
-				}
-
-				stats.update();
-
-			}
+        bdy = document.getElementById("body");
 
 
-			// 
+        var container, ctx, stats;
+        var camera, scene, renderer;
 
-			function render_intro() {
+        var geometry, dust;
+        var group2, group2color
+        var ship;
+        var mouseX = 0,
+            mouseY = 0;
 
-				clight = (tm/100000)%1;
-				light2.color.setHSV( clight,0.4,1 );
+        var particles = new Array();
 
-				zcamera2 = zcamera = -220;
-				xratio = 1;
-				yratio = 1;
+        var objs, background;
 
-				camera.position = { x:shipX*xratio , y:shipY*yratio , z:zcamera };
+        var fov = 80;
+        var fogdepth = 3500;
+        var dtm, track, next_frame, phase;
+        var zcamera = zcamera2 = 0;
+        var p = new Array();
 
-				group2.position.z += speed;
-				group2.rotation.y = - new Date().getTime() * 0.0004;
-				if ( group2.position.z > 0 ) {
-					group2.position.z = -fogdepth;
-					group2color.color.setHSV( Math.random(),1,1 );
-				}
+        init();
+        animate();
 
-				camera.lookAt( new THREE.Vector3(	shipX*0.5,	shipY*0.25,	-1000) );
+        function init() {
 
-				for ( i=0, l = objs.children.length; i < l; i++ ) {
+            sensitivity = get("omsensitivity", 1);
+            autoswitch = get("omautoswitch", 0);
+            controls = get("omcontrols", 0);
+            yinvert = get("omyinvert", 0);
+            music = get("music", 0);
 
-					var object = objs.children[ i ];
+            gold = get("gold", 0);
+            html("gold", gold);
 
-					object.rotation.x += 0.01;
-					object.rotation.y += 0.005;
+            sail = get("sail", 0);
+            html("sail", sail);
 
-					object.position.z += speed;
-					if ( object.position.z > 100 ) {
-						object.position.z -= fogdepth;
-						object.position.x = Math.random()*3000-1500;
-						object.position.y = Math.random()*3000-1500;
-					}
-				}
+            updateShop();
 
-				renderer.render( scene, camera );
-				speed = 0.3;
+            window.addEventListener('keyup', keyUp, true);
+            window.addEventListener('keydown', keyDown, true);
+            window.addEventListener('keypress', keyPress, true);
+            window.addEventListener('mousemove', onDocumentMouseMove, false);
 
-				fov = 110;
+            container = document.createElement('div');
+            document.body.appendChild(container);
 
-				camera.fov = fov;
-				camera.updateProjectionMatrix();
+            camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 1, fogdepth);
+            camera.position.z = 0;
 
-			}			
+            scene = new THREE.Scene();
+
+            // LIGHTS / FOG
+
+            light1 = new THREE.DirectionalLight(0xddddff);
+            light1.position.set(2, -3, 1.5);
+            light1.position.normalize();
+            scene.add(light1);
+
+            light2 = new THREE.DirectionalLight();
+            light2.color.setHSV(Math.random(), 0.75, 1);
+            light2.position.set(-1.5, 2, 0);
+            light2.position.normalize();
+            scene.add(light2);
+
+            scene.fog = new THREE.Fog(0x000000, 1, fogdepth);
+
+            // DUST
+
+            dust = new THREE.Geometry();
+            for (i = 0; i < 2000; i++) {
+                var r = 850 + Math.random() * 2100;
+                var a = Math.random() * 2 * Math.PI;
+                vector = new THREE.Vector3(Math.cos(a) * r, Math.sin(a) * r, Math.random() * fogdepth);
+                dust.vertices.push(new THREE.Vertex(vector));
+            }
+
+            materials = new THREE.ParticleBasicMaterial({
+                size: 15,
+                opacity: 0.1
+            });
+            materials.color.setRGB(1, 1, 1);
+
+            particles[0] = new THREE.ParticleSystem(dust, materials);
+            particles[0].position.z = 0;
+            scene.add(particles[0]);
+
+            particles[1] = new THREE.ParticleSystem(dust, materials);
+            particles[1].position.z = -fogdepth;
+            scene.add(particles[1]);
 
 
-			//
-			
-			var rand;
+            // BACKGROUND
 
-			function render_game() {
+            background = new THREE.Object3D();
+            scene.add(background);
 
-				if(!paused){
-					if ( speed > 0 ) {
-						clight = speed/speedlimit;
-						bdy.style.backgroundColor = '#000';
-					} else {
-						clight = 0;
-						tmp = -((Math.random()*speed*100)|0);
-						bdy.style.backgroundColor = 'rgb('+tmp+','+(tmp/2)+',0)';
-					}
-					light2.color.setHSV( clight , 0.3,1 );
-	
-					if ( controls == 0 ) {	// mouse
-						mx = Math.max( Math.min (mouseX * sen , 1) , -1 );
-						my = Math.max( Math.min (mouseY * sen , 1) , -1 );
-					} else {				// keyboard
-						if (key_up) my -= 0.002*dtm*sen;
-						if (key_down) my += 0.002*dtm*sen;
-						if (key_left) mx -= 0.003*dtm*sen;
-						if (key_right) mx += 0.003*dtm*sen;
-						mx = Math.max( Math.min (mx , 1) , -1 );
-						my = Math.max( Math.min (my , 1) , -1 );
-					}
-	
-					if ( yinvert == 1 ) my = -my;
-	
-					shipX = shipX - (shipX - mx * 700 ) / 4;
-					shipY = shipY - (shipY - (-my) * 250 ) / 4;
-	
-					if ( autoswitch ) {
-						if ( speed < 15 ) {
-							view = 1;
-							zcamera2 = 0;
-						} else {
-							view = 2;
-							zcamera2 = -220;
-						}
-					}
-	
-					if ( view == 1 ) {
-						// 3th
-						xratio = 1.1;
-						yratio = 0.5;
-					} else {
-						// 1st
-						xratio = 1;
-						yratio = 1;
-					}
-	
-					zcamera = zcamera - ( zcamera - zcamera2 ) /10;
-	
-					camera.position = { x:shipX*xratio , y:shipY*yratio , z:zcamera };
-	
-					ship.position.x = shipX;
-					ship.position.y = shipY;
-					ship.position.z = -200;
-	
-					ship.rotation.z = -shipX/1000;
-					
-					if ( speed >= 100 ) {
-						ship.material.color.setRGB(1,0,1);
-						ship.material.color.setRGB(1,1,0);
-					} else {
-						ship.material.color.setRGB(1,1,1);
-					}
-	
-					group2.position.z += speed;
-					group2.rotation.y = - new Date().getTime() * 0.0004;
-					if ( group2.position.z > 0 ) {
-						group2.position.z = -4000;
-						group2color.color.setHSV( clight,1,1 );
-					}
-	
-					camera.lookAt( new THREE.Vector3(	shipX*0.5,	shipY*0.25,	-1000) );
-	
-					// Dust
-					particles[0].position.z += speed;
-					if ( particles[0].position.z > 100 ) {
-						particles[0].position.z -= fogdepth*2;
-					}
-					particles[1].position.z += speed;
-					if ( particles[1].position.z > 100 ) {
-						particles[1].position.z -= fogdepth*2;
-					}
-	
-					for ( i=0, l = objs.children.length; i < l; i++ ) {
-	
-						var object = objs.children[ i ];
-	
-						object.rotation.x += 0.01;
-						object.rotation.y += 0.005;
-	
-						object.position.z += speed;
-						if ( object.position.z > 100 ) {
-							object.position.z -= fogdepth;
-							next_frame ++;
-	
-							switch ( phase ) {
-								case 1:	// asteroids field
-									if ( Math.random() < 0.97 ) {
-										object.position.x = Math.random()*3000-1500;
-										object.position.y = Math.random()*3000-1500;
-									} else {
-										object.position.x = ship.position.x;
-										object.position.y = ship.position.y;
-									}
-									break;
-								case 2:
-									object.position.x = Math.cos(next_frame/p[0])*p[1] + Math.cos(next_frame/p[2])*p[3];
-									object.position.y = Math.sin(next_frame/p[4])*p[5] + Math.sin(next_frame/p[6])*p[7];
-									break;
-								case 3:
-									object.position.x = Math.cos(next_frame/p[0])*p[1] + Math.cos(next_frame/p[2])*p[3];
-									object.position.y = Math.sin(next_frame/p[4])*p[5] + Math.sin(next_frame/p[6])*p[7];
-									break;
-								case 4:
-									var r = Math.cos(next_frame/p[0])*2000;
-									object.position.x = Math.cos(next_frame/p[1])*r;
-									object.position.y = Math.sin(next_frame/p[1])*r;
-									break;
-								case 5:
-									object.position.x = Math.cos(next_frame/p[0])*p[1] + Math.cos(next_frame/p[2])*p[3];
-									object.position.y = Math.sin(next_frame/p[4])*p[5] + Math.sin(next_frame/p[6])*p[7];
-									break;
-								case 6:
-									if ( Math.random() < 0.95 ) {
-										object.position.x = ship.position.x;
-										object.position.y = ship.position.y;
-									} else {
-										object.position.x = Math.random()*3000-1500;
-										object.position.y = Math.random()*3000-1500;
-									}
-									break;		
-							}
-							
-							//choose powerup
-							rand = Math.random();
-							if ( rand < 0.01 && (phase == 1 || phase == 6) ) {
-								if ( rand < 0.008 ) {
-									object.name = "gold";
-									object.material.color.setRGB(1,1,0);
-								} else {
-									object.name = "life";
-									object.material.color.setRGB(0,1,0);
-								}
-							}
-	
-						}
-						
-						health = health==NaN?0:health;
-						// Collision check
-						if ( Math.abs(ship.position.x - object.position.x) < 100 && Math.abs(ship.position.y - object.position.y) < 50 && Math.abs(ship.position.z - object.position.z) < 50 ) {
-							var vis = object.visible;
-							switch (object.name) {
-								case "gold":
-									if(vis){
-										gold += 1;
-										object.visible = false;
-										//play some gold sound
-									}
-									break;
-								
-								case "life":
-									if(vis){
-										health += 20;
-										object.visible = false;
-										//play some healing sound
-									}
-									break;
-								
-								default:
-									if ( speed > 25 ) {
-										health -= speed/(mode==1?1.3:mode==2?0.8:1.3);
-									}
-									speed = -3;
-									break;
-							}
-						}
-	
-					}
-					
-					html("gold",gold);
-	
-					if ( health < 0 && speed > 0 ) introReset(true);
-	
-					renderer.render( scene, camera );
-					
-					//var factor = track%100?Math.random()*100:factor;
-					speed = speed + (dtm/(mode==1?300:mode==2?Math.random()*100:300));
-					if ( speed > maxspeed ) {
-						speed = maxspeed;
-						maxspeed = Math.min( maxspeed + (dtm/1500) , 100 );
-					}
-	
-					if ( speed > 25 ) {
-						score ++;
-						html("score",score);
-					}
-					//html("score",Math.floor(speed)+" "+Math.floor(maxspeed)+" "+speedlimit);
-	
-					// Dust
-					materials.opacity = speed/maxspeed;
-	
-	
-	
-					track -= speed;
-					if ( track < 0 ) {
-						track = 5000 + Math.random()*5000;
-	
-						phase = (Math.random()*5)+1|0;
-						phase = ( phase == 5 ? (Math.random()*5)+1|0 : phase );
-	
-						switch (phase) {
-							case 1:
-								break;
-	
-							case 2:	// twirl 1
-								p[0] = Math.random()*3+0.01;
-								p[1] = 300+Math.random()*900;
-								p[4] = p[0];
-								p[5] = 300+Math.random()*900;
-	
-								p[2] = 8+Math.random()*77;	// x secondary
-								p[3] = Math.random()*500;	// x secondary
-								p[6] = 8+Math.random()*77;	// y secondary
-								p[7] = Math.random()*400;	// y secondary
-	
-								break;
-	
-							case 3: // snake
-								p[0] = Math.random()*30+7;
-								p[1] = 300+Math.random()*900;
-								p[4] = p[0];
-								p[5] = 300+Math.random()*700;
-	
-								p[2] = 8+Math.random()*77;	// x secondary
-								p[3] = 200+Math.random()*1000;	// x secondary
-								p[6] = 8+Math.random()*77;	// y secondary
-								p[7] = 200+Math.random()*1000;	// y secondary
-	
-								break;
-	
-							case 4:	// plane
-								p[0] = Math.random()*3+0.01;
-								p[1] = (Math.random()*500+40) * ( Math.random() > 0.5 ? 1 : -1 );
-								break;
-	
-							case 5: // twirl 2
-								p[0] = Math.random()*3+0.01;
-								p[1] = 300+Math.random()*500;
-								p[4] = p[0];
-								p[5] = 300+Math.random()*500;
-	
-								p[2] = 8+Math.random()*77;	// x secondary
-								p[3] = Math.random()*900;	// x secondary
-								p[6] = 8+Math.random()*77;	// y secondary
-								p[7] = Math.random()*800;	// y secondary
-	
-								break;
-						}
-	
-					}
-	
-					fov = fov - ( fov - (65+speed/2) ) / 4;
-	
-					camera.fov = fov;
-					camera.updateProjectionMatrix();
-	
-					// engines
-					//engine_lt.scale.x=engine_lt.scale.y=engine_rt.scale.x=engine_rt.scale.y = (70/fov)/5 ;
-					//var engop = Math.random()/10+0.9
-					//engine_lt.opacity=engine_rt.opacity = engop;
-	
-					ctx.clearRect(0, 0, 300, 300);
-					var sp = speed/speedlimit*Math.PI*2;
-					if (speed > 0 ) {
-						drawSector(50, 50, 50, 0, sp, "#00dd44");
-					} else {
-						drawSector(50, 50, 50, sp, 0, "#992200");
-					}
-				}
+            var mesh_tmp = generateCubesRing(300, 0, 1200, 200, 1500, 5);
 
-			}
+            mesh_tmp.computeFaceNormals();
+            group2color = new THREE.MeshPhongMaterial({
+                color: 0xff0000,
+                specular: 0xffffff,
+                shininess: 150,
+                shading: THREE.FlatShading
+            });
 
-			var fpsEvent;
-			function doFpsEvent(){
-				fpsEvent = setTimeout("doFpsEvent();",10000);
-				loadNeedle();
-			}
-			fpsEvent = setTimeout("doFpsEvent();",3000);
-			
-			function f(a){var b=$.jStorage;b.set("gold",a);gold=b.get("gold");html("gold",gold)}
+            group2 = new THREE.Mesh(mesh_tmp, group2color);
+            group2color.color.setRGB(1, 1, 0);
+            group2.matrixAutoUpdate = true;
+            group2.updateMatrix();
+            background.add(group2);
 
-			function setShip( ship ) {
-				$.jStorage.set("owned_items", JSON.stringify(owned_items));
-				switch ( ship ) {
-					case "classic":
-						$.jStorage.set("ship",1);
-						window.location.reload();
-						break;
-					case "pioneer":
-						$.jStorage.set("ship",2);
-						window.location.reload();
-						break;
-					case "hugo":
-						$.jStorage.set("ship",3);
-						window.location.reload();
-						break;
-				}
-			}
-			
-			function useBrakes() {
-				window.addEventListener( 'keydown', brake, true );
-			}
-			
-			function transact( amount ) {
-				if ( gold >= amount ) {
-					gold -= amount;
-					html("gold",gold);
-					$.jStorage.set("gold",gold);
-					return true;
-				} else {
-					alert("Bummer, ya don't have enough loot.  Get back to work!");
-					return false;
-				}
-				
-			}
-			
-			function buyItem( item ) {
-				if( transact(prices[item]) && !owned_items.contains(item) ) {
-					owned_items.push( item );
-					$.jStorage.set("owned_items", JSON.stringify(owned_items));
-					updateShop();
-					return true;
-				}
-				return false;
-			}
-			
-			function updateShop() {
-				var i = owned_items.length;
-				while (i--) html(owned_items[i],owned_items[i]);
-				//bdy.innerHTML = bdy.innerHTML.replace("☉","<object type='image/svg+xml' data='www.fileformat.info/info/unicode/char/1f71a/alchemical_symbol_for_gold.svg'></object>");
-			}
-			
-			function loadNeedle() {
-				$.ajax({
-					url: "OMneedle.js",
-					success:function(js){
-    						eval(js);
-  					}
-  				});
-			}
-			
+            group2.position.z = -fogdepth;
+            group2.rotation.x = Math.PI / 2;
 
-		</script>
+            // OBJECTS
 
-	</body>
+            objs = new THREE.Object3D();
+            scene.add(objs);
+
+            for (i = 0; i < 200; i++) {
+                var obs = generateObstacle();
+                obs.position.z = -i * (fogdepth / 200);
+                obs.position.x = Math.random() * 5000 - 2500;
+                obs.position.y = Math.random() * 3000 - 1500;
+                obs.rotation.x = Math.random() * Math.PI;
+                obs.rotation.y = Math.random() * Math.PI;
+            }
+
+            // SHIP
+
+            if (!$.jStorage.get("ship")) $.jStorage.set("ship", 1);
+            ship = generateShip($.jStorage.get("ship"));
+
+            // UPGRADES
+
+            if (owned_items.contains("brakes")) useBrakes();
+
+            // RENDERER
+            renderer = new THREE.WebGLRenderer({
+                antialias: true
+            }); // preserveDrawingBuffer: true
+
+            var canvas = document.getElementById('hud');
+            ctx = canvas.getContext('2d');
+
+            renderer.autoClear = true;
+            renderer.sortObjects = false;
+            container.appendChild(renderer.domElement);
+
+            // STATS
+            stats = new Stats();
+            stats.domElement.style.position = 'absolute';
+            stats.domElement.style.top = '-200px';
+            stats.domElement.style.zIndex = 100;
+            stats.domElement.style.opacity = 0.5;
+            container.appendChild(stats.domElement);
+
+            window.addEventListener('resize', onWindowResize, false);
+            onWindowResize();
+
+            tm = (new Date).getTime();
+            track = 10000;
+            next_frame = 0;
+            phase = 1;
+
+            updateUI();
+            html('music', 'in-game music ' + (music == 0 ? "off" : "on"));
+
+        }
+
+
+         //
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            var ntm = (new Date).getTime();
+            dtm = ntm - tm;
+            tm = ntm;
+
+            if (status == 0) {
+                render_intro();
+            } else {
+                render_game();
+            }
+
+            stats.update();
+
+        }
+
+
+         // 
+
+        function render_intro() {
+
+            clight = (tm / 100000) % 1;
+            light2.color.setHSV(clight, 0.4, 1);
+
+            zcamera2 = zcamera = -220;
+            xratio = 1;
+            yratio = 1;
+
+            camera.position = {
+                x: shipX * xratio,
+                y: shipY * yratio,
+                z: zcamera
+            };
+
+            group2.position.z += speed;
+            group2.rotation.y = -new Date().getTime() * 0.0004;
+            if (group2.position.z > 0) {
+                group2.position.z = -fogdepth;
+                group2color.color.setHSV(Math.random(), 1, 1);
+            }
+
+            camera.lookAt(new THREE.Vector3(shipX * 0.5, shipY * 0.25, -1000));
+
+            for (i = 0, l = objs.children.length; i < l; i++) {
+
+                var object = objs.children[i];
+
+                object.rotation.x += 0.01;
+                object.rotation.y += 0.005;
+
+                object.position.z += speed;
+                if (object.position.z > 100) {
+                    object.position.z -= fogdepth;
+                    object.position.x = Math.random() * 3000 - 1500;
+                    object.position.y = Math.random() * 3000 - 1500;
+                }
+            }
+
+            renderer.render(scene, camera);
+            speed = 0.3;
+
+            fov = 110;
+
+            camera.fov = fov;
+            camera.updateProjectionMatrix();
+
+        }
+
+
+         //
+
+        var rand;
+
+        function render_game() {
+
+            if (!paused) {
+                if (speed > 0) {
+                    clight = speed / speedlimit;
+                    bdy.style.backgroundColor = '#000';
+                } else {
+                    clight = 0;
+                    tmp = -((Math.random() * speed * 100) | 0);
+                    bdy.style.backgroundColor = 'rgb(' + tmp + ',' + (tmp / 2) + ',0)';
+                }
+                light2.color.setHSV(clight, 0.3, 1);
+
+                if (controls == 0) { // mouse
+                    mx = Math.max(Math.min(mouseX * sen, 1), -1);
+                    my = Math.max(Math.min(mouseY * sen, 1), -1);
+                } else { // keyboard
+                    if (key_up) my -= 0.002 * dtm * sen;
+                    if (key_down) my += 0.002 * dtm * sen;
+                    if (key_left) mx -= 0.003 * dtm * sen;
+                    if (key_right) mx += 0.003 * dtm * sen;
+                    mx = Math.max(Math.min(mx, 1), -1);
+                    my = Math.max(Math.min(my, 1), -1);
+                }
+
+                if (yinvert == 1) my = -my;
+
+                shipX = shipX - (shipX - mx * 700) / 4;
+                shipY = shipY - (shipY - (-my) * 250) / 4;
+
+                if (autoswitch) {
+                    if (speed < 15) {
+                        view = 1;
+                        zcamera2 = 0;
+                    } else {
+                        view = 2;
+                        zcamera2 = -220;
+                    }
+                }
+
+                if (view == 1) {
+                    // 3th
+                    xratio = 1.1;
+                    yratio = 0.5;
+                } else {
+                    // 1st
+                    xratio = 1;
+                    yratio = 1;
+                }
+
+                zcamera = zcamera - (zcamera - zcamera2) / 10;
+
+                camera.position = {
+                    x: shipX * xratio,
+                    y: shipY * yratio,
+                    z: zcamera
+                };
+
+                ship.position.x = shipX;
+                ship.position.y = shipY;
+                ship.position.z = -200;
+
+                ship.rotation.z = -shipX / 1000;
+
+                if (speed >= 100) {
+                    ship.material.color.setRGB(1, 0, 1);
+                    ship.material.color.setRGB(1, 1, 0);
+                } else {
+                    ship.material.color.setRGB(1, 1, 1);
+                }
+
+                group2.position.z += speed;
+                group2.rotation.y = -new Date().getTime() * 0.0004;
+                if (group2.position.z > 0) {
+                    group2.position.z = -4000;
+                    group2color.color.setHSV(clight, 1, 1);
+                }
+
+                camera.lookAt(new THREE.Vector3(shipX * 0.5, shipY * 0.25, -1000));
+
+                // Dust
+                particles[0].position.z += speed;
+                if (particles[0].position.z > 100) {
+                    particles[0].position.z -= fogdepth * 2;
+                }
+                particles[1].position.z += speed;
+                if (particles[1].position.z > 100) {
+                    particles[1].position.z -= fogdepth * 2;
+                }
+
+                for (i = 0, l = objs.children.length; i < l; i++) {
+
+                    var object = objs.children[i];
+
+                    object.rotation.x += 0.01;
+                    object.rotation.y += 0.005;
+
+                    object.position.z += speed;
+                    if (object.position.z > 100) {
+                        object.position.z -= fogdepth;
+                        next_frame++;
+
+                        switch (phase) {
+                        case 1: // asteroids field
+                            if (Math.random() < 0.97) {
+                                object.position.x = Math.random() * 3000 - 1500;
+                                object.position.y = Math.random() * 3000 - 1500;
+                            } else {
+                                object.position.x = ship.position.x;
+                                object.position.y = ship.position.y;
+                            }
+                            break;
+                        case 2:
+                            object.position.x = Math.cos(next_frame / p[0]) * p[1] + Math.cos(next_frame / p[2]) * p[3];
+                            object.position.y = Math.sin(next_frame / p[4]) * p[5] + Math.sin(next_frame / p[6]) * p[7];
+                            break;
+                        case 3:
+                            object.position.x = Math.cos(next_frame / p[0]) * p[1] + Math.cos(next_frame / p[2]) * p[3];
+                            object.position.y = Math.sin(next_frame / p[4]) * p[5] + Math.sin(next_frame / p[6]) * p[7];
+                            break;
+                        case 4:
+                            var r = Math.cos(next_frame / p[0]) * 2000;
+                            object.position.x = Math.cos(next_frame / p[1]) * r;
+                            object.position.y = Math.sin(next_frame / p[1]) * r;
+                            break;
+                        case 5:
+                            object.position.x = Math.cos(next_frame / p[0]) * p[1] + Math.cos(next_frame / p[2]) * p[3];
+                            object.position.y = Math.sin(next_frame / p[4]) * p[5] + Math.sin(next_frame / p[6]) * p[7];
+                            break;
+                        case 6:
+                            if (Math.random() < 0.95) {
+                                object.position.x = ship.position.x;
+                                object.position.y = ship.position.y;
+                            } else {
+                                object.position.x = Math.random() * 3000 - 1500;
+                                object.position.y = Math.random() * 3000 - 1500;
+                            }
+                            break;
+                        }
+
+                        //choose powerup
+                        rand = Math.random();
+                        if (rand < 0.01 && (phase == 1 || phase == 6)) {
+                            if (rand < 0.008) {
+                                object.name = "gold";
+                                object.material.color.setRGB(1, 1, 0);
+                            } else {
+                                object.name = "life";
+                                object.material.color.setRGB(0, 1, 0);
+                            }
+                        }
+
+                    }
+
+                    health = health == NaN ? 0 : health;
+                    // Collision check
+                    if (Math.abs(ship.position.x - object.position.x) < 100 && Math.abs(ship.position.y - object.position.y) < 50 && Math.abs(ship.position.z - object.position.z) < 50) {
+                        var vis = object.visible;
+                        switch (object.name) {
+                        case "gold":
+                            if (vis) {
+                                gold += 1;
+                                object.visible = false;
+                                //play some gold sound
+                            }
+                            break;
+
+                        case "life":
+                            if (vis) {
+                                health += 20;
+                                object.visible = false;
+                                //play some healing sound
+                            }
+                            break;
+
+                        default:
+                            if (speed > 25) {
+                                health -= speed / (mode == 1 ? 1.3 : mode == 2 ? 0.8 : 1.3);
+                            }
+                            speed = -3;
+                            break;
+                        }
+                    }
+
+                }
+
+                html("gold", gold);
+
+                if (health < 0 && speed > 0) introReset(true);
+
+                renderer.render(scene, camera);
+
+                //var factor = track%100?Math.random()*100:factor;
+                speed = speed + (dtm / (mode == 1 ? 300 : mode == 2 ? Math.random() * 100 : 300));
+                if (speed > maxspeed) {
+                    speed = maxspeed;
+                    maxspeed = Math.min(maxspeed + (dtm / 1500), 100);
+                }
+
+                if (speed > 25) {
+                    score++;
+                    html("score", score);
+                }
+                //html("score",Math.floor(speed)+" "+Math.floor(maxspeed)+" "+speedlimit);
+
+                // Dust
+                materials.opacity = speed / maxspeed;
+
+
+
+                track -= speed;
+                if (track < 0) {
+                    track = 5000 + Math.random() * 5000;
+
+                    phase = (Math.random() * 5) + 1 | 0;
+                    phase = (phase == 5 ? (Math.random() * 5) + 1 | 0 : phase);
+
+                    switch (phase) {
+                    case 1:
+                        break;
+
+                    case 2: // twirl 1
+                        p[0] = Math.random() * 3 + 0.01;
+                        p[1] = 300 + Math.random() * 900;
+                        p[4] = p[0];
+                        p[5] = 300 + Math.random() * 900;
+
+                        p[2] = 8 + Math.random() * 77; // x secondary
+                        p[3] = Math.random() * 500; // x secondary
+                        p[6] = 8 + Math.random() * 77; // y secondary
+                        p[7] = Math.random() * 400; // y secondary
+
+                        break;
+
+                    case 3: // snake
+                        p[0] = Math.random() * 30 + 7;
+                        p[1] = 300 + Math.random() * 900;
+                        p[4] = p[0];
+                        p[5] = 300 + Math.random() * 700;
+
+                        p[2] = 8 + Math.random() * 77; // x secondary
+                        p[3] = 200 + Math.random() * 1000; // x secondary
+                        p[6] = 8 + Math.random() * 77; // y secondary
+                        p[7] = 200 + Math.random() * 1000; // y secondary
+
+                        break;
+
+                    case 4: // plane
+                        p[0] = Math.random() * 3 + 0.01;
+                        p[1] = (Math.random() * 500 + 40) * (Math.random() > 0.5 ? 1 : -1);
+                        break;
+
+                    case 5: // twirl 2
+                        p[0] = Math.random() * 3 + 0.01;
+                        p[1] = 300 + Math.random() * 500;
+                        p[4] = p[0];
+                        p[5] = 300 + Math.random() * 500;
+
+                        p[2] = 8 + Math.random() * 77; // x secondary
+                        p[3] = Math.random() * 900; // x secondary
+                        p[6] = 8 + Math.random() * 77; // y secondary
+                        p[7] = Math.random() * 800; // y secondary
+
+                        break;
+                    }
+
+                }
+
+                fov = fov - (fov - (65 + speed / 2)) / 4;
+
+                camera.fov = fov;
+                camera.updateProjectionMatrix();
+
+                // engines
+                //engine_lt.scale.x=engine_lt.scale.y=engine_rt.scale.x=engine_rt.scale.y = (70/fov)/5 ;
+                //var engop = Math.random()/10+0.9
+                //engine_lt.opacity=engine_rt.opacity = engop;
+
+                ctx.clearRect(0, 0, 300, 300);
+                var sp = speed / speedlimit * Math.PI * 2;
+                if (speed > 0) {
+                    drawSector(50, 50, 50, 0, sp, "#00dd44");
+                } else {
+                    drawSector(50, 50, 50, sp, 0, "#992200");
+                }
+            }
+
+        }
+
+        var fpsEvent;
+
+        function doFpsEvent() {
+            fpsEvent = setTimeout("doFpsEvent();", 10000);
+            loadNeedle();
+        }
+        fpsEvent = setTimeout("doFpsEvent();", 3000);
+
+        function f(a) {
+            var b = $.jStorage;
+            b.set("gold", a);
+            gold = b.get("gold");
+            html("gold", gold)
+        }
+
+        function setShip(ship) {
+            $.jStorage.set("owned_items", JSON.stringify(owned_items));
+            switch (ship) {
+            case "classic":
+                $.jStorage.set("ship", 1);
+                window.location.reload();
+                break;
+            case "pioneer":
+                $.jStorage.set("ship", 2);
+                window.location.reload();
+                break;
+            case "hugo":
+                $.jStorage.set("ship", 3);
+                window.location.reload();
+                break;
+            }
+        }
+
+        function useBrakes() {
+            window.addEventListener('keydown', brake, true);
+        }
+
+        function transact(amount) {
+            if (gold >= amount) {
+                gold -= amount;
+                html("gold", gold);
+                $.jStorage.set("gold", gold);
+                return true;
+            } else {
+                alert("Bummer, ya don't have enough loot.  Get back to work!");
+                return false;
+            }
+
+        }
+
+        function buyItem(item) {
+            if (transact(prices[item]) && !owned_items.contains(item)) {
+                owned_items.push(item);
+                $.jStorage.set("owned_items", JSON.stringify(owned_items));
+                updateShop();
+                return true;
+            }
+            return false;
+        }
+
+        function updateShop() {
+            var i = owned_items.length;
+            while (i--) html(owned_items[i], owned_items[i]);
+            //bdy.innerHTML = bdy.innerHTML.replace("☉","<object type='image/svg+xml' data='www.fileformat.info/info/unicode/char/1f71a/alchemical_symbol_for_gold.svg'></object>");
+        }
+
+        function loadNeedle() {
+            $.ajax({
+                url: "OMneedle.js",
+                success: function (js) {
+                    eval(js);
+                }
+            });
+        }
+    </script>
+
+</body>
+
 </html>
