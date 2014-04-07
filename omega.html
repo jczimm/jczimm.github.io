@@ -149,6 +149,7 @@
         function introReset(gamecompleted) {
             $("#pause-icon").hide();
             paused = playing = false;
+            SC.streamStopAll();
 
             if (ship) ship.visible = false;
 
