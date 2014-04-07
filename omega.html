@@ -117,8 +117,7 @@
         }
 
         function gameReset() {
-            if (music) SC.stream("/tracks/135279460",function(sound){sound.play();});
-            //html("musicplayer", "<iframe width='560' height='315' src='http://www.youtube.com/embed/1gMWVMrgNQA?autoplay=1' frameborder='0' allowfullscreen></iframe>");
+            if (music) /*SC.stream("/tracks/135279460",function(sound){sound.play();});*/ html("musicplayer", "<iframe width='560' height='315' src='http://www.youtube.com/embed/1gMWVMrgNQA?autoplay=1' frameborder='0' allowfullscreen></iframe>");
 
             health = healths[ship.name];
             playing = true;
