@@ -1,2 +1,2 @@
-Sitemap: sitemap.xml
+Sitemap: sitemap.txt
 User-agent: *
