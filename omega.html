@@ -153,7 +153,12 @@
         function introReset(gamecompleted) {
             $("#pause-icon").hide();
             paused = playing = false;
-            SC.streamStopAll();
+            if (sound) {
+            	while (sound.volume) {
+            		sound.setVolume(sound.volume-5);
+            	}
+            	sound.volume = sound.volume+"";
+            }
 
             if (ship) ship.visible = false;
 
