@@ -1072,6 +1072,7 @@
 
             if (!$.jStorage.get("ship")) $.jStorage.set("ship", 1);
             ship = generateShip($.jStorage.get("ship"));
+            $("span:contains("+ship.name+")").addClass("sel");
 
             // UPGRADES
 
