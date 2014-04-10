@@ -307,6 +307,10 @@
             $.jStorage.set("omautoswitch", autoswitch);
             $.jStorage.set("omcontrols", controls);
             $.jStorage.set("omyinvert", yinvert);
+            
+            $("span:contains("+ship.name+")").addClass("sel");
+            $("span").css("color","#6E83FF");
+            $("span:contains(☉)").css("color","");
 
         }
 
@@ -1072,7 +1076,6 @@
 
             if (!$.jStorage.get("ship")) $.jStorage.set("ship", 1);
             ship = generateShip($.jStorage.get("ship"));
-            $("span:contains("+ship.name+")").addClass("sel");
 
             // UPGRADES
 
