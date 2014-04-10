@@ -31,7 +31,8 @@ canvas {
 }
 
 #keywords {display: none;}
-.item {color:#6E83FF;}
+.ship {color:#6E83FF;}
+.upgrade {color:#8FFF00;}
 .sel {color:#8FFF00;}
 
 span {text-shadow: 0 0 2px white, 0 0px 10px white; letter-spacing:0.05em; user-select: none; -webkit-user-select: none; -moz-user-select: none; -o-user-select: none; font-size:150%;  }
