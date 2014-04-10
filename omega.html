@@ -234,14 +234,6 @@
                 if (owned_items.contains("hugo")) setShip("hugo");
                 else if (buyItem("hugo")) setShip("hugo");
                 break;
-                
-            case "code":
-            	$('#code-form').bPopup({
-		    easing: 'easeOutBack',
-	            speed: 450,
-	            transition: 'slideDown'
-	        });
-            	break;
 
             case "options":
                 hide("panel1");
@@ -864,7 +856,7 @@
         <br>
         <span class='click' id='options'>options</span>
         <br>
-        <span class='click' id='code'>insert keycode</span>
+        <span class='click' id='code' onclick="$('#code-form').bPopup({easing:'easeOutBack',speed: 450,transition: 'slideDown'});">insert keycode</span>
 
         <br>
     </div>
