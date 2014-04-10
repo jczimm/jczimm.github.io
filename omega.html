@@ -60,6 +60,8 @@
 
         var pause, paused, oldspeed, playing;
         var mode = 1;
+        
+        var kc;
 
         var prices = {
             "classic": 0,
@@ -862,7 +864,7 @@
     </div>
     <div id="code-form" style="display:none">
     	<input type="text" class="input" placeholder="keycode" />
-    	<button id="submit-code">submit</button>
+    	<button id="submit-code" onclick="kc=$('.input').val();$('.b-modal').click();">submit</button>
     </div>
     <div id='panel2'>
         <span class='click' id='op_controls'>controls</span>
