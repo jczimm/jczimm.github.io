@@ -31,8 +31,8 @@ canvas {
 }
 
 #keywords {display: none;}
-.ship {color:#6E83FF;}
-.upgrade {color:#8FFF00;}
+.ship {color:#6E83FF; text-shadow: 0 0 2px #6E83FF, 0 0px 10px #6E83FF;}
+.upgrade {color:#8FFF00; text-shadow: 0 0 2px #8FFF00, 0 0px 10px #8FFF00;}
 .sel {color:#8FFF00;}
 
 #code-form, .input {color:white; font-size:30px;}
