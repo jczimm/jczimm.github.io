@@ -36,7 +36,8 @@ canvas {
 .sel {color:#8FFF00;}
 
 #code-form, .input {color:white; font-size:30px;}
-.input {background-color:black;}
+.input {background-color:black; font-family:"Jockey One";}
+#submit-code {position:relative; height:50px; bottom:5px; font-size:16px; font-family:"Jockey One"; }
 
 span {text-shadow: 0 0 2px white, 0 0px 10px white; letter-spacing:0.05em; user-select: none; -webkit-user-select: none; -moz-user-select: none; -o-user-select: none; font-size:150%;  }
 #hud {position:absolute; z-index:999; top:10px; right:15px; opacity:0.5;}
