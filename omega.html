@@ -59,7 +59,7 @@
         var key_up = key_down = key_left = key_right = key_space = false;
 
         var pause, paused, oldspeed, playing;
-        var mode = 1;
+        var mode = 1, expert = false;
         
         var kc;
 
@@ -1212,7 +1212,7 @@
                 ship.position.y = shipY;
                 ship.position.z = -200;
 
-                ship.rotation.z = -shipX / 1000;
+                if(!expert) ship.rotation.z = -shipX / 1000;
 
                 if (speed >= 100) {
                     ship.material.color.setRGB(1, 0, 1);
