@@ -7,6 +7,7 @@
     <meta name="google-site-verification" content="6hI1cRLPBR985DnHSZlm9uNT6KcHm7Aw0lCYE9kTsPs" />
     <title>ΩMEGA • jczimm</title>
     <meta charset="utf-8">
+    <meta name="title" content="ΩMEGA • jczimm">
     <meta name="description" content="Avoid asteroids, collect gold, and pick up powerups along the way. Fly the pioneer, the hugo, or go old school with the classic.  Made with love by jczimm.">
     <meta name="keywords" content="omega, jczimm, ships, velu, hugo, pioneer">
     
@@ -795,7 +796,7 @@
             case 16:
                 // shift
                 if (owned_items.contains("brakes")) speed = 3;
-                health -= 10;
+                health -= expert?3:10;
                 break;
             }
         }
