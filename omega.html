@@ -75,6 +75,10 @@
             "pioneer": 120,
             "hugo": 80
         }
+        
+        var tracks = {
+            "classic": 61866639;
+        }
 
 
         var owned_items = new Array("classic");
@@ -113,7 +117,7 @@
         }
 
         function gameReset() {
-            if (music) SC.stream("/tracks/61866639",function(_sound){sound=_sound;_sound.play();}); //html("musicplayer", "<iframe width='560' height='315' src='http://www.youtube.com/embed/1gMWVMrgNQA?autoplay=1' frameborder='0' allowfullscreen></iframe>");
+            if (music) SC.stream("/tracks/"+tracks[ship.name],function(_sound){sound=_sound;_sound.play();}); //html("musicplayer", "<iframe width='560' height='315' src='http://www.youtube.com/embed/1gMWVMrgNQA?autoplay=1' frameborder='0' allowfullscreen></iframe>");
 
             health = healths[ship.name];
             playing = true;
