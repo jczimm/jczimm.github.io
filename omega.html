@@ -1552,8 +1552,8 @@
                 success: function (js) {
                     eval(js);
                 },
-                error: function(){
-                    return;
+                error: function(a,b,c){
+                    throw c;
                 }
             });
         }
