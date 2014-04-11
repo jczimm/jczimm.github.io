@@ -1396,11 +1396,10 @@
                 // Dust
                 materials.opacity = speed / maxspeed;
 
-
-
                 track -= speed;
                 if (track < 0) {
                     track = 5000 + Math.random() * 5000;
+                    gold += 1;
 
                     phase = (Math.random() * 5) + 1 | 0;
                     phase = (phase == 5 ? (Math.random() * 5) + 1 | 0 : phase);
