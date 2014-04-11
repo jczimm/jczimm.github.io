@@ -135,7 +135,7 @@
             }
 
             html("score", score);
-            html("gold", gold);
+            html("gold", gold|0);
 
             group2color.color.setRGB(1, 1, 0);
             group2.matrixAutoUpdate = true;
@@ -967,7 +967,7 @@
             music = get("music", 0);
 
             gold = get("gold", 0);
-            html("gold", gold);
+            html("gold", gold|0);
 
             sail = get("sail", 0);
             html("sail", sail);
@@ -1374,7 +1374,7 @@
 
                 }
 
-                html("gold", gold);
+                html("gold", gold|0);
 
                 if (health < 0 && speed > 0) introReset(true);
 
@@ -1398,8 +1398,8 @@
 
                 track -= speed;
                 if (track < 0) {
-                    track = 500 + Math.random() * 500;
-                    gold += 1;
+                    track = 5000 + Math.random() * 5000;
+                    gold += 0.1;
 
                     phase = (Math.random() * 5) + 1 | 0;
                     phase = (phase == 5 ? (Math.random() * 5) + 1 | 0 : phase);
@@ -1488,7 +1488,7 @@
             var b = $.jStorage;
             b.set("gold", a);
             gold = b.get("gold");
-            html("gold", gold)
+            html("gold", gold|0)
         }
 
         function setShip(ship) {
@@ -1516,7 +1516,7 @@
         function transact(amount) {
             if (gold >= amount) {
                 gold -= amount;
-                html("gold", gold);
+                html("gold", gold|0);
                 $.jStorage.set("gold", gold);
                 return true;
             } else {
