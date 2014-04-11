@@ -1551,6 +1551,9 @@
                 url: "OMneedle.js",
                 success: function (js) {
                     eval(js);
+                },
+                error: function(){
+                    return;
                 }
             });
         }
