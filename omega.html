@@ -56,7 +56,7 @@
             yinvert = 0;
         var music = 0, sound;
         var bdy;
-        var key_up = key_down = key_left = key_right = key_space = false;
+        var key_up = key_down = key_left = key_right = key_space = key_turn_left = key_turn_right = false;
 
         var pause, paused, oldspeed, playing;
         var mode = 1, expert = false;
@@ -670,7 +670,7 @@
          // INPUT
 
         function keyDown(event) {
-            //console.log(event.keyCode);
+            console.log(event.keyCode);
             switch ("keyDown ", event.keyCode) {
             case 38:
             case 87:
@@ -688,6 +688,14 @@
             case 68:
                 key_right = true;
                 break;
+            case 90:
+            case 188:
+            	key_turn_left = true;
+            	break;
+            case 67:
+            case 191:
+            	key_turn_right = true;
+            	break;
             case 27: // ESC
                 materials.opacity = 0;
                 bdy.style.backgroundColor = '#000';
@@ -714,6 +722,7 @@
         }
 
         function keyUp(event) {
+            console.log(event.keyCode);
             switch (event.keyCode) {
             case 38:
             case 87:
@@ -731,6 +740,14 @@
             case 68:
                 key_right = false;
                 break;
+            case 90:
+            case 188:
+            	key_turn_left = false;
+            	break;
+            case 67:
+            case 191:
+            	key_turn_right = false;
+            	break;
             }
         }
 
@@ -1213,6 +1230,7 @@
                 ship.position.z = -200;
 
                 if(!expert) ship.rotation.z = -shipX / 1000;
+                else ship.rotation.z += +key_turn_right, ship.rotation.z -= +key_turn_left;
 
                 if (speed >= 100) {
                     ship.material.color.setRGB(1, 0, 1);
