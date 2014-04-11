@@ -258,7 +258,8 @@
                 break;
 
             case "op_controls":
-                controls = 1 - controls;
+                controls = controls==0?1:controls==1?2:0;
+                expert = controls == 2;
                 updateUI();
                 break;
 
@@ -295,7 +296,7 @@
             html('op_sensitivity', 'controls sensitivity : ' + sens_list[sensitivity]);
             sen = sens_values[sensitivity];
             html('op_1stperson', 'automatic 1st/3th person : ' + (autoswitch ? "yes" : "no"));
-            html('op_controls', 'controls : ' + (controls == 0 ? "mouse" : "arrows / WASD"));
+            html('op_controls', 'controls : ' + (controls == 0 ? "mouse" : controls == 1 ? "arrows / WASD" : "expert (arrows+ZC, WASD+,/)"));
             html('op_yinvert', 'invert Y axis : ' + (yinvert == 0 ? "no" : "yes"));
             html('op_difficulty', 'difficulty: ' + (mode == 1 ? "normal" : "hard"));
 
