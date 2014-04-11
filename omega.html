@@ -1230,7 +1230,7 @@
                 ship.position.z = -200;
 
                 if(!expert) ship.rotation.z = -shipX / 1000;
-                else ship.rotation.z += +key_turn_right, ship.rotation.z -= +key_turn_left;
+                else ship.rotation.z += +key_turn_right/1000, ship.rotation.z -= +key_turn_left/1000;
 
                 if (speed >= 100) {
                     ship.material.color.setRGB(1, 0, 1);
