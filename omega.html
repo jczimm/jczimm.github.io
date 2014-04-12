@@ -78,7 +78,8 @@
         }
         
         var tracks = {
-            "classic": 61866639
+            "classic": 61866639,
+            "pioneer": 144286228
         }
 
 
@@ -206,7 +207,7 @@
         }
 
         function buttonClick(e) {
-            console.log(e.currentTarget.id);
+            //console.log(e.currentTarget.id);
 
             switch (e.currentTarget.id) {
             case "start":
@@ -672,7 +673,7 @@
          // INPUT
 
         function keyDown(event) {
-            console.log(event.keyCode);
+            //console.log(event.keyCode);
             switch ("keyDown ", event.keyCode) {
             case 38:
             case 87:
@@ -704,7 +705,7 @@
                 introReset(false);
                 break;
             case 67: // C
-                console.log("C");
+                //console.log("C");
                 //var tempcanvas = document.getElementsByTagName("canvas");
                 //window.open(tempcanvas[1].toDataURL('image/png'))
 
@@ -724,7 +725,7 @@
         }
 
         function keyUp(event) {
-            console.log(event.keyCode);
+            //console.log(event.keyCode);
             switch (event.keyCode) {
             case 38:
             case 87:
