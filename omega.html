@@ -796,7 +796,7 @@
             switch (event.keyCode) {
             case 16:
                 // shift
-                if (owned_items.contains("brakes")) speed = 3;
+                if (owned_items.contains("brakes")) speed = speed/2;
                 health -= expert?3:10;
                 break;
             }
