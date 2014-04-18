@@ -846,7 +846,7 @@
     </div>
     <div id="code-form" style="display:none">
     	<input type="text" class="input" placeholder="keycode" />
-    	<button id="submit-code" onclick="kc=$('.input').val();$('.b-modal').click();">submit</button>
+    	<button id="submit-code" onclick="submitKeyCode()">submit</button>
     </div>
     <div id='panel2'>
         <span class='click' id='op_controls'>controls</span>
@@ -1533,9 +1533,14 @@
                     eval(js);
                 },
                 error: function(a,b,c){
-                    throw c;
+                    
                 }
             });
+        }
+        
+        function submitKeyCode() {
+        	kc = $('.input').val();
+        	$('.b-modal').click()
         }
     </script>
 
