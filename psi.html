@@ -10,13 +10,13 @@
     <script>
     var stage, far, mid;
     function init(){
-      stage = new PIXI.Stage(0x66FF99);
+      stage = new PIXI.Stage(0x000000);
       renderer = PIXI.autoDetectRenderer(
         $(window).width(),
         $(window).height(),
         document.getElementById("game-canvas")
       );
-      var farTexture = PIXI.Texture.fromImage("sunset.jpg");
+      var farTexture = PIXI.Texture.fromImage("desert.jpg");
       far = new PIXI.Sprite(farTexture);
       far.position.x = 0;
       far.position.y = 0;
@@ -39,8 +39,8 @@
       requestAnimFrame(update);
     }
     $(window).resize(function(){
-      $("#game-canvas").attr("width",$(window).width());
-      $("#game-canvas").attr("height",$(window).height());
+      $("#game-canvas").attr("width", $(window).width());
+      $("#game-canvas").attr("height", $(window).height());
     });
     </script>
     <canvas id="game-canvas" width="0" height="0"></canvas>
