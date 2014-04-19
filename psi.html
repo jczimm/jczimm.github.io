@@ -17,13 +17,15 @@
         document.getElementById("game-canvas")
       );
       var farTexture = PIXI.Texture.fromImage("desert.png");
-      far = new PIXI.Sprite(farTexture);
+      far = new PIXI.TilingSprite(farTexture, farTexture.baseTexture.width, farTexture.baseTexture.height);
       far.position.x = 0;
       far.position.y = 0;
+      far.tilePosition.x = 0;
+      far.tilePosition.y = 0;
       stage.addChild(far);
       
       /*var midTexture = PIXI.Texture.fromImage("http://placehold.it/100/fff/000.png");
-      mid = new PIXI.Sprite(midTexture);
+      mid = new PIXI.TilingSprite(midTexture, midTexture.baseTexture.width, midTexture.baseTexture.height);
       mid.position.x = 0;
       mid.position.y = 128;
       stage.addChild(mid);*/
@@ -31,8 +33,8 @@
       requestAnimFrame(update);
     }
     function update() {
-      far.position.x -= 0.128;
-      //mid.position.x -= 0.64;
+      far.tilePosition.x -= 0.128;
+      //mid.tilePosition.x -= 0.64;
     
       renderer.render(stage);
     
