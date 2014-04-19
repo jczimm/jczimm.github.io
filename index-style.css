@@ -1,5 +1,5 @@
 * {
-	-webkit-transition: all 0.7s ease-in-out;
+  -webkit-transition: all 0.7s ease-in-out;
   -moz-transition: all 0.7s ease-in-out;
   -o-transition: all 0.7s ease-in-out;
   -ms-transition: all 0.7s ease-in-out;
@@ -7,11 +7,12 @@
 }
 
 body {
-	font-family: "Ubuntu", sans-serif;
+  font-family: "Ubuntu", sans-serif;
 }
 
 header {
-	font-size: 2em;
+  font-size: 2em;
   font-weight: 600;
-  width: 100%;
+  position: relative;
+  top: 20px;
 }
