@@ -9,6 +9,7 @@
 body {
   font-family: "Ubuntu", sans-serif;
   overflow: hidden;
+  margin: 0px;
 }
 
 header {
@@ -18,13 +19,15 @@ header {
   top: 20px;
   margin-bottom: -63px;
   z-index: 20;
+  color: white;
+  
 }
 
-html, body, table, tr, iframe {
+html, body, table, tr, img {
   height: 100%;
 }
 
-table, iframe {
+table, img {
   width: 100%;
 }
 
