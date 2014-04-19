@@ -12,7 +12,7 @@
     var renderer = PIXI.autoDetectRenderer(400, 300);
     document.body.appendChild(renderer.view);
     requestAnimFrame( animate );
-    var texture = PIXI.Texture.fromImage("http://placehold.it/200");
+    var texture = PIXI.Texture.fromImage("http://placehold.it/200.png");
     var bunny = new PIXI.Sprite(texture);
     bunny.anchor.x = 0.5;
     bunny.anchor.y = 0.5;
@@ -24,6 +24,11 @@
         bunny.rotation += 0.1;
         renderer.render(stage);
     }
+    $(window).resize(function(){
+      $("canvas").attr("width",$(window).width());
+      $("canvas").attr("height",$(window).height());
+    });
     </script>
+    <canvas id="game-canvas" width="512" height="384"></canvas>
   </body>
 </html>
