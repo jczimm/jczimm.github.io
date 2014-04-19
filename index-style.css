@@ -23,11 +23,11 @@ header {
   text-shadow: #000 0px 2px 4px;
 }
 
-html, body, table, tr, img {
+html, body, table, tr, iframe {
   height: 100%;
 }
 
-table, img {
+table, iframe {
   width: 100%;
 }
 
