@@ -16,23 +16,23 @@
         $(window).height(),
         document.getElementById("game-canvas")
       );
-      var farTexture = PIXI.Texture.fromImage("http://placehold.it/200.png");
+      var farTexture = PIXI.Texture.fromImage("sunset.jpg");
       far = new PIXI.Sprite(farTexture);
       far.position.x = 0;
       far.position.y = 0;
       stage.addChild(far);
       
-      var midTexture = PIXI.Texture.fromImage("http://placehold.it/100/fff/000.png");
+      /*var midTexture = PIXI.Texture.fromImage("http://placehold.it/100/fff/000.png");
       mid = new PIXI.Sprite(midTexture);
       mid.position.x = 0;
       mid.position.y = 128;
-      stage.addChild(mid);
+      stage.addChild(mid);*/
       
       requestAnimFrame(update);
     }
     function update() {
       far.position.x -= 0.128;
-      mid.position.x -= 0.64;
+      //mid.position.x -= 0.64;
     
       renderer.render(stage);
     
