@@ -42,7 +42,12 @@
 		    return obj;
 		}, {} );
 	    $(document).ready(function(){
-		if($_GET["p"]=="no") $("span").hide();
+		if($_GET["p"]=="no"){
+			$("span").hide();
+			$("body").click(function(){
+				parent.documen.href = "http://jczimm.github.io/omega";
+			});
+		}
 	    });
 
         Array.prototype.contains = function (obj) {
