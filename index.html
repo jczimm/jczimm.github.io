@@ -12,6 +12,7 @@
   </head>
   <body>
     <script>
+    $(document).ready(function(){
       var Typed = function (e, t, n) {
           self = this;
           self.el = $(e);
@@ -80,6 +81,7 @@
           }
       }
       new Typed("header", null, "true");
+    });
     </script>
     <header align="center">I'm </header>
     <table>
