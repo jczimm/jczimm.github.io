@@ -6,29 +6,43 @@
     <link rel="stylesheet" href="pstyle.css">
     <script src="http://www.goodboydigital.com/pixijs/examples/15/pixi.js"></script>
   </head>
-  <body>
+  <body onload="init();">
     <script>
-    var stage = new PIXI.Stage(0x66FF99);
-    var renderer = PIXI.autoDetectRenderer(400, 300);
-    document.body.appendChild(renderer.view);
-    requestAnimFrame( animate );
-    var texture = PIXI.Texture.fromImage("http://placehold.it/200.png");
-    var bunny = new PIXI.Sprite(texture);
-    bunny.anchor.x = 0.5;
-    bunny.anchor.y = 0.5;
-    bunny.position.x = 200;
-    bunny.position.y = 150;
-    stage.addChild(bunny);
-    function animate() {
-        requestAnimFrame( animate );
-        bunny.rotation += 0.1;
-        renderer.render(stage);
+    var stage, far, mid;
+    function init(){
+      stage = new PIXI.Stage(0x66FF99);
+      renderer = PIXI.autoDetectRenderer(
+        $(window).width(),
+        $(window).height(),
+        document.getElementById("game-canvas")
+      );
+      var farTexture = PIXI.Texture.fromImage("http://placehold.it/200.png");
+      far = new PIXI.Sprite(farTexture);
+      far.position.x = 0;
+      far.position.y = 0;
+      stage.addChild(far);
+      
+      var midTexture = PIXI.Texture.fromImage("http://placehold.it/100/fff/000.png");
+      mid = new PIXI.Sprite(midTexture);
+      mid.position.x = 0;
+      mid.position.y = 128;
+      stage.addChild(mid);
+      
+      requestAnimFrame(update);
+    }
+    function update() {
+      far.position.x -= 0.128;
+      mid.position.x -= 0.64;
+    
+      renderer.render(stage);
+    
+      requestAnimFrame(update);
     }
     $(window).resize(function(){
-      $("canvas").attr("width",$(window).width());
-      $("canvas").attr("height",$(window).height());
+      $("#game-canvas").attr("width",$(window).width());
+      $("#game-canvas").attr("height",$(window).height());
     });
     </script>
-    <canvas id="game-canvas" width="512" height="384"></canvas>
+    <canvas id="game-canvas" width="0" height="0"></canvas>
   </body>
 </html>
