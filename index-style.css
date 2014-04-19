@@ -34,3 +34,7 @@ table, iframe {
 .vbanner {
   width: 50%;
 }
+
+iframe:hover {
+  opacity: 0.7;
+}
