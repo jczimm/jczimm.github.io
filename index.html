@@ -81,13 +81,21 @@
           }
       }
       new Typed("header", null, "true");
+      $("iframe").contents().click(function(){
+        switch($(this).find("title").text()){
+          case "ΩMEGA • jczimm":
+            document.location.href = "/omega";
+            break;
+        }
+      });
+      $("iframe").fadeIn(300);
     });
     </script>
     <header align="center">I'm </header>
     <table>
       <tr>
         <td class="vbanner">
-          <iframe frameborder="0" src="omega?p=no" seamless="seamless"></iframe>
+          <iframe frameborder="0" style="display:none;" src="omega?p=no" seamless="seamless"></iframe>
           <div class="overlay"></div>
         </td>
         <td class="vbanner"></td>
