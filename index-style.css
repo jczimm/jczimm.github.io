@@ -20,7 +20,7 @@ header {
   margin-bottom: -63px;
   z-index: 20;
   color: white;
-  
+  text-shadow: #000 0px 2px 4px;
 }
 
 html, body, table, tr, img {
