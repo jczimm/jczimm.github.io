@@ -10,25 +10,73 @@
   </head>
   <body>
     <script>
-      function Typed(el, values, shorten){
-    		self = this;
-    		self.el = $(el);
-    		self.text = self.el.text();
-    		self.backDelay = 500;
-    		if (!values){
-    			self.values = ["a web developer.", "a web designer.", "jczimm."];
-    		}
-    		else{
-    			self.values = values;
-    		}
-    		self.shorten = shorten;
-    		self.strPos = 0;
-    		self.arrayPos = 0;
-    		self.string = self.values[self.arrayPos];
-    		self.stopNum = 0;
-    		self.stopArray = self.values.length-1;
-    		self.init();
-    	}
+      var Typed = function (e, t, n) {
+          self = this;
+          self.el = $(e);
+          self.text = self.el.text();
+          self.backDelay = 500;
+          if (!t) {
+              self.values = ["a web developer.", "a web designer.", "jczimm."]
+          } else {
+              self.values = t
+          }
+          self.shorten = n;
+          self.strPos = 0;
+          self.arrayPos = 0;
+          self.string = self.values[self.arrayPos];
+          self.stopNum = 0;
+          self.stopArray = self.values.length - 1;
+          self.init()
+      };
+      Typed.prototype = {
+          constructor: Typed,
+          init: function () {
+              self.typewrite(self.string, self.strPos)
+          },
+          typewrite: function (e, t) {
+              var n = Math.round(Math.random() * (120 - 30)) + 30;
+              setTimeout(function () {
+                  if (self.arrayPos < self.values.length) {
+                      self.el.text(self.text + e.substr(0, t));
+                      if (t > e.length && self.arrayPos < self.stopArray) {
+                          clearTimeout();
+                          setTimeout(function () {
+                              self.backspace(e, t)
+                          }, self.backDelay)
+                      } else {
+                          t++;
+                          self.typewrite(e, t);
+                          if (self.arrayPos == self.stopArray) {
+                              self.lift();
+                              clearTimeout()
+                          }
+                      }
+                  }
+              }, n)
+          },
+          backspace: function (e, t) {
+              var n = Math.round(Math.random() * (120 - 30)) + 30;
+              setTimeout(function () {
+                  if (self.shorten && self.arrayPos == 0) {
+                      self.stopNum = 5
+                  } else {
+                      self.stopNum = 0
+                  }
+                  self.el.text(self.text + e.substr(0, t));
+                  if (t > self.stopNum) {
+                      t--;
+                      self.backspace(e, t)
+                  } else if (t <= self.stopNum) {
+                      clearTimeout();
+                      self.arrayPos = self.arrayPos + 1;
+                      self.typewrite(self.values[self.arrayPos], t)
+                  }
+              }, n)
+          },
+          lift: function () {
+              $(".head-text").addClass("lift-text")
+          }
+      }
       new Typed("header", null, "true");
     </script>
     <header>I'm </header>
