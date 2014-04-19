@@ -17,12 +17,17 @@ header {
   position: relative;
   top: 20px;
   margin-bottom: -63px;
+  z-index: 20;
 }
 
 html, body, table, tr, iframe {
   height: 100%;
 }
 
-table {
+table, iframe {
   width: 100%;
+}
+
+.vbanner {
+  width: 50%;
 }
