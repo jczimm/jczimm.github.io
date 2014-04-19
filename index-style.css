@@ -1,0 +1,50 @@
+* {
+  -webkit-transition: all 0.7s ease-in-out;
+  -moz-transition: all 0.7s ease-in-out;
+  -o-transition: all 0.7s ease-in-out;
+  -ms-transition: all 0.7s ease-in-out;
+  transition: all 0.7s ease-in-out;
+}
+
+body {
+  font-family: "Ubuntu", sans-serif;
+  overflow: hidden;
+  margin: 0px;
+  background-color: #000;
+}
+
+header {
+  font-size: 3em;
+  font-weight: 600;
+  position: relative;
+  top: 20px;
+  margin-bottom: -63px;
+  z-index: 20;
+  color: white;
+  text-shadow: #000 0px 2px 4px;
+}
+
+html, body, table, tr, iframe {
+  height: 100%;
+}
+
+table, iframe {
+  width: 100%;
+}
+
+.vbanner {
+  width: 50%;
+}
+
+iframe {
+  -webkit-transition: opacity 0.4s ease-in-out;
+  -moz-transition: opacity 0.4s ease-in-out;
+  -o-transition: opacity 0.4s ease-in-out;
+  -ms-transition: opacity 0.4s ease-in-out;
+  transition: opacity 0.4s ease-in-out;
+  display: none;
+}
+
+iframe:hover {
+  opacity: 0.3;
+}
