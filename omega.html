@@ -36,12 +36,14 @@
     </script>
     <script type="text/javascript">
     
+    $(document).ready(function(){
     	var $_GET = location.search.substr(1).split("&").reduce( function( obj, val ){
 	    if( !val ) return obj;
 	    var pair = val.split("=");
 	    obj[pair[0]] = pair[1];
 	    return obj;
 	}, {} );
+    });
 	
 	if($_GET["p"]=="no") $("span").hide();
 
