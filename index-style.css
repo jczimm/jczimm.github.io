@@ -23,11 +23,11 @@ header {
   text-shadow: #000 0px 2px 4px;
 }
 
-html, body, table, tr, iframe, .overlay {
+html, body, table, tr, iframe {
   height: 100%;
 }
 
-table, iframe, .overlay {
+table, iframe {
   width: 100%;
 }
 
@@ -36,22 +36,13 @@ table, iframe, .overlay {
 }
 
 iframe {
-  position: relative;
-  z-index: -1;
-}
-
-.overlay {
   -webkit-transition: opacity 0.4s ease-in-out;
   -moz-transition: opacity 0.4s ease-in-out;
   -o-transition: opacity 0.4s ease-in-out;
   -ms-transition: opacity 0.4s ease-in-out;
   transition: opacity 0.4s ease-in-out;
-  position: absolute;
-  opacity: 0;
-  background-color: black;
-  z-index: 10;
 }
 
-.overlay:hover {
+iframe:hover {
   opacity: 0.3;
 }
