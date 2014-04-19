@@ -12,6 +12,7 @@
   </head>
   <body>
     <script>
+    $("iframe").load(function(){
       var Typed = function (e, t, n) {
           self = this;
           self.el = $(e);
@@ -79,7 +80,6 @@
               //$(".head-text").addClass("lift-text")
           }
       }
-    $("iframe").load(function(){
       new Typed("header", null, "true");
     });
     </script>
