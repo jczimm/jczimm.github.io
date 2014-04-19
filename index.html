@@ -81,6 +81,9 @@
           }
       }
       new Typed("header", null, "true");
+      $("iframe").fadeIn(300);
+    });
+    $("iframe").load(function(){
       $("iframe").contents().click(function(){
         switch($(this).find("title").text()){
           case "ΩMEGA • jczimm":
@@ -88,7 +91,6 @@
             break;
         }
       });
-      $("iframe").fadeIn(300);
     });
     </script>
     <header align="center">I'm </header>
