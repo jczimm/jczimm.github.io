@@ -4,8 +4,26 @@
     <title>PSI • jczimm</title>
     <script src="http://code.jquery.com/jquery-1.11.0.js"></script>
     <link rel="stylesheet" href="pstyle.css">
+    <script src="http://www.goodboydigital.com/pixijs/examples/15/pixi.js"></script>
   </head>
   <body>
-    
+    <script>
+    var stage = new PIXI.Stage(0x66FF99);
+    var renderer = PIXI.autoDetectRenderer(400, 300);
+    document.body.appendChild(renderer.view);
+    requestAnimFrame( animate );
+    var texture = PIXI.Texture.fromImage("bunny.png");
+    var bunny = new PIXI.Sprite(texture);
+    bunny.anchor.x = 0.5;
+    bunny.anchor.y = 0.5;
+    bunny.position.x = 200;
+    bunny.position.y = 150;
+    stage.addChild(bunny);
+    function animate() {
+        requestAnimFrame( animate );
+        bunny.rotation += 0.1;
+        renderer.render(stage);
+    }
+    </script>
   </body>
 </html>
