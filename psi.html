@@ -20,10 +20,12 @@
         }).appendTo(document.getElementById("game-wrapper"));
         two.bind('update', function() {
           if(Math.random()<0.4) current.push(new Prop("trashcan"));
-          current.every(function(i){
-            current[i].draw();
-            current[i].css("right",ticks);
-          });
+          if(current){
+            current.every(function(i){
+              current[i].draw();
+              current[i].css("right",pos);
+            });
+          }
           if(pos<two.width) pos++;
           else pos = 0;
         });
