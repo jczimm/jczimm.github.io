@@ -8,27 +8,32 @@
   </head>
   <body onload="init();">
     <script>
-    var keydown;
-    function init(){
-      var two = new Two({
-        fullscreen: true,
-        autostart: true
-      }).appendTo(document.getElementById("game-wrapper"));
-      var rect = two.makeRectangle(two.width / 2, two.height / 2, 50 ,50);
-      two.bind('update', function() {
-        rect.rotation += 0.001;
+      var rect;
+      var keydown;
+      function init(){
+        var two = new Two({
+          fullscreen: true,
+          autostart: true
+        }).appendTo(document.getElementById("game-wrapper"));
+        rect = two.makeRectangle(two.width / 2, two.height / 2, 50 ,50);
+        two.bind('update', function() {
+          rect.rotation += 0.001;
+        });
+        addKeyListeners();
+      }
+      
+      function addKeyListeners(){
+        $(document).keydown(function(e){
+          if(e.keyCode==32) keydown = true;
+        });
+        $(document).keyup(function(e){
+          if(e.keyCode==32) keydown = false;
+        });
+      }
+      $(document).resize(function(){
+        two.width = $(window).width();
+        two.height = $(window).height();
       });
-      addKeyListeners();
-    }
-    
-    function addKeyListeners(){
-      $(document).keydown(function(e){
-        if(e.keyCode==32) keydown = true;
-      });
-      $(document).keyup(function(e){
-        if(e.keyCode==32) keydown = false;
-      });
-    }
     </script>
     <div id="game-wrapper">
       
