@@ -22,7 +22,7 @@
           if(Math.random()<0.01) current.push(new Prop("trashcan"));
           if(current){
             current.every(function(i){
-              current[i].draw();
+              draw(current[i]);
               current[i].css("right",pos);
             });
           }
@@ -37,11 +37,8 @@
         this.position = 0;
       }
       
-      Prop.prototype.draw = function(){
-        var type = this.type;
-        this.draw = function(){
-          $("body").append(props[type]);
-        }
+      function draw(p){
+        $("body").append(props[p.type]);
       }
       
       function addKeyListeners(){
