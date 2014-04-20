@@ -15,9 +15,10 @@
           fullscreen: true,
           autostart: true
         }).appendTo(document.getElementById("game-wrapper"));
-        rect = two.makeRectangle(two.width / 2, two.height / 2, 50 ,50);
+        rect = two.makeRectangle(two.width/2, two.height/2, 50 ,50);
         two.bind('update', function() {
           rect.rotation += 0.001;
+          rect.width = two.width/2, rect.height = two.height/2;
         });
         addKeyListeners();
       }
