@@ -10,17 +10,33 @@
     <script>
       var two, rect;
       var keydown;
+      var props = {
+        trashcan: $("<img src=\"http://fc02.deviantart.net/fs71/f/2014/088/2/5/trash_by_oceanscented-d7c6gzz.png\" class=\"prop can\" />")
+      }, current = [], pos = 0;
       function init(){
         two = new Two({
           fullscreen: true,
           autostart: true
         }).appendTo(document.getElementById("game-wrapper"));
-        rect = two.makeRectangle(two.width/2, two.height/2, 50, 50);
         two.bind('update', function() {
-          rect.rotation += 0.001;
-          rect.translation.x = two.width/2, rect.translation.y = two.height/2;
+          if(Math.random()<0.4) current.push(new Prop("trashcan"));
+          current.every(function(i){
+            current[i].draw();
+            current[i].css("right",ticks);
+          });
+          if(pos<two.width) pos++;
+          else pos = 0;
         });
         addKeyListeners();
+      }
+      
+      function Prop(type){
+        this.type = type;
+        this.position = 0;
+        this.draw = function(){
+          $("body").append(props[type]);
+        }
+        return props[type];
       }
       
       function addKeyListeners(){
@@ -34,10 +50,12 @@
       $(document).resize(function(){
         two.width = $(window).width();
         two.height = $(window).height();
+        $(".prop").css("bottom",two.height*0.2+30);
       });
     </script>
     <div id="game-wrapper">
       <img src="http://files.gamebanana.com/img/ico/sprays/sasuke_2.gif" id="player" />
+      
     </div>
   </body>
 </html>
