@@ -19,8 +19,8 @@
           autostart: true
         }).appendTo(document.getElementById("game-wrapper"));
         two.bind('update', function() {
-          if(Math.random()<0.4) current.push(new Prop("trashcan"));
-          if(current){
+          if(Math.random()<0.1) current.push(new Prop("trashcan"));
+          if(current!=[]){
             current.every(function(i){
               current[i].draw();
               current[i].css("right",pos);
