@@ -9,6 +9,7 @@
   <body onload="init();">
     <script>
     var stage, far, mid;
+    var keydown;
     function init(){
       stage = new PIXI.Stage(0x000000);
       renderer = PIXI.autoDetectRenderer(
@@ -16,34 +17,32 @@
         $(window).height(),
         document.getElementById("game-canvas")
       );
-      var farTexture = PIXI.Texture.fromImage("desert.png");
-      far = new PIXI.TilingSprite(farTexture, farTexture.baseTexture.width, farTexture.baseTexture.height);
-      far.position.x = 0;
-      far.position.y = 0;
-      far.tilePosition.x = 0;
-      far.tilePosition.y = 0;
-      stage.addChild(far);
+      var texture = PIXI.Texture.fromImage("player1.png");
+      var player = new PIXI.Sprite(texture);
+      player.position.x = $("#game-canvas").attr("width")/2;
+      player.position.y = 10;
+      stage.addChild(player);
       
-      /*var midTexture = PIXI.Texture.fromImage("http://placehold.it/100/fff/000.png");
-      mid = new PIXI.TilingSprite(midTexture, midTexture.baseTexture.width, midTexture.baseTexture.height);
-      mid.position.x = 0;
-      mid.position.y = 128;
-      stage.addChild(mid);*/
-      
+      addKeyListeners();
       requestAnimFrame(update);
     }
     function update() {
-      far.tilePosition.x -= 0.128;
-      //mid.tilePosition.x -= 0.64;
-    
       renderer.render(stage);
-    
       requestAnimFrame(update);
     }
     $(window).resize(function(){
       $("#game-canvas").attr("width", $(window).width());
       $("#game-canvas").attr("height", $(window).height());
     });
+    
+    function addKeyListeners(){
+      $(document).keydown(function(e){
+        if(e.keyCode==32) keydown = true;
+      });
+      $(document).keyup(function(e){
+        if(e.keyCode==32) keydown = false;
+      });
+    }
     </script>
     <canvas id="game-canvas" width="0" height="0"></canvas>
   </body>
