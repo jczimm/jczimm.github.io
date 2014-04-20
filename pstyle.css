@@ -19,4 +19,10 @@ html, body {
 
 #player {
   position: absolute;
+  bottom: 20%;
+  left:  5%;
+}
+
+.prop {
+  position: absolute;
 }
