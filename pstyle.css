@@ -10,6 +10,9 @@ html, body {
   width: 100%;
 }
 
-#game-canvas {
+#game-wrapper {
   margin-bottom: -4px;
+  position: relative;
+  height: 100%;
+  width: 100%;
 }
