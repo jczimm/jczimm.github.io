@@ -20,7 +20,7 @@
         }).appendTo(document.getElementById("game-wrapper"));
         two.bind('update', function() {
           if(Math.random()<0.01) current.push(new Prop("trashcan"));
-          if(current!=[]){
+          if(current){
             current.every(function(i){
               current[i].draw();
               current[i].css("right",pos);
@@ -35,10 +35,14 @@
       function Prop(type){
         this.type = type;
         this.position = 0;
+        return props[type];
+      }
+      
+      Prop.prototype.draw = function(){
+        var type = this.type;
         this.draw = function(){
           $("body").append(props[type]);
         }
-        return props[type];
       }
       
       function addKeyListeners(){
