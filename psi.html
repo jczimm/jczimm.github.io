@@ -38,10 +38,7 @@
           });
           $(".prop").css("bottom",two.height*0.2+30);
           
-          if(keydown && onGround)
-            posY = 230, onGround = false;
-          else
-            posY = 0, onGround = true;
+          //renders player's pos
           $("#player").css("bottom",two.height*0.2+posY+"px");
             
           ticks++;
@@ -55,10 +52,10 @@
       
       function addKeyListeners(){
         $(document).keydown(function(e){
-          if(e.keyCode==32) keydown = true;
+          if(e.keyCode==32) posY = 230, onGround = false;
         });
         $(document).keyup(function(e){
-          if(e.keyCode==32) keydown = false;
+          if(e.keyCode==32) posY = 0, onGround = true;
         });
       }
       $(document).resize(function(){
