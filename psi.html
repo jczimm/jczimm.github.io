@@ -24,7 +24,7 @@
           autostart: true
         }).appendTo(document.getElementById("game-wrapper"));
         two.bind('update', function() {
-          if(!ticks%10) $("#game-wrapper").append($(props.trashcan));
+          if(Math.random()<0.05) $("#game-wrapper").append($(props.trashcan));
           if($(".prop").css("right")=="auto") $(".prop").css("right","0px")
           $(".prop").each(function(i,e){
             if(Number($(e).css("right").substr(0,$(e).css("right").length-2))<two.width)
