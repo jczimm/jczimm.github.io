@@ -25,6 +25,9 @@
         }).appendTo(document.getElementById("game-wrapper"));
         two.bind('update', function() {
           if(Math.random()<0.005) $("body").append($props.trashcan);
+          $(".prop").each(function(i,e){
+            $(e).css("right",Number($(".prop").css("right").substr(0,$(".prop").css("right").length-2))+18+"px");
+          });
           $(".prop").css("bottom",two.height*0.2+30);
         });
         addKeyListeners();
