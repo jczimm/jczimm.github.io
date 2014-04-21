@@ -11,8 +11,8 @@
       var two, rect;
       var keydown;
       var props = {
-        trashcan: $("<img src=\"http://fc02.deviantart.net/fs71/f/2014/088/2/5/trash_by_oceanscented-d7c6gzz.png\" class=\"prop can\" />")
-      }, current = [], pos = 0;
+        trashcan: $("<img id=\"freshest\" src=\"http://fc02.deviantart.net/fs71/f/2014/088/2/5/trash_by_oceanscented-d7c6gzz.png\" class=\"prop can\" />")
+      }, current = [], pos;
       function init(){
         two = new Two({
           fullscreen: true,
@@ -22,22 +22,20 @@
           if(Math.random()<0.001) current.push(new Prop("trashcan"));
           if(current){
             for(i=0; i<current.length; i++){
+              props[current[i].pos = props[current[i].pos<two.width ? props[current[i].pos+18 : 0;
               $("body").append(props[current[i].type]);
-              $(".prop").css({
-                "right": pos,
-                "bottom": two.height*0.2+30
-              });
+              $("#freshest").attr("id",current[i].UUID);
+              $(".prop").css("bottom", two.height*0.2+30);
             }
           }
-          if(pos<two.width) pos=pos+6;
-          else pos = 0;
         });
         addKeyListeners();
       }
       
       function Prop(type){
         this.type = type;
-        this.position = 0;
+        this.pos = 0;
+        this.UUID = +new Date();
       }
       
       function addKeyListeners(){
