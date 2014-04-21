@@ -19,11 +19,11 @@
           autostart: true
         }).appendTo(document.getElementById("game-wrapper"));
         two.bind('update', function() {
-          if(Math.random()<0.01) current.push(new Prop("trashcan"));
+          if(Math.random()<0.001) current.push(new Prop("trashcan"));
           if(current){
             current.every(function(i){
-              draw(current[i]);
-              current[i].css("right",pos);
+              $("body").append(props[current[i].type]);
+              $(".prop").css("right",pos);
             });
           }
           if(pos<two.width) pos++;
@@ -35,10 +35,6 @@
       function Prop(type){
         this.type = type;
         this.position = 0;
-      }
-      
-      function draw(p){
-        $("body").append(props[p.type]);
       }
       
       function addKeyListeners(){
