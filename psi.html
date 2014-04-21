@@ -38,9 +38,9 @@
           });
           $(".prop").css("bottom",two.height*0.2+30);
           
-          if(keydown && onGround) velY = 30, onGround = false;
+          if(keydown && onGround) velY = 50, onGround = false;
           posY += velY;
-          velY *= 0.5;
+          velY -= 0.3;
           velY = velY|0;
           $("#player").css("bottom",two.height*0.2+posY+"px");
           if(posY<0) posY = velY = 0, onGround = true;
