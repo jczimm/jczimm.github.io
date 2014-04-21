@@ -23,11 +23,13 @@
           if(current){
             for(i=0; i<current.length; i++){
               $("body").append(props[current[i].type]);
-              $(".prop").css("right",pos);
-              $(".prop").css("bottom",two.height*0.2+30);
+              $(".prop").css({
+                "right": pos,
+                "bottom": two.height*0.2+30
+              });
             }
           }
-          if(pos<two.width) pos++;
+          if(pos<two.width) pos=pos+6;
           else pos = 0;
         });
         addKeyListeners();
