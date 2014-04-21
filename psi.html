@@ -28,7 +28,7 @@
         two.bind('update', function(){
           
           //makes obstacles
-          if(Math.random()<0.007) $("#game-wrapper").append(randObstacle());
+          if(Math.random()<0.01) $("#game-wrapper").append(randObstacle());
           if($(".prop").css("right")=="auto") $(".prop").css("right","0px");
           $(".prop").each(function(i,e){
             if(Number($(e).css("right").substr(0,$(e).css("right").length-2))<two.width)
