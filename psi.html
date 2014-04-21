@@ -26,7 +26,7 @@
         two.bind('update', function() {
           if(Math.random()<0.005) $("body").append($props.trashcan);
           $(".prop").each(function(){
-            this.css("right",this.css("right")+18);
+            $(this).css("right",$(this).css("right")+18);
           });
           $(".prop").css("bottom", two.height*0.2+30);
           ticks++;
