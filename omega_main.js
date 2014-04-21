@@ -108,7 +108,7 @@ function gameReset() {
 }
 
 function introReset(gamecompleted) {
-    //$("#pause-icon").hide();
+    $("#pause-icon").hide();
     paused = playing = false;
     if (sound) {
         while (sound.volume) {
