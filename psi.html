@@ -24,10 +24,7 @@
           autostart: true
         }).appendTo(document.getElementById("game-wrapper"));
         two.bind('update', function() {
-          //if(Math.random()<0.005) $("body").append($props.trashcan);
-          $(".prop").each(function(){
-            $(this).css("right",$(this).css("right")+18);
-          });
+          if(Math.random()<0.005) $("body").append($props.trashcan);
           $(".prop").css("bottom",two.height*0.2+30);
         });
         addKeyListeners();
