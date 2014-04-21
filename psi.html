@@ -25,6 +25,7 @@
               current[i].pos = current[i].pos<two.width ? current[i].pos+18 : 0;
               $("body").append(props[current[i].type]);
               $("#freshest").attr("id",current[i].UUID);
+              $("#"+current[i].UUID).css("right",pos);
               $(".prop").css("bottom", two.height*0.2+30);
             }
           }
