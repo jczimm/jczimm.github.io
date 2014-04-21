@@ -8,25 +8,26 @@
   </head>
   <body onload="init();">
     <script>
+      Array.prototype.remove = function(from, to) {
+        var rest = this.slice((to || from) + 1 || this.length);
+        this.length = from < 0 ? this.length + from : from;
+        return this.push.apply(this, rest);
+      };
       var two, rect;
       var keydown;
       var props = {
-        trashcan: $("<img id=\"freshest\" src=\"http://fc02.deviantart.net/fs71/f/2014/088/2/5/trash_by_oceanscented-d7c6gzz.png\" class=\"prop can\" />")
-      }, current = [], pos;
+        trashcan: $("<img src=\"http://fc02.deviantart.net/fs71/f/2014/088/2/5/trash_by_oceanscented-d7c6gzz.png\" class=\"prop can\" />")
+      }, current = [], ticks = 0;
       function init(){
         two = new Two({
           fullscreen: true,
           autostart: true
         }).appendTo(document.getElementById("game-wrapper"));
         two.bind('update', function() {
-          if(Math.random()<0.01) current.push(new Prop("trashcan"));
+          if(Math.random()<0.005) $("body").append(props.trashcan);
+          
           $(".prop").css("bottom", two.height*0.2+30);
-          for(i=0; i<current.length; i++){
-            current[i].pos = current[i].pos<two.width ? current[i].pos+18 : 0;
-            $("body").append(props[current[i].type]);
-            $("#freshest").attr("id",current[i].UUID);
-            $("#"+current[i].UUID).css("right",current[i].pos);
-          }
+          ticks++;
         });
         addKeyListeners();
       }
