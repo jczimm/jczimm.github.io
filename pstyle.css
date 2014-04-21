@@ -25,5 +25,13 @@ html, body {
 
 .prop {
   position: absolute;
+}
+
+.can {
+  height: 180px;
+}
+
+.hook {
   height: 150px;
+  bottom: 230px;
 }
