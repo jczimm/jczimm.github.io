@@ -28,6 +28,7 @@ canvas {
 	top: 40%;
 	font-size: 8em;
 	opacity: 0.7;
+	display: none;
 }
 
 #keywords {display: none;}
