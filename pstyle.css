@@ -25,4 +25,5 @@ html, body {
 
 .prop {
   position: absolute;
+  height: 150px;
 }
