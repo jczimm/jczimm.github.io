@@ -25,8 +25,9 @@
         }).appendTo(document.getElementById("game-wrapper"));
         two.bind('update', function() {
           if(!ticks%10) $("#game-wrapper").append($props.trashcan);
+          $(".prop").css("right","0px");
           $(".prop").each(function(i,e){
-            if($(e).css("right").substr(0,$(e).css("right").length-2)<two.width)
+            if(Number($(e).css("right").substr(0,$(e).css("right").length-2))<two.width)
               $(e).css("right",Number($(e).css("right").substr(0,$(e).css("right").length-2))+18+"px");
             else
               $(e).remove();
