@@ -8,11 +8,11 @@
   </head>
   <body onload="init();">
     <script>
-      Array.prototype.remove = function(from, to) {
+      /*Array.prototype.remove = function(from, to) {
         var rest = this.slice((to || from) + 1 || this.length);
         this.length = from < 0 ? this.length + from : from;
         return this.push.apply(this, rest);
-      };
+      };*/
       var two, rect;
       var keydown;
       var $props = {
@@ -26,7 +26,10 @@
         two.bind('update', function() {
           if(Math.random()<0.005) $("body").append($props.trashcan);
           $(".prop").each(function(i,e){
-            $(e).css("right",Number($(".prop").css("right").substr(0,$(".prop").css("right").length-2))+18+"px");
+            if($(e).css("right").substr(0,$(e).css("right").length-2)<two.width)
+              $(e).css("right",Number($(e).css("right").substr(0,$(e).css("right").length-2))+18+"px");
+            else
+              $(e).remove();
           });
           $(".prop").css("bottom",two.height*0.2+30);
         });
