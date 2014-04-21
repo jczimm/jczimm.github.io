@@ -21,10 +21,11 @@
         two.bind('update', function() {
           if(Math.random()<0.001) current.push(new Prop("trashcan"));
           if(current){
-            current.every(function(i){
+            for(i=0; i<current.length; i++){
               $("body").append(props[current[i].type]);
               $(".prop").css("right",pos);
-            });
+              $(".prop").css("bottom",two.height*0.2+30);
+            }
           }
           if(pos<two.width) pos++;
           else pos = 0;
