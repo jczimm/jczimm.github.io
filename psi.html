@@ -40,9 +40,9 @@
           
           if(keydown && onGround) velY = 30, onGround = false;
           posY += velY;
-          velY *= 0.13
+          velY *= 0.13;
           $("#player").css("bottom",two.height*0.2+posY);
-          if(posY<0) posY = velY = 0;
+          if(posY<0) posY = velY = 0, onGround = true;
             
           ticks++;
         });
@@ -65,7 +65,7 @@
         //two.width = $(window).width();
         two.height = $(window).height();
         $(".prop").css("bottom",two.height*0.2+30);
-        $("#player").css("bottom",two.height*0.2+posY);
+        $("#player").css("bottom",two.height*0.2+posY+"px");
       });
     </script>
     <div id="game-wrapper">
