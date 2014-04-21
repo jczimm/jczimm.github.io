@@ -40,7 +40,7 @@
           
           if(keydown && onGround) velY = 30, onGround = false;
           posY += velY;
-          velY *= 0.98;
+          velY *= 0.13
           $("#player").css("bottom",two.height*0.2+posY);
           if(posY<0) posY = velY = 0;
             
@@ -69,7 +69,7 @@
       });
     </script>
     <div id="game-wrapper">
-      <img src="http://files.gamebanana.com/img/ico/sprays/sasuke_2.gif" id="player" />
+      <img src="http://files.gamebanana.com/img/ico/sprays/sasuke_2.gif" style="bottom:0px" id="player" />
       
     </div>
   </body>
