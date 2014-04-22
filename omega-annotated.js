@@ -84,7 +84,7 @@ var sens_values = [1, 1.3, 1.6, 2, 4];
 
 // ## Back-bone Functions
 //
-// Function for binding an element to `buttonClick()`.
+// Function for binding an element to `buttonClick(e)`.
 function bind(id) {
     if (document.getElementById(id)) {
         var o = document.getElementById(id);
@@ -727,7 +727,6 @@ function generateShip03() {
     var mergedGeo;
     mergedGeo = new THREE.Geometry();
 
-    //var body = new THREE.SphereGeometry(75,32,16);
     var engine = new THREE.TorusKnotGeometry(100, 70);
     var wings = new THREE.CylinderGeometry(20, 20, 30);
     var t1 = new THREE.CylinderGeometry(3, 4);
@@ -758,17 +757,10 @@ function generateShip03() {
 
     // Building the space ship, LEGO style!
 
-    //var mesh_body = new THREE.Mesh( body, trans_material );
     var mesh_engine = new THREE.Mesh(engine, black_material);
     var mesh_wings = new THREE.Mesh(wings, white_material);
     var mesh_t1 = new THREE.Mesh(t1, white_material);
     var mesh_t2 = new THREE.Mesh(t2, white_material);
-
-    /*with(mesh_body){
-		scale.y = 0.5;
-		scale.z = 1.52;
-	}
-	THREE.GeometryUtils.merge(mergedGeo, mesh_body);*/
 
     with(mesh_engine) {
         rotation.x = Math.PI / 2;
@@ -803,7 +795,6 @@ function generateShip03() {
     var group = new THREE.Mesh(mergedGeo, black_material);
     group.matrixAutoUpdate = true;
     group.rotation.x = -Math.PI;
-    //group.rotation.z = Math.PI / 2
     group.updateMatrix();
 
     scene.add(group);
@@ -813,7 +804,7 @@ function generateShip03() {
 
 // ## Input
 
-// Function called on key-down.
+// Function called on keydown.
 function keyDown(event) {
     switch ("keyDown ", event.keyCode) {
 		// the up-key
@@ -861,7 +852,7 @@ function keyDown(event) {
     }
 }
 
-// Function called on key-up.
+// Function called on keyup.
 function keyUp(event) {
     switch (event.keyCode) {
 		// the up-key
@@ -902,10 +893,13 @@ function keyUp(event) {
 		}
 }
 
+// Function called on keypress.
 function keyPress(event) {
     switch (event.keyCode) {
-		// the ALT key
-		case 18:
+		// the "p" key
+		case 112:
+			
+			// Toggle between 1st and 3rd person.
 			if (view == 2) {
 				view = 1;
 				zcamera2 = 0;
@@ -919,15 +913,21 @@ function keyPress(event) {
 		// the SPACE key
 		case 32:
 			if (playing) {
+			
+				// Toggle pause.
 				if (paused) {
 					$("#pause-icon").fadeOut();
 					paused = false;
+					
+					// Unmute music.
 					if (sound) sound.unmute();
 				} else {
 					$("#pause-icon").fadeIn(400, function () {
 						$("#pause-icon").finish();
 					});
 					paused = true;
+					
+					// Mute music.
 					if (sound) sound.mute();
 				}
 			}
@@ -935,6 +935,8 @@ function keyPress(event) {
 		
 		// the "f" key
 		case 102:
+			
+			// Toggle FPS display.
 			var stpos = stats.domElement.style.top;
 			if (stpos == "0px") {
 				stats.domElement.style.top = "-200px"
@@ -945,24 +947,41 @@ function keyPress(event) {
     }
 }
 
+// Function called when brakes are enabled.
 function brake(event) {
     switch (event.keyCode) {
-		// the SHIFT key
+		// When the SHIFT key is pressed,
 		case 16:
-			if (owned_items.contains("brakes")) speed = speed / 2;
+			
+			// and if the player owns brakes,
+			if (owned_items.contains("brakes"))
+			
+				// halve the speed
+				speed = speed / 2;
+			
+			// and take away some health, based on which mode the player is playing (normal or expert).
 			health -= expert ? 3 : 10;
 			break;
     }
 }
 
+// Function called when the mouse changes position on the screen.
 function onDocumentMouseMove(event) {
+	
+	// Update some variables.
     mouseX = (event.clientX - windowHalfX) / windowX * 2;
     mouseY = (event.clientY - windowHalfY) / windowY * 2;
 }
 
+// ## All systems go
+
+// Display the intro, passing `false` for `gamecompleted`.
 introReset(false);
+
+// Hide the pause icon.
 $("#pause-icon").hide();
 
+// Bind all buttons to `buttonClick(e)`.
 bind("start");
 bind("shop");
 bind("options");
@@ -982,7 +1001,7 @@ bind("hugo");
 
 bind("brakes");
 
-
+// Create a bunch of variables to be used by three.js.
 var container, ctx, stats;
 var camera, scene, renderer;
 
@@ -1002,11 +1021,14 @@ var dtm, track, next_frame, phase;
 var zcamera = zcamera2 = 0;
 var p = new Array();
 
+// Action!
 init();
 animate();
 
+// Called to initialize everything.
 function init() {
-
+	
+	// Fetch options from storage, if they are not set override them with the second argument.
     sensitivity = get("omsensitivity", 1);
     autoswitch = get("omautoswitch", 0);
     controls = get("omcontrols", 0);
@@ -1015,11 +1037,15 @@ function init() {
     music = get("music", 0);
 
     gold = get("gold", 0);
+	
+	// Display gold count, rounded down.
     html("gold", gold | 0);
 
+	// a WIP!
     sail = get("sail", 0);
     html("sail", sail);
-
+	
+	// Update the shop interface (duh).
     updateShop();
 
     window.addEventListener('keyup', keyUp, true);
