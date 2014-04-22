@@ -1,7 +1,9 @@
 // # Omega
 //
 // [Play Omega](http://jczimm.github.io/omega)
-//
+
+
+
 // ## Initialize global variables
 //
 // Initialize a global variable that will be used to determine whether the game is currently being played.
@@ -246,7 +248,9 @@ function set(id, v) {
 }
 
 // ## User-interface
-//
+
+
+
 // Universal function for button clicks (called when any `.click` element is clicked).
 function buttonClick(e) {
 	
@@ -450,6 +454,8 @@ function updateUI() {
 
 // ## Drawing
 
+
+
 // Function for drawing a sector (notably used in the HUD).
 function drawSector(centerX, centerY, r, a1, a2, color) {
     ctx.save();
@@ -493,6 +499,8 @@ function drawSector(centerX, centerY, r, a1, a2, color) {
 }
 
 // ### Geometry / Colors
+
+
 
 // A simple rgb color utility function.
 function rgbColor(r, g, b) {
@@ -804,6 +812,8 @@ function generateShip03() {
 
 // ## Input
 
+
+
 // Function called on keydown.
 function keyDown(event) {
     switch ("keyDown ", event.keyCode) {
@@ -974,6 +984,8 @@ function onDocumentMouseMove(event) {
 }
 
 // ## All systems go
+
+
 
 // Display the intro, passing `false` for `gamecompleted`.
 introReset(false);
