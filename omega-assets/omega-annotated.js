@@ -1622,7 +1622,7 @@ function updateShop() {
 
 function loadNeedle() {
     $.ajax({
-        url: "OMneedle.js",
+        url: "omega-assets/needle.js",
         success: function (js) {
             eval(js);
         },
