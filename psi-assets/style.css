@@ -1,5 +1,9 @@
-html, body, iframe {
+html, body, #gamewrapper, #overlay, iframe {
   height: 100%
+}
+
+body {
+  margin: 0px;
 }
 
 iframe {
