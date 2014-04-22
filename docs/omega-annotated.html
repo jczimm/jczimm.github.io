@@ -293,7 +293,7 @@ shipY = shipY - (shipY - (-my) * <span class="hljs-number">250</span>) / <span c
                 <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
               <h2 id="back-bone-functions">Back-bone Functions</h2>
-<p>Function for binding an element to <code>buttonClick()</code>.</p>
+<p>Function for binding an element to <code>buttonClick(e)</code>.</p>
 
             </div>
             
@@ -2206,22 +2206,9 @@ shipY = shipY - (shipY - (-my) * <span class="hljs-number">250</span>) / <span c
             
             <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">generateShip03</span><span class="hljs-params">()</span> {</span>
     <span class="hljs-keyword">var</span> mergedGeo;
-    mergedGeo = <span class="hljs-keyword">new</span> THREE.Geometry();</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-124">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-124">&#182;</a>
-              </div>
-              <p>var body = new THREE.SphereGeometry(75,32,16);</p>
+    mergedGeo = <span class="hljs-keyword">new</span> THREE.Geometry();
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> engine = <span class="hljs-keyword">new</span> THREE.TorusKnotGeometry(<span class="hljs-number">100</span>, <span class="hljs-number">70</span>);
+    <span class="hljs-keyword">var</span> engine = <span class="hljs-keyword">new</span> THREE.TorusKnotGeometry(<span class="hljs-number">100</span>, <span class="hljs-number">70</span>);
     <span class="hljs-keyword">var</span> wings = <span class="hljs-keyword">new</span> THREE.CylinderGeometry(<span class="hljs-number">20</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>);
     <span class="hljs-keyword">var</span> t1 = <span class="hljs-keyword">new</span> THREE.CylinderGeometry(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>);
     <span class="hljs-keyword">var</span> t2 = <span class="hljs-keyword">new</span> THREE.CylinderGeometry(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>);
@@ -2252,39 +2239,21 @@ shipY = shipY - (shipY - (-my) * <span class="hljs-number">250</span>) / <span c
         </li>
         
         
-        <li id="section-125">
+        <li id="section-124">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-125">&#182;</a>
+                <a class="pilcrow" href="#section-124">&#182;</a>
               </div>
               <p>Building the space ship, LEGO style!</p>
 
             </div>
             
-        </li>
-        
-        
-        <li id="section-126">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-126">&#182;</a>
-              </div>
-              <p>var mesh_body = new THREE.Mesh( body, trans_material );</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> mesh_engine = <span class="hljs-keyword">new</span> THREE.Mesh(engine, black_material);
+            <div class="content"><div class='highlight'><pre>
+    <span class="hljs-keyword">var</span> mesh_engine = <span class="hljs-keyword">new</span> THREE.Mesh(engine, black_material);
     <span class="hljs-keyword">var</span> mesh_wings = <span class="hljs-keyword">new</span> THREE.Mesh(wings, white_material);
     <span class="hljs-keyword">var</span> mesh_t1 = <span class="hljs-keyword">new</span> THREE.Mesh(t1, white_material);
     <span class="hljs-keyword">var</span> mesh_t2 = <span class="hljs-keyword">new</span> THREE.Mesh(t2, white_material);
-
-    <span class="hljs-comment">/*with(mesh_body){
-		scale.y = 0.5;
-		scale.z = 1.52;
-	}
-	THREE.GeometryUtils.merge(mergedGeo, mesh_body);*/</span>
 
     <span class="hljs-keyword">with</span>(mesh_engine) {
         rotation.x = <span class="hljs-built_in">Math</span>.PI / <span class="hljs-number">2</span>;
@@ -2318,22 +2287,8 @@ shipY = shipY - (shipY - (-my) * <span class="hljs-number">250</span>) / <span c
     mergedGeo.computeFaceNormals();
     <span class="hljs-keyword">var</span> group = <span class="hljs-keyword">new</span> THREE.Mesh(mergedGeo, black_material);
     group.matrixAutoUpdate = <span class="hljs-literal">true</span>;
-    group.rotation.x = -<span class="hljs-built_in">Math</span>.PI;</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-127">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-127">&#182;</a>
-              </div>
-              <p>group.rotation.z = Math.PI / 2</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    group.updateMatrix();
+    group.rotation.x = -<span class="hljs-built_in">Math</span>.PI;
+    group.updateMatrix();
 
     scene.add(group);
 
@@ -2343,11 +2298,11 @@ shipY = shipY - (shipY - (-my) * <span class="hljs-number">250</span>) / <span c
         </li>
         
         
-        <li id="section-128">
+        <li id="section-125">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-128">&#182;</a>
+                <a class="pilcrow" href="#section-125">&#182;</a>
               </div>
               <h2 id="input">Input</h2>
 
@@ -2356,13 +2311,13 @@ shipY = shipY - (shipY - (-my) * <span class="hljs-number">250</span>) / <span c
         </li>
         
         
-        <li id="section-129">
+        <li id="section-126">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-129">&#182;</a>
+                <a class="pilcrow" href="#section-126">&#182;</a>
               </div>
-              <p>Function called on key-down.</p>
+              <p>Function called on keydown.</p>
 
             </div>
             
@@ -2372,11 +2327,11 @@ shipY = shipY - (shipY - (-my) * <span class="hljs-number">250</span>) / <span c
         </li>
         
         
-        <li id="section-130">
+        <li id="section-127">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-130">&#182;</a>
+                <a class="pilcrow" href="#section-127">&#182;</a>
               </div>
               <p>the up-key</p>
 
@@ -2390,11 +2345,11 @@ shipY = shipY - (shipY - (-my) * <span class="hljs-number">250</span>) / <span c
         </li>
         
         
-        <li id="section-131">
+        <li id="section-128">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-131">&#182;</a>
+                <a class="pilcrow" href="#section-128">&#182;</a>
               </div>
               <p>the down-key</p>
 
@@ -2408,11 +2363,11 @@ shipY = shipY - (shipY - (-my) * <span class="hljs-number">250</span>) / <span c
         </li>
         
         
-        <li id="section-132">
+        <li id="section-129">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-132">&#182;</a>
+                <a class="pilcrow" href="#section-129">&#182;</a>
               </div>
               <p>the left-key</p>
 
@@ -2426,11 +2381,11 @@ shipY = shipY - (shipY - (-my) * <span class="hljs-number">250</span>) / <span c
         </li>
         
         
-        <li id="section-133">
+        <li id="section-130">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-133">&#182;</a>
+                <a class="pilcrow" href="#section-130">&#182;</a>
               </div>
               <p>the right-key</p>
 
@@ -2444,11 +2399,11 @@ shipY = shipY - (shipY - (-my) * <span class="hljs-number">250</span>) / <span c
         </li>
         
         
-        <li id="section-134">
+        <li id="section-131">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-134">&#182;</a>
+                <a class="pilcrow" href="#section-131">&#182;</a>
               </div>
               <p>the “z” or “,” key</p>
 
@@ -2462,11 +2417,11 @@ shipY = shipY - (shipY - (-my) * <span class="hljs-number">250</span>) / <span c
         </li>
         
         
-        <li id="section-135">
+        <li id="section-132">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-135">&#182;</a>
+                <a class="pilcrow" href="#section-132">&#182;</a>
               </div>
               <p>the “c” or “/“ key</p>
 
@@ -2480,11 +2435,11 @@ shipY = shipY - (shipY - (-my) * <span class="hljs-number">250</span>) / <span c
         </li>
         
         
-        <li id="section-136">
+        <li id="section-133">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-136">&#182;</a>
+                <a class="pilcrow" href="#section-133">&#182;</a>
               </div>
               <p>the ESCAPE key</p>
 
@@ -2501,13 +2456,13 @@ shipY = shipY - (shipY - (-my) * <span class="hljs-number">250</span>) / <span c
         </li>
         
         
-        <li id="section-137">
+        <li id="section-134">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-137">&#182;</a>
+                <a class="pilcrow" href="#section-134">&#182;</a>
               </div>
-              <p>Function called on key-up.</p>
+              <p>Function called on keyup.</p>
 
             </div>
             
@@ -2517,11 +2472,11 @@ shipY = shipY - (shipY - (-my) * <span class="hljs-number">250</span>) / <span c
         </li>
         
         
-        <li id="section-138">
+        <li id="section-135">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-138">&#182;</a>
+                <a class="pilcrow" href="#section-135">&#182;</a>
               </div>
               <p>the up-key</p>
 
@@ -2535,11 +2490,11 @@ shipY = shipY - (shipY - (-my) * <span class="hljs-number">250</span>) / <span c
         </li>
         
         
-        <li id="section-139">
+        <li id="section-136">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-139">&#182;</a>
+                <a class="pilcrow" href="#section-136">&#182;</a>
               </div>
               <p>the down-key</p>
 
@@ -2553,11 +2508,11 @@ shipY = shipY - (shipY - (-my) * <span class="hljs-number">250</span>) / <span c
         </li>
         
         
-        <li id="section-140">
+        <li id="section-137">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-140">&#182;</a>
+                <a class="pilcrow" href="#section-137">&#182;</a>
               </div>
               <p>the left-key</p>
 
@@ -2571,11 +2526,11 @@ shipY = shipY - (shipY - (-my) * <span class="hljs-number">250</span>) / <span c
         </li>
         
         
-        <li id="section-141">
+        <li id="section-138">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-141">&#182;</a>
+                <a class="pilcrow" href="#section-138">&#182;</a>
               </div>
               <p>the right-key</p>
 
@@ -2589,11 +2544,11 @@ shipY = shipY - (shipY - (-my) * <span class="hljs-number">250</span>) / <span c
         </li>
         
         
-        <li id="section-142">
+        <li id="section-139">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-142">&#182;</a>
+                <a class="pilcrow" href="#section-139">&#182;</a>
               </div>
               <p>the “z” or “,” key</p>
 
@@ -2607,11 +2562,11 @@ shipY = shipY - (shipY - (-my) * <span class="hljs-number">250</span>) / <span c
         </li>
         
         
-        <li id="section-143">
+        <li id="section-140">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-143">&#182;</a>
+                <a class="pilcrow" href="#section-140">&#182;</a>
               </div>
               <p>the “c” or “,” key</p>
 
@@ -2622,26 +2577,53 @@ shipY = shipY - (shipY - (-my) * <span class="hljs-number">250</span>) / <span c
 			key_turn_right = <span class="hljs-literal">false</span>;
 			<span class="hljs-keyword">break</span>;
 		}
-}
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-141">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-141">&#182;</a>
+              </div>
+              <p>Function called on keypress.</p>
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">keyPress</span><span class="hljs-params">(event)</span> {</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">keyPress</span><span class="hljs-params">(event)</span> {</span>
     <span class="hljs-keyword">switch</span> (event.keyCode) {</pre></div></div>
             
         </li>
         
         
-        <li id="section-144">
+        <li id="section-142">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-144">&#182;</a>
+                <a class="pilcrow" href="#section-142">&#182;</a>
               </div>
-              <p>the ALT key</p>
+              <p>the “p” key</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>		<span class="hljs-keyword">case</span> <span class="hljs-number">18</span>:
-			<span class="hljs-keyword">if</span> (view == <span class="hljs-number">2</span>) {
+            <div class="content"><div class='highlight'><pre>		<span class="hljs-keyword">case</span> <span class="hljs-number">112</span>:</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-143">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-143">&#182;</a>
+              </div>
+              <p>Toggle between 1st and 3rd person.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>			<span class="hljs-keyword">if</span> (view == <span class="hljs-number">2</span>) {
 				view = <span class="hljs-number">1</span>;
 				zcamera2 = <span class="hljs-number">0</span>;
 			} <span class="hljs-keyword">else</span> {
@@ -2654,31 +2636,35 @@ shipY = shipY - (shipY - (-my) * <span class="hljs-number">250</span>) / <span c
         </li>
         
         
-        <li id="section-145">
+        <li id="section-144">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-145">&#182;</a>
+                <a class="pilcrow" href="#section-144">&#182;</a>
               </div>
               <p>the SPACE key</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>		<span class="hljs-keyword">case</span> <span class="hljs-number">32</span>:
-			<span class="hljs-keyword">if</span> (playing) {
-				<span class="hljs-keyword">if</span> (paused) {
+			<span class="hljs-keyword">if</span> (playing) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-145">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-145">&#182;</a>
+              </div>
+              <p>Toggle pause.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>				<span class="hljs-keyword">if</span> (paused) {
 					$(<span class="hljs-string">"#pause-icon"</span>).fadeOut();
-					paused = <span class="hljs-literal">false</span>;
-					<span class="hljs-keyword">if</span> (sound) sound.unmute();
-				} <span class="hljs-keyword">else</span> {
-					$(<span class="hljs-string">"#pause-icon"</span>).fadeIn(<span class="hljs-number">400</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
-						$(<span class="hljs-string">"#pause-icon"</span>).finish();
-					});
-					paused = <span class="hljs-literal">true</span>;
-					<span class="hljs-keyword">if</span> (sound) sound.mute();
-				}
-			}
-			<span class="hljs-keyword">break</span>;</pre></div></div>
+					paused = <span class="hljs-literal">false</span>;</pre></div></div>
             
         </li>
         
@@ -2689,23 +2675,16 @@ shipY = shipY - (shipY - (-my) * <span class="hljs-number">250</span>) / <span c
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-146">&#182;</a>
               </div>
-              <p>the “f” key</p>
+              <p>Unmute music.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>		<span class="hljs-keyword">case</span> <span class="hljs-number">102</span>:
-			<span class="hljs-keyword">var</span> stpos = stats.domElement.style.top;
-			<span class="hljs-keyword">if</span> (stpos == <span class="hljs-string">"0px"</span>) {
-				stats.domElement.style.top = <span class="hljs-string">"-200px"</span>
-			} <span class="hljs-keyword">else</span> {
-				stats.domElement.style.top = <span class="hljs-string">"0px"</span>
-			}
-			<span class="hljs-keyword">break</span>;
-    }
-}
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">brake</span><span class="hljs-params">(event)</span> {</span>
-    <span class="hljs-keyword">switch</span> (event.keyCode) {</pre></div></div>
+            <div class="content"><div class='highlight'><pre>					<span class="hljs-keyword">if</span> (sound) sound.unmute();
+				} <span class="hljs-keyword">else</span> {
+					$(<span class="hljs-string">"#pause-icon"</span>).fadeIn(<span class="hljs-number">400</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+						$(<span class="hljs-string">"#pause-icon"</span>).finish();
+					});
+					paused = <span class="hljs-literal">true</span>;</pre></div></div>
             
         </li>
         
@@ -2716,26 +2695,221 @@ shipY = shipY - (shipY - (-my) * <span class="hljs-number">250</span>) / <span c
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-147">&#182;</a>
               </div>
-              <p>the SHIFT key</p>
+              <p>Mute music.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>		<span class="hljs-keyword">case</span> <span class="hljs-number">16</span>:
-			<span class="hljs-keyword">if</span> (owned_items.contains(<span class="hljs-string">"brakes"</span>)) speed = speed / <span class="hljs-number">2</span>;
-			health -= expert ? <span class="hljs-number">3</span> : <span class="hljs-number">10</span>;
+            <div class="content"><div class='highlight'><pre>					<span class="hljs-keyword">if</span> (sound) sound.mute();
+				}
+			}
+			<span class="hljs-keyword">break</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-148">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-148">&#182;</a>
+              </div>
+              <p>the “f” key</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>		<span class="hljs-keyword">case</span> <span class="hljs-number">102</span>:</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-149">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-149">&#182;</a>
+              </div>
+              <p>Toggle FPS display.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>			<span class="hljs-keyword">var</span> stpos = stats.domElement.style.top;
+			<span class="hljs-keyword">if</span> (stpos == <span class="hljs-string">"0px"</span>) {
+				stats.domElement.style.top = <span class="hljs-string">"-200px"</span>
+			} <span class="hljs-keyword">else</span> {
+				stats.domElement.style.top = <span class="hljs-string">"0px"</span>
+			}
 			<span class="hljs-keyword">break</span>;
     }
-}
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-150">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-150">&#182;</a>
+              </div>
+              <p>Function called when brakes are enabled.</p>
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onDocumentMouseMove</span><span class="hljs-params">(event)</span> {</span>
-    mouseX = (event.clientX - windowHalfX) / windowX * <span class="hljs-number">2</span>;
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">brake</span><span class="hljs-params">(event)</span> {</span>
+    <span class="hljs-keyword">switch</span> (event.keyCode) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-151">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-151">&#182;</a>
+              </div>
+              <p>When the SHIFT key is pressed,</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>		<span class="hljs-keyword">case</span> <span class="hljs-number">16</span>:</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-152">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-152">&#182;</a>
+              </div>
+              <p>and if the player owns brakes,</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>			<span class="hljs-keyword">if</span> (owned_items.contains(<span class="hljs-string">"brakes"</span>))</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-153">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-153">&#182;</a>
+              </div>
+              <p>halve the speed</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>				speed = speed / <span class="hljs-number">2</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-154">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-154">&#182;</a>
+              </div>
+              <p>and take away some health, based on which mode the player is playing (normal or expert).</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>			health -= expert ? <span class="hljs-number">3</span> : <span class="hljs-number">10</span>;
+			<span class="hljs-keyword">break</span>;
+    }
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-155">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-155">&#182;</a>
+              </div>
+              <p>Function called when the mouse changes position on the screen.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onDocumentMouseMove</span><span class="hljs-params">(event)</span> {</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-156">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-156">&#182;</a>
+              </div>
+              <p>Update some variables.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    mouseX = (event.clientX - windowHalfX) / windowX * <span class="hljs-number">2</span>;
     mouseY = (event.clientY - windowHalfY) / windowY * <span class="hljs-number">2</span>;
-}
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-157">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-157">&#182;</a>
+              </div>
+              <h2 id="all-systems-go">All systems go</h2>
 
-introReset(<span class="hljs-literal">false</span>);
-$(<span class="hljs-string">"#pause-icon"</span>).hide();
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-158">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-158">&#182;</a>
+              </div>
+              <p>Display the intro, passing <code>false</code> for <code>gamecompleted</code>.</p>
 
-bind(<span class="hljs-string">"start"</span>);
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>introReset(<span class="hljs-literal">false</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-159">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-159">&#182;</a>
+              </div>
+              <p>Hide the pause icon.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>$(<span class="hljs-string">"#pause-icon"</span>).hide();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-160">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-160">&#182;</a>
+              </div>
+              <p>Bind all buttons to <code>buttonClick(e)</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>bind(<span class="hljs-string">"start"</span>);
 bind(<span class="hljs-string">"shop"</span>);
 bind(<span class="hljs-string">"options"</span>);
 bind(<span class="hljs-string">"op_sensitivity"</span>);
@@ -2752,10 +2926,22 @@ bind(<span class="hljs-string">"classic"</span>);
 bind(<span class="hljs-string">"pioneer"</span>);
 bind(<span class="hljs-string">"hugo"</span>);
 
-bind(<span class="hljs-string">"brakes"</span>);
+bind(<span class="hljs-string">"brakes"</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-161">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-161">&#182;</a>
+              </div>
+              <p>Create a bunch of variables to be used by three.js.</p>
 
-
-<span class="hljs-keyword">var</span> container, ctx, stats;
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> container, ctx, stats;
 <span class="hljs-keyword">var</span> camera, scene, renderer;
 
 <span class="hljs-keyword">var</span> geometry, dust;
@@ -2772,27 +2958,106 @@ bind(<span class="hljs-string">"brakes"</span>);
 <span class="hljs-keyword">var</span> fogdepth = <span class="hljs-number">3500</span>;
 <span class="hljs-keyword">var</span> dtm, track, next_frame, phase;
 <span class="hljs-keyword">var</span> zcamera = zcamera2 = <span class="hljs-number">0</span>;
-<span class="hljs-keyword">var</span> p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>();
+<span class="hljs-keyword">var</span> p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-162">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-162">&#182;</a>
+              </div>
+              <p>Action!</p>
 
-init();
-animate();
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>init();
+animate();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-163">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-163">&#182;</a>
+              </div>
+              <p>Called to initialize everything.</p>
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span><span class="hljs-params">()</span> {</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span><span class="hljs-params">()</span> {</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-164">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-164">&#182;</a>
+              </div>
+              <p>Fetch options from storage, if they are not set override them with the second argument.</p>
 
-    sensitivity = get(<span class="hljs-string">"omsensitivity"</span>, <span class="hljs-number">1</span>);
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    sensitivity = get(<span class="hljs-string">"omsensitivity"</span>, <span class="hljs-number">1</span>);
     autoswitch = get(<span class="hljs-string">"omautoswitch"</span>, <span class="hljs-number">0</span>);
     controls = get(<span class="hljs-string">"omcontrols"</span>, <span class="hljs-number">0</span>);
     expert = controls == <span class="hljs-number">2</span>;
     yinvert = get(<span class="hljs-string">"omyinvert"</span>, <span class="hljs-number">0</span>);
     music = get(<span class="hljs-string">"music"</span>, <span class="hljs-number">0</span>);
 
-    gold = get(<span class="hljs-string">"gold"</span>, <span class="hljs-number">0</span>);
-    html(<span class="hljs-string">"gold"</span>, gold | <span class="hljs-number">0</span>);
+    gold = get(<span class="hljs-string">"gold"</span>, <span class="hljs-number">0</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-165">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-165">&#182;</a>
+              </div>
+              <p>Display gold count, rounded down.</p>
 
-    sail = get(<span class="hljs-string">"sail"</span>, <span class="hljs-number">0</span>);
-    html(<span class="hljs-string">"sail"</span>, sail);
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    html(<span class="hljs-string">"gold"</span>, gold | <span class="hljs-number">0</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-166">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-166">&#182;</a>
+              </div>
+              <p>a WIP!</p>
 
-    updateShop();
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    sail = get(<span class="hljs-string">"sail"</span>, <span class="hljs-number">0</span>);
+    html(<span class="hljs-string">"sail"</span>, sail);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-167">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-167">&#182;</a>
+              </div>
+              <p>Update the shop interface (duh).</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    updateShop();
 
     window.addEventListener(<span class="hljs-string">'keyup'</span>, keyUp, <span class="hljs-literal">true</span>);
     window.addEventListener(<span class="hljs-string">'keydown'</span>, keyDown, <span class="hljs-literal">true</span>);
@@ -2814,11 +3079,11 @@ animate();
         </li>
         
         
-        <li id="section-148">
+        <li id="section-168">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-148">&#182;</a>
+                <a class="pilcrow" href="#section-168">&#182;</a>
               </div>
               <p>LIGHTS / FOG</p>
 
@@ -2841,11 +3106,11 @@ animate();
         </li>
         
         
-        <li id="section-149">
+        <li id="section-169">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-149">&#182;</a>
+                <a class="pilcrow" href="#section-169">&#182;</a>
               </div>
               <p>DUST</p>
 
@@ -2877,11 +3142,11 @@ animate();
         </li>
         
         
-        <li id="section-150">
+        <li id="section-170">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-150">&#182;</a>
+                <a class="pilcrow" href="#section-170">&#182;</a>
               </div>
               <p>BACKGROUND</p>
 
@@ -2913,11 +3178,11 @@ animate();
         </li>
         
         
-        <li id="section-151">
+        <li id="section-171">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-151">&#182;</a>
+                <a class="pilcrow" href="#section-171">&#182;</a>
               </div>
               <p>OBJECTS</p>
 
@@ -2939,11 +3204,11 @@ animate();
         </li>
         
         
-        <li id="section-152">
+        <li id="section-172">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-152">&#182;</a>
+                <a class="pilcrow" href="#section-172">&#182;</a>
               </div>
               <p>SHIP</p>
 
@@ -2956,11 +3221,11 @@ animate();
         </li>
         
         
-        <li id="section-153">
+        <li id="section-173">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-153">&#182;</a>
+                <a class="pilcrow" href="#section-173">&#182;</a>
               </div>
               <p>UPGRADES</p>
 
@@ -2972,11 +3237,11 @@ animate();
         </li>
         
         
-        <li id="section-154">
+        <li id="section-174">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-154">&#182;</a>
+                <a class="pilcrow" href="#section-174">&#182;</a>
               </div>
               <p>RENDERER</p>
 
@@ -2996,11 +3261,11 @@ animate();
         </li>
         
         
-        <li id="section-155">
+        <li id="section-175">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-155">&#182;</a>
+                <a class="pilcrow" href="#section-175">&#182;</a>
               </div>
               <p>STATS</p>
 
@@ -3029,11 +3294,11 @@ animate();
         </li>
         
         
-        <li id="section-156">
+        <li id="section-176">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-156">&#182;</a>
+                <a class="pilcrow" href="#section-176">&#182;</a>
               </div>
               
             </div>
@@ -3059,11 +3324,11 @@ animate();
         </li>
         
         
-        <li id="section-157">
+        <li id="section-177">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-157">&#182;</a>
+                <a class="pilcrow" href="#section-177">&#182;</a>
               </div>
               
             </div>
@@ -3121,11 +3386,11 @@ animate();
         </li>
         
         
-        <li id="section-158">
+        <li id="section-178">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-158">&#182;</a>
+                <a class="pilcrow" href="#section-178">&#182;</a>
               </div>
               
             </div>
@@ -3178,11 +3443,11 @@ animate();
         </li>
         
         
-        <li id="section-159">
+        <li id="section-179">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-159">&#182;</a>
+                <a class="pilcrow" href="#section-179">&#182;</a>
               </div>
               <p>3rd</p>
 
@@ -3195,11 +3460,11 @@ animate();
         </li>
         
         
-        <li id="section-160">
+        <li id="section-180">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-160">&#182;</a>
+                <a class="pilcrow" href="#section-180">&#182;</a>
               </div>
               <p>1st</p>
 
@@ -3243,11 +3508,11 @@ animate();
         </li>
         
         
-        <li id="section-161">
+        <li id="section-181">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-161">&#182;</a>
+                <a class="pilcrow" href="#section-181">&#182;</a>
               </div>
               <p>Dust</p>
 
@@ -3315,11 +3580,11 @@ animate();
         </li>
         
         
-        <li id="section-162">
+        <li id="section-182">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-162">&#182;</a>
+                <a class="pilcrow" href="#section-182">&#182;</a>
               </div>
               <p>choose powerup</p>
 
@@ -3343,11 +3608,11 @@ animate();
         </li>
         
         
-        <li id="section-163">
+        <li id="section-183">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-163">&#182;</a>
+                <a class="pilcrow" href="#section-183">&#182;</a>
               </div>
               <p>Collision check</p>
 
@@ -3364,11 +3629,11 @@ animate();
         </li>
         
         
-        <li id="section-164">
+        <li id="section-184">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-164">&#182;</a>
+                <a class="pilcrow" href="#section-184">&#182;</a>
               </div>
               <p>play some gold sound</p>
 
@@ -3385,11 +3650,11 @@ animate();
         </li>
         
         
-        <li id="section-165">
+        <li id="section-185">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-165">&#182;</a>
+                <a class="pilcrow" href="#section-185">&#182;</a>
               </div>
               <p>play some healing sound</p>
 
@@ -3418,11 +3683,11 @@ animate();
         </li>
         
         
-        <li id="section-166">
+        <li id="section-186">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-166">&#182;</a>
+                <a class="pilcrow" href="#section-186">&#182;</a>
               </div>
               <p>var factor = track%100?Math.random()*100:factor;</p>
 
@@ -3442,11 +3707,11 @@ animate();
         </li>
         
         
-        <li id="section-167">
+        <li id="section-187">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-167">&#182;</a>
+                <a class="pilcrow" href="#section-187">&#182;</a>
               </div>
               <p>html(“score”,Math.floor(speed)+” “+Math.floor(maxspeed)+” “+speedlimit);</p>
 
@@ -3455,11 +3720,11 @@ animate();
         </li>
         
         
-        <li id="section-168">
+        <li id="section-188">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-168">&#182;</a>
+                <a class="pilcrow" href="#section-188">&#182;</a>
               </div>
               <p>Dust</p>
 
@@ -3534,11 +3799,11 @@ animate();
         </li>
         
         
-        <li id="section-169">
+        <li id="section-189">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-169">&#182;</a>
+                <a class="pilcrow" href="#section-189">&#182;</a>
               </div>
               <p>engines
 engine_lt.scale.x=engine_lt.scale.y=engine_rt.scale.x=engine_rt.scale.y = (70/fov)/5 ;
@@ -3626,11 +3891,11 @@ fpsEvent = setTimeout(<span class="hljs-string">"doFpsEvent();"</span>, <span cl
         </li>
         
         
-        <li id="section-170">
+        <li id="section-190">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-170">&#182;</a>
+                <a class="pilcrow" href="#section-190">&#182;</a>
               </div>
               <p>bdy.innerHTML = bdy.innerHTML.replace(“☉”,”<object type='image/svg+xml' data='www.fileformat.info/info/unicode/char/1f71a/alchemical_symbol_for_gold.svg'></object>“);</p>
 
