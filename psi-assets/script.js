@@ -1,7 +1,6 @@
 $(document).ready(function(){
   var video = document.getElementById("player");
   video.pause();
-  video.currentTime = 0;
   
   $("#player").attr("width",$(window).width());
   $("#player").attr("height",$(window).height());
