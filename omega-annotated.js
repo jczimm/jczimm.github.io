@@ -1,25 +1,59 @@
+// # Omega
+//
+// [Play Omega](http://jczimm.github.io/omega)
+//
+// ## Initialize global variables
+//
+// Initialize a global variable that will be used to determine whether the game is currently being played.
 var status = 0;
-var health, speed, maxspeed, speedlimit, view, tm, score, hiscore, gold, sail;
+
+// Create global variables for the ship's health, the ship's speed, other speed-related variables, the current game view, the time, the game score, the highscore, and gold.
+var health, speed, maxspeed, speedlimit, view, tm, score, hiscore, gold;
+
+// Initialize the `X` and `Y` position of the ship relative to the center of the screen.
 var shipX = shipY = 0;
+
+// Browser window-related variables.
 var fullscreen, windowHalfX, windowHalfY, windowX, windowY;
+
+// Initalize factors in the algorithm for `shipX` and `shipY` (respectively).
+//
+// **Algorithm:**
+// ```javascript
+// shipX = shipX - (shipX - mx * 700) / 4;
+// shipY = shipY - (shipY - (-my) * 250) / 4;
+// ```
 var mx = my = 0;
+
+// Create global variables for the two light points in the game.
 var light1, light2;
+
+// Initialize controls-related global variables.
 var sensitivity = 1,
     sen = 1,
     autoswitch = 0,
     controls = 0,
     yinvert = 0;
+	
+// Initialize music global variables.
 var music = 0,
     sound;
-var bdy;
+	
+// Create an alias for `document.getElementById("body")`.
+var bdy = document.getElementById("body");
+
+// Initialize keyboard-control-related global variables.
 var key_up = key_down = key_left = key_right = key_space = key_turn_left = key_turn_right = false;
 
+// Create global variables for playing modes.
 var pause, paused, oldspeed, playing;
 var mode = 1,
     expert = false;
 
+// Keycode
 var kc;
 
+// Create objects that hold the price and health of each ship.
 var prices = {
     "classic": 0,
     "pioneer": 30,
@@ -33,19 +67,24 @@ var healths = {
     "hugo": 80
 }
 
+// Create an object that holds the SoundCloud track id of to be played with each ship.
 var tracks = {
     "classic": 61866639,
     "pioneer": 144286228
 }
 
-
-var owned_items = new Array("classic");
+// Create a global variable for the owned items (ships, upgrades).  Fetches from storage, but if it's not set, it is initialized with the first ship.
+var owned_items = ["classic"];
 if (!$.jStorage.get("owned_items")) $.jStorage.set("owned_items", JSON.stringify(owned_items));
 else owned_items = JSON.parse($.jStorage.get("owned_items"));
 
-var sens_list = new Array("low", "default", "high", "very high", "extreme");
-var sens_values = new Array(1, 1.3, 1.6, 2, 4);
+// Initialize arrays with sensitivity values.
+var sens_list = ["low", "default", "high", "very high", "extreme"];
+var sens_values = [1, 1.3, 1.6, 2, 4];
 
+// ## Back-bone Functions
+//
+// Function for binding an element to `buttonClick()`.
 function bind(id) {
     if (document.getElementById(id)) {
         var o = document.getElementById(id);
@@ -53,6 +92,7 @@ function bind(id) {
     }
 }
 
+// Function for setting an element's CSS `display` property to `block`. (Showing an element)
 function show(id) {
     if (document.getElementById(id)) {
         var o = document.getElementById(id);
@@ -60,6 +100,7 @@ function show(id) {
     }
 }
 
+// Function for setting an element's CSS `display` property to `none`. (Hiding an element)
 function hide(id) {
     if (document.getElementById(id)) {
         var o = document.getElementById(id);
@@ -67,6 +108,7 @@ function hide(id) {
     }
 }
 
+// Function for setting the `innerHtml` of an element. (Writing HTML to an element)
 function html(id, txt) {
     if (document.getElementById(id)) {
         var o = document.getElementById(id);
@@ -74,13 +116,19 @@ function html(id, txt) {
     }
 }
 
+// Function for resetting the game on game start.
 function gameReset() {
+
+	// Stream music with SoundCloud if `music` is enabled.
     if (music) SC.stream("/tracks/" + tracks[ship.name], function (_sound) {
         sound = _sound;
         _sound.play();
-    }); //html("musicplayer", "<iframe width='560' height='315' src='http://www.youtube.com/embed/1gMWVMrgNQA?autoplay=1' frameborder='0' allowfullscreen></iframe>");
-
+    });
+	
+	// Set health based on ship.
     health = healths[ship.name];
+	
+	// Initialize a bunch of global variables.
     playing = true;
     speed = 0;
     score = 0;
@@ -92,59 +140,91 @@ function gameReset() {
     maxspeed = 52;
     speedlimit = 100;
     zcamera2 = 0;
-
+	
+	// Initalize asteroid plane at the start of the game.
     for (i = 0, l = objs.children.length; i < l; i++) {
         var obj = objs.children[i];
         obj.position.x = Math.random() * 5000 - 2500;
         obj.position.y = -300;
     }
-
+	
+	// Write down the `score` and `gold`.
     html("score", score);
+	
+	// _Note:_ `gold | 0` is equivalent to `Math.floor(gold)`.
     html("gold", gold | 0);
 
+	// Set the color of asteroids.
     group2color.color.setRGB(1, 1, 0);
     group2.matrixAutoUpdate = true;
     group2.updateMatrix();
 }
 
+// Function for rending the intro.
 function introReset(gamecompleted) {
+	
+	// Hide the pause icon and sets a couple global variables.
     $("#pause-icon").hide();
     paused = playing = false;
+	
+	// Fade out the music quickly.
     if (sound) {
         while (sound.volume) {
             sound.setVolume(sound.volume - 5);
         }
         sound.volume = sound.volume + "";
     }
-
+	
+	// Hide the ship (if it already exists).
     if (ship) ship.visible = false;
-
+	
+	// Initialize some more variables.
     speed = 0;
     view = 2;
     status = 0;
+	
+	// Fetch highscore from storage, fallback if it doesn't exist yet.
     hiscore = $.jStorage.get("omhiscore");
     if (hiscore == 0 || hiscore == undefined || hiscore == null) hiscore = 0;
-
-    if (gamecompleted && hiscore < score) {
+	
+	// If a game has just been completed and its score is greater than the old score,
+    if (gamecompleted && score > hiscore) {
+		
+		// set the new highscore,
         hiscore = score;
+		
+		// throw it into storage,
         $.jStorage.set("omhiscore", hiscore);
+		
+		// and give the player an excited message.
         html("score", "new highscore " + hiscore + "!");
+	
+	// If either the window was just opened and no game was played yet, or the player didn't beat their highscore,
     } else {
+	
+		//just give them the default highscore header.
         html("score", (score > 0 && gamecompleted ? "score " + score + " | " : "") + "highscore " + hiscore);
     }
-
+	
+	// If a game was just completed, throw `gold` into storage.
     if (gamecompleted) $.jStorage.set("gold", gold);
-
+	
+	// Make sure everything that needs to be hidden is hidden.
     hide("hud");
     hide("panel2");
     hide("shop_panel");
     show("panel1");
+	
+	// Kill the music.
     html("player", "");
     html("musicplayer", "");
     SC.streamStopAll();
 }
 
+// Function to called when the window resizes.
 function onWindowResize() {
+	
+	// Adjust window variables and `camera` aspect ratio.
     windowX = window.innerWidth;
     windowY = window.innerHeight - 5;
     windowHalfX = windowX / 2;
@@ -155,122 +235,222 @@ function onWindowResize() {
     fullscreen = (windowX == window.outerWidth)
 }
 
-// UI
-
+// Function for fetching the value of a key from storage.
 function get(id, def) {
     return $.jStorage.get(id) || $.jStorage.set(id, def) && def;
 }
 
+// Function for throwing a key with a value into storage.
 function set(id, v) {
     $.jStorage.set(id);
 }
 
+// ## User-interface
+//
+// Universal function for button clicks (called when any `.click` element is clicked).
 function buttonClick(e) {
-    //console.log(e.currentTarget.id);
-
+	
     switch (e.currentTarget.id) {
-    case "start":
-        gameReset();
-        show("hud");
-        show("score");
-        hide("panel1");
-        ship.visible = true;
-        break;
+		
+		// If the element is the start button,
+		case "start":
+			
+			// reset the game to be played, start playing the game,
+			gameReset();
+			
+			// show the heads-up display and
+			show("hud");
+			
+			// the score box,
+			show("score");
+			
+			// and hide the start menu.
+			hide("panel1");
+			
+			// Show the ship.
+			ship.visible = true;
+			break;
+		
+		// If the element is the shop button,
+		case "shop":
+			
+			// hide the start menu
+			hide("panel1");
+			
+			// and the options menu,
+			hide("panel2");
+			
+			// and show the shop panel.
+			show("shop_panel");
+			break;
+		
+		// If the element is the button to select the **classic** in the shop panel,
+		case "classic":
+			
+			// set the ship to `"classic"`.
+			setShip("classic");
+			break;
+		
+		// If the element is the button to select the **pioneer** in the shop panel,
+		case "pioneer":
+		
+			// check to make sure the player owns it first.
+			if (owned_items.contains("pioneer")) setShip("pioneer");
+			
+			// If they don't, try to buy it and set it, but if there is not sufficient gold nothing happens.
+			//
+			// _Note_: `buyItem(ship)` either buys the ship and returns `true` or returns `false` if there are not sufficient credits.
+			else if (buyItem("pioneer")) setShip("pioneer");
+			break;
+		
+		// If the element is the button to select the **brakes** in the shop panel,
+		case "brakes":
+			// check to make sure the player owns it first.
+			if (owned_items.contains("brakes")) useBrakes();
+			
+			// If they don't, try to buy it and set it, but if there is not sufficient gold nothing happens.
+			else if (buyItem("brakes")) useBrakes();
+			break;
 
-    case "shop":
-        hide("panel1");
-        hide("panel2");
-        show("shop_panel");
-        break;
+		// If the element is the button to select the **hugo** in the shop panel,
+		case "hugo":
+			
+			// check to make sure the player owns it first.
+			if (owned_items.contains("hugo")) setShip("hugo");
+			
+			// If they don't, try to buy it and set it, but if there is not sufficient gold nothing happens.
+			else if (buyItem("hugo")) setShip("hugo");
+			break;
+		
+		// If the element is the options button,
+		case "options":
+			
+			// hide the start menu
+			hide("panel1");
+			
+			// and show the options menu.
+			show("panel2");
+			break;
+		
+		// If the element is the "controls sensitivity" option,
+		case "op_sensitivity":
+			
+			// increment `sensitivity` by one,
+			sensitivity++;
+			
+			// and if it's now `1` cycle it back to `0`.
+			if (sensitivity > 4) sensitivity = 0;
+			
+			// Update the user interface.
+			updateUI();
+			break;
 
-    case "classic":
-        setShip("classic");
-        break;
+		// If the element is the "automatic 1st/3rd person" option,
+		case "op_1stperson":
+			
+			// toggle `autoswitch` between `0` and `1`.
+			autoswitch = 1 - autoswitch;
+			
+			// Update the user interface.
+			updateUI();
+			break;
+		
+		// If the element is the "controls" option,
+		case "op_controls":
+			
+			// cycle `controls` from `0` to `2`.
+			controls = controls == 0 ? 1 : controls == 1 ? 2 : 0;
+			
+			// Set `expert` to `true` if `controls` is "expert(arrows"..etc, and `false` otherwise.
+			expert = controls == 2;
+			
+			// Update the user interface.
+			updateUI();
+			break;
 
-    case "pioneer":
-        if (owned_items.contains("pioneer")) setShip("pioneer");
-        else if (buyItem("pioneer")) setShip("pioneer");
-        break;
-
-    case "brakes":
-        if (owned_items.contains("brakes")) useBrakes();
-        else if (buyItem("brakes")) useBrakes();
-        break;
-
-    case "hugo":
-        if (owned_items.contains("hugo")) setShip("hugo");
-        else if (buyItem("hugo")) setShip("hugo");
-        break;
-
-    case "options":
-        hide("panel1");
-        show("panel2");
-        break;
-
-    case "op_sensitivity":
-        sensitivity++;
-        if (sensitivity > 4) sensitivity = 0;
-        updateUI();
-        break;
-
-    case "op_1stperson":
-        autoswitch = 1 - autoswitch;
-        updateUI();
-        break;
-
-    case "op_controls":
-        controls = controls == 0 ? 1 : controls == 1 ? 2 : 0;
-        expert = controls == 2;
-        updateUI();
-        break;
-
-    case "op_yinvert":
-        yinvert = 1 - yinvert;
-        updateUI();
-        break;
-
-    case "op_difficulty":
-        mode = mode == 1 ? 2 : mode == 2 ? 1 : 1;
-        updateUI();
-        break;
-
-    case "close_panel2":
-        hide("panel2");
-        show("panel1");
-        break;
-
-    case "close_shop":
-        hide("shop_panel");
-        show("panel1");
-        break;
-
-    case "music":
-        music = 1 - music;
-        html('music', 'in-game music ' + (music == 0 ? "off" : "on"));
-        $.jStorage.set("music", music);
-        break;
-
+		// If the element is the "invert Y" option,
+		case "op_yinvert":
+		
+			// toggle `yinvert` between `0` and `1`.
+			yinvert = 1 - yinvert;
+			
+			// Update the user interface.
+			updateUI();
+			break;
+		
+		// If the element is the "difficulty" option,
+		case "op_difficulty":
+		
+			// toggle `mode` between `1` and `2`.
+			mode = mode == 1 ? 2 : mode == 2 ? 1 : 1;
+			
+			// Update the user interface.
+			updateUI();
+			break;
+		
+		// If the element is the close options button,
+		case "close_panel2":
+			
+			// hide the options panel
+			hide("panel2");
+			
+			// and show the start menu.
+			show("panel1");
+			break;
+		
+		// If the element is the close shop button,
+		case "close_shop":
+		
+			// hide the shop panel
+			hide("shop_panel");
+			
+			// and show the start menu.
+			show("panel1");
+			break;
+		
+		// If the element is the "in game music" option in the start menu,
+		case "music":
+			
+			// toggle `mode` between `0` and `1`.
+			music = 1 - music;
+			
+			// Write "off" or "on" to `#music` based on `music`
+			html('music', 'in-game music ' + (music == 0 ? "off" : "on"));
+			
+			// and throw `music` into storage.
+			$.jStorage.set("music", music);
+			break;
     }
 }
 
+// Function for creating and updating the user interface.
 function updateUI() {
+	
+	// Write values to the their options buttons.
     html('op_sensitivity', 'controls sensitivity : ' + sens_list[sensitivity]);
     sen = sens_values[sensitivity];
-    html('op_1stperson', 'automatic 1st/3th person : ' + (autoswitch ? "yes" : "no"));
+    html('op_1stperson', 'automatic 1st/3rd person : ' + (autoswitch ? "yes" : "no"));
     html('op_controls', 'controls : ' + (controls == 0 ? "mouse" : controls == 1 ? "arrows / WASD" : "expert (arrows+ZC, WASD+,/)"));
     html('op_yinvert', 'invert Y axis : ' + (yinvert == 0 ? "no" : "yes"));
     html('op_difficulty', 'difficulty: ' + (mode == 1 ? "normal" : "hard"));
-
+	
+	// Throw a bunch of options into storage.
     $.jStorage.set("omsensitivity", sensitivity);
     $.jStorage.set("omautoswitch", autoswitch);
     $.jStorage.set("omcontrols", controls);
     $.jStorage.set("omyinvert", yinvert);
-
+	
+	// Stylize text that contains the current ship
     $("span:contains(" + ship.name + ")").addClass("sel");
+	
+	// and the items that have not yet been bought.
     $("span:contains(☉)").css("color", "white");
 
 }
 
+// ## Drawing
+
+// Function for drawing a sector (notably used in the HUD).
 function drawSector(centerX, centerY, r, a1, a2, color) {
     ctx.save();
 
@@ -312,18 +492,15 @@ function drawSector(centerX, centerY, r, a1, a2, color) {
     ctx.restore();
 }
 
-// GEOMETRY/COLORS
+// ### Geometry / Colors
 
+// A simple rgb color utility function.
 function rgbColor(r, g, b) {
     return b + (256 * g) | 0 + (256 * 256 * r) | 0;
 }
 
+// Return a ring of cubes.
 function generateCubesRing(cubes, y, radius, spreading, depthspread, sizeVariance) {
-    // cubes qt.
-    // y offset
-    // radius
-    // spreading
-    // objects size variance
 
     var mergedGeo = new THREE.Geometry(); // container
 
@@ -346,6 +523,7 @@ function generateCubesRing(cubes, y, radius, spreading, depthspread, sizeVarianc
 
 }
 
+// Generate a single asteroid.
 function generateObstacle() {
     var geometry = new THREE.SphereGeometry(50, 5, 3);
 
@@ -366,6 +544,7 @@ function generateObstacle() {
 
 }
 
+// Generate the selected ship.
 function generateShip(type) {
     var _ship;
     switch (type) {
@@ -388,6 +567,7 @@ function generateShip(type) {
 
 }
 
+// Generate the **classic** (used in `generateShip(type)`).
 function generateShip01() {
     var mergedGeo;
     mergedGeo = new THREE.Geometry();
@@ -459,6 +639,7 @@ function generateShip01() {
 
 }
 
+// Generate the **pioneer** (used in `generateShip(type)`).
 function generateShip02() {
     var mergedGeo;
     mergedGeo = new THREE.Geometry();
@@ -541,6 +722,7 @@ function generateShip02() {
 
 }
 
+// Generate the **hugo** (used in `generateShip(type)`).
 function generateShip03() {
     var mergedGeo;
     mergedGeo = new THREE.Geometry();
@@ -629,137 +811,147 @@ function generateShip03() {
     return group;
 }
 
-// INPUT
+// ## Input
 
+// Function called on key-down.
 function keyDown(event) {
-    //console.log(event.keyCode);
     switch ("keyDown ", event.keyCode) {
-    case 38:
-    case 87:
-        key_up = true;
-        break;
-    case 40:
-    case 83:
-        key_down = true;
-        break;
-    case 37:
-    case 65:
-        key_left = true;
-        break;
-    case 39:
-    case 68:
-        key_right = true;
-        break;
-    case 90:
-    case 188:
-        key_turn_left = true;
-        break;
-    case 67:
-    case 191:
-        key_turn_right = true;
-        break;
-    case 27: // ESC
-        materials.opacity = 0;
-        bdy.style.backgroundColor = '#000';
-        introReset(false);
-        break;
-    case 67: // C
-        //console.log("C");
-        //var tempcanvas = document.getElementsByTagName("canvas");
-        //window.open(tempcanvas[1].toDataURL('image/png'))
-
-        /*
-		var new_window = window.open( 'about:blank' );
-		var image = new_window.document.createElement( 'img' );
-		image.src = renderer.domElement.toDataURL();
-		new_window.document.body.appendChild( image );						
-		*/
-
-        break;
-        /*case 19:
-		Object.defineProperty(window, "console", {});
-		break;*/
-
+		// the up-key
+		case 38:
+		case 87:
+			key_up = true;
+			break;
+		
+		//the down-key
+		case 40:
+		case 83:
+			key_down = true;
+			break;
+		
+		// the left-key
+		case 37:
+		case 65:
+			key_left = true;
+			break;
+		
+		// the right-key
+		case 39:
+		case 68:
+			key_right = true;
+			break;
+			
+		// the "z" or "," key
+		case 90:
+		case 188:
+			key_turn_left = true;
+			break;
+			
+		// the "c" or "/" key
+		case 67:
+		case 191:
+			key_turn_right = true;
+			break;
+		
+		// the ESCAPE key
+		case 27:
+			materials.opacity = 0;
+			bdy.style.backgroundColor = '#000';
+			introReset(false);
+			break;
     }
 }
 
+// Function called on key-up.
 function keyUp(event) {
-    //console.log(event.keyCode);
     switch (event.keyCode) {
-    case 38:
-    case 87:
-        key_up = false;
-        break;
-    case 40:
-    case 83:
-        key_down = false;
-        break;
-    case 37:
-    case 65:
-        key_left = false;
-        break;
-    case 39:
-    case 68:
-        key_right = false;
-        break;
-    case 90:
-    case 188:
-        key_turn_left = false;
-        break;
-    case 67:
-    case 191:
-        key_turn_right = false;
-        break;
-    }
+		// the up-key
+		case 38:
+		case 87:
+			key_up = false;
+			break;
+		
+		// the down-key
+		case 40:
+		case 83:
+			key_down = false;
+			break;
+			
+		// the left-key
+		case 37:
+		case 65:
+			key_left = false;
+			break;
+			
+		// the right-key
+		case 39:
+		case 68:
+			key_right = false;
+			break;
+			
+		// the "z" or "," key
+		case 90:
+		case 188:
+			key_turn_left = false;
+			break;
+			
+		// the "c" or "," key
+		case 67:
+		case 191:
+			key_turn_right = false;
+			break;
+		}
 }
 
 function keyPress(event) {
     switch (event.keyCode) {
-    case 18: // alt
-        if (view == 2) {
-            view = 1;
-            zcamera2 = 0;
-        } else {
-            view = 2;
-            zcamera2 = -220;
+		// the ALT key
+		case 18:
+			if (view == 2) {
+				view = 1;
+				zcamera2 = 0;
+			} else {
+				view = 2;
+				zcamera2 = -220;
 
-        }
-        break;
-
-    case 32: // space
-        if (playing) {
-            if (paused) {
-                $("#pause-icon").fadeOut();
-                paused = false;
-                if (sound) sound.unmute();
-            } else {
-                $("#pause-icon").fadeIn(400, function () {
-                    $("#pause-icon").finish();
-                });
-                paused = true;
-                if (sound) sound.mute();
-            }
-        }
-        break;
-
-    case 102: // f
-        var stpos = stats.domElement.style.top;
-        if (stpos == "0px") {
-            stats.domElement.style.top = "-200px"
-        } else {
-            stats.domElement.style.top = "0px"
-        }
-        break;
+			}
+			break;
+		
+		// the SPACE key
+		case 32:
+			if (playing) {
+				if (paused) {
+					$("#pause-icon").fadeOut();
+					paused = false;
+					if (sound) sound.unmute();
+				} else {
+					$("#pause-icon").fadeIn(400, function () {
+						$("#pause-icon").finish();
+					});
+					paused = true;
+					if (sound) sound.mute();
+				}
+			}
+			break;
+		
+		// the "f" key
+		case 102:
+			var stpos = stats.domElement.style.top;
+			if (stpos == "0px") {
+				stats.domElement.style.top = "-200px"
+			} else {
+				stats.domElement.style.top = "0px"
+			}
+			break;
     }
 }
 
 function brake(event) {
     switch (event.keyCode) {
-    case 16:
-        // shift
-        if (owned_items.contains("brakes")) speed = speed / 2;
-        health -= expert ? 3 : 10;
-        break;
+		// the SHIFT key
+		case 16:
+			if (owned_items.contains("brakes")) speed = speed / 2;
+			health -= expert ? 3 : 10;
+			break;
     }
 }
 
@@ -789,8 +981,6 @@ bind("pioneer");
 bind("hugo");
 
 bind("brakes");
-
-bdy = document.getElementById("body");
 
 
 var container, ctx, stats;
@@ -1087,7 +1277,7 @@ function render_game() {
         }
 
         if (view == 1) {
-            // 3th
+            // 3rd
             xratio = 1.1;
             yratio = 0.5;
         } else {
