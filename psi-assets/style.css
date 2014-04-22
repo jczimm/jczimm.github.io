@@ -1,4 +1,4 @@
-html, body, #game-wrapper, #overlay, iframe {
+html, body, #game-wrapper, #player, iframe {
   height: 100%
 }
 
