@@ -4,6 +4,7 @@ html, body, #game-wrapper, #overlay, iframe {
 
 body {
   margin: 0px;
+  overflow: hidden;
 }
 
 iframe {
