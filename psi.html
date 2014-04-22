@@ -5,19 +5,16 @@
     <script src="http://code.jquery.com/jquery-1.11.0.js"></script>
     <link rel="stylesheet" href="psi-assets/style.css">
     <script src="psi-assets/script.js"></script>
-    
-    <link href="//vjs.zencdn.net/4.5/video-js.css" rel="stylesheet">
-    <script src="//vjs.zencdn.net/4.5/video.js"></script>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   </head>
   <body>
     <div id="game-wrapper">
-      <video id="player" class="video-js vjs-default-skin"
-        preload="auto" width="640" height="264"
-        poster="http://video-js.zencoder.com/oceans-clip.png">
+      <video id="player" preload="auto" width="640" height="264" poster="http://video-js.zencoder.com/oceans-clip.png">
        <source src="psi-assets/video/dream.mp4" type='video/mp4' />
-       <!--<source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' />
-       <source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' />-->
+       <!--<source src="..." type='video/webm' />
+       <source src="..." type='video/ogg' />-->
       </video>
     </div>
+    <div id="pause-icon" align="center"><i class="fa fa-pause"></i></div>
   </body>
 </html>
