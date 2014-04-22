@@ -3,9 +3,9 @@
 // [Play Omega](http://jczimm.github.io/omega)
 
 
-
 // ## Initialize global variables
-//
+
+
 // Initialize a global variable that will be used to determine whether the game is currently being played.
 var status = 0;
 
@@ -85,7 +85,7 @@ var sens_list = ["low", "default", "high", "very high", "extreme"];
 var sens_values = [1, 1.3, 1.6, 2, 4];
 
 // ## Back-bone Functions
-//
+
 // Function for binding an element to `buttonClick(e)`.
 function bind(id) {
     if (document.getElementById(id)) {
@@ -248,7 +248,6 @@ function set(id, v) {
 }
 
 // ## User-interface
-
 
 
 // Universal function for button clicks (called when any `.click` element is clicked).
@@ -454,8 +453,6 @@ function updateUI() {
 
 // ## Drawing
 
-
-
 // Function for drawing a sector (notably used in the HUD).
 function drawSector(centerX, centerY, r, a1, a2, color) {
     ctx.save();
@@ -499,8 +496,6 @@ function drawSector(centerX, centerY, r, a1, a2, color) {
 }
 
 // ### Geometry / Colors
-
-
 
 // A simple rgb color utility function.
 function rgbColor(r, g, b) {
@@ -812,8 +807,6 @@ function generateShip03() {
 
 // ## Input
 
-
-
 // Function called on keydown.
 function keyDown(event) {
     switch ("keyDown ", event.keyCode) {
@@ -984,8 +977,6 @@ function onDocumentMouseMove(event) {
 }
 
 // ## All systems go
-
-
 
 // Display the intro, passing `false` for `gamecompleted`.
 introReset(false);
