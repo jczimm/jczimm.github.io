@@ -28,7 +28,7 @@
         two.bind('update', function(){
           
           //makes obstacles
-          if(Math.random()<0.01) $("#game-wrapper").append(randObstacle());
+          if(!ticks%1e3) $("#game-wrapper").append(randObstacle());
           if($(".prop").css("right")=="auto") $(".prop").css("right","0px");
           $(".prop").each(function(i,e){
             if(Number($(e).css("right").substr(0,$(e).css("right").length-2))<two.width)
@@ -46,9 +46,9 @@
         addKeyListeners();
       }
       
-      function randObstacle(){
+      /*function randObstacle(){
         return Math.random()<=0.6 ? $(props.trashcan) : $(props.hook);
-      }
+      }*/
       
       function addKeyListeners(){
         $(document).keydown(function(e){
