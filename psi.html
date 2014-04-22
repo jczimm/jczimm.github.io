@@ -5,13 +5,19 @@
     <script src="http://code.jquery.com/jquery-1.11.0.js"></script>
     <link rel="stylesheet" href="psi-assets/style.css">
     <script src="psi-assets/script.js"></script>
-    <script src="http://www.tikku.com/scripts/ui/tubeplayer/jQuery.tubeplayer.min.js"></script>
+    
+    <link href="//vjs.zencdn.net/4.5/video-js.css" rel="stylesheet">
+    <script src="//vjs.zencdn.net/4.5/video.js"></script>
   </head>
   <body>
     <div id="game-wrapper">
-      <div id="player">
-        <iframe src="//www.youtube.com/embed/0Kjw1-wkKZI?autoplay=1&controls=0&rel=0&enablejsapi=1&origin=http%3A%2F%2Fjczimm.github.io%2Fpsi&showinfo=0&theme=light" frameborder="0"></iframe>
-      </div>
+      <video id="player" class="video-js vjs-default-skin"
+        controls preload="auto" width="640" height="264"
+        poster="http://video-js.zencoder.com/oceans-clip.png">
+       <source src="psi-assets/videos/dream.mp4" type='video/mp4' />
+       <!--<source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' />
+       <source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' />-->
+      </video>
     </div>
   </body>
 </html>
