@@ -17,7 +17,7 @@
     </div>
     <div id="pause-icon" align="center"><i class="fa fa-pause"></i></div>
     <script>
-      var video = document.getElementById("player");
+      var video = document.getElementById("player"), time;
       video.pause();
       
       $("#player").attr("width",$(window).width());
@@ -55,11 +55,13 @@
       });
       
       function sendLeft(){
-        // validate key press (see if it goes in the sequence (implement sequence first))
+        time = video.currentTime;
+        if(time%1) video.pause();
       }
       
       function sendRight(){
-        // validate key press (see if it goes in the sequence (implement sequence first))
+        time = video.currentTime;
+        if(time%1) video.pause();
       }
     </script>
   </body>
