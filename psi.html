@@ -29,8 +29,8 @@
       
       var paused = true;
       
-      $("body").click(function(e){
-        if (paused) {
+      $("body").click(function(){
+        if(paused) {
           $("#pause-icon").fadeOut();
           paused = false;
           video.play();
@@ -42,6 +42,25 @@
           video.pause();
         }
       });
+      
+      $(document).keydown(function(e){
+        switch(e.keyCode){
+          case 37: //left arrow
+            sendLeft();
+            break;
+          case 39: //right arrow
+            sendRight();
+            break;
+        }
+      });
+      
+      function sendLeft(){
+        // validate key press (see if it goes in the sequence (implement sequence first))
+      }
+      
+      function sendRight(){
+        // validate key press (see if it goes in the sequence (implement sequence first))
+      }
     </script>
   </body>
 </html>
