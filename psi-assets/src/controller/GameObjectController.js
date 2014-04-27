@@ -146,7 +146,7 @@ GameObjectController.prototype.checkHits = function () {
 
             //TODO: avatar take a hit.
             this.shake = 0.5;
-            this.main.loader.get( "sound/playerhit" + this.baddies[i].type).play();
+            this.main.loader.get( "psi-assets/sound/playerhit" + this.baddies[i].type).play();
 
             this.avatar.hp--;
             if( this.avatar.hp <= 0 ) {
@@ -352,7 +352,7 @@ GameObjectController.prototype.attack = function (type) {
             this.breakChain();
             // TODO: didn't hit anything.. penalize player.
             this.combo = 0;
-            this.main.loader.get( "sound/miss").play();
+            this.main.loader.get( "psi-assets/sound/miss").play();
         }
     }else{
         // not in a chain, check if any bullets are in range.
@@ -374,9 +374,9 @@ GameObjectController.prototype.attack = function (type) {
             this.missfireCounter = this.missfireCounterMax;
             this.missfireActive = true;
             this.avatar.missfire(true);
-            this.main.loader.get( "sound/misfire").play();
+            this.main.loader.get( "psi-assets/sound/misfire").play();
         }else{
-            this.main.loader.get( "sound/miss").play();
+            this.main.loader.get( "psi-assets/sound/miss").play();
         }
         this.combo = 0;
     }
@@ -397,17 +397,17 @@ GameObjectController.prototype.hitBaddie = function (baddie, chain) {
             //TODO: attack boss, spawn particles n shit.
 
             this.spawnBossHitParticles();
-            this.main.loader.get( "sound/chainhit" + baddie.type ).play();
+            this.main.loader.get( "psi-assets/sound/chainhit" + baddie.type ).play();
             // TODO boss hit sound?
             // probably should just call boss.hit()?
             console.log("boss has been hit");
             this.boss.hit(1);
 
             if(this.boss.alive){
-                this.main.loader.get( "sound/bosshit" ).play(); // temp
+                this.main.loader.get( "psi-assets/sound/bosshit" ).play(); // temp
                 this.shake = 2.0;
             }else{
-                this.main.loader.get( "sound/bossdeath" ).play(); // temp
+                this.main.loader.get( "psi-assets/sound/bossdeath" ).play(); // temp
                 this.shake = 5.0;
                 this.main.state.scene.remove(this.boss.holder);
                 this.boss.active = false;
@@ -419,7 +419,7 @@ GameObjectController.prototype.hitBaddie = function (baddie, chain) {
         else {
             this.nextChain = baddie.child;
             this.chain.push(baddie);
-            this.main.loader.get( "sound/chainhit" + baddie.type ).play();
+            this.main.loader.get( "psi-assets/sound/chainhit" + baddie.type ).play();
         }
     // last enemy in the chain
     } else if (chain) {
@@ -432,12 +432,12 @@ GameObjectController.prototype.hitBaddie = function (baddie, chain) {
         this.nextChain = null;
         this.chain.push(baddie);
         this.breakChain();
-        this.main.loader.get( "sound/chainhit" + baddie.type ).play();
+        this.main.loader.get( "psi-assets/sound/chainhit" + baddie.type ).play();
 
     }
     // single enemy, no chain
     else {
-        this.main.loader.get( "sound/hit" + baddie.note ).play();
+        this.main.loader.get( "psi-assets/sound/hit" + baddie.note ).play();
     }
 
     //TODO: add score popup particle
