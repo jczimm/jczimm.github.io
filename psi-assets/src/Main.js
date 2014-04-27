@@ -213,47 +213,47 @@ Main.prototype.getAssets = function() {
 		hitAsset( 2, "chain", 0.3 ),
 		hitAsset( 3, "chain", 0.3 ),
 		hitAsset( 4, "chain", 0.3 ),
-		{ name: 'assets/gameover/gameover.png', type: 'img', },
-		{ name: 'assets/intro/intro_bg.png', type: 'img', },
-		{ name: 'assets/intro/intro_glasses1.png', type: 'img' },
-		{ name: 'assets/intro/intro_glasses2.png', type: 'img' },
-		{ name: 'assets/intro/intro_glasses3.png', type: 'img' },
-		{ name: 'assets/intro/intro_glasses4.png', type: 'img' },
-		{ name: 'assets/intro/intro_radmars1.png', type: 'img' },
-		{ name: 'assets/intro/intro_radmars2.png', type: 'img' },
-		{ name: 'assets/intro/intro_mars.png', type: 'img' },
+		{ name: 'psi-assets/assets/gameover/gameover.png', type: 'img', },
+		{ name: 'psi-assets/assets/intro/intro_bg.png', type: 'img', },
+		{ name: 'psi-assets/assets/intro/intro_glasses1.png', type: 'img' },
+		{ name: 'psi-assets/assets/intro/intro_glasses2.png', type: 'img' },
+		{ name: 'psi-assets/assets/intro/intro_glasses3.png', type: 'img' },
+		{ name: 'psi-assets/assets/intro/intro_glasses4.png', type: 'img' },
+		{ name: 'psi-assets/assets/intro/intro_radmars1.png', type: 'img' },
+		{ name: 'psi-assets/assets/intro/intro_radmars2.png', type: 'img' },
+		{ name: 'psi-assets/assets/intro/intro_mars.png', type: 'img' },
 
-        { name: 'assets/skybox/back.png', type: 'img' },
-        { name: 'assets/skybox/bot.png', type: 'img' },
-        { name: 'assets/skybox/front.png', type: 'img' },
-        { name: 'assets/skybox/left.png', type: 'img' },
-        { name: 'assets/skybox/right.png', type: 'img' },
-        { name: 'assets/skybox/top.png', type: 'img' },
+        { name: 'psi-assets/assets/skybox/back.png', type: 'img' },
+        { name: 'psi-assets/assets/skybox/bot.png', type: 'img' },
+        { name: 'psi-assets/assets/skybox/front.png', type: 'img' },
+        { name: 'psi-assets/assets/skybox/left.png', type: 'img' },
+        { name: 'psi-assets/assets/skybox/right.png', type: 'img' },
+        { name: 'psi-assets/assets/skybox/top.png', type: 'img' },
 
-		{ name: 'assets/hud/note0.png', type: 'img' },
-		{ name: 'assets/hud/note1.png', type: 'img' },
-		{ name: 'assets/hud/note2.png', type: 'img' },
-		{ name: 'assets/hud/note3.png', type: 'img' },
-		{ name: 'assets/hud/note4.png', type: 'img' },
+		{ name: 'psi-assets/assets/hud/note0.png', type: 'img' },
+		{ name: 'psi-assets/assets/hud/note1.png', type: 'img' },
+		{ name: 'psi-assets/assets/hud/note2.png', type: 'img' },
+		{ name: 'psi-assets/assets/hud/note3.png', type: 'img' },
+		{ name: 'psi-assets/assets/hud/note4.png', type: 'img' },
 
-        { name: 'assets/hud/boss.png', type: 'img' },
-        { name: 'assets/hud/boss_hp_bar.png', type: 'img' },
-        { name: 'assets/hud/hp.png', type: 'img' },
-        { name: 'assets/hud/hp_bar.png', type: 'img' },
-        { name: 'assets/hud/hp_bar_bg.png', type: 'img' },
+        { name: 'psi-assets/assets/hud/boss.png', type: 'img' },
+        { name: 'psi-assets/assets/hud/boss_hp_bar.png', type: 'img' },
+        { name: 'psi-assets/assets/hud/hp.png', type: 'img' },
+        { name: 'psi-assets/assets/hud/hp_bar.png', type: 'img' },
+        { name: 'psi-assets/assets/hud/hp_bar_bg.png', type: 'img' },
 
-		{ name: 'assets/models/pyramid.js', type: 'model' },
-        { name: 'assets/models/diamond.js', type: 'model' },
-        { name: 'assets/models/tessitron_logo.js', type: 'model' },
-        { name: 'assets/models/tessitron_text.js', type: 'model' },
-        { name: 'assets/models/tritorus.js', type: 'model' },
-        { name: 'assets/models/xena.js', type: 'model' },
-        { name: 'assets/models/spikePlatonic.js', type: 'model' },
+		{ name: 'psi-assets/assets/models/pyramid.js', type: 'model' },
+        { name: 'psi-assets/assets/models/diamond.js', type: 'model' },
+        { name: 'psi-assets/assets/models/tessitron_logo.js', type: 'model' },
+        { name: 'psi-assets/assets/models/tessitron_text.js', type: 'model' },
+        { name: 'psi-assets/assets/models/tritorus.js', type: 'model' },
+        { name: 'psi-assets/assets/models/xena.js', type: 'model' },
+        { name: 'psi-assets/assets/models/spikePlatonic.js', type: 'model' },
 
-        { name: 'assets/models/boss_body.js', type: 'model' },
-        { name: 'assets/models/boss_spikes.js', type: 'model' },
-        { name: 'assets/models/boss_thinRing.js', type: 'model' },
-        { name: 'assets/models/boss_fatRing.js', type: 'model' }
+        { name: 'psi-assets/assets/models/boss_body.js', type: 'model' },
+        { name: 'psi-assets/assets/models/boss_spikes.js', type: 'model' },
+        { name: 'psi-assets/assets/models/boss_thinRing.js', type: 'model' },
+        { name: 'psi-assets/assets/models/boss_fatRing.js', type: 'model' }
 	];
 };
 
@@ -347,12 +347,12 @@ GameState.prototype.onStart = function( game ) {
 	}
 
     var materialArray = [];
-    materialArray.push(new THREE.MeshBasicMaterial( { map: game.loader.get( "assets/skybox/right.png" ), fog:false }));
-    materialArray.push(new THREE.MeshBasicMaterial( { map: game.loader.get( "assets/skybox/left.png" ), fog:false }));
-    materialArray.push(new THREE.MeshBasicMaterial( { map: game.loader.get( "assets/skybox/top.png" ), fog:false }));
-    materialArray.push(new THREE.MeshBasicMaterial( { map: game.loader.get( "assets/skybox/bot.png" ), fog:false }));
-    materialArray.push(new THREE.MeshBasicMaterial( { map: game.loader.get( "assets/skybox/front.png" ), fog:false }));
-    materialArray.push(new THREE.MeshBasicMaterial( { map: game.loader.get( "assets/skybox/back.png" ), fog:false }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: game.loader.get( "psi-assets/assets/skybox/right.png" ), fog:false }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: game.loader.get( "psi-assets/assets/skybox/left.png" ), fog:false }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: game.loader.get( "psi-assets/assets/skybox/top.png" ), fog:false }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: game.loader.get( "psi-assets/assets/skybox/bot.png" ), fog:false }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: game.loader.get( "psi-assets/assets/skybox/front.png" ), fog:false }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: game.loader.get( "psi-assets/assets/skybox/back.png" ), fog:false }));
 
     for (var i = 0; i < 6; i++){
         materialArray[i].side = THREE.BackSide;
@@ -366,7 +366,7 @@ GameState.prototype.onStart = function( game ) {
 }
 
 GameState.prototype.onStop = function( game ) {
-	game.loader.get("sound/ld26").stop();
+	game.loader.get("psi-assets/sound/ld26").stop();
 	game.controllers = [];
 	game.renderer.autoClear = true;
 }
@@ -400,7 +400,7 @@ Intro.prototype.onStart = function( game ) {
 	);
 	this.controller = new IntroController( game, this.camera, this.scene );
 	game.controllers.push( this.controller );
-	game.loader.get("sound/radmarslogo").play();
+	game.loader.get("psi-assets/sound/radmarslogo").play();
 
     this.game.renderer.setClearColor( 0x000000, 1 );
 };
@@ -414,7 +414,7 @@ Intro.prototype.resize = function( width, height ) {
 }
 
 Intro.prototype.onStop = function( game) {
-	game.loader.get("sound/radmarslogo").stop();
+	game.loader.get("psi-assets/sound/radmarslogo").stop();
 	this.controller.onStop();
 	game.controllers = [];
 };
@@ -423,16 +423,16 @@ function IntroController( game, camera, scene ) {
 
 	this.game = game;
 	var glassesFiles = [
-		'assets/intro/intro_glasses1.png',
-		'assets/intro/intro_glasses2.png',
-		'assets/intro/intro_glasses3.png',
-		'assets/intro/intro_glasses4.png'
+		'psi-assets/assets/intro/intro_glasses1.png',
+		'psi-assets/assets/intro/intro_glasses2.png',
+		'psi-assets/assets/intro/intro_glasses3.png',
+		'psi-assets/assets/intro/intro_glasses4.png'
 	];
 
 	var textFiles = [
-		'assets/intro/intro_mars.png',
-		'assets/intro/intro_radmars1.png',
-		'assets/intro/intro_radmars2.png',
+		'psi-assets/assets/intro/intro_mars.png',
+		'psi-assets/assets/intro/intro_radmars1.png',
+		'psi-assets/assets/intro/intro_radmars2.png',
 	];
 
 	this.textMaterials = textFiles.map(function( file ) {
@@ -461,7 +461,7 @@ function IntroController( game, camera, scene ) {
 	this.glassesSprite.scale.set( 144, 24, 1 );
 
 	var bgMaterial = new THREE.SpriteMaterial({
-		map: this.game.loader.get( "assets/intro/intro_bg.png" ),
+		map: this.game.loader.get( "psi-assets/assets/intro/intro_bg.png" ),
 		useScreenCoordinates: true,
 		alignment: THREE.SpriteAlignment.topLeft
 	});
@@ -579,9 +579,9 @@ GameOver.prototype.onStart = function( game ) {
     game.controllers.push( this.controller );
 
     if(window.game_win == true){
-        game.loader.get("sound/gameover-win").play();
+        game.loader.get("psi-assets/sound/gameover-win").play();
     }else{
-        game.loader.get("sound/gameover-lose").play();
+        game.loader.get("psi-assets/sound/gameover-lose").play();
     }
 
 };
@@ -595,8 +595,8 @@ GameOver.prototype.resize = function( width, height ) {
 }
 
 GameOver.prototype.onStop = function( game) {
-    game.loader.get("sound/gameover-win").stop();
-    game.loader.get("sound/gameover-lose").stop();
+    game.loader.get("psi-assets/sound/gameover-win").stop();
+    game.loader.get("psi-assets/sound/gameover-lose").stop();
 
 	this.controller.onStop();
 	game.controllers = [];
@@ -631,8 +631,8 @@ Splash.prototype.onStart = function( game ) {
     this.controller = new SplashController( game, this.camera, this.scene, false);
     game.controllers.push( this.controller );
 
-    game.loader.get("sound/intro").loop(true);
-    game.loader.get("sound/intro").play();
+    game.loader.get("psi-assets/sound/intro").loop(true);
+    game.loader.get("psi-assets/sound/intro").play();
 
 };
 
@@ -645,7 +645,7 @@ Splash.prototype.resize = function( width, height ) {
 }
 
 Splash.prototype.onStop = function( game) {
-    game.loader.get("sound/intro").stop();
+    game.loader.get("psi-assets/sound/intro").stop();
 
     this.controller.onStop();
     game.controllers = [];
@@ -662,7 +662,7 @@ function SplashController( game, camera, scene, isGameover ) {
     this.cy = camera.bottom / 2;
 
     var bgMaterial = new THREE.SpriteMaterial({
-        map: this.game.loader.get( "assets/gameover/gameover.png" )
+        map: this.game.loader.get( "psi-assets/assets/gameover/gameover.png" )
     });
 
     this.bgSprite = new THREE.Sprite( bgMaterial );
@@ -670,8 +670,8 @@ function SplashController( game, camera, scene, isGameover ) {
 
     this.counter = 0;
 
-    var text = window.main.loader.get("assets/models/tessitron_text.js");
-    var logo = window.main.loader.get("assets/models/tessitron_logo.js");
+    var text = window.main.loader.get("psi-assets/assets/models/tessitron_text.js");
+    var logo = window.main.loader.get("psi-assets/assets/models/tessitron_logo.js");
     var tmat = new THREE.MeshPhongMaterial( { color: 0xffffff, shading: THREE.FlatShading  } );
     var lmat = new THREE.MeshPhongMaterial( { color: 0xf2e85c, shading: THREE.FlatShading  } );
 
