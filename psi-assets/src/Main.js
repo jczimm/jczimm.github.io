@@ -178,15 +178,15 @@ Main.prototype.getAssets = function() {
 	};
 
 	return [
-		{ name: "sound/radmarslogo", urls: ['sound/radmarslogo.mp3', 'sound/radmarslogo.ogg'], type: 'audio', volume: 0.9, buffer: true },
-		{ name: "sound/ld26", urls: ['sound/ld26.mp3', 'sound/ld26.ogg'], type: 'audio', volume: 0.95, buffer: true },
-		{ name: "sound/bosshit", urls: ['sound/bosshit.mp3', 'sound/bosshit.ogg'], type: 'audio', volume: 0.5, buffer: true },
-		{ name: "sound/bossdeath", urls: ['sound/bossdeath.mp3', 'sound/bossdeath.ogg'], type: 'audio', volume: 0.9, buffer: true },
-		{ name: "sound/miss", urls: ['sound/miss.mp3', 'sound/miss.ogg'], type: 'audio', volume: 0.4, buffer: true },
-		{ name: "sound/misfire", urls: ['sound/misfire.mp3', 'sound/misfire.ogg'], type: 'audio', volume: 0.5, buffer: true },
-		{ name: "sound/gameover-lose", urls: ['sound/gameover-lose.mp3', 'sound/gameover-lose.ogg'], type: 'audio', volume: 0.9, buffer: true },
-		{ name: "sound/gameover-win", urls: ['sound/gameover-win.mp3', 'sound/gameover-win.ogg'], type: 'audio', volume: 0.9, buffer: true },
-		{ name: "sound/intro", urls: ['sound/intro.mp3', 'sound/intro.ogg'], type: 'audio', volume: 0.9, buffer: true },
+		{ name: "psi-assets/sound/radmarslogo", urls: ['psi-assets/sound/radmarslogo.mp3', 'psi-assets/sound/radmarslogo.ogg'], type: 'audio', volume: 0.9, buffer: true },
+		{ name: "psi-assets/sound/ld26", urls: ['psi-assets/sound/ld26.mp3', 'psi-assets/sound/ld26.ogg'], type: 'audio', volume: 0.95, buffer: true },
+		{ name: "psi-assets/sound/bosshit", urls: ['psi-assets/sound/bosshit.mp3', 'psi-assets/sound/bosshit.ogg'], type: 'audio', volume: 0.5, buffer: true },
+		{ name: "psi-assets/sound/bossdeath", urls: ['psi-assets/sound/bossdeath.mp3', 'sound/bossdeath.ogg'], type: 'audio', volume: 0.9, buffer: true },
+		{ name: "psi-assets/sound/miss", urls: ['psi-assets/sound/miss.mp3', 'psi-assets/sound/miss.ogg'], type: 'audio', volume: 0.4, buffer: true },
+		{ name: "psi-assets/sound/misfire", urls: ['psi-assets/sound/misfire.mp3', 'psi-assets/sound/misfire.ogg'], type: 'audio', volume: 0.5, buffer: true },
+		{ name: "psi-assets/sound/gameover-lose", urls: ['psi-assets/sound/gameover-lose.mp3', 'psi-assets/sound/gameover-lose.ogg'], type: 'audio', volume: 0.9, buffer: true },
+		{ name: "psi-assets/sound/gameover-win", urls: ['psi-assets/sound/gameover-win.mp3', 'psi-assets/sound/gameover-win.ogg'], type: 'audio', volume: 0.9, buffer: true },
+		{ name: "psi-assets/sound/intro", urls: ['psi-assets/sound/intro.mp3', 'psi-assets/sound/intro.ogg'], type: 'audio', volume: 0.9, buffer: true },
 
 		hitAsset( 0 ),
 		hitAsset( 1 ),
