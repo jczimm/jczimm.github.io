@@ -3,7 +3,7 @@ function SauceBoss() {
     this.target = new THREE.Vector3();
     this.size = 100;
     //GameObject.call(this, new THREE.OctahedronGeometry(this.size, 2), 0xff0000);
-    GameObject.call(this,window.main.loader.get("assets/models/boss_body.js"), 0xf53d54, 0xf2e85c);
+    GameObject.call(this,window.main.loader.get("psi-assets/assets/models/boss_body.js"), 0xf53d54, 0xf2e85c);
     this.holder.scale = new THREE.Vector3( 15.0, 15.0, 15.0 );
 
     this.linkMat = new THREE.LineBasicMaterial({ color: 0xffffff });
@@ -13,15 +13,15 @@ function SauceBoss() {
     this.link = new THREE.Line(linkGeom, this.linkMat, THREE.LineStrip);
 
 
-    var sg = window.main.loader.get("assets/models/boss_spikes.js");
+    var sg = window.main.loader.get("psi-assets/assets/models/boss_spikes.js");
     var sm = new THREE.MeshPhongMaterial( { color: 0x04bf9d, shading: THREE.FlatShading  } );
     this.spikes = new THREE.Mesh(sg, sm);
 
-    var rg1 = window.main.loader.get("assets/models/boss_thinRing.js");
+    var rg1 = window.main.loader.get("psi-assets/assets/models/boss_thinRing.js");
     var rm1 = new THREE.MeshPhongMaterial( { color: 0x2e6fac, shading: THREE.FlatShading  } );
     this.ring1 = new THREE.Mesh(rg1, rm1);
 
-    var rg2 = window.main.loader.get("assets/models/boss_fatRing.js");
+    var rg2 = window.main.loader.get("psi-assets/assets/models/boss_fatRing.js");
     var rm2 = new THREE.MeshPhongMaterial( { color: 0xffffff, shading: THREE.FlatShading  } );
     this.ring2 = new THREE.Mesh(rg2, rm2);
 

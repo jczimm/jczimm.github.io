@@ -161,11 +161,11 @@ function Main() {
 Main.prototype.getAssets = function() {
 	var hitAsset = function( base, prefix, vol ) {
 		return {
-			name: "sound/" + (prefix || "") + "hit" + base,
+			name: "psi-assets/sound/" + (prefix || "") + "hit" + base,
 			volume: vol || 0.27,
 			urls: [
-				"sound/" + (prefix || "") + "hit" + base + ".mp3",
-				"sound/" + (prefix || "") + "hit" + base + ".ogg"
+				"psi-assets/sound/" + (prefix || "") + "hit" + base + ".mp3",
+				"psi-assets/sound/" + (prefix || "") + "hit" + base + ".ogg"
 			],
 			type: 'audio',
 			callback: function( audio ) {
