@@ -311,7 +311,7 @@ GameState.prototype.onStart = function( game ) {
     this.game.renderer.setClearColor( 0x2e2e2e, 1 );
 
 	this.scene = new THREE.Scene();
-	game.loader.get("sound/ld26").play();
+	game.loader.get("psi-assets/sound/ld26").play();
 	game.renderer.autoClear = false;
 
 	this.camera = new THREE.PerspectiveCamera(
