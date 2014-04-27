@@ -181,7 +181,7 @@ Main.prototype.getAssets = function() {
 		{ name: "psi-assets/sound/radmarslogo", urls: ['psi-assets/sound/radmarslogo.mp3', 'psi-assets/sound/radmarslogo.ogg'], type: 'audio', volume: 0.9, buffer: true },
 		{ name: "psi-assets/sound/ld26", urls: ['psi-assets/sound/ld26.mp3', 'psi-assets/sound/ld26.ogg'], type: 'audio', volume: 0.95, buffer: true },
 		{ name: "psi-assets/sound/bosshit", urls: ['psi-assets/sound/bosshit.mp3', 'psi-assets/sound/bosshit.ogg'], type: 'audio', volume: 0.5, buffer: true },
-		{ name: "psi-assets/sound/bossdeath", urls: ['psi-assets/sound/bossdeath.mp3', 'sound/bossdeath.ogg'], type: 'audio', volume: 0.9, buffer: true },
+		{ name: "psi-assets/sound/bossdeath", urls: ['psi-assets/sound/bossdeath.mp3', 'psi-assets/sound/bossdeath.ogg'], type: 'audio', volume: 0.9, buffer: true },
 		{ name: "psi-assets/sound/miss", urls: ['psi-assets/sound/miss.mp3', 'psi-assets/sound/miss.ogg'], type: 'audio', volume: 0.4, buffer: true },
 		{ name: "psi-assets/sound/misfire", urls: ['psi-assets/sound/misfire.mp3', 'psi-assets/sound/misfire.ogg'], type: 'audio', volume: 0.5, buffer: true },
 		{ name: "psi-assets/sound/gameover-lose", urls: ['psi-assets/sound/gameover-lose.mp3', 'psi-assets/sound/gameover-lose.ogg'], type: 'audio', volume: 0.9, buffer: true },
