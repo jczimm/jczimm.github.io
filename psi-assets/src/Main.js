@@ -2,9 +2,7 @@
  * http://paulirish.com/2011/requestanimationframe-for-smart-animating/
  */
 window.requestAnimFrame = (function(){
-	return  window.requestAnimationFrame       ||
-	window.webkitRequestAnimationFrame ||
-	window.mozRequestAnimationFrame    ||
+	return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame ||
 	function( callback ){
 		window.setTimeout(callback, 1000 / 60);
 	};
@@ -110,7 +108,7 @@ Loader.prototype.done = function( assets ) {
 
 Loader.prototype.get = function( name ) {
 	var value = this.assets[name];
-	console.log(value);
+	console.log(name);
 	//value = value.indexOf("psi-assets/")!=0 ? value : "psi-assets/"+value;
 	if( ! value ) {
 		throw "Unknown asset " + name;
@@ -284,7 +282,7 @@ Main.prototype.update = function () {
 	}
 
 	var delta = Date.now() - this.lastFrame;
-    this.lastFrame = Date.now();
+	this.lastFrame = Date.now();
 
 	//update everything then render.
 	for( var controller in this.controllers ) {
