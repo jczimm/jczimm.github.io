@@ -110,7 +110,7 @@ Loader.prototype.done = function( assets ) {
 
 Loader.prototype.get = function( name ) {
 	var value = this.assets[name];
-	value = value.indexOf("psi-assets/")!=0 ? value : "psi-assets/"+value;
+	value = value.name.indexOf("psi-assets/")!=0 ? value : "psi-assets/"+value;
 	if( ! value ) {
 		throw "Unknown asset " + name;
 	}
