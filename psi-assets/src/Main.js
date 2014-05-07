@@ -10,8 +10,6 @@ window.requestAnimFrame = (function(){
 	};
 })();
 
-String.prototype.contains = function(it) { return this.indexOf(it) != -1; };
-
 var Shaders = {
 	DotShader : {
 		uniforms: {
@@ -112,7 +110,7 @@ Loader.prototype.done = function( assets ) {
 
 Loader.prototype.get = function( name ) {
 	var value = this.assets[name];
-	value = value.contains("psi-assets/") ? value : "psi-assets/"+value;
+	value = value.indexOf("psi-assets/")!=0 ? value : "psi-assets/"+value;
 	if( ! value ) {
 		throw "Unknown asset " + name;
 	}
