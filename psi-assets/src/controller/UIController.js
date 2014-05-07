@@ -40,35 +40,35 @@ function UIController(main) {
 
     this.note0 = new THREE.Sprite(
         new THREE.SpriteMaterial({
-            map: main.loader.get( "assets/hud/note0.png" ),
+            map: main.loader.get( "psi-assets/assets/hud/note0.png" ),
             useScreenCoordinates: true,
             alignment: THREE.SpriteAlignment.topLeft
         })
     );
     this.note1 = new THREE.Sprite(
         new THREE.SpriteMaterial({
-            map: main.loader.get( "assets/hud/note1.png" ),
+            map: main.loader.get( "psi-assets/assets/hud/note1.png" ),
             useScreenCoordinates: true,
             alignment: THREE.SpriteAlignment.topLeft
         })
     );
     this.note2 = new THREE.Sprite(
         new THREE.SpriteMaterial({
-            map: main.loader.get( "assets/hud/note2.png" ),
+            map: main.loader.get( "psi-assets/assets/hud/note2.png" ),
             useScreenCoordinates: true,
             alignment: THREE.SpriteAlignment.topLeft
         })
     );
     this.note3 = new THREE.Sprite(
         new THREE.SpriteMaterial({
-            map: main.loader.get( "assets/hud/note3.png" ),
+            map: main.loader.get( "psi-assets/assets/hud/note3.png" ),
             useScreenCoordinates: true,
             alignment: THREE.SpriteAlignment.topLeft
         })
     );
     this.note4 = new THREE.Sprite(
         new THREE.SpriteMaterial({
-            map: main.loader.get( "assets/hud/note4.png" ),
+            map: main.loader.get( "psi-assets/assets/hud/note4.png" ),
             useScreenCoordinates: true,
             alignment: THREE.SpriteAlignment.topLeft
         })
@@ -77,7 +77,7 @@ function UIController(main) {
 
     this.boss = new THREE.Sprite(
         new THREE.SpriteMaterial({
-            map: main.loader.get( "assets/hud/boss.png" ),
+            map: main.loader.get( "psi-assets/assets/hud/boss.png" ),
             useScreenCoordinates: true,
             alignment: THREE.SpriteAlignment.topLeft
         })
@@ -85,7 +85,7 @@ function UIController(main) {
 
     this.boss_hp_bar = new THREE.Sprite(
         new THREE.SpriteMaterial({
-            map: main.loader.get( "assets/hud/boss_hp_bar.png" ),
+            map: main.loader.get( "psi-assets/assets/hud/boss_hp_bar.png" ),
             useScreenCoordinates: true,
             alignment: THREE.SpriteAlignment.topLeft
         })
@@ -93,7 +93,7 @@ function UIController(main) {
 
     this.hp = new THREE.Sprite(
         new THREE.SpriteMaterial({
-            map: main.loader.get( "assets/hud/hp.png" ),
+            map: main.loader.get( "psi-assets/assets/hud/hp.png" ),
             useScreenCoordinates: true,
             alignment: THREE.SpriteAlignment.topLeft
         })
@@ -101,7 +101,7 @@ function UIController(main) {
 
     this.hp_bar = new THREE.Sprite(
         new THREE.SpriteMaterial({
-            map: main.loader.get( "assets/hud/hp_bar.png" ),
+            map: main.loader.get( "psi-assets/assets/hud/hp_bar.png" ),
             useScreenCoordinates: true,
             alignment: THREE.SpriteAlignment.topLeft
         })
@@ -109,7 +109,7 @@ function UIController(main) {
 
     this.hp_bar_bg = new THREE.Sprite(
         new THREE.SpriteMaterial({
-            map: main.loader.get( "assets/hud/hp_bar_bg.png" ),
+            map: main.loader.get( "psi-assets/assets/hud/hp_bar_bg.png" ),
             useScreenCoordinates: true,
             alignment: THREE.SpriteAlignment.topLeft
         })
@@ -117,7 +117,7 @@ function UIController(main) {
 
     this.boss_hp_bar_bg = new THREE.Sprite(
         new THREE.SpriteMaterial({
-            map: main.loader.get( "assets/hud/hp_bar_bg.png" ),
+            map: main.loader.get( "psi-assets/assets/hud/hp_bar_bg.png" ),
             useScreenCoordinates: true,
             alignment: THREE.SpriteAlignment.topLeft
         })
