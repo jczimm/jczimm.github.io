@@ -670,7 +670,12 @@ function SplashController( game, camera, scene, isGameover ) {
 
     this.counter = 0;
 
-    var text = window.main.loader.get("psi-assets/assets/models/tessitron_text.js");
+    var text = new THREE.TextGeometry( "PSI",
+        {
+            size: 20, height: 4, curveSegments: 4,
+            font: "helvetiker", style: "normal"
+        });
+    //window.main.loader.get("psi-assets/assets/models/tessitron_text.js");
     var logo = window.main.loader.get("psi-assets/assets/models/tessitron_logo.js");
     var tmat = new THREE.MeshPhongMaterial( { color: 0xffffff, shading: THREE.FlatShading  } );
     var lmat = new THREE.MeshPhongMaterial( { color: 0xf2e85c, shading: THREE.FlatShading  } );
