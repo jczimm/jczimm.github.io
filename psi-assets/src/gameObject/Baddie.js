@@ -44,16 +44,16 @@ function Baddie(pos, size, note) {
     switch(this.shape){
         case 0:
             //geom = new THREE.TetrahedronGeometry(this.size);
-            geom = window.main.loader.get("assets/models/diamond.js");
+            geom = window.main.loader.get("psi-assets/assets/models/diamond.js");
             break;
         case 1:
             //geom = new THREE.CubeGeometry(this.size, this.size, this.size, 1);
-            geom = window.main.loader.get("assets/models/tritorus.js");
+            geom = window.main.loader.get("psi-assets/assets/models/tritorus.js");
              s = 0.75;
             break;
         case 2:
             //geom = new THREE.OctahedronGeometry(this.size, 1)
-            geom = window.main.loader.get("assets/models/xena.js");
+            geom = window.main.loader.get("psi-assets/assets/models/xena.js");
             s = 1.5;
             break;
     }
