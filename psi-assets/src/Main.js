@@ -176,16 +176,6 @@ Main.prototype.getAssets = function() {
 	};
 
 	return [
-		{ name: "psi-assets/sound/radmarslogo", urls: ['psi-assets/sound/radmarslogo.mp3', 'psi-assets/sound/radmarslogo.ogg'], type: 'audio', volume: 0.9, buffer: true },
-		{ name: "psi-assets/sound/ld26", urls: ['psi-assets/sound/ld26.mp3', 'psi-assets/sound/ld26.ogg'], type: 'audio', volume: 0.95, buffer: true },
-		{ name: "psi-assets/sound/bosshit", urls: ['psi-assets/sound/bosshit.mp3', 'psi-assets/sound/bosshit.ogg'], type: 'audio', volume: 0.5, buffer: true },
-		{ name: "psi-assets/sound/bossdeath", urls: ['psi-assets/sound/bossdeath.mp3', 'psi-assets/sound/bossdeath.ogg'], type: 'audio', volume: 0.9, buffer: true },
-		{ name: "psi-assets/sound/miss", urls: ['psi-assets/sound/miss.mp3', 'psi-assets/sound/miss.ogg'], type: 'audio', volume: 0.4, buffer: true },
-		{ name: "psi-assets/sound/misfire", urls: ['psi-assets/sound/misfire.mp3', 'psi-assets/sound/misfire.ogg'], type: 'audio', volume: 0.5, buffer: true },
-		{ name: "psi-assets/sound/gameover-lose", urls: ['psi-assets/sound/gameover-lose.mp3', 'psi-assets/sound/gameover-lose.ogg'], type: 'audio', volume: 0.9, buffer: true },
-		{ name: "psi-assets/sound/gameover-win", urls: ['psi-assets/sound/gameover-win.mp3', 'psi-assets/sound/gameover-win.ogg'], type: 'audio', volume: 0.9, buffer: true },
-		{ name: "psi-assets/sound/intro", urls: ['psi-assets/sound/intro.mp3', 'psi-assets/sound/intro.ogg'], type: 'audio', volume: 0.9, buffer: true },
-
 		hitAsset( 0 ),
 		hitAsset( 1 ),
 		hitAsset( 2 ),
@@ -211,15 +201,6 @@ Main.prototype.getAssets = function() {
 		hitAsset( 2, "chain", 0.3 ),
 		hitAsset( 3, "chain", 0.3 ),
 		hitAsset( 4, "chain", 0.3 ),
-		{ name: 'psi-assets/assets/gameover/gameover.png', type: 'img', },
-		{ name: 'psi-assets/assets/intro/intro_bg.png', type: 'img', },
-		{ name: 'psi-assets/assets/intro/intro_glasses1.png', type: 'img' },
-		{ name: 'psi-assets/assets/intro/intro_glasses2.png', type: 'img' },
-		{ name: 'psi-assets/assets/intro/intro_glasses3.png', type: 'img' },
-		{ name: 'psi-assets/assets/intro/intro_glasses4.png', type: 'img' },
-		{ name: 'psi-assets/assets/intro/intro_radmars1.png', type: 'img' },
-		{ name: 'psi-assets/assets/intro/intro_radmars2.png', type: 'img' },
-		{ name: 'psi-assets/assets/intro/intro_mars.png', type: 'img' },
 
         { name: 'psi-assets/assets/skybox/back.png', type: 'img' },
         { name: 'psi-assets/assets/skybox/bot.png', type: 'img' },
