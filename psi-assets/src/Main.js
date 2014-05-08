@@ -489,7 +489,7 @@ function SplashController( game, camera, scene, isGameover ) {
 
     this.counter = 0;
 
-    var text = new THREE.TextGeometry( "PSI",
+    var text = new THREE.TextGeometry( "    PSI",
         {
             size: 10, height: 4, curveSegments: 4,
             font: "helvetiker", style: "normal"
