@@ -922,7 +922,7 @@ LoadingController.prototype.onStop = function() {
 LoadingController.prototype.update = function( dt ) {
     var assets = this.game.getAssets();
     if( this.game.loader.done( assets ) ) {
-        this.game.setState( new Intro() );
+        this.game.setState( new Splash() );
     }
 
     this.counter += dt;
