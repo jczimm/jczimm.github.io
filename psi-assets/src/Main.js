@@ -382,7 +382,7 @@ GameState.prototype.render = function( game ) {
 	game.renderer.render( this.uiController.scene, this.uiController.camera );
 }
 
-function Intro() {
+/*function Intro() {
 }
 
 Intro.prototype.render = function( game ) {
@@ -549,7 +549,7 @@ IntroController.prototype.update = function( dt ) {
             game.setState( new Splash() );
         });
     }
-}
+}*/
 
 function GameOver() {
 }
@@ -672,7 +672,7 @@ function SplashController( game, camera, scene, isGameover ) {
 
     var text = new THREE.TextGeometry( "PSI",
         {
-            size: 20, height: 4, curveSegments: 4,
+            size: 10, height: 4, curveSegments: 4,
             font: "helvetiker", style: "normal"
         });
     //window.main.loader.get("psi-assets/assets/models/tessitron_text.js");
