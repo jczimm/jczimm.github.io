@@ -507,7 +507,7 @@ function SplashController( game, camera, scene, isGameover ) {
     var titleTextWidth = text.boundingBox.max.x - text.boundingBox.min.x;*/
     this.tm.position.set( -18.76, -40, 120 );
     //this.tm.position.x = -10;
-    //this.tm.scale = new THREE.Vector3(2,2,2);
+    this.tm.scale = new THREE.Vector3(2,2,2);
 
     this.textMesh = new THREE.Object3D();
     this.textMesh.add(this.tm);
