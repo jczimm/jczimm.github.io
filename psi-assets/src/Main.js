@@ -500,7 +500,7 @@ function SplashController( game, camera, scene, isGameover ) {
     var lmat = new THREE.MeshPhongMaterial( { color: 0xf2e85c, shading: THREE.FlatShading  } );
 
     this.lm = new THREE.Mesh(logo, lmat);
-    this.lm.rotation. x = Math.PI / 2;
+    this.lm.rotation.x = Math.PI / 2;
 
     this.tm = new THREE.Mesh(text, tmat);
     /*text.computeBoundingBox();
@@ -511,8 +511,8 @@ function SplashController( game, camera, scene, isGameover ) {
 
     this.textMesh = new THREE.Object3D();
     this.textMesh.add(this.tm);
-    this.textMesh.position.y = -30;
-    this.textMesh.position.z = 120;
+    /*this.textMesh.position.y = -30;
+    this.textMesh.position.z = 120;*/
 
     this.logoMesh = new THREE.Object3D();
     this.logoMesh.add(this.lm);
