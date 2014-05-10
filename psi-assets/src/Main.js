@@ -503,15 +503,12 @@ function SplashController( game, camera, scene, isGameover ) {
     this.lm.rotation.x = Math.PI / 2;
 
     this.tm = new THREE.Mesh(text, tmat);
-    /*text.computeBoundingBox();
-    var titleTextWidth = text.boundingBox.max.x - text.boundingBox.min.x;*/
-    //this.tm.position.set( -18.76, -40, 120 );
     this.tm.position.x = -18.76;
     this.tm.scale = new THREE.Vector3(2,2,2);
 
     this.textMesh = new THREE.Object3D();
     this.textMesh.add(this.tm);
-    this.textMesh.position.y = -40;
+    this.textMesh.position.y = -50;
     this.textMesh.position.z = 120;
 
     this.logoMesh = new THREE.Object3D();
