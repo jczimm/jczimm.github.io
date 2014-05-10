@@ -491,7 +491,7 @@ function SplashController( game, camera, scene, isGameover ) {
 
     var text = new THREE.TextGeometry( "PSI",
         {
-            size: 20, height: 4, curveSegments: 4,
+            size: 10, height: 4, curveSegments: 4,
             font: "helvetiker", style: "normal"
         });
     var logo = window.main.loader.get("psi-assets/assets/models/tessitron_logo.js");
