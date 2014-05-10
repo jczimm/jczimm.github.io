@@ -491,10 +491,11 @@ function SplashController( game, camera, scene, isGameover ) {
 
     var text = new THREE.TextGeometry( "PSI",
         {
-            size: 10, height: 4, curveSegments: 4,
+            size: 20, height: 4, curveSegments: 4,
             font: "helvetiker", style: "normal"
         });
     var logo = window.main.loader.get("psi-assets/assets/models/tessitron_logo.js");
+    
     var tmat = new THREE.MeshPhongMaterial( { color: 0xffffff, shading: THREE.FlatShading  } );
     var lmat = new THREE.MeshPhongMaterial( { color: 0xf2e85c, shading: THREE.FlatShading  } );
 
@@ -502,8 +503,11 @@ function SplashController( game, camera, scene, isGameover ) {
     this.lm.rotation. x = Math.PI / 2;
 
     this.tm = new THREE.Mesh(text, tmat);
-    this.tm.position.x = -10;
-    this.tm.scale = new THREE.Vector3(2,2,2);
+    /*text.computeBoundingBox();
+    var titleTextWidth = text.boundingBox.max.x - text.boundingBox.min.x;*/
+    this.tm.position.set( -18.76, -40, 120 );
+    //this.tm.position.x = -10;
+    //this.tm.scale = new THREE.Vector3(2,2,2);
 
     this.textMesh = new THREE.Object3D();
     this.textMesh.add(this.tm);
