@@ -16,6 +16,7 @@ BigChunk.prototype.build = function() {
     this.items = [
 		{time:0.0, action:function(game){ game.enableKey(3) } },
 		{time:0.0, action:function(game){ game.enableKey(4) } },
+		{time:0.0, action:function(game){ game.moveCamera(new THREE.Vector3(0, 0, 200), new THREE.Vector3(0,0,0), 1.0) } },
 				
 		{time:0.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-200,800,0), 30, 0) ) } },
 		{time:0.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(200,800,0), 30, 0) ) } },
