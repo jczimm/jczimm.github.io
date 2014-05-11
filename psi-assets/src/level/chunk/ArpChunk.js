@@ -24,7 +24,7 @@ ArpChunk.prototype.build = function() {
         {time:0.9, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(80,800,0), 30, 3, 3) ) } },
 		{time:1.2, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(240,800,0), 30, 4, 4) ) } },
 		
-		{time:1.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(400,800,0), 30, 5, 5) ) } },
+		//{time:1.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(400,800,0), 30, 5, 5) ) } },
 		
         {time:1.8, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(240,800,0), 30, 6, 4) ) } },
 		{time:2.1, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(80,800,0), 30, 7, 3) ) } },
@@ -38,7 +38,7 @@ ArpChunk.prototype.build = function() {
 		{time:3.9, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(80,800,0), 30, 13, 3) ) } },
         {time:4.2, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(240,800,0), 30, 14, 4) ) } },
 		
-        {time:4.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(400,800,0), 30, 13, 5) ) } },
+        //{time:4.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(400,800,0), 30, 13, 5) ) } },
 		
 		{time:4.8, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(240,800,0), 30, 12, 4) ) } },
         {time:6.1, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(80,800,0), 30, 11, 3) ) } },
