@@ -1,8 +1,8 @@
-function Baddie(pos, size, note) {
+function Baddie(pos, size, note, type) {
     //
     this.target = new GameObject();
     this.note = note;
-    this.type = note % 5;
+    this.type = type || note % 5;
     this.shape = Math.floor(note / 5);
 
     this.size = size;
