@@ -33,7 +33,7 @@ function Baddie(pos, size, note) {
             color = 0xf2e85c;
             break;
         case 4:
-            //purpp
+            //purple
             color = 0x9572c0;
             break;
     }
@@ -49,7 +49,7 @@ function Baddie(pos, size, note) {
         case 1:
             //geom = new THREE.CubeGeometry(this.size, this.size, this.size, 1);
             geom = window.main.loader.get("psi-assets/assets/models/tritorus.js");
-             s = 0.75;
+            s = 0.75;
             break;
         case 2:
             //geom = new THREE.OctahedronGeometry(this.size, 1)
