@@ -17,20 +17,30 @@ BigChunk.prototype.build = function() {
 		{time:0.0, action:function(game){ game.enableKey(3) } },
 				
 		{time:0.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-200,800,0), 30, 0) ) } },
+		{time:0.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(200,800,0), 30, 0) ) } },
+		{time:0.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-200,800,0), 30, 0) ) } },
         {time:0.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(200,800,0), 30, 0) ) } },
+		{time:1.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(200,800,0), 30, 5) ) } },
         {time:1.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-200,800,0), 30, 5) ) } },
 
         {time:1.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(100,800,0), 30, 1) ) } },
+		{time:1.7, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(100,800,0), 30, 1) ) } },
         {time:2.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-200,800,0), 30, 1) ) } },
+		{time:2.2, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-200,800,0), 30, 1) ) } },
 		{time:2.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(250,800,0), 30, 6) ) } },
+		{time:2.8, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-400,800,0), 30, 6) ) } },
 
         {time:3.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-200,800,0), 30, 2) ) } },
+		{time:3.1, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(200,800,0), 30, 2) ) } },
         {time:3.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(0,800,0), 30, 2) ) } },
-        {time:4.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(200,800,0), 30, 7) ) } },
+        {time:4.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-200,800,0), 30, 7) ) } },
+		{time:4.1, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(200,800,0), 30, 7) ) } },
        
-        {time:4.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(259,800,0), 30, 3) ) } },
+        {time:4.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(250,800,0), 30, 3) ) } },
+		{time:4.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(0,800,0), 30, 3) ) } },
         {time:5.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(200,800,0), 30, 3) ) } },
 		{time:5.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(250,800,0), 30, 8) ) } },
+		{time:5.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(0,800,0), 30, 8) ) } },
 
 		{time:8, action:function(game){ game.makeLinkedBaddies( [
             new Baddie(new THREE.Vector3(-10,800,0), 10, 2),
