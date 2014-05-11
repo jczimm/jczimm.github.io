@@ -93,7 +93,7 @@ ClimaxChunk.prototype.build = function() {
 		//death		
 
         // this is an easy way to add 'padding' to the end of a chunk
-        {time:40.0, action:function(game){ game.gameOver() }}
+        //{time:40.0, action:function(game){ game.gameOver() }}
     ];
 };
 
