@@ -90,7 +90,7 @@ ClimaxChunk.prototype.build = function() {
             new Baddie(new THREE.Vector3(-60,-550,0), 5, 1),
             new Baddie(new THREE.Vector3(-50,-600,0), 5, 2) ])}},
 			
-		{time:40.0, action:function(game){ game.boss.hit(69) } }
+		{time:35.0, action:function(game){ game.boss.hit(42069) } }
 		
 		//death		
 

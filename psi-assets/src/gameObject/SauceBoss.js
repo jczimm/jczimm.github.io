@@ -76,8 +76,8 @@ SauceBoss.prototype.update = function (dt) {
     this.ring2.rotation.x -= 0.05;
     this.ring2.rotation.y -= 0.05;
 
-    this.spikes.rotation.x += 0.025;
-    this.spikes.rotation.z -= 0.025;
+    this.spikes.rotation.x += Math.random()/20;
+    this.spikes.rotation.z -= Math.random()/20;
 
     GameObject.prototype.update.call(this, dt);
 };

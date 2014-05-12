@@ -63,7 +63,7 @@ BigChunk.prototype.build = function() {
         // basic baddies: pos, size, note(0-14)
 		
         // reset camera to default position. (time)
-        {time:20.0, action:function(game){ game.defaultCamera(1.5)} },
+        //{time:20.0, action:function(game){ game.defaultCamera(1.5)} },
 
         // this is an easy way to add 'padding' to the end of a chunk
         {time:23.0, action:function(game){ }}
