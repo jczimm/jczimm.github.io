@@ -397,7 +397,7 @@ GameOver.prototype.onStart = function( game ) {
     this.controller = new SplashController( game, this.camera, this.scene, true );
     game.controllers.push( this.controller );
 
-    if(window.game_win == true){
+    if(window.game_win){
         game.loader.get("psi-assets/sound/gameover-win").play();
     }else{
         game.loader.get("psi-assets/sound/gameover-lose").play();

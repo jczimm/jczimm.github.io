@@ -21,6 +21,9 @@ Level.prototype.update = function(dt) {
 
 Level.prototype.build = function() {
     this.chunks = [
+		new BossChunk(this),
+		new ChorusChunk(this),
+		new ClimaxChunk(this),
         new IntroChunk(this),
         new SparseChunk(this),
         new FourthNoteChunk(this),
