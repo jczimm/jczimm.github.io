@@ -22,6 +22,8 @@ BossChunk.prototype.build = function() {
             game.bossMove(new THREE.Vector3(0, 500, 0)) } },
         {time:1.0, action:function(game){ game.moveCamera(new THREE.Vector3(0,-150, 125), new THREE.Vector3(0,100,0), 1.0) } },
 		
+		{time:2.0, action:function(game){ game.killBoss() } }
+		
 		{time:3.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(0,500,0), 5, 9) ) } },
 		
 		{time:4.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(0,500,0), 5, 4) ) } },

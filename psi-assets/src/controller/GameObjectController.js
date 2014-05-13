@@ -407,11 +407,7 @@ GameObjectController.prototype.hitBaddie = function (baddie, chain) {
                 this.main.loader.get( "psi-assets/sound/bosshit" ).play(); // temp
                 this.shake = 2.0;
             }else{
-                this.main.loader.get( "psi-assets/sound/bossdeath" ).play(); // temp
-                this.shake = 5.0;
-                this.main.state.scene.remove(this.boss.holder);
-                this.boss.active = false;
-                this.spawnBossDieParticles();
+                this.killBoss();
                 window.game_win = true;
             }
         }
@@ -495,3 +491,11 @@ GameObjectController.prototype.gameOver = function () {
         game.setState( new GameOver() );
     });
 };
+
+GameObjectController.prototype.killBoss = function() {
+	this.main.loader.get( "psi-assets/sound/bossdeath" ).play(); // temp
+	this.shake = 5.0;
+	this.main.state.scene.remove(this.boss.holder);
+	this.boss.active = false;
+	this.spawnBossDieParticles();
+}
