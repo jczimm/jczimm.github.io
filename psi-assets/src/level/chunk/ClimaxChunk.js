@@ -90,7 +90,14 @@ ClimaxChunk.prototype.build = function() {
             new Baddie(new THREE.Vector3(-60,-550,0), 5, 1),
             new Baddie(new THREE.Vector3(-50,-600,0), 5, 2) ])}},
 			
-		{time:28.0, action:function(game){ game.boss.hit(42069) } }
+		{time:28.0, action:function(game){ with(game){
+				main.loader.get( "psi-assets/sound/bossdeath" ).play(); // temp
+                shake = 5.0;
+                main.state.scene.remove(this.boss.holder);
+                boss.active = false;
+                spawnBossDieParticles();
+			}
+		} }
 		
 		//death		
 
