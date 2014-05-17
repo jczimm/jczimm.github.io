@@ -1,0 +1,94 @@
+<html>
+  <head>
+    <link href='//fonts.googleapis.com/css?family=Cousine' rel='stylesheet' type='text/css'>
+    <script src='//code.jquery.com/jquery-2.1.1.min.js'></script>
+    <script src='tea.js'></script>
+	<script src='f8-a6.js'></script>
+    <style>
+    *{
+      font-family: 'Cousine';
+    }
+    .n{
+      width:100%;
+    }
+    #go{
+      border:2px solid black;
+      text-align:center;
+      width:5%;
+    }
+    input{
+      width:20%;
+    }
+    </style>
+    <script>
+      function clueDecrypt(){
+        $("#outpsg").html($.parseHTML(decrypt(msgs[$('#cluebox').val()],$('#keybox').val())));
+      }
+      
+      $("#keybox").keyup(function(event){
+          if(event.keyCode == 13){
+              clueDecrypt();
+          }
+      });
+      $("#cluebox").keyup(function(event){
+          if(event.keyCode == 13){
+              clueDecrypt();
+          }
+      });
+      $( "#go" ).click(function() {
+        clueDecrypt();
+      });
+    </script>
+    <style src='style.css'></style>
+  </head>
+  <title>F8C7A6</title>
+  <h1>F8C7A6</h1>
+  <div class='.n'>
+    Hello. This is F8C7A6. You are obviously here for a reason. I assume you mean to use the decrypter (at the bottom of the page).
+    <div id = 'newsdiv'>
+      <h1>News</h1>
+      <div>
+        
+      </div>
+      <div class='news'>
+        <h2>16 MAY 2014 4:25 PM</h2>
+        <div>Hello. We have collected the names submitted. The current participants in the hunt are (by initials):</div><br />
+        AC<br />
+        SG<br />
+        AM<br />
+        EC<br />
+        JR<br />
+        JZ<br />
+        JD<br />
+        NH<br />
+        NS<br />
+        NP<br />
+        KZ<br />
+        SH<br /><br />
+        If your initals are not on this list and you would like to participate, please see our <a href='contact'>contact page</a> and send us an email.<br />
+        We would also like to remind all participants that you <i>must</i> work together. Any team or alliance creation before the time is appropriate (which we will make obvious when) will receive consequences in the hunt.<br />
+        Please report instances of non-teamwork to us.<br /><br />
+        F8C7A6 - Always Watching
+      </div>
+      <div class='news'>
+      <h2>16 MAY 2014 2:40 PM</h2>
+      I believe that the third clue has been withdrawn. You may be wondering why the second clue was Clue 03. This is because I deemed Clue 02 excessive. I may release the passkey for Clue 2 at the end of the hunt.
+      </div>
+      <div class='news'>
+        <h2>16 MAY 2014 2:30 PM</h2>
+        It seems I have forgotten to include one message on Clue 01. I forgot to emphasize that it is <b>critical</b> that all hunters work together during the beginning of the hunt. Please share information about clues you find, and work with others to find solutions to riddles.
+      </div>
+    </div>
+  </div>
+  <div>
+    <h2>Decrypt</h2>
+    <div><input type=text id='keybox' placeholder="Enter Passkey from Clue"></input></div>
+    <div><input type=text id='cluebox' placeholder="Enter Clue Number (two digits)"></input></div>
+  </div>
+    <div id='go' onclick="clueDecrypt();">Go</div>
+  <div id='outpsg' class='.n'>
+    To use the decyption tool, enter the passkey from the clue you received and the clue number which you received. This not only grants you access to an online copy of clues, but also repels impostors.
+    Don't forget to view the source of this page to see comments in the HTML file.
+  </div>
+<html>
+<!--          Hint - I have added some simplification to the code on this page to allow you to understand it better.      -->
