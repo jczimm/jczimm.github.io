@@ -14,9 +14,9 @@
 {
     $subject  = $_REQUEST['subject'];
     $message = $_REQUEST['message'];
-    $email = "example@test.com";
+    $email = "jczimm.alias@gmail.com";
     mail($email, $subject, $message);
-    echo "<center>Email sent</center>";
+    echo "Email sent";
 }
 
 ?>
