@@ -67,6 +67,22 @@
 <body>
 	<span id="highscore"></span>
 	<script type="text/javascript">
+
+    	var $_GET = location.search.substr(1).split("&").reduce( function( obj, val ){
+		    if( !val ) return obj;
+		    var pair = val.split("=");
+		    obj[pair[0]] = pair[1];
+		    return obj;
+		}, {} );
+	    $(document).ready(function(){
+		if($_GET["p"]=="no"){
+			$("body").click(function(){
+				parent.document.location.href = "http://jczimm.github.io/psi";
+			});
+			$("*").css("cursor","pointer");
+		}
+	    });
+
 		var app = new Main();
 	</script>
 </body>
