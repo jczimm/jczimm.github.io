@@ -11,7 +11,7 @@ function Connection(ip,port){
 }
 
 function send(m){
-	Main.socket.send( m );
+	Main.socket.send(JSON.stringify({msg:m,date:new Date();}));
 }
 
 var Main = new Connection('192.168.3.155','8888');
