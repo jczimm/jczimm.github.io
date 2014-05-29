@@ -1,10 +1,13 @@
 html, body, #messages {
 	width: 100%;
-	height: 100%;
 	overflow-y: scroll;
 	overflow-x: none;
 }
 
-#msg-box, .msg {
+html, body {
+	height: 100%;
+}
+
+* {
 	font-family: "Courier New", Monospace;
 }
