@@ -14,4 +14,4 @@ function send(m){
 	Main.socket.send( m );
 }
 
-var Main = new Connection('24.34.92.82','8888')
+var Main = new Connection('108.49.225.239','8888')
