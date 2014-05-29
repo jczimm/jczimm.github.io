@@ -1,4 +1,4 @@
-var WebSocketServer = require('ws').Server, GameServer = new WebSocketServer({port:8888}), game = require('./game.js');
+var WebSocketServer = require('ws').Server, GameServer = new WebSocketServer({port:8888});
 
 GameServer.on('connection',function(ws){
 	ws.on('message',function(message){
