@@ -8,6 +8,20 @@ html, body {
 	height: 100%;
 }
 
+tr {
+	width: 100%;
+}
+td {
+	width: 50%;
+}
+.msg {
+	text-align: left;
+	word-break: keep-all;
+}
+.time {
+	text-align: right;
+}
+
 * {
 	font-family: "Courier New", Monospace;
 }

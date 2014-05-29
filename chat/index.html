@@ -7,7 +7,7 @@
 			Main.socket.onmessage = function(m){
 				var data = JSON.parse(m.data);
 				console.log(data);
-				$("#messages").prepend("<tr class='msg'><td>" + data.msg + "</td><td>" + data.date +"</td></tr>");
+				$("#messages").prepend("<tr class='line'><td class='msg'>" + data.msg + "</td><td class='time'>" + data.time +"</td></tr>");
 			}
 		</script>
 		
