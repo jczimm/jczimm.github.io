@@ -1,6 +1,5 @@
 html, body, #messages {
 	width: 100%;
-	overflow-y: scroll;
 	overflow-x: none;
 }
 
