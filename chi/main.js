@@ -20,12 +20,14 @@ var main_state = {
         // This function will be called after the preload function. Here we set up the game, display sprites, add labels, etc.
 		// Display a sprite on the screen
 		// Parameters: x position, y position, name of the sprite
-		this.hello_sprite = game.add.sprite(250, 300, 'hello');  
+		this.hello_sprite = game.add.sprite(width/2, height/2, 'hello');  
     },
 
     update: function() {
         // This is where we will spend the most of our time. This function is called 60 times per second to update the game.
 		// Increase the angle of the sprite by one degree
+		this.hello_sprite.x = width/2;
+		this.hello_sprite.x = height/2;
 		this.hello_sprite.angle += 1;  
     } 
 }
@@ -40,9 +42,8 @@ var display = {
             game.stage.bounds.width = Number(width);
             game.stage.bounds.height = Number(height);
             game.renderer.resize(Number(width), Number(height));
-            Phaser.Canvas.setSmoothingEnabled(game.context, false);
         } catch (e) {
-            console.log("Error description: "+e.message);
+            console.log("Error: "+e.message);
         }
 
     }
