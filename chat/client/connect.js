@@ -1,6 +1,6 @@
 function Connection(ip,port){
-	this.ip = ip ? ip : 'localhost';
-	this.port = port ? port : '8888';
+	this.ip = ip || 'localhost';
+	this.port = port || '8888';
 	this.socket = new WebSocket('ws://' + this.ip + ':' + this.port);
 	this.newConnection = function(){
 		this.socket = new WebSocket('ws://' + this.ip + ':' + this.port);
@@ -14,4 +14,4 @@ function send(m){
 	Main.socket.send( m );
 }
 
-var Main = new Connection(/*'24.218.153.164','8888'*/);
+var Main = new Connection('24.218.153.164','8888');
