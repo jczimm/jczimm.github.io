@@ -34,8 +34,8 @@ var main_state = {
 
 var display = {
     resize: function () {
-		window.height = $(window).innerHeight();
-		window.width = $(window).innerWidth();
+		window.height = $(window).height();
+		window.width = $(window).width();
         try {
             game.width = Number(width);
             game.height = Number(height);
