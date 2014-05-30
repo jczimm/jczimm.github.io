@@ -9,5 +9,3 @@ function Connection(ip,port){
 		console.log(m.data);
 	}
 }
-
-var IP = prompt("connect to ip:"), Main = new Connection(IP,'8888');
