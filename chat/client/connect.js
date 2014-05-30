@@ -1,6 +1,6 @@
 function Connection(ip,port){
-	this.ip = ip ? ip : 'localhost';
-	this.port = port ? port : '8888';
+	this.ip = ip || 'localhost';
+	this.port = port || '8888';
 	this.socket = new WebSocket('ws://' + this.ip + ':' + this.port);
 	this.newConnection = function(){
 		this.socket = new WebSocket('ws://' + this.ip + ':' + this.port);
@@ -11,7 +11,7 @@ function Connection(ip,port){
 }
 
 function send(m){
-	Main.socket.send( m );
+	Main.socket.send(JSON.stringify({msg:m, time:new Date()}));
 }
 
-var Main = new Connection('192.168.1.131','8888')
+var Main = new Connection('192.168.3.155','8888');

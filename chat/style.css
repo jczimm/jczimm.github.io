@@ -1,0 +1,26 @@
+html, body, #messages {
+	width: 100%;
+	overflow-x: hidden;
+}
+
+html, body {
+	height: 99%;
+}
+
+tr {
+	width: 100%;
+}
+td {
+	width: 50%;
+}
+.msg {
+	text-align: left;
+	word-break: keep-all;
+}
+.time {
+	text-align: right;
+}
+
+* {
+	font-family: "Courier New", Monospace;
+}
