@@ -14,4 +14,4 @@ function send(m){
 	Main.socket.send(JSON.stringify({msg:m, time:new Date()}));
 }
 
-var Main = new Connection('192.168.3.155','8888');
+var Main = new Connection('192.168.1.131','8888');
