@@ -3,7 +3,7 @@ var WebSocketServer = require('ws').Server, MainServer = new WebSocketServer({po
 MainServer.on('connection',function(ws){
 	ws.on('message',function(message){
 		console.log(message);
-		GameServer.broadcast(message);
+		MainServer.broadcast(message);
 	});
 });
 
