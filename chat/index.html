@@ -1,25 +1,17 @@
 <html>
 	<head>
 		<title>chat</title>
-		<script type='text/javascript' src='//code.jquery.com/jquery-2.1.1.min.js'></script>
+		<script src='//code.jquery.com/jquery-2.1.1.min.js'></script>
 		<script src='client/connect.js'></script>
-		<script type='text/javascript'>
-			Main.socket.onmessage = function(m){
-				var data = JSON.parse(m.data);
-				console.log(data);
-				$("#messages").prepend("<tr class='line'><td class='msg'>" + data.msg + "</td><td class='time'>" + data.time +"</td></tr>");
-			}
-		</script>
+		<script src='client/messages.js'></script>
 		
 		<link href='style.css' rel='stylesheet'>
 	</head>
 	<body>
 		<div id="wrapper">
 			<h1>chat</h1>
-			<input type='text' id='msg-box'><input type='button' id='submit' onclick='send($("#msg-box").val())'>
-			<table id='messages'>
-				
-			</table>
+			<input type='text' id='msg-box'><input type='button' id='submit'>
+			<table id='messages'></table>
 		</div>
 	</body>
 </html>
