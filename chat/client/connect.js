@@ -11,3 +11,4 @@ function Connection(ip,port){
 }
 
 var IP = prompt("connect to ip:"), Main = new Connection(IP,'8888');
+initDisplay();
