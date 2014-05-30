@@ -7,8 +7,6 @@ function send(m){
 	Main.socket.send(JSON.stringify(new Message(m, new Date())));
 }
 
-$("#submit").onclick(function(){ send($("#msg-box").val()) });
-
 function initDisplay(){
 	Main.socket.onmessage = function(m){
 		var data = JSON.parse(m.data);
