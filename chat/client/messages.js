@@ -4,8 +4,14 @@ function Message(user,msg,time){
 	this.time = time || new Date();
 }
 
+function submit(){
+	send($("#msg-box").val());
+	$("#msg-box").val("");
+}
+
 var msgs = [];
 function send(m){
+	if(m === undefined) return;
 	var msg = new Message(USERNAME, m);
 	Main.socket.send(JSON.stringify(msg));
 	msgs.push(msg);
@@ -16,7 +22,7 @@ var lm = new Message();
 function initDisplay(){
 	Main.socket.onmessage = function(m){
 		var data = JSON.parse(m.data);
-		var userToDisplay = lm.user === data.user ? "" : data.user;
+		var userToDisplay = lm.user === data.user ? "" : data.user === USERNAME ? "<b>me</b>" : data.user;
 		$("#messages").prepend("<tr class='line'><td class='user'>"+userToDisplay+"</td><td class='msg'>"+data.msg+"</td><td class='time'>"+data.time+"</td></tr>");
 		lm = data;
 	}
