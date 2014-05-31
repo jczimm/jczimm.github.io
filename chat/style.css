@@ -1,6 +1,12 @@
-html, body, #messages {
+html, body {
 	width: 100%;
 	overflow-x: hidden;
+}
+
+#messages {
+	width: 84%;
+	position: relative;
+	margin: 0px auto;
 }
 
 html, body {
