@@ -6,7 +6,7 @@ MainServer.on('connection',function(ws){
 	ws.on('message',function(message){
 		message = JSON.parse(message);
 		message.msg = markdown.toHTML(message.msg);
-		message = JSON.toString(message);
+		message = JSON.stringify(message);
 		console.log(message);
 		MainServer.broadcast(message);
 	});

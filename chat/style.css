@@ -28,8 +28,7 @@ td {
 }
 .user {
 	text-align: left;
-	font-family: "Consolas", Monospace;
-	font-size: 1.3em;
+	font-size: 1.2em;
 }
 .msg {
 	text-align: center;
@@ -43,7 +42,7 @@ td {
 }
 
 * {
-	font-family: "Courier New", Monospace;
+	font-family: "Consolas", Monospace;
 }
 
 h1 {
