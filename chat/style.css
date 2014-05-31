@@ -28,13 +28,18 @@ td {
 }
 .user {
 	text-align: left;
+	font-family: "Consolas", Monospace;
+	font-size: 1.3em;
 }
 .msg {
 	text-align: center;
-	word-break: keep-all;
+	word-break: break-all;
 }
 .time {
 	text-align: right;
+}
+.me {
+	color: #1C9AE8;
 }
 
 * {

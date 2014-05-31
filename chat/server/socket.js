@@ -1,9 +1,11 @@
-var WebSocketServer = require('ws').Server, MainServer = new WebSocketServer({port:8888});
+var WebSocketServer = require('ws').Server,
+	MainServer = new WebSocketServer({port:8888}),
+	markdown = require('markdown').markdown;
 
 MainServer.on('connection',function(ws){
 	ws.on('message',function(message){
 		console.log(message);
-		MainServer.broadcast(message);
+		MainServer.broadcast(markdown.toHTML(message));
 	});
 });
 
