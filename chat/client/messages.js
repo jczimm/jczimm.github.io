@@ -11,7 +11,8 @@ function send(u,m){
 	msgs.push(msg);
 }
 
-var lm;
+// create an empty message to init `lm`
+var lm = new Message();
 function initDisplay(){
 	Main.socket.onmessage = function(m){
 		var data = JSON.parse(m.data);

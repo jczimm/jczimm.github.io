@@ -10,8 +10,11 @@ function Connection(ip,port){
 	}
 }
 
-var USERNAME = prompt("choose a username"),
-IP = prompt("connect to ip"),
+do {
+	var USERNAME = prompt("choose a username");
+} while(USERNAME === undefined);
+
+var IP = prompt("connect to ip"),
 
 Main = new Connection(IP,'8888');
 initDisplay();
