@@ -22,6 +22,5 @@ var Main = new Connection(IP,'8888'),
 do {
 	USERNAME = prompt("choose a username");
 } while(USERNAME === undefined);
-Main.socket.send(JSON.stringify(new Message(USERNAME, "userJoin", undefined, "transmission")));
 
 initDisplay();

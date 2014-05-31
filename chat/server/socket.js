@@ -3,6 +3,12 @@ var WebSocketServer = require('ws').Server,
 	markdown = require('markdown').markdown;
 
 MainServer.on('connection',function(ws){
+	MainServer.broadcast(JSON.stringify({
+		user: "SERVER",
+		msg: "addNewUser",
+		time: undefined,
+		type: "transmission"
+	}));
 	ws.on('message',function(message){
 		message = JSON.parse(message);
 		if(message.type === "message") message.msg = markdown.toHTML(message.msg);
