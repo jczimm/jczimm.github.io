@@ -33,7 +33,7 @@ td {
 	font-size: 1.2em;
 }
 .msg {
-	text-align: center;
+	text-align: left;
 	word-break: break-all;
 }
 .time {
@@ -48,7 +48,8 @@ td {
 }
 
 code {
-	font-family: Monospace;
+	font-family: Consolas, Monospace;
+	background-color: #fff18f;
 }
 
 h1 {

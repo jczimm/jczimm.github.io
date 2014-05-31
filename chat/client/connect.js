@@ -5,13 +5,18 @@ function Connection(ip,port){
 	this.newConnection = function(){
 		this.socket = new WebSocket('ws://' + this.ip + ':' + this.port);
 	}
+	this.testConnection = function(){
+		this.socket.send(new Transmission("testConnection"));
+	}
+	this.testPulse = false;
 	this.socket.onmessage = function(m){
 		console.log(m.data);
 	}
 }
 
+var USERNAME;
 do {
-	var USERNAME = prompt("choose a username");
+	USERNAME = prompt("choose a username");
 } while(USERNAME === undefined);
 
 var IP, ipRegexp = /^(?:(?:2[0-4]\d|25[0-5]|1\d{2}|[1-9]?\d)\.){3}(?:2[0-4]\d|25[0-5]|1\d{2}|[1-9]?\d)$/;
@@ -22,4 +27,5 @@ else {
 }
 
 var Main = new Connection(IP,'8888');
+//if(Main.testConnection()) Main.socket.send(new Transmission("userJoin", USERNAME));
 initDisplay();
