@@ -44,7 +44,7 @@ h1 {
 
 #msg-box {
 	height: 1.6em;
-	padding: 3px, 0px, 3px, 0px;
+	padding: 3px 0px 3px 0px;
 	font-size: 1.5em;
 	width: 100%;
 }
@@ -54,7 +54,7 @@ h1 {
 }
 
 #submit {
-	padding: 3px, 0px, 3px, 0px;
+	padding: 3px 0px 3px 0px;
 	cursor: pointer;
 	width: 7%;
 	background-color: #f8c7a6; /* My Ode to Fate */
