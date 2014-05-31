@@ -23,5 +23,5 @@ else {
 }
 
 var Main = new Connection(IP,'8888');
-//Main.socket.send(new Message(USERNAME, "userJoin"));
+Main.socket.send(JSON.stringify(new Message(USERNAME, "userJoin", undefined, "transmission")));
 initDisplay();
