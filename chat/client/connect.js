@@ -14,7 +14,12 @@ do {
 	var USERNAME = prompt("choose a username");
 } while(USERNAME === undefined);
 
-var IP = prompt("connect to ip"),
+var IP, ipRegexp = /^(?:(?:2[0-4]\d|25[0-5]|1\d{2}|[1-9]?\d)\.){3}(?:2[0-4]\d|25[0-5]|1\d{2}|[1-9]?\d)$/;
+if(location.hash.replace("#","").match(ipRegexp)) IP = location.hash.replace("#","");
+else {
+	IP = prompt("connect to ip");
+	while(!IP.match(ipRegexp)) IP = prompt("invalid ip");
+}
 
-Main = new Connection(IP,'8888');
+var Main = new Connection(IP,'8888');
 initDisplay();
