@@ -16,7 +16,8 @@ var lm = new Message();
 function initDisplay(){
 	Main.socket.onmessage = function(m){
 		var data = JSON.parse(m.data);
-		$("#messages").prepend("<tr class='line'><td class='user'>"+ lm.user === data.user ? "" : data.user +"</td><td class='msg'>" + data.msg + "</td><td class='time'>" + data.time +"</td></tr>");
+		var userToDisplay = lm.user === data.user ? "" : data.user;
+		$("#messages").prepend("<tr class='line'><td class='user'>"+UserToDisplay+"</td><td class='msg'>"+data.msg+"</td><td class='time'>"+data.time+"</td></tr>");
 		lm = data;
 	}
 }
