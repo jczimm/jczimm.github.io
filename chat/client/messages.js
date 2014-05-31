@@ -6,7 +6,7 @@ function Message(user,msg,time){
 
 var msgs = [];
 function send(u,m){
-	var msg = new Message(USERNAME, m));
+	var msg = new Message(USERNAME, m);
 	Main.socket.send(JSON.stringify(msg));
 	msgs.push(msg);
 }
