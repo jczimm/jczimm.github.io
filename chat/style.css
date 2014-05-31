@@ -13,8 +13,11 @@ tr {
 td {
 	width: 50%;
 }
-.msg {
+.user {
 	text-align: left;
+}
+.msg {
+	text-align: center;
 	word-break: keep-all;
 }
 .time {

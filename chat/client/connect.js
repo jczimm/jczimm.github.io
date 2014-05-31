@@ -10,5 +10,8 @@ function Connection(ip,port){
 	}
 }
 
-var IP = prompt("connect to ip:"), Main = new Connection(IP,'8888');
+var USERNAME = prompt("choose a username"),
+IP = prompt("connect to ip"),
+
+Main = new Connection(IP,'8888');
 initDisplay();
