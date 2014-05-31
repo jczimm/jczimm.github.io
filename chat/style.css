@@ -3,10 +3,14 @@ html, body {
 	overflow-x: hidden;
 }
 
-#messages {
+#wrapper {
 	width: 84%;
 	position: relative;
 	margin: 0px auto;
+}
+
+#input, #messages {
+	width: 100%;
 }
 
 html, body {
@@ -36,12 +40,6 @@ td {
 
 h1 {
 	text-align: center;
-}
-
-#input {
-	width: 84%;
-	position: relative;
-	margin: 0px auto;
 }
 
 #msg-box {
