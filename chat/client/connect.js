@@ -8,6 +8,7 @@ function Connection(ip,port){
 	this.socket.onmessage = function(m){
 		console.log(m.data);
 	}
+	this.socket.send(JSON.stringify(new Message(USERNAME, "userJoin", undefined, "transmission")));
 }
 
 var USERNAME;
@@ -23,5 +24,4 @@ else {
 }
 
 var Main = new Connection(IP,'8888');
-Main.socket.send(JSON.stringify(new Message(USERNAME, "userJoin", undefined, "transmission")));
 initDisplay();
