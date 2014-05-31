@@ -4,8 +4,11 @@ var WebSocketServer = require('ws').Server,
 
 MainServer.on('connection',function(ws){
 	ws.on('message',function(message){
+		message = JSON.parse(message);
+		message.msg = markdown.toHTML(message.msg);
+		message = JSON.toString(message);
 		console.log(message);
-		MainServer.broadcast(markdown.toHTML(message));
+		MainServer.broadcast(message);
 	});
 });
 
