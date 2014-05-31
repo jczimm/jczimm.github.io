@@ -1,7 +1,9 @@
 <html>
 	<head>
 		<title>chat ip</title>
-		<script src='//code.jquery.com/jquery-2.1.1.min.js'></script>
+		<script src='lib/jquery.min.js'></script>
+		<script src='lib/moment.min.js'></script>
+
 		<script src='client/messages.js'></script>
 		<script src='client/ui.js'></script>
 		<script src='client/connect.js'></script>
@@ -13,8 +15,8 @@
 			<h1>chat ip</h1>
 			<table id='input'>
 				<tr>
-					<td id='msg-box-outer'><input type='text' id='msg-box'></td>
-					<td id='submit-button' placeholder='type here' onclick='submit()'></td>
+					<td id='msg-box-outer'><input placeholder='type here' type='text' id='msg-box'></td>
+					<td id='submit-button'></td>
 				</tr>
 			</table>
 			<table id='messages'></table>

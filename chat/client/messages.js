@@ -5,13 +5,12 @@ function Message(user,msg,time){
 }
 
 function submit(){
-	send($("#msg-box").val());
-	$("#msg-box").val("");
+	send($("#msg-box").val()), $("#msg-box").val("");
 }
 
 var msgs = [];
 function send(m){
-	if(m === undefined) return;
+	if(m === "") return;
 	var msg = new Message(USERNAME, m);
 	Main.socket.send(JSON.stringify(msg));
 	msgs.push(msg);
