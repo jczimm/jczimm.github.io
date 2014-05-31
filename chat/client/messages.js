@@ -35,7 +35,7 @@ function initDisplay(){
 			case "transmission":
 				switch(data.msg){
 					case "addNewUser":
-						Main.socket.send(JSON.stringify(new Message(USERNAME, "userJoin", undefined, "transmission")));
+						users.push(USERNAME);
 						break;
 					case "userJoin":
 						users.push(data.user);
