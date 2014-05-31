@@ -40,6 +40,8 @@ h1 {
 
 #input {
 	width: 84%;
+	position: relative;
+	margin: 0px auto;
 }
 
 #msg-box {
