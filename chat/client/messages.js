@@ -22,7 +22,8 @@ function initDisplay(){
 	Main.socket.onmessage = function(m){
 		var data = JSON.parse(m.data);
 		var userToDisplay = lm.user === data.user ? "" : data.user === USERNAME ? "<b>me</b>" : data.user;
-		$("#messages").prepend("<tr class='line"+userToDisplay===USERNAME?" me":""+"'><td class='user'>"+userToDisplay+"</td><td class='msg'>"+data.msg+"</td><td class='time' data-ot='"+data.time+"' data-ot-delay='0.1'></td></tr>");
+		var isMine = userToDisplay===USERNAME?" me":"";
+		$("#messages").prepend("<tr class='line"+isMine+"'><td class='user'>"+userToDisplay+"</td><td class='msg'>"+data.msg+"</td><td class='time' data-ot='"+data.time+"' data-ot-delay='0.1'></td></tr>");
 		updateDates();
 		lm = data;
 	}
