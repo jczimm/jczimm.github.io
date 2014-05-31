@@ -32,6 +32,6 @@ var updateDatesInterval = setInterval(updateDates,6e4);
 function updateDates(){
 	var $objs = $(".line .time");
 	for(i=0; i<$objs.length; i++){
-		$($objs[i]).text(moment($objs[i].attr("alt")).fromNow());
+		$($objs[i]).text(moment($($objs[i]).attr("alt")).fromNow());
 	}
 }
