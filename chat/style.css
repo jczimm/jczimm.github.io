@@ -33,3 +33,25 @@ td {
 * {
 	font-family: "Courier New", Monospace;
 }
+
+h1 {
+	text-align: center;
+}
+
+#msg-box {
+	height: 1.5em;
+	padding: 3px, 0px, 3px, 0px;
+	font-size: 1.5em;
+}
+
+#msg-box-outer {
+	width: 93%;
+}
+
+#submit {
+	height: 1.5em;
+	padding: 3px, 0px, 3px, 0px;
+	cursor: pointer;
+	width: 7%;
+	background-color: #f8c7a6; /* My Ode to Fate */
+}
