@@ -1,6 +1,8 @@
 html, body {
 	width: 100%;
 	overflow-x: hidden;
+	margin: 0;
+	padding: 0;
 }
 
 #wrapper {
@@ -14,11 +16,12 @@ html, body {
 }
 
 html, body {
-	height: 99%;
+	height: 100%;
 }
 
-tr {
+.line {
 	width: 100%;
+	vertical-align: top;
 }
 td {
 	width: 30%;
@@ -39,6 +42,7 @@ td {
 }
 
 h1 {
+	padding-top: 20px;
 	text-align: center;
 }
 
