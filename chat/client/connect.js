@@ -5,10 +5,6 @@ function Connection(ip,port){
 	this.newConnection = function(){
 		this.socket = new WebSocket('ws://' + this.ip + ':' + this.port);
 	}
-	this.testConnection = function(){
-		this.socket.send(new Transmission("testConnection"));
-	}
-	this.testPulse = false;
 	this.socket.onmessage = function(m){
 		console.log(m.data);
 	}
@@ -27,5 +23,5 @@ else {
 }
 
 var Main = new Connection(IP,'8888');
-//if(Main.testConnection()) Main.socket.send(new Transmission("userJoin", USERNAME));
+//Main.socket.send(new Message(USERNAME, "userJoin"));
 initDisplay();

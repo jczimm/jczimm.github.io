@@ -1,12 +1,8 @@
-function Message(user,msg,time){
+function Message(user,msg,time,type){
 	this.user = user;
 	this.msg = msg;
 	this.time = time || new Date();
-}
-
-function Transmission(type,data){
-	this.type = type;
-	this.data = data;
+	this.type = type || "message";
 }
 
 function submit(){
@@ -28,21 +24,21 @@ var lm = new Message();
 function initDisplay(){
 	Main.socket.onmessage = function(m){
 		var data = JSON.parse(m.data);
-		switch(data.constructor.toString()){
-			case Message.toString():
+		switch(data.type){
+			case "message":
 				var userToDisplay = lm.user === data.user ? "" : data.user === USERNAME ? "<b>me</b>" : data.user;
 				var isMineClass = userToDisplay === USERNAME ? " me" : "";
 				$("#messages").prepend("<tr class='line"+isMineClass+"'><td class='user'>"+userToDisplay+"</td><td class='msg'>"+data.msg+"</td><td class='time' data-ot='"+data.time+"' data-ot-delay='0.1'></td></tr>");
 				updateDates();
 				lm = data;
 				break;
-			case Transmission.toString():
-				switch(data.type){
+			case "transmission":
+				switch(data.msg){
 					case "userJoin":
-						users.push(data.data);
+						users.push(data.user);
 						break;
 					case "userLeave":
-						users.remove(data.data);
+						users.remove(data.user);
 						break;
 				}
 				break;
