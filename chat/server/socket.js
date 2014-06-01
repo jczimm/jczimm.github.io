@@ -6,16 +6,15 @@ var users = 0;
 
 MainServer.on('connection',function(ws){
 	users++;
-	console.log('join');
+	console.log('join, '+users+" users");
 	ws.on('message',function(message){
 		message = parseMessage(message);
 		console.log(message);
 		MainServer.broadcast(message);
 	});
-});
-
-MainServer.on('disconnect',function(ws){
-	users--;
+	ws.on('close', function() {
+		users--;
+	})
 });
 
 function parseMessage(message){

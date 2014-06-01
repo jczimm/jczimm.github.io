@@ -23,25 +23,24 @@ function transmit(m){
 	Main.socket.send(JSON.stringify(msg));
 }
 
-
-function waitForConnect(){
-	var connected = false;
-	while(!connected){
-		try {
-			transmit("test connection");
-			connected = true;
-		}
-		catch(e) {
-			// not connected
-		}
-	}
+function requestUsers(){
+	Main.socket.send(JSON.stringify(new Message(USERNAME,"",undefined,"requestUsers")));
 }
 
 var users;
-waitForConnect();
-Main.socket.send(JSON.stringify(new Message(USERNAME,"",undefined,"requestUsers")));
+var wait = setInterval(function(){
+	try {
+		transmit("test connection");
+		clearInterval(wait);
+	}
+	catch(e) {
+		// not connected
+	}
+});
 
-// create an empty message to init `lm`
+requestUsers();
+
+// create an empty message to init last message (`lm`)
 var lm = new Message();
 function initDisplay(){
 	Main.socket.onmessage = function(m){
@@ -81,3 +80,5 @@ function updateDates(){
 		$($objs[i]).text(moment($($objs[i]).data("ot")).fromNow());
 	}
 }
+
+var requestUsersInterval = setInterval(requestUsers,500);
