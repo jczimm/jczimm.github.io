@@ -68,9 +68,6 @@ function initDisplay(){
 			case "getJoinedUser":
 				if(theNewGuy) sendMsgOfType(USERNAME, "sendJoinedUser"), theNewGuy = false;
 				break;
-			case "getLostUser":
-				sendMsgOfType(USERNAME, "sendLostUser");
-				break;
 		}
 	}
 }

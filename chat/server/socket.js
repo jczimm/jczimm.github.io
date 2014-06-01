@@ -26,14 +26,14 @@ var specialChar = String.fromCharCode(parseInt("420blayzeit",36));
 MainServer.on('connection',function(ws){
 	get("JoinedUser");
 	sendUsersInterval = setInterval(sendUsers,500);
-	console.log('join, '+users+" users");
+	console.log('join, users: '+users.join(specialChar));
 	ws.on('message',function(message){
 		message = parseMessage(message);
 		console.log(message);
 		MainServer.broadcast(message);
 	});
 	ws.on('close', function(){
-		//get("LostUser");
+		console.log('leave, users: '+users.join(specialChar));
 	});
 });
 
