@@ -28,7 +28,7 @@ initDisplay();
 var users;
 
 $("#submit-button").html($statusImage());
-var waitEnd,
+var waitEnd = false,
 	wait = setInterval(function(){
 		try {
 			transmit("test connection");
