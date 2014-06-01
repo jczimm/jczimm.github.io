@@ -17,7 +17,19 @@ function send(m){
 	msgs.push(msg);
 }
 
-var users = [];
+
+function waitForConnect(){
+	try {
+		Main.socket.send("test");
+	}
+	catch(e) {
+		waitForConnect();
+	}
+}
+
+var users;
+waitForConnect();
+Main.socket.send(JSON.stringify(new Message(USERNAME,"",undefined,"requestUsers")));
 
 // create an empty message to init `lm`
 var lm = new Message();
@@ -44,6 +56,9 @@ function initDisplay(){
 						users.remove(data.user);
 						break;
 				}
+				break;
+			case "usersRequest":
+				users = data.msg;
 				break;
 		}
 	}
