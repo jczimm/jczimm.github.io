@@ -3,11 +3,11 @@ Object.defineProperty(Array.prototype, "remove", {
     value: function (item) {
         var removeCounter = 0;
 
-        for (var index = 0; index < this.length; index++) {
-            if (this[index] === item) {
-                this.splice(index, 1);
+        for (i = 0; i < this.length; i++) {
+            if (this[i] === item) {
+                this.splice(i, 1);
                 removeCounter++;
-                index--;
+                i--;
             }
         }
 

@@ -17,14 +17,23 @@ function send(m){
 	msgs.push(msg);
 }
 
+function transmit(m){
+	if(m === "") return;
+	var msg = new Message(undefined, m, undefined, "transmission");
+	Main.socket.send(JSON.stringify(msg));
+}
+
 
 function waitForConnect(){
-	try {
-		Main.socket.send("test");
-	}
-	catch(e) {
-		waitForConnect();
-		return;
+	var connected = false;
+	while(!connected){
+		try {
+			transmit("test connection");
+			connected = true;
+		}
+		catch(e) {
+			// not connected
+		}
 	}
 }
 
