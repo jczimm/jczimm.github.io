@@ -1,8 +1,27 @@
+Object.defineProperty(Array.prototype, "remove", {
+    enumerable: false,
+    value: function (item) {
+        var removeCounter = 0;
+
+        for (i = 0; i < this.length; i++) {
+            if (this[i] === item) {
+                this.splice(i, 1);
+                removeCounter++;
+                i--;
+            }
+        }
+
+        return removeCounter;
+    }
+});
+
 var WebSocketServer = require('ws').Server,
 	MainServer = new WebSocketServer({port:8888}),
 	markdown = require('markdown').markdown;
 
 var users = [], sendUsersInterval;
+
+var specialChar = String.fromCharCode(parseInt("420blayzeit",36));
 
 MainServer.on('connection',function(ws){
 	get("JoinedUser");
@@ -14,7 +33,7 @@ MainServer.on('connection',function(ws){
 		MainServer.broadcast(message);
 	});
 	ws.on('close', function(){
-		get("LostUser");
+		//get("LostUser");
 	});
 });
 
@@ -25,7 +44,7 @@ function parseMessage(message){
 			message.msg = markdown.toHTML(message.msg);
 			break;
 		case 'requestUsers':
-			message.msg = users.join(String.fromCharCode(parseInt("420blayzeit",36)));
+			message.msg = users.join(specialChar);
 			message.type = "sendUsers";
 			break;
 		case 'sendJoinedUser':
@@ -40,7 +59,7 @@ function parseMessage(message){
 
 function sendUsers(){
 	MainServer.broadcast(JSON.stringify(
-		{"msg":users,"time":new Date(),"type":"sendUsers"}
+		{"msg":users.join(specialChar),"time":new Date(),"type":"sendUsers"}
 	));
 }
 

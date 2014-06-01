@@ -37,3 +37,7 @@ var users,
 	});
 
 requestUsers();
+
+window.onbeforeunload = function(){
+	sendMsgOfType(USERNAME, "sendLostUser");
+}
