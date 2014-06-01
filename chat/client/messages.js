@@ -27,19 +27,6 @@ function requestUsers(){
 	Main.socket.send(JSON.stringify(new Message(USERNAME,"",undefined,"requestUsers")));
 }
 
-var users;
-var wait = setInterval(function(){
-	try {
-		transmit("test connection");
-		clearInterval(wait);
-	}
-	catch(e) {
-		// not connected
-	}
-});
-
-requestUsers();
-
 // create an empty message to init last message (`lm`)
 var lm = new Message();
 function initDisplay(){
