@@ -27,13 +27,13 @@ initDisplay();
 
 var users,
 	wait = setInterval(function(){
-	try {
-		transmit("test connection");
-		clearInterval(wait);
-	}
-	catch(e) {
-		// not connected
-	}
-});
+		try {
+			transmit("test connection");
+			clearInterval(wait);
+		}
+		catch(e) {
+			// not connected
+		}
+	});
 
 requestUsers();

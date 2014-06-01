@@ -23,8 +23,15 @@ function transmit(m){
 	Main.socket.send(JSON.stringify(msg));
 }
 
+function sendMsgOfType(m,t){
+	if(m === "") return;
+	var msg = new Message(undefined, m, undefined, t);
+	Main.socket.send(JSON.stringify(msg));
+}
+
 function requestUsers(){
-	Main.socket.send(JSON.stringify(new Message(USERNAME,"",undefined,"requestUsers")));
+	var msg = new Message(USERNAME, "", undefined, "requestUsers");
+	Main.socket.send(JSON.stringify(msg));
 }
 
 // create an empty message to init last message (`lm`)
@@ -53,8 +60,14 @@ function initDisplay(){
 						break;
 				}
 				break;
-			case "usersRequest":
+			case "sendUsers":
 				users = data.msg;
+				break;
+			case "getJoinedUser":
+				sendMsgOfType(USERNAME, "sendJoinedUser");
+				break;
+			case "getLostUser":
+				sendMsgOfType(USERNAME, "sendLostUser");
 				break;
 		}
 	}
@@ -67,5 +80,3 @@ function updateDates(){
 		$($objs[i]).text(moment($($objs[i]).data("ot")).fromNow());
 	}
 }
-
-var requestUsersInterval = setInterval(requestUsers,500);
