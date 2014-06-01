@@ -1,19 +1,4 @@
-Object.defineProperty(Array.prototype, "remove", {
-    enumerable: false,
-    value: function (item) {
-        var removeCounter = 0;
-
-        for (i = 0; i < this.length; i++) {
-            if (this[i] === item) {
-                this.splice(i, 1);
-                removeCounter++;
-                i--;
-            }
-        }
-
-        return removeCounter;
-    }
-});
+Object.defineProperty(Array.prototype,"remove",{enumerable:false,value:function(e){var t=0;for(i=0;i<this.length;i++){if(this[i]===e){this.splice(i,1);t++;i--}}return t}});
 
 var WebSocketServer = require('ws').Server,
 	MainServer = new WebSocketServer({port:8888}),
@@ -26,7 +11,6 @@ var specialChar = String.fromCharCode(parseInt("420blayzeit",36));
 MainServer.on('connection',function(ws){
 	get("JoinedUser");
 	sendUsersInterval = setInterval(sendUsers,500);
-	console.log('join, users: '+users.join(specialChar));
 	ws.on('message',function(message){
 		message = parseMessage(message);
 		console.log(message);
@@ -35,6 +19,7 @@ MainServer.on('connection',function(ws){
 	ws.on('close', function(){
 		console.log('leave, users: '+users.join(specialChar));
 	});
+	console.log('join, users: '+users.join(specialChar));
 });
 
 function parseMessage(message){

@@ -25,19 +25,21 @@ do {
 
 initDisplay();
 
-var users,
+var users, waitEnd,
 	wait = setInterval(function(){
+		$("#submit-button").html($statusImage());
 		try {
 			transmit("test connection");
-			clearInterval(wait);
+			waitEnd = true;
 		}
 		catch(e) {
 			// not connected
 		}
+		if(waitEnd) clearInterval(wait);
 	});
 
 requestUsers();
 
-window.onbeforeunload = function(){
+$(window).unload(function(){
 	sendMsgOfType(USERNAME, "sendLostUser");
-}
+});
