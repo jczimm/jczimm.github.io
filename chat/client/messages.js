@@ -66,7 +66,7 @@ function initDisplay(){
 				users = data.msg;
 				break;
 			case "getJoinedUser":
-				sendMsgOfType(USERNAME, "sendJoinedUser");
+				if(theNewGuy) sendMsgOfType(USERNAME, "sendJoinedUser"), theNewGuy = false;
 				break;
 			case "getLostUser":
 				sendMsgOfType(USERNAME, "sendLostUser");
