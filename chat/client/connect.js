@@ -25,9 +25,11 @@ do {
 
 initDisplay();
 
-var users, waitEnd,
+var users;
+
+$("#submit-button").html($statusImage());
+var waitEnd,
 	wait = setInterval(function(){
-		$("#submit-button").html($statusImage());
 		try {
 			transmit("test connection");
 			waitEnd = true;
@@ -35,8 +37,9 @@ var users, waitEnd,
 		catch(e) {
 			// not connected
 		}
-		if(waitEnd) clearInterval(wait), $("#submit-button").html();
+		if(waitEnd) clearInterval(wait);
 	});
+$("#submit-button").html("");
 
 requestUsers();
 
