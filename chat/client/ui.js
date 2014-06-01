@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	$("#submit").click(submit);
-	$("#msg-box").keypress(function(e){ if(e.keyCode === 13) submit(); });
+	$("#msg-box").keypress(function(e){ if(e.keyCode === 13 && Main.socket.readyState === 1) submit(); });
 });
 
 // removed until I can make the image properly fill `#submit-button`
