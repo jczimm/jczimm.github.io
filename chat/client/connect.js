@@ -37,9 +37,8 @@ var waitEnd,
 		catch(e) {
 			// not connected
 		}
-		if(waitEnd) clearInterval(wait);
+		if(waitEnd) clearInterval(wait), $("#submit-button").html("");
 	});
-$("#submit-button").html("");
 
 requestUsers();
 
