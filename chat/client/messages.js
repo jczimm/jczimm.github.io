@@ -34,6 +34,8 @@ function requestUsers(){
 	Main.socket.send(JSON.stringify(msg));
 }
 
+var theNewGuy = true;
+
 // create an empty message to init last message (`lm`)
 var lm = new Message();
 function initDisplay(){
@@ -53,7 +55,7 @@ function initDisplay(){
 						Main.socket.send(JSON.stringify(new Message(USERNAME, "userJoin", undefined, "transmission")));
 						break;
 					case "userJoin":
-						users.push(data.user);
+						if(theNewGuy) users.push(data.user), theNewGuy = false;
 						break;
 					case "userLeave":
 						users.remove(data.user);
