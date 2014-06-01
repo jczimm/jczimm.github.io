@@ -25,7 +25,6 @@ do {
 
 initDisplay();
 
-$("#submit-button").html($statusImage());
 var users, waitEnd,
 	wait = setInterval(function(){
 		try {
@@ -35,8 +34,13 @@ var users, waitEnd,
 		catch(e) {
 			// not connected
 		}
-		if(waitEnd) clearInterval(wait), $("#submit-button").html();
+		if(waitEnd) clearInterval(wait);
 	});
+
+var checkConnection = setInterval(function(){
+	$("#submit-button").html($statusImage());
+	if(Main.socket.readyState>=1) $("#submit-button").html($statusImage()), clearInterval(checkConnection);
+});
 
 requestUsers();
 
