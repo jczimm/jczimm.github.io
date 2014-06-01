@@ -24,6 +24,7 @@ function waitForConnect(){
 	}
 	catch(e) {
 		waitForConnect();
+		return;
 	}
 }
 
