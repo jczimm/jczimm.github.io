@@ -37,9 +37,13 @@ var users, waitEnd,
 		if(waitEnd) clearInterval(wait);
 	});
 
+$("#submit-button").css("cursor","default");
 var checkConnection = setInterval(function(){
-	$("#submit-button").html($statusImage());
-	if(Main.socket.readyState>=1) $("#submit-button").html($statusImage()), clearInterval(checkConnection);
+	$("#submit-button").css("background-color",statusColor());
+	if(Main.socket.readyState>=1) $("#submit-button").css({
+														"background-color": statusColor(),
+														"cursor": "default"
+													}), clearInterval(checkConnection);
 });
 
 requestUsers();
