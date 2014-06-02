@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic);
+@import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic);
 
 html, body {
 	width: 100%;
@@ -27,6 +27,7 @@ html, body {
 }
 td {
 	width: 30%;
+	max-width: 0;
 }
 .user {
 	text-align: left;

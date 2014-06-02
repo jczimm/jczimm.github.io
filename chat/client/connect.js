@@ -44,7 +44,7 @@ var checkConnection = setInterval(function(){
 							});
 	if(Main.socket.readyState>=1) $("#submit-button").css({
 														"background-color": statusColor(),
-														"cursor": "default"
+														"cursor": Main.socket.readyState === 1 ? "pointer" : "cursor"
 													}), clearInterval(checkConnection);
 });
 

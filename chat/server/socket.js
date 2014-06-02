@@ -27,6 +27,7 @@ function parseMessage(message){
 	switch(message.type){
 		case 'message':
 			message.msg = markdown.toHTML(message.msg);
+			message.user = markdown.toHTML(message.user);
 			break;
 		case 'requestUsers':
 			message.msg = users.join(specialChar);
