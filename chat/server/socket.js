@@ -1,7 +1,7 @@
 Object.defineProperty(Array.prototype,"remove",{enumerable:false,value:function(e){var t=0;for(i=0;i<this.length;i++){if(this[i]===e){this.splice(i,1);t++;i--}}return t}});
 
 var WebSocketServer = require('ws').Server,
-	MainServer = new WebSocketServer({port:8888}),
+	MainServer = new WebSocketServer({port:42069}),
 	markdown = require('markdown').markdown;
 
 var users = [], sendUsersInterval;

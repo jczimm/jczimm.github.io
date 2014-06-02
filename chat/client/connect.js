@@ -1,6 +1,6 @@
 function Connection(ip,port){
 	this.ip = ip || 'localhost';
-	this.port = port || '8888';
+	this.port = port;
 	this.socket = new WebSocket('ws://' + this.ip + ':' + this.port);
 	this.newConnection = function(){
 		this.socket = new WebSocket('ws://' + this.ip + ':' + this.port);
@@ -17,7 +17,7 @@ else {
 	while(!IP.match(ipRegexp)) IP = prompt("invalid ip");
 }
 
-var Main = new Connection(IP,'8888'),
+var Main = new Connection(IP,'42069'),
 	USERNAME;
 do {
 	USERNAME = prompt("choose a username");
