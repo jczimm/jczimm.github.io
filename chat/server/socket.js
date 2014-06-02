@@ -28,6 +28,7 @@ function parseMessage(message){
 		case 'message':
 			message.msg = markdown.toHTML(message.msg);
 			message.user = markdown.toHTML(message.user);
+			message.time = message.time.match("[0-9]*-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}..*");
 			break;
 		case 'requestUsers':
 			message.msg = users.join(specialChar);
