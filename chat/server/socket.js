@@ -1,13 +1,12 @@
 Object.defineProperty(Array.prototype,"remove",{enumerable:false,value:function(e){var t=0;for(i=0;i<this.length;i++){if(this[i]===e){this.splice(i,1);t++;i--}}return t}});
+var diff=function(a,b){return a.filter(function(i){return b.indexOf(i)<0;});};
 
 var WebSocketServer = require('ws').Server,
 	MainServer = new WebSocketServer({port:42069}),
 	markdown = require('markdown').markdown,
 	$ = require('jquery');
 
-var users = [], sendUsersInterval, checkOnUsersInterval;
-
-var userIPs = [];
+var users = [], oldUsers = [], sendUsersInterval, checkOnUsersInterval;
 
 var specialChar = String.fromCharCode(parseInt("420blayzeit",36));
 
@@ -15,13 +14,15 @@ MainServer.on('connection',function(ws){
 	get("JoinedUser");
 	sendUsersInterval = setInterval(sendUsers,500);
 	//checkOnUsersInterval = setInterval(function(ws){console.log(ws._socket.address(), ws._socket.remoteAddress, ws._socket.remotePort)},500);
-	console.log(ws._socket.remoteAddress+" joined");
+	console.log("["+Number(new Date())+"]\t"+ws._socket.remoteAddress+" joined");
 	ws.on('message',function(message){
 		message = parseMessage(message);
 		MainServer.broadcast(message);
 	});
 	ws.on('close', function(){
-		console.log('leave');
+		oldUsers = users, users = [];
+		whosHere();
+		console.log(diff(oldUsers, users)+" left");
 	});
 	//console.log('join');
 });
@@ -44,11 +45,14 @@ function parseMessage(message){
 			break;
 		case 'sendJoinedUser':
 			users.push(message.msg);
-			console.log("["+Number(message.time)+"]\tsendJoinedUser, from "+message.user);
+			console.log("["+Number(message.time)+"]\t("+message.user+" joined)");
 			break;
 		case 'sendLostUser':
 			users.remove(message.msg);
 			console.log("["+Number(message.time)+"]\tsendLostUser, from "+message.user);
+			break;
+		case 'imHere':
+			users.push(message.user);
 			break;
 	}
 	return JSON.stringify(message);
@@ -67,6 +71,12 @@ function checkOnUsers(ws){
 function get(type){
 	MainServer.broadcast(JSON.stringify(
 		{"time":new Date(),"type":"get"+type}
+	));
+}
+
+function whosHere(){
+	MainServer.broadcast(JSON.stringify(
+		{"time":new Date(),"type":"areYouHere"}
 	));
 }
 

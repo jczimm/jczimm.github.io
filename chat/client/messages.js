@@ -68,6 +68,9 @@ function initDisplay(){
 			case "getJoinedUser":
 				if(theNewGuy) sendMsgOfType(USERNAME, "sendJoinedUser"), theNewGuy = false;
 				break;
+			case "areYouHere":
+				Main.socket.send(JSON.stringify(new Message(USERNAME, undefined, "imHere")));
+				break;
 		}
 	}
 }
