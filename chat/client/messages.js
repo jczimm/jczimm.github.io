@@ -1,7 +1,7 @@
-function Message(user,msg,time,type){
+function Message(user,msg,type){
 	this.user = user;
 	this.msg = msg;
-	this.time = time || new Date();
+	this.time = undefined;
 	this.type = type || "message";
 }
 
@@ -19,18 +19,18 @@ function send(m){
 
 function transmit(m){
 	if(m === "") return;
-	var msg = new Message(undefined, m, undefined, "transmission");
+	var msg = new Message(USERNAME, m, "transmission");
 	Main.socket.send(JSON.stringify(msg));
 }
 
 function sendMsgOfType(m,t){
 	if(m === "") return;
-	var msg = new Message(undefined, m, undefined, t);
+	var msg = new Message(USERNAME, m, t);
 	Main.socket.send(JSON.stringify(msg));
 }
 
 function requestUsers(){
-	var msg = new Message(USERNAME, "", undefined, "requestUsers");
+	var msg = new Message(USERNAME, "", "requestUsers");
 	Main.socket.send(JSON.stringify(msg));
 }
 

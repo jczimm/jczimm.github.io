@@ -11,7 +11,7 @@ set NODE_ENV=production
 
 echo Environment variables are successfully added.
 echo. 
-echo Running on port 8888.
+echo Running on port 42069.
 echo.
 
 node socket.js

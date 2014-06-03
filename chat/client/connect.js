@@ -21,11 +21,13 @@ var Main = new Connection(IP,'42069'),
 	USERNAME;
 do {
 	USERNAME = prompt("choose a username");
-} while(USERNAME === undefined);
+} while(USERNAME === "");
 
 initDisplay();
 
-var users, waitEnd,
+var users;
+
+/*waitEnd,
 	wait = setInterval(function(){
 		try {
 			transmit("test connection");
@@ -35,21 +37,23 @@ var users, waitEnd,
 			// not connected
 		}
 		if(waitEnd) clearInterval(wait);
-	});
+	});*/
 
 var checkConnection = setInterval(function(){
-	$("#submit-button").css({
-								"background-color": statusColor(),
-								"cursor": "default"
-							});
-	if(Main.socket.readyState>=1) $("#submit-button").css({
-														"background-color": statusColor(),
-														"cursor": Main.socket.readyState === 1 ? "pointer" : "cursor"
-													}), clearInterval(checkConnection);
-});
+	$("#submit-button").css(
+	{
+		"background-color": statusColor(),
+		"cursor": "default"
+	});
+	if(Main.socket.readyState>=1) $("#submit-button").css(
+	{
+		"background-color": statusColor(),
+		"cursor": Main.socket.readyState === 1 ? "pointer" : "cursor"
+	});
+},100);
 
 requestUsers();
 
-$(window).unload(function(){
+/*Main.socket.onclose = function(){
 	sendMsgOfType(USERNAME, "sendLostUser");
-});
+}*/
