@@ -2,7 +2,7 @@ Object.defineProperty(Array.prototype,"remove",{enumerable:false,value:function(
 var diff=function(a,b){return a.filter(function(i){return b.indexOf(i)<0;});};
 
 var WebSocketServer = require('ws').Server,
-	MainServer = new WebSocketServer({port:6969}),
+	MainServer = new WebSocketServer({port:9999}),
 	markdown = require('markdown').markdown;
 
 var users = [], oldUsers = [], sendUsersInterval;
