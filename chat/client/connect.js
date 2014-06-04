@@ -17,27 +17,17 @@ else {
 	while(!IP.match(ipRegexp)) IP = prompt("invalid ip");
 }
 
-var Main = new Connection(IP,'42069'),
-	USERNAME;
+var Main = new Connection(IP,"42069");
+requestUsers();
+
+var	USERNAME;
 do {
 	USERNAME = prompt("choose a username");
-} while(USERNAME === "");
+} while(USERNAME === "" || users.contains(USERNAME));
 
 initDisplay();
 
-var users;
-
-/*waitEnd,
-	wait = setInterval(function(){
-		try {
-			transmit("test connection");
-			waitEnd = true;
-		}
-		catch(e) {
-			// not connected
-		}
-		if(waitEnd) clearInterval(wait);
-	});*/
+var users = "";
 
 var checkConnection = setInterval(function(){
 	$("#submit-button").css(
@@ -51,9 +41,3 @@ var checkConnection = setInterval(function(){
 		"cursor": Main.socket.readyState === 1 ? "pointer" : "cursor"
 	});
 },100);
-
-requestUsers();
-
-/*Main.socket.onclose = function(){
-	sendMsgOfType(USERNAME, "sendLostUser");
-}*/

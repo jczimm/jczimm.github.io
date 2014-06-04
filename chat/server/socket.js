@@ -3,17 +3,16 @@ var diff=function(a,b){return a.filter(function(i){return b.indexOf(i)<0;});};
 
 var WebSocketServer = require('ws').Server,
 	MainServer = new WebSocketServer({port:42069}),
-	markdown = require('markdown').markdown,
-	$ = require('jquery');
+	markdown = require('markdown').markdown;
 
-var users = [], oldUsers = [], sendUsersInterval, checkOnUsersInterval;
+var users = [], oldUsers = [], sendUsersInterval;
+var timeout = 3000;
 
 var specialChar = String.fromCharCode(parseInt("420blayzeit",36));
 
 MainServer.on('connection',function(ws){
 	get("JoinedUser");
 	sendUsersInterval = setInterval(sendUsers,500);
-	//checkOnUsersInterval = setInterval(function(ws){console.log(ws._socket.address(), ws._socket.remoteAddress, ws._socket.remotePort)},500);
 	console.log("["+Number(new Date())+"]\t"+ws._socket.remoteAddress+" joined");
 	ws.on('message',function(message){
 		message = parseMessage(message);
@@ -22,9 +21,10 @@ MainServer.on('connection',function(ws){
 	ws.on('close', function(){
 		oldUsers = users, users = [];
 		whosHere();
-		console.log(diff(oldUsers, users)+" left");
+		setTimeout(function(){
+			console.log("["+Number(new Date())-timeout+"]\t"+diff(oldUsers, users)+" left");
+		},timeout);
 	});
-	//console.log('join');
 });
 
 function parseMessage(message){
@@ -35,7 +35,6 @@ function parseMessage(message){
 			var rawMessage = message.msg, rawUser = message.user;
 			message.msg = markdown.toHTML(message.msg);
 			message.user = markdown.toHTML(message.user);
-			//message.time = message.time.match("[0-9]*-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}..*");
 			console.log("["+Number(message.time)+"]\t"+rawUser+": "+rawMessage);
 			break;
 		case 'requestUsers':
@@ -62,10 +61,6 @@ function sendUsers(){
 	MainServer.broadcast(JSON.stringify(
 		{"msg":users.join(specialChar),"time":new Date(),"type":"sendUsers"}
 	));
-}
-
-function checkOnUsers(ws){
-	console.log(ws._socket.address(), ws._socket.remoteAddress, ws._socket.remotePort);
 }
 
 function get(type){
