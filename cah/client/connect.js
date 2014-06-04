@@ -19,7 +19,7 @@ else {
 	while(!IP.match(ipRegexp)) IP = prompt("invalid ip");
 }
 
-var Main = new Connection(IP,"9999"),
+var Main = new Connection(IP,"42069"),
 	USERNAME,
 	users = [];
 
