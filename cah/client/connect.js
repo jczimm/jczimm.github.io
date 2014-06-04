@@ -10,16 +10,34 @@ function Connection(ip,port){
 	}
 }
 
-var IP = '192.168.3.155';
+var IP, ipRegexp = /^(?:(?:2[0-4]\d|25[0-5]|1\d{2}|[1-9]?\d)\.){3}(?:2[0-4]\d|25[0-5]|1\d{2}|[1-9]?\d)$/;
+if(location.hash.replace("#","").match(ipRegexp)) IP = location.hash.replace("#","");
+else {
+	IP = prompt("connect to ip");
+	while(!IP.match(ipRegexp)) IP = prompt("invalid ip");
+}
 
-var Main = new Connection(IP,'6969'),
-	USERNAME;
+var Main = new Connection(IP,"42069");
+requestUsers();
+
+var	USERNAME;
 do {
 	USERNAME = prompt("choose a username");
-} while(USERNAME === "");
+} while(USERNAME === "" || users.contains(USERNAME));
 
-var users, connectionStatus;
+initDisplay();
+
+var users = "";
 
 var checkConnection = setInterval(function(){
-	connectionStatus = Main.socket.readyState;
+	$("#submit-button").css(
+	{
+		"background-color": statusColor(),
+		"cursor": "default"
+	});
+	if(Main.socket.readyState>=1) $("#submit-button").css(
+	{
+		"background-color": statusColor(),
+		"cursor": Main.socket.readyState === 1 ? "pointer" : "cursor"
+	});
 },100);

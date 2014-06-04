@@ -13,7 +13,15 @@
 	<body>
 		<div id='wrapper'>
 			<div id='game'></div>
-			<iframe id='chat' seamless='seamless' frameborder='0' src='chat/index.html'></frame>
+			<div id='chat'>
+				<table id='input'>
+					<tr>
+						<td id='msg-box-outer'><input placeholder='type here' type='text' id='msg-box'></td>
+						<td id='submit-button' onclick='submit()'></td>
+					</tr>
+				</table>
+				<table id='messages'></table>
+			</div>
 		</div>
 	</body>
 </html>

@@ -17,3 +17,52 @@ html, body, #wrapper {
 #game {
 	background-color: #666;
 }
+
+#chat {
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+#input, #messages { width: 100%; }
+
+.line {
+	width: 100%;
+	vertical-align: top;
+}
+td {
+	width: 30%;
+	max-width: 0;
+}
+.user {
+	text-align: left;
+	font-size: 1.2em;
+}
+.msg { word-break: break-all; }
+.time { text-align: right; }
+.me { color: #1C9AE8; }
+
+code {
+	font-family: Consolas, Monospace;
+	background-color: #fff18f;
+}
+
+#msg-box {
+	height: 1.6em;
+	padding: 3px 0px 3px 0px;
+	font-size: 1.5em;
+	width: 100%;
+}
+
+#msg-box-outer { width: 93%; }
+
+#submit-button {
+	cursor: pointer;
+	width: 7%;
+	background-color: #f8c7a6; /* My Ode to Fate */
+}
+
+#status-indicator {
+	cursor: default;
+	width: 100%;
+	height: 100%;
+}
