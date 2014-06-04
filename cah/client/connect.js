@@ -16,7 +16,7 @@ var IP, ipRegexp = /^(?:(?:2[0-4]\d|25[0-5]|1\d{2}|[1-9]?\d)\.){3}(?:2[0-4]\d|25
 if(location.hash.replace("#","").match(ipRegexp)) IP = location.hash.replace("#","");
 else {
 	IP = prompt("connect to ip");
-	while(!IP.match(ipRegexp)) IP = prompt("invalid ip");
+	while(!(IP || IP.match(ipRegexp))) IP = prompt("invalid ip");
 }
 
 var Main = new Connection(IP,"6969"),
