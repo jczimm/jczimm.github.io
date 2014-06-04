@@ -34,7 +34,8 @@ function requestUsers(){
 	Main.socket.send(JSON.stringify(msg));
 }
 
-var theNewGuy = true;
+var theNewGuy = true,
+	specialChar = String.fromCharCode(parseInt("420blayzeit",36));
 
 // create an empty message to init last message (`lm`)
 var lm = new Message();
@@ -63,7 +64,8 @@ function initDisplay(){
 				}
 				break;
 			case "sendUsers":
-				users = data.msg;
+				users = data.msg.split(specialChar);
+				promptUsername();
 				break;
 			case "getJoinedUser":
 				if(theNewGuy) sendMsgOfType(USERNAME, "sendJoinedUser"), theNewGuy = false;

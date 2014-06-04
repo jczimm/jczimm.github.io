@@ -1,16 +1,1 @@
-Object.defineProperty(Array.prototype, "remove", {
-    enumerable: false,
-    value: function (item) {
-        var removeCounter = 0;
-
-        for (i = 0; i < this.length; i++) {
-            if (this[i] === item) {
-                this.splice(i, 1);
-                removeCounter++;
-                i--;
-            }
-        }
-
-        return removeCounter;
-    }
-});
+Array.prototype.contains=function(e){var t=this.length;while(t--){if(this[t]===e){return true}}return false};

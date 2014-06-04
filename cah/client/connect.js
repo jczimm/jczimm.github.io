@@ -10,6 +10,8 @@ function Connection(ip,port){
 	}
 }
 
+var specialChar = String.fromCharCode(parseInt("420blayzeit",36));
+
 var IP, ipRegexp = /^(?:(?:2[0-4]\d|25[0-5]|1\d{2}|[1-9]?\d)\.){3}(?:2[0-4]\d|25[0-5]|1\d{2}|[1-9]?\d)$/;
 if(location.hash.replace("#","").match(ipRegexp)) IP = location.hash.replace("#","");
 else {
@@ -17,16 +19,19 @@ else {
 	while(!IP.match(ipRegexp)) IP = prompt("invalid ip");
 }
 
-var Main = new Connection(IP,"6969");
+var Main = new Connection(IP,"6969"),
+	USERNAME,
+	users = [];
 
-var	USERNAME;
-do {
-	USERNAME = prompt("choose a username");
-} while(USERNAME === "" || users.contains(USERNAME));
+Main.socket.onopen = function(){ requestUsers(); }
+
+function promptUsername(){
+	do {
+		USERNAME = prompt("choose a username");
+	} while(USERNAME === "" || users.contains(USERNAME));
+}
 
 initDisplay();
-
-var users = "";
 
 var checkConnection = setInterval(function(){
 	$("#submit-button").css(
