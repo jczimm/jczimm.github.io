@@ -17,7 +17,7 @@ else {
 	while(!IP.match(ipRegexp)) IP = prompt("invalid ip");
 }
 
-var Main = new Connection(IP,'42069'),
+var Main = new Connection(IP,'6969'),
 	USERNAME;
 do {
 	USERNAME = prompt("choose a username");
