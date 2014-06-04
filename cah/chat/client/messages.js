@@ -13,7 +13,7 @@ var msgs = [];
 function send(m){
 	if(m === "") return;
 	var msg = new Message(USERNAME, m);
-	Main.socket.send(JSON.stringify(msg));
+	if(msg) Main.socket.send(JSON.stringify(msg));
 	msgs.push(msg);
 }
 
