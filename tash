@@ -1,0 +1,33 @@
+[1mdiff --git a/chat/index.html b/chat/index.html[m
+[1mindex 6b55ca9..9deb8d6 100644[m
+[1m--- a/chat/index.html[m
+[1m+++ b/chat/index.html[m
+[36m@@ -20,7 +20,7 @@[m
+ 			<table id='input'>[m
+ 				<tr>[m
+ 					<td id='msg-box-outer'><input placeholder='type here' type='text' id='msg-box'></td>[m
+[31m-					<td id='submit-button'></td>[m
+[32m+[m					[32m<td id='submit-button' onclick="submit()"></td>[m
+ 				</tr>[m
+ 			</table>[m
+ 			<table id='messages'></table>[m
+[1mdiff --git a/chat/server/socket.js b/chat/server/socket.js[m
+[1mindex a153d19..af1bf52 100644[m
+[1m--- a/chat/server/socket.js[m
+[1m+++ b/chat/server/socket.js[m
+[36m@@ -32,8 +32,13 @@[m [mfunction parseMessage(message){[m
+ 	switch(message.type){[m
+ 		case 'message':[m
+ 			var rawMessage = message.msg, rawUser = message.user;[m
+[31m-			message.msg = markdown.toHTML(message.msg);[m
+[31m-			message.user = markdown.toHTML(message.user);[m
+[32m+[m			[32mtry {[m
+[32m+[m				[32mmessage.msg = markdown.toHTML(message.msg);[m
+[32m+[m				[32mmessage.user = markdown.toHTML(message.user);[m
+[32m+[m			[32m}[m
+[32m+[m			[32mcatch(e) {[m
+[32m+[m				[32mconsole.log('markdown error: '+e);[m
+[32m+[m			[32m}[m
+ 			//message.time = message.time.match("[0-9]*-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}..*");[m
+ 			console.log("["+Number(message.time)+"]\t"+rawUser+": "+rawMessage);[m
+ 			break;[m
