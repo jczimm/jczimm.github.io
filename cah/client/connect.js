@@ -12,7 +12,7 @@ function Connection(ip,port){
 
 var IP = '192.168.3.155';
 
-var Main = new Connection(IP,'42069'),
+var Main = new Connection(IP,'6969'),
 	USERNAME;
 do {
 	USERNAME = prompt("choose a username");
