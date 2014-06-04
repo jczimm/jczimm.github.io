@@ -10,7 +10,7 @@ function Connection(ip,port){
 	}
 }
 
-var IP = '24.218.153.164';
+var IP = '192.168.3.155';
 
 var Main = new Connection(IP,'42069'),
 	USERNAME;
