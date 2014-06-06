@@ -1,5 +1,11 @@
-// MIT License, blah blah blah, etc.
-// # by jczimm #
+/*
+# MIT License, blah blah blah, etc.
+# by jczimm #
+*/
+
+@import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic);
+
+* { font-family: "Source Sans Pro", sans-serif; }
 
 .game_black_card_wrapper > span, .game_white_card_wrapper > span, .game_animate_cards, .logo {
   display: none;
