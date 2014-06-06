@@ -1,0 +1,25 @@
+// MIT License, blah blah blah, etc.
+// # by jczimm #
+
+.game_black_card_wrapper > span, .game_white_card_wrapper > span, .game_animate_cards, .logo {
+  display: none;
+}
+
+#current_timer {
+  display: inline;
+}
+
+.game_left_side {
+  padding-top: 0;
+}
+
+.card, .scorecard  {
+  -webkit-transition: background-color 300ms ease-out 500ms;
+  -moz-transition: background-color 300ms ease-out 500ms;
+  -o-transition: background-color 300ms ease-out 500ms;
+  transition: background-color 300ms ease-out 500ms;
+}
+
+.card_metadata {
+  font-style: italic;
+}
