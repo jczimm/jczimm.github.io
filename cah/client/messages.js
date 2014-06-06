@@ -1,27 +1,9 @@
 function Message(user,msg,type){
 	this.user = user;
 	this.msg = msg;
-	this.time = undefined;
 	this.type = type || "message";
 }
 
-function submit(){
-	send($("#msg-box").val()), $("#msg-box").val("");
-}
-
-var msgs = [];
-function send(m){
-	if(m === "") return;
-	var msg = new Message(USERNAME, m);
-	Main.socket.send(JSON.stringify(msg));
-	msgs.push(msg);
-}
-
-function transmit(m){
-	if(m === "") return;
-	var msg = new Message(USERNAME, m, "transmission");
-	Main.socket.send(JSON.stringify(msg));
-}
 
 function sendMsgOfType(m,t){
 	if(m === "") return;
