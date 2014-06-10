@@ -45,5 +45,3 @@ var checkConnection = setInterval(function(){
 		"cursor": Main.socket.readyState === 1 ? "pointer" : "cursor"
 	});
 },100);
-
-javascript:$("head").append('<style>@import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic);*{font-family:"Source Sans Pro", sans-serif;}.game_black_card_wrapper > span,.game_white_card_wrapper > span,.game_animate_cards,.logo{display:none;}#current_timer{display:inline;}.game_left_side{padding-top:0;}.card,.scorecard{-webkit-transition:background-color 300ms ease-out 500ms;-moz-transition:background-color 300ms ease-out 500ms;-o-transition:background-color 300ms ease-out 500ms;transition:background-color 300ms ease-out 500ms;}.card_metadata{font-style:italic;}.game_menu_bar{display:none;}</style>');
