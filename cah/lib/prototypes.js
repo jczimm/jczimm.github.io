@@ -1,1 +1,0 @@
-Array.prototype.contains=function(e){var t=this.length;while(t--){if(this[t]===e){return true}}return false};
