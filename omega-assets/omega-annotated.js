@@ -210,8 +210,8 @@ function introReset(gamecompleted) {
         html("score", (score > 0 && gamecompleted ? "score " + score + " | " : "") + "highscore " + hiscore);
     }
 	
-	// If a game was just completed, throw `gold` into storage.
-    if (gamecompleted) $.jStorage.set("gold", gold);
+	//sThrow `gold` into storage.
+    $.jStorage.set("gold", gold);
 	
 	// Make sure everything that needs to be hidden is hidden.
     hide("hud");
