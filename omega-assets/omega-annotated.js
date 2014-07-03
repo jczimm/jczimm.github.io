@@ -1556,13 +1556,6 @@ function render_game() {
 
 }
 
-var fpsEvent;
-
-function doFpsEvent() {
-    fpsEvent = setTimeout("doFpsEvent();", 3000);
-    loadNeedle();
-}
-fpsEvent = setTimeout("doFpsEvent();", 3000);
 
 function f(a) {
     var b = $.jStorage;
