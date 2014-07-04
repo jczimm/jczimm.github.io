@@ -1484,8 +1484,8 @@ function render_game() {
             track = 5000 + Math.random() * 5000;
             gold += 0.16;
 
-            phase = (Math.random() * 5) + 1 | 0;
-            phase = (phase == 5 ? (Math.random() * 5) + 1 | 0 : phase);
+            phase = (Math.random() * 7) + 1 | 0;
+            phase = (phase == 5 ? (Math.random() * 7) + 1 | 0 : phase);
 
             switch (phase) {
             case 1:
