@@ -1404,6 +1404,11 @@ function render_game() {
                         object.position.y = Math.random() * 3000 - 1500;
                     }
                     break;
+                case 7:
+                	var row = Math.random() * 8 |0;
+                	object.position.x = p[row];
+                	object.position.y = p[row + 8]
+                	break;
                 }
 
                 //choose powerup
@@ -1529,6 +1534,26 @@ function render_game() {
                 p[7] = Math.random() * 800; // y secondary
 
                 break;
+            case 7:
+            	// rows
+            	p[0] = Math.random() * 4;
+            	p[1] = p[0]*1.2;
+            	p[3] = p[0]*1.4;
+            	p[4] = p[0]*1.6;
+            	p[5] = p[0]*1.8;
+            	p[6] = p[0]*2.0;
+            	p[7] = p[0]*2.2;
+            	
+            	// cols
+            	p[8] = Math.random() * 4;
+            	p[9] = p[0]*1.2;
+            	p[10] = p[0]*1.4;
+            	p[11] = p[0]*1.6;
+            	p[12] = p[0]*1.8;
+            	p[13] = p[0]*2.0;
+            	p[14] = p[0]*2.2;
+            	
+            	break;
             }
 
         }
