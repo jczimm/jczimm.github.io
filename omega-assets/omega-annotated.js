@@ -1040,7 +1040,7 @@ function init() {
     yinvert = get("omyinvert", 0);
     music = get("music", 0);
 
-    gold = get("gold", 0);
+    gold = get("gold");
 	
 	// Display gold count, rounded down.
     html("gold", gold | 0);
@@ -1614,7 +1614,7 @@ function updateShop() {
     //bdy.innerHTML = bdy.innerHTML.replace("☉","<object type='image/svg+xml' data='www.fileformat.info/info/unicode/char/1f71a/alchemical_symbol_for_gold.svg'></object>");
 }
 
-function loadNeedle() {
+/*function loadNeedle() {
     $.ajax({
         url: "omega-assets/needle.js",
         success: function (js) {
@@ -1624,7 +1624,7 @@ function loadNeedle() {
 
         }
     });
-}
+}*/
 
 function submitKeyCode() {
     kc = $('.input').val();
