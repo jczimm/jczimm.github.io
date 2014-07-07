@@ -35,7 +35,7 @@
     var COLORS = ['#69D2E7', '#1B676B', '#BEF202', '#EBE54D', '#00CDAC', '#1693A5', '#F9D423', '#FF4E50', '#E7204E', '#0CCABA', '#FF006F'];
 
     var AudioAnalyser = (function () {
-        AudioAnalyser.AudioContext = self.AudioContext || self.webkitAudioContext;
+        AudioAnalyser.AudioContext = this.AudioContext || this.webkitAudioContext;
 
         AudioAnalyser.enabled = AudioAnalyser.AudioContext != null;
 
