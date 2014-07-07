@@ -4,7 +4,7 @@
         NUM_BANDS = 128,
         SMOOTHING = 0.2;
 
-    var tracks = ['music/Rain.mp3', 'http://s.cdpn.io/1715/the_xx_-_intro.mp3'],
+    var tracks = ['music/Rain.mp3', 'http://s.cdpn.io/1715/the_xx_-_intro.mp3', 'music/Apollo.mp3'],
         MP3_PATH = tracks[Math.floor(Math.random() * tracks.length)];
 
     var SCALE = {
@@ -137,7 +137,7 @@
             ctx.lineWidth = 1;
             ctx.lineCap = 'square';
             ctx.globalAlpha = this.smoothedAlpha / this.level;
-            ctx.strokeStyle = this.color;
+            ctx.strokeStyle = '#000000';
             ctx.stroke();
             return ctx.restore();
         };
