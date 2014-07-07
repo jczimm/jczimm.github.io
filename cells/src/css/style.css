@@ -19,7 +19,7 @@ html, body {
   top: 0;
 }
 #container:after {
-  background: url("../img/grunge.png");
+  background: url("../img/noise.png");
   position: absolute;
   content: "";
   z-index: 1;
