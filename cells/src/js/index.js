@@ -137,7 +137,7 @@
             ctx.lineWidth = 1;
             ctx.lineCap = 'square';
             ctx.globalAlpha = this.smoothedAlpha / this.level;
-            ctx.strokeStyle = '#000000';
+            ctx.strokeStyle = this.color;
             ctx.stroke();
             return ctx.restore();
         };
