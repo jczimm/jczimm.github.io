@@ -173,7 +173,9 @@
                         };
                     })(this);
                     analyser.start();
-                    document.body.appendChild(analyser.audio);
+                    var player = analyser.audio;
+                    player.id = "player";
+                    document.body.appendChild(player);
                     intro = document.getElementById('intro');
                     intro.style.display = 'none';
                     if (/Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent)) {
