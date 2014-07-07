@@ -2,7 +2,7 @@
 
     var NUM_PARTICLES = 150,
         NUM_BANDS = 128,
-        SMOOTHING = 0.5;
+        SMOOTHING = 0.2;
 
     var tracks = ['music/Rain.mp3', 'http://s.cdpn.io/1715/the_xx_-_intro.mp3', 'music/Apollo.mp3'],
         MP3_PATH = tracks[Math.floor(Math.random() * tracks.length)];
