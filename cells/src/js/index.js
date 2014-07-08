@@ -218,3 +218,18 @@
     });
 
 }).call(this);
+
+SC.initialize({
+    client_id: "f63662c368fb9d962d8bf670bc6303f8"
+});
+
+function playSC(url){
+    var id = "f63662c368fb9d962d8bf670bc6303f8";
+    $.getJSON("https://api.sndcdn.com/resolve?url="+url+"&_status_code_map%5B302%5D=200&_status_format=json&client_id="+id, function(data){
+        SC.get(data["location"].match(/\/tracks\/\d+/), {}, function(sound){
+            $("#player").attr("src", sound.stream_url+"?client_id=f63662c368fb9d962d8bf670bc6303f8");
+        });
+    });
+}
+
+
