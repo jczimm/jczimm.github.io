@@ -230,6 +230,7 @@ function playSC(url){
             $("#player").attr("src", sound.stream_url+"?client_id=f63662c368fb9d962d8bf670bc6303f8");
         });
     });
+    document.getElementById("player").play();
 }
 
 
