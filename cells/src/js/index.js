@@ -1,11 +1,3 @@
-/* TODO: Create a SoundCloud feature (an input for a SC link) {
-    use URL "http://api.soundcloud.com/tracks/{0}/stream.mp3?{CLIENT_ID}"
-}
-
-0: resolve the url to a track number (should be somewhere on the SoundCloud Developers API)
-
-*/
-
 (function () {
 
     var NUM_PARTICLES = 150,
