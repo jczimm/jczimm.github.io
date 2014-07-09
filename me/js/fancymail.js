@@ -2,15 +2,17 @@ var gmStatus = false,
 	gmStatusInterval;
 
 $(document).ready(function(){
-	gmStatusInterval = setInterval(checkGmStatus,500);
+	gmStatusInterval = setInterval(checkGmStatus,300000);
 });
+
+checkGmStatus();
 
 function checkGmStatus(){
 	$("body").append('\
 			<img style="display:none;"\
 			onload="setGmStatus(true);$(this).remove();"\
 			onerror="setGmStatus(false);$(this).remove();"\
-			src="https://mail.google.com/mail/photos/static/AD34hIhNx1pdsCxEpo6LavSR8dYSmSi0KTM1pGxAjRio47pofmE9RH7bxPwelO8tlvpX3sbYkNfXT7HDAZJM_uf5qU2cvDJzlAWxu7-jaBPbDXAjVL8YGpI"\
+			src="https://accounts.google.com/CheckCookie?continue=https%3A%2F%2Fwww.google.com%2Fintl%2Fen%2Fimages%2Flogos%2Faccounts_logo.png&followup=https%3A%2F%2Fwww.google.com%2Fintl%2Fen%2Fimages%2Flogos%2Faccounts_logo.png&chtml=LoginDoneHtml&checkedDomains=youtube&checkConnection=youtube%3A291%3A1"\
 		/>\
 	');
 }
