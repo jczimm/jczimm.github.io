@@ -19,7 +19,7 @@ function setGmStatus(status){
 	gmStatus = status;
 	var $l = $("li:eq(-1) > a"),
 		href;
-	if(status) href = "https://mail.google.com/mail/?view=cm&fs=1&to=jczimmm@gmail.com";
-	else href = "mailto:jczimmm@gmail.com";
+	if(status) href = "https://mail.google.com/mail/?view=cm&fs=1&to=jczimm@jczimm.com";
+	else href = "mailto:jczimm@jczimm.com";
 	$l.attr("href",href);
 }
