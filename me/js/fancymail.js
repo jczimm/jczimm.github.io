@@ -3,13 +3,12 @@ var gmStatus = false,
 
 $(document).ready(function(){
 	gmStatusInterval = setInterval(checkGmStatus,300000);
+	checkGmStatus();
 });
-
-checkGmStatus();
 
 function checkGmStatus(){
 	$("body").append('\
-			<img style="display:none;"\
+		<img style="display:none;"\
 			onload="setGmStatus(true);$(this).remove();"\
 			onerror="setGmStatus(false);$(this).remove();"\
 			src="https://accounts.google.com/CheckCookie?continue=https%3A%2F%2Fwww.google.com%2Fintl%2Fen%2Fimages%2Flogos%2Faccounts_logo.png&followup=https%3A%2F%2Fwww.google.com%2Fintl%2Fen%2Fimages%2Flogos%2Faccounts_logo.png&chtml=LoginDoneHtml&checkedDomains=youtube&checkConnection=youtube%3A291%3A1"\
