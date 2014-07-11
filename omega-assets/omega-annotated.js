@@ -239,7 +239,7 @@ function onWindowResize() {
 
 // Function for fetching the value of a key from storage.
 function get(id, def) {
-	if($.jStorage.get(id)) return $.jStorage.get(id);
+	if($.jStorage.get(id) !== 0) return $.jStorage.get(id);
     else { $.jStorage.set(id, def); return def; }
 }
 
@@ -1044,7 +1044,7 @@ function init() {
     yinvert = get("omyinvert", 0);
     music = get("music", 0);
 
-    gold = get("gold", 420);
+    gold = get("gold", 0);
 	
 	// Display gold count, rounded down.
     html("gold", gold | 0);
