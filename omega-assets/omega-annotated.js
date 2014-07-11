@@ -1043,7 +1043,7 @@ function init() {
     yinvert = get("omyinvert", 0);
     music = get("music", 0);
 
-    gold = get("gold");
+    gold = get("gold", 0);
 	
 	// Display gold count, rounded down.
     html("gold", gold | 0);
@@ -1428,12 +1428,13 @@ function render_game() {
             // Collision check
             if (Math.abs(ship.position.x - object.position.x) < 100 && Math.abs(ship.position.y - object.position.y) < 50 && Math.abs(ship.position.z - object.position.z) < 50) {
                 var vis = object.visible;
+                console.log(vis);
                 switch (object.name) {
                 case "gold":
                     if (vis) {
                         gold += 1;
                         object.visible = false;
-                        //play some gold sound
+                        // TODO: play some gold sound
                     }
                     break;
 
@@ -1441,7 +1442,7 @@ function render_game() {
                     if (vis) {
                         health += 20;
                         object.visible = false;
-                        //play some healing sound
+                        // TODO: play some healing sound
                     }
                     break;
 
