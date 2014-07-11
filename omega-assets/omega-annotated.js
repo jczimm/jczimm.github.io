@@ -207,6 +207,9 @@ function introReset(gamecompleted) {
 		//just give them the default highscore header.
         html("score", (score > 0 && gamecompleted ? "score " + score + " | " : "") + "highscore " + hiscore);
     }
+    
+    // Throw `gold` into storage if a game was just completed.
+    if(gamecompleted) $.jStorage.set("gold", gold);
 	
 	// Make sure everything that needs to be hidden is hidden.
     hide("hud");
