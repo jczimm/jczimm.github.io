@@ -208,9 +208,6 @@ function introReset(gamecompleted) {
         html("score", (score > 0 && gamecompleted ? "score " + score + " | " : "") + "highscore " + hiscore);
     }
 	
-	// Throw `gold` into storage.
-    $.jStorage.set("gold", gold);
-	
 	// Make sure everything that needs to be hidden is hidden.
     hide("hud");
     hide("panel2");
