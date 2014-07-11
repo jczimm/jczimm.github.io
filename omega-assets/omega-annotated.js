@@ -1412,7 +1412,7 @@ function render_game() {
 
                 //choose powerup
                 rand = Math.random();
-                if (rand < 0.01 && (phase == 1 || phase == 6)) {
+                if (rand < 0.01) {
                     if (rand < 0.008) {
                         object.name = "gold";
                         object.material.color.setRGB(1, 1, 0);
