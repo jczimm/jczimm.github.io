@@ -42,7 +42,7 @@ var music = 0,
     sound;
 	
 // Create an alias for `document.getElementById("body")`.
-var bdy = document.getElementById("body");
+var bdy;
 
 // Initialize keyboard-control-related global variables.
 var key_up = key_down = key_left = key_right = key_space = key_turn_left = key_turn_right = false;
@@ -1024,6 +1024,8 @@ $(document).ready(function(){
 	bind("hugo");
 	
 	bind("brakes");
+	
+	bdy = document.getElementById("body");
 	
 	// Action!
 	init();
