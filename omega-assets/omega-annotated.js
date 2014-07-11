@@ -1,4 +1,4 @@
-$(document).ready(function(){
+//$(document).ready(function(){
 // # Omega
 //
 // [Play Omega](http://jczimm.github.io/omega)
@@ -1631,4 +1631,4 @@ function submitKeyCode() {
     $('.b-modal').click()
 }
 
-});
+//});
