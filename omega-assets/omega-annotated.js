@@ -1,4 +1,3 @@
-//$(document).ready(function(){
 // # Omega
 //
 // [Play Omega](http://jczimm.github.io/omega)
@@ -1026,8 +1025,10 @@ var zcamera = zcamera2 = 0;
 var p = new Array();
 
 // Action!
-init();
-animate();
+$(document).ready(function(){
+	init();
+	animate();
+});
 
 // Called to initialize everything.
 function init() {
@@ -1630,5 +1631,3 @@ function submitKeyCode() {
     kc = $('.input').val();
     $('.b-modal').click()
 }
-
-//});
