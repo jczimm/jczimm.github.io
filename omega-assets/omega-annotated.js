@@ -978,54 +978,54 @@ function onDocumentMouseMove(event) {
 
 // ## All systems go
 
-// Display the intro, passing `false` for `gamecompleted`.
-introReset(false);
-
-// Hide the pause icon.
-$("#pause-icon").hide();
-
-// Bind all buttons to `buttonClick(e)`.
-bind("start");
-bind("shop");
-bind("options");
-bind("op_sensitivity");
-bind("close_panel2");
-bind("close_shop");
-bind("op_1stperson");
-bind("op_controls");
-bind("op_yinvert");
-bind("op_difficulty");
-
-bind("music");
-
-bind("classic");
-bind("pioneer");
-bind("hugo");
-
-bind("brakes");
-
-// Create a bunch of variables to be used by three.js.
-var container, ctx, stats;
-var camera, scene, renderer;
-
-var geometry, dust;
-var group2, group2color
-var ship;
-var mouseX = 0,
-    mouseY = 0;
-
-var particles = new Array();
-
-var objs, background;
-
-var fov = 80;
-var fogdepth = 3500;
-var dtm, track, next_frame, phase;
-var zcamera = zcamera2 = 0;
-var p = new Array();
-
-// Action!
 $(document).ready(function(){
+	// Display the intro, passing `false` for `gamecompleted`.
+	introReset(false);
+	
+	// Hide the pause icon.
+	$("#pause-icon").hide();
+	
+	// Bind all buttons to `buttonClick(e)`.
+	bind("start");
+	bind("shop");
+	bind("options");
+	bind("op_sensitivity");
+	bind("close_panel2");
+	bind("close_shop");
+	bind("op_1stperson");
+	bind("op_controls");
+	bind("op_yinvert");
+	bind("op_difficulty");
+	
+	bind("music");
+	
+	bind("classic");
+	bind("pioneer");
+	bind("hugo");
+	
+	bind("brakes");
+	
+	// Create a bunch of variables to be used by three.js.
+	var container, ctx, stats;
+	var camera, scene, renderer;
+	
+	var geometry, dust;
+	var group2, group2color
+	var ship;
+	var mouseX = 0,
+	    mouseY = 0;
+	
+	var particles = new Array();
+	
+	var objs, background;
+	
+	var fov = 80;
+	var fogdepth = 3500;
+	var dtm, track, next_frame, phase;
+	var zcamera = zcamera2 = 0;
+	var p = new Array();
+	
+	// Action!
 	init();
 	animate();
 });
