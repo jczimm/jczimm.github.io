@@ -174,7 +174,7 @@ function introReset(gamecompleted) {
         while (sound.volume) {
             sound.setVolume(sound.volume - 5);
         }
-        sound.volume = sound.volume + "";
+        sound.volume += "";
     }
 	
 	// Hide the ship (if it already exists).
@@ -1044,7 +1044,7 @@ function init() {
     yinvert = get("omyinvert", 0);
     music = get("music", 0);
 
-    gold = get("gold", 0);
+    gold = get("gold", 420);
 	
 	// Display gold count, rounded down.
     html("gold", gold | 0);
