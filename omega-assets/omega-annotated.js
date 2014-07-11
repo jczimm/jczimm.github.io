@@ -178,7 +178,7 @@ function introReset(gamecompleted) {
     }
 	
 	// Hide the ship (if it already exists).
-    if (ship) ship.visible = false;
+    try { ship.visible = false; } catch(err) {};s
 	
 	// Initialize some more variables.
     speed = 0;
