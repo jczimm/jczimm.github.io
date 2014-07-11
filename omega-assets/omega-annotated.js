@@ -1428,7 +1428,6 @@ function render_game() {
             // Collision check
             if (Math.abs(ship.position.x - object.position.x) < 100 && Math.abs(ship.position.y - object.position.y) < 50 && Math.abs(ship.position.z - object.position.z) < 50) {
                 var vis = object.visible;
-                console.log(vis);
                 switch (object.name) {
                 case "gold":
                     if (vis) {
@@ -1447,9 +1446,7 @@ function render_game() {
                     break;
 
                 default:
-                    if (speed > 25) {
-                        health -= speed / (mode == 1 ? 1.3 : mode == 2 ? 0.8 : 1.3);
-                    }
+                    if (speed > 25) health -= speed / (mode == 1 ? 1.3 : mode == 2 ? 0.8 : 1.3);
                     speed = -3;
                     break;
                 }
