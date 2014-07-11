@@ -1,6 +1,6 @@
 // # Omega
 //
-// [Play Omega](http://jczimm.github.io/omega)
+// [Play Omega](http://jczimm.com/omega)
 
 
 // ## Initialize global variables
@@ -41,7 +41,7 @@ var sensitivity = 1,
 var music = 0,
     sound;
 	
-// Create an alias for `document.getElementById("body")`.
+// Create a variable to be made into an alias for `document.getElementById("body")` on document ready.
 var bdy;
 
 // Initialize keyboard-control-related global variables.
@@ -239,7 +239,8 @@ function onWindowResize() {
 
 // Function for fetching the value of a key from storage.
 function get(id, def) {
-    return $.jStorage.get(id) || $.jStorage.set(id, def) && def;
+	if($.jStorage.get(id)) return $.jStorage.get(id);
+    else $.jStorage.set(id, def), return def;
 }
 
 // Function for throwing a key with a value into storage.
