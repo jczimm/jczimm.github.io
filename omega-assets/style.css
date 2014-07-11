@@ -43,6 +43,7 @@ canvas {
 span {text-shadow: 0 0 2px white, 0 0px 10px white; letter-spacing:0.05em; user-select: none; -webkit-user-select: none; -moz-user-select: none; -o-user-select: none; font-size:150%;  }
 #hud {position:absolute; z-index:999; top:10px; right:15px; opacity:0.5;}
 #gold {position:absolute; z-index:999; top:10px; left:15px; color: yellow;}
+#gold {position:absolute; z-index:999; top:10px; width: 100%; text-align: right; color: green;}
 #panel1, #panel2, #shop_panel {position:absolute; z-index:999; top:50%; left:0px; width:100%; text-align:center; color:white; font-size:30px;}
 #panel1 {margin-top:-190px; line-height:220%;}
 #panel2 {margin-top:-190px; line-height:200%; display:none}
