@@ -1,4 +1,4 @@
-var pusher = new Pusher('6bd9ea172357cea30784');
+var pusher = new Pusher('6bd9ea172357cea30784', { authEndpoint: 'pusher_auth.php' });
 var channel = pusher.subscribe('private-leaderboard');
 channel.bind('new_highscore', function (data) {
     console.log(data);
