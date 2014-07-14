@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 
 //include the pusher publisher library
