@@ -8,10 +8,6 @@ $pusher = new Pusher(
     '81508' //APP ID
 );
 
-
-session_start();
-header('Content-Type: application/json');
-
 $auth = $pusher->socket_auth($_POST['channel_name'], $_POST['socket_id']);
 
 ?>
