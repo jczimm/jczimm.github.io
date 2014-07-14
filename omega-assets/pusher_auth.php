@@ -1,7 +1,6 @@
 <?php
 
-//include the pusher publisher library
-include_once 'Pusher.php';
+require('Pusher.php');
 
 $pusher = new Pusher(
     '6bd9ea172357cea30784', //APP KEY
@@ -9,6 +8,6 @@ $pusher = new Pusher(
     '81508' //APP ID
 );
 
-echo $pusher->socket_auth($_POST['channel_name'], $_POST['socket_id']);
+$auth = $pusher->socket_auth($_POST['channel_name'], $_POST['socket_id']);
 
 ?>
