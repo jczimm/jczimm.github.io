@@ -424,6 +424,8 @@ function buttonClick(e) {
 			// and throw `music` into storage.
 			$.jStorage.set("music", music);
 			break;
+			
+		//case "leaderboard"
     }
 }
 
