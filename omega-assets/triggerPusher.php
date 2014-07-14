@@ -2,7 +2,7 @@
 <?php
 
 //include the pusher publisher library
-include_once 'Pusher.php';
+require_once('Pusher.php');
  
 $pusher = new Pusher(
     '6bd9ea172357cea30784', //APP KEY
