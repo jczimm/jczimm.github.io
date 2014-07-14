@@ -12,8 +12,7 @@ $pusher = new Pusher(
  
 //get the message posted by our ajax call
 $message = $_POST['message'];
- 
-//trigger the 'new_message' event in our channel, 'presence-nettuts'
+
 $pusher->trigger(
     'leaderboard', //the channel
     'new_highscore', //the event
