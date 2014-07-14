@@ -8,6 +8,6 @@ $pusher = new Pusher(
     '81508' //APP ID
 );
 
-echo $pusher->socket_auth($_POST['channel_name'], $_POST['socket_id']);
+//echo $pusher->socket_auth($_POST['channel_name'], $_POST['socket_id']);
 
 ?>
