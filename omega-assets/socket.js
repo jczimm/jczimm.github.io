@@ -1,4 +1,5 @@
-var pusher = new Pusher('6bd9ea172357cea30784', { authEndpoint: 'omega-assets/pusher_auth.php' });
+var pusher = new Pusher('6bd9ea172357cea30784');
+Pusher.channel_auth_endpoint = 'omega-assets/pusher_auth.php';
 var channel = pusher.subscribe('private-leaderboard');
 channel.bind('new_highscore', function (data) {
     console.log(data);
