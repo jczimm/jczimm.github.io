@@ -176,6 +176,8 @@ function introReset(gamecompleted) {
         }
         sound.volume += "";
     }
+    
+    bdy.style.backgroundColor = "#00000D";
 	
 	// Hide the ship (if it already exists).
     if(ship) ship.visible = false;
