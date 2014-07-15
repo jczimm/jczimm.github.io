@@ -11,7 +11,8 @@ body {
 	font-family: 'Jockey One', sans-serif;
 }
 
-#overlay {
+#overlay:before {
+	content: "";
 	background-image: -moz-radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0) 60%, #00001C 95%);
   	background-image: -webkit-radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0) 60%, #00001C 95%);
   	background-image: radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0) 60%, #00001C 95%);
@@ -27,6 +28,11 @@ body {
 	width: 100%;
 	z-index: 999999;
 	pointer-events: none;
+	-moz-transform: rotate(180deg);
+   	-webkit-transform: rotate(180deg);
+   	-ms-transform: rotate(180deg);
+   	-o-transform: rotate(180deg);
+   	transform: rotate(180deg);
 }
 
 a {
