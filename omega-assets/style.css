@@ -26,6 +26,7 @@ body {
 	height: 100%;
 	width: 100%;
 	z-index: 999999;
+	pointer-events: none;
 }
 
 a {
