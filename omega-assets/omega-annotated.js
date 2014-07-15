@@ -852,7 +852,7 @@ function keyDown(event) {
 		// the ESCAPE key
 		case 27:
 			materials.opacity = 0;
-			bdy.style.backgroundColor = '#000003';
+			bdy.style.backgroundColor = '#000017';
 			introReset(false);
 			break;
     }
@@ -1275,14 +1275,14 @@ var rand;
 function render_game() {
 
     if (!paused) {
-        if (speed > 0) {
-            clight = speed / speedlimit;
-            bdy.style.backgroundColor = '#000003';
-        } else {
+        //if (speed > 0) {
+        clight = speed / speedlimit;
+        bdy.style.backgroundColor = '#000017';
+        /*} else {
             clight = 0;
             tmp = -((Math.random() * speed * 100) | 0);
             bdy.style.backgroundColor = 'rgb(' + tmp + ',' + (tmp / 2) + ',0)';
-        }
+        }*/
         light2.color.setHSV(clight, 0.3, 1);
 
         if (controls == 0) { // mouse
