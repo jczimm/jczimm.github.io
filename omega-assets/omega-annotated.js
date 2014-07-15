@@ -1121,6 +1121,12 @@ function init() {
     scene.add(background);
 
     var mesh_tmp = generateCubesRing(300, 0, 1200, 200, 1500, 5);
+    if(Math.random() < 0.5){
+    	var map = THREE.ImageUtils.loadTexture( "../psi-assets/assets/hud/note0.png" ),
+    		material = new THREE.SpriteMaterial( { map: map, color: 0xffffff, fog: true } ),
+    		sprite = new THREE.Sprite( material );
+        scene.add( sprite );
+    }
 
     mesh_tmp.computeFaceNormals();
     group2color = new THREE.MeshPhongMaterial({
