@@ -11,7 +11,7 @@ body {
 	font-family: 'Jockey One', sans-serif;
 }
 
-body:after {
+#overlay {
 	background-image: -moz-radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0) 20%, #000000 95%);
   	background-image: -webkit-radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0) 20%, #000000 95%);
   	background-image: radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0) 20%, #000000 95%);
