@@ -852,7 +852,7 @@ function keyDown(event) {
 		// the ESCAPE key
 		case 27:
 			materials.opacity = 0;
-			bdy.style.backgroundColor = '#00001C';
+			bdy.style.backgroundColor = '#000000';
 			introReset(false);
 			break;
     }
