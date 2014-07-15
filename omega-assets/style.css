@@ -12,9 +12,9 @@ body {
 }
 
 #overlay {
-	background-image: -moz-radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0) 20%, #00001C 95%);
-  	background-image: -webkit-radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0) 20%, #00001C 95%);
-  	background-image: radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0) 20%, #00001C 95%);
+	background-image: -moz-radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0) 40%, #00001C 95%);
+  	background-image: -webkit-radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0) 40%, #00001C 95%);
+  	background-image: radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0) 40%, #00001C 95%);
   	position: absolute;
   	top: 0;
   	bottom: 0;
