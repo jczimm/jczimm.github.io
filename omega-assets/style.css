@@ -13,9 +13,9 @@ body {
 
 #overlay {
 	content: "";
-	background-image: -moz-radial-gradient(bottom, ellipse cover, rgba(0, 0, 0, 0) 60%, #00001C 95%);
-  	background-image: -webkit-radial-gradient(bottom, ellipse cover, rgba(0, 0, 0, 0) 60%, #00001C 95%);
-  	background-image: radial-gradient(bottom, ellipse cover, rgba(0, 0, 0, 0) 60%, #00001C 95%);
+	background-image: -moz-radial-gradient(top, ellipse cover, rgba(0, 0, 0, 0) 60%, #00001C 95%);
+  	background-image: -webkit-radial-gradient(top, ellipse cover, rgba(0, 0, 0, 0) 60%, #00001C 95%);
+  	background-image: radial-gradient(top, ellipse cover, rgba(0, 0, 0, 0) 60%, #00001C 95%);
   	position: absolute;
   	top: 0;
   	bottom: 0;
