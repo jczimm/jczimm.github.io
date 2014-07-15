@@ -1418,10 +1418,10 @@ function render_game() {
                 if (rand < 0.01) {
                     if (rand < 0.008) {
                         object.name = "gold";
-                        object.material.color.setHex("#FFE100");
+                        object.material.color.setHex("FFE100");
                     } else {
                         object.name = "life";
-                        object.material.color.setHex("#6FE800");
+                        object.material.color.setHex("6FE800");
                     }
                 }
 
