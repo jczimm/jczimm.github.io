@@ -852,7 +852,7 @@ function keyDown(event) {
 		// the ESCAPE key
 		case 27:
 			materials.opacity = 0;
-			bdy.style.backgroundColor = '#000';
+			bdy.style.backgroundColor = '#00001C';
 			introReset(false);
 			break;
     }
@@ -1418,10 +1418,10 @@ function render_game() {
                 if (rand < 0.01) {
                     if (rand < 0.008) {
                         object.name = "gold";
-                        object.material.color.setRGB(1, 1, 0);
+                        object.material.color.setHex("#FFE100");
                     } else {
                         object.name = "life";
-                        object.material.color.setRGB(0, 1, 0);
+                        object.material.color.setHex("#6FE800");
                     }
                 }
 
