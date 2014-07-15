@@ -3,13 +3,30 @@
 	-webkit-user-select: none;
 }
 body {
-	background:#000;
+	background-color: #13242f;
 	padding:0;
 	margin:0;
 	font-weight: bold;
 	overflow:hidden;
 	font-family: 'Jockey One', sans-serif;
 }
+
+body:after {
+	background-image: -moz-radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0) 20%, #000000 95%);
+  	background-image: -webkit-radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0) 20%, #000000 95%);
+  	background-image: radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0) 20%, #000000 95%);
+  	position: absolute;
+  	top: 0;
+  	bottom: 0;
+  	left: 0;
+  	right: 0;
+  	margin: 0;
+  	padding: 0;
+  	opacity: 0.9;
+	height: 100%;
+	width: 100%;
+}
+
 a {
 	color : #bb2200;
 }
