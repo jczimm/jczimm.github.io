@@ -852,7 +852,6 @@ function keyDown(event) {
 		// the ESCAPE key
 		case 27:
 			materials.opacity = 0;
-			bdy.style.backgroundColor = '#000017';
 			introReset(false);
 			break;
     }
@@ -1277,7 +1276,7 @@ function render_game() {
     if (!paused) {
         //if (speed > 0) {
         clight = speed / speedlimit;
-        bdy.style.backgroundColor = '#000017';
+        bdy.style.backgroundColor = '#00000D';
         /*} else {
             clight = 0;
             tmp = -((Math.random() * speed * 100) | 0);
