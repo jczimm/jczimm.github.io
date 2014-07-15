@@ -176,8 +176,6 @@ function introReset(gamecompleted) {
         }
         sound.volume += "";
     }
-    
-    bdy.style.backgroundColor = "#00000D";
 	
 	// Hide the ship (if it already exists).
     if(ship) ship.visible = false;
@@ -854,6 +852,7 @@ function keyDown(event) {
 		// the ESCAPE key
 		case 27:
 			materials.opacity = 0;
+			bdy.style.backgroundColor = '#00001C';
 			introReset(false);
 			break;
     }
@@ -1276,14 +1275,14 @@ var rand;
 function render_game() {
 
     if (!paused) {
-        //if (speed > 0) {
-        clight = speed / speedlimit;
-        bdy.style.backgroundColor = '#00000D';
-        /*} else {
+        if (speed > 0) {
+            clight = speed / speedlimit;
+            bdy.style.backgroundColor = '#000';
+        } else {
             clight = 0;
             tmp = -((Math.random() * speed * 100) | 0);
             bdy.style.backgroundColor = 'rgb(' + tmp + ',' + (tmp / 2) + ',0)';
-        }*/
+        }
         light2.color.setHSV(clight, 0.3, 1);
 
         if (controls == 0) { // mouse
@@ -1314,9 +1313,11 @@ function render_game() {
         }
 
         if (view == 1) {
+            // 3rd
             xratio = 1.1;
             yratio = 0.5;
         } else {
+            // 1st
             xratio = 1;
             yratio = 1;
         }
