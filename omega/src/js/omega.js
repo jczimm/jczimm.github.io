@@ -942,6 +942,8 @@ function keyPress(event) {
 		// the "f" key
 		case 102:
 			
+			// need to find a better way to init...
+			stats.domElement.style.zIndex = 100001;
 			stats.domElement.style.top = "initial";
 
 			// Toggle FPS display.
