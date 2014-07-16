@@ -943,7 +943,7 @@ function keyPress(event) {
 		case 102:
 			
 			// need to find a better way to init...
-			stats.domElement.style.zIndex = 100001;
+			stats.domElement.style.zIndex = 1001;
 			stats.domElement.style.top = "initial";
 
 			// Toggle FPS display.
@@ -964,13 +964,14 @@ function brake(event) {
 		case 16:
 			
 			// and if the player owns brakes,
-			if (owned_items.contains("brakes"))
+			if (owned_items.contains("brakes") && !paused) {
 			
 				// halve the speed
-				speed = speed / 2;
+				speed /= 2;
 			
-			// and take away some health, based on which mode the player is playing (normal or expert).
-			health -= expert ? 3 : 10;
+				// and take away some health, based on which mode the player is playing (normal or expert).
+				health -= expert ? 3 : 10;
+			}
 			break;
     }
 }

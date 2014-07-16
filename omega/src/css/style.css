@@ -14,19 +14,19 @@ body {
 #overlay {
 	content: "";
 	background-image: -moz-radial-gradient(top, ellipse cover, rgba(0, 0, 0, 0) 60%, #00001C 95%);
-  	background-image: -webkit-radial-gradient(top, ellipse cover, rgba(0, 0, 0, 0) 60%, #00001C 95%);
-  	background-image: radial-gradient(top, ellipse cover, rgba(0, 0, 0, 0) 60%, #00001C 95%);
-  	position: absolute;
-  	top: 0;
-  	bottom: 0;
-  	left: 0;
-  	right: 0;
-  	margin: 0;
-  	padding: 0;
-  	opacity: 0.9;
+  background-image: -webkit-radial-gradient(top, ellipse cover, rgba(0, 0, 0, 0) 60%, #00001C 95%);
+  background-image: radial-gradient(top, ellipse cover, rgba(0, 0, 0, 0) 60%, #00001C 95%);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  opacity: 0.9;
 	height: 100%;
 	width: 100%;
-	z-index: 999999;
+	z-index: 1000;
 	pointer-events: none;
 }
 
@@ -62,22 +62,21 @@ canvas {
 
 span {text-shadow: 0 0 2px white, 0 0px 10px white; letter-spacing:0.05em; user-select: none; -webkit-user-select: none; -moz-user-select: none; -o-user-select: none; font-size:150%;  }
 #hud {position:absolute; z-index:999; top:10px; right:15px; opacity:0.5;}
-#gold {position:absolute; z-index:999; top:10px; left:15px; color: yellow;}
+#gold {position:absolute; z-index:999; top:10px; left:15px; color: #FFE100; opacity:0.95;}
 #news {position:absolute; z-index:999; top:10px; width: 100%; text-align: right; right: 15px; cursor: default; color: green;}
 #panel1, #panel2, #shop_panel {position:absolute; z-index:999; top:50%; left:0px; width:100%; text-align:center; color:white; font-size:30px;}
 #panel1 {margin-top:-190px; line-height:220%;}
 #panel2 {margin-top:-190px; line-height:200%; display:none}
 #shop_panel {margin-top:-190px; line-height:200%; display:none}
 #shop_panel > table {margin:0px auto;}
-#omlogo {font-size:500%; letter-spacing:0px; opacity:0.95; cursor:default; z-index:1001;}
+#omlogo {font-size:500%; letter-spacing:0px; opacity:0.95; cursor:default; z-index:1005;}
 #start {font-size:300%;}
 #options {font-size:150%;}
-#score  {position:absolute; top:10px; width:100%; text-align:center; font-size:250%; color:white; z-index:1000;}
+#score  {position:absolute; top:10px; width:100%; text-align:center; font-size:250%; color:white; z-index:999; cursor:default; opacity:0.95;}
 #info {font-size:100%}
 #info a {text-decoration:none; color:white;}
 #player {position:absolute; top:-100px; left:-100px }
 #musicplayer {position:absolute; left:0; top:0; display:none}
-#aswift_0_anchor {opacity:0.6}
 
 div.overdiv { filter: alpha(opacity=75);
               -moz-opacity: .75;
