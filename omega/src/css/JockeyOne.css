@@ -2,5 +2,5 @@
   font-family: 'Jockey One';
   font-style: normal;
   font-weight: 400;
-  src: local('Jockey One'), local('JockeyOne-Regular'), url(http://themes.googleusercontent.com/static/fonts/jockeyone/v4/8Hj8G_JpSADPYrRpzMno2hsxEYwM7FgeyaSgU71cLG0.woff) format('woff');
+  src: local('Jockey One'), local('JockeyOne-Regular'), url(../fonts/JockeyOne.woff) format('woff');
 }
