@@ -99,8 +99,3 @@ div.square { position: absolute;
 div.square div.msg { color: #3e6bc2;
                      font-size: 15px;
                      padding: 15px;}
-
-#fps_counter {
-  bottom: 0px;
-  top: initial;
-}

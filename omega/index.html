@@ -40,13 +40,18 @@
             return obj;
         }, {} );
         $(document).ready(function(){
-        if($_GET["p"]=="no"){
-            $("span").hide();
-            $("body").click(function(){
-                parent.document.location.href = "http://jczimm.com/omega";
+            if($_GET["p"]=="no"){
+                $("span").hide();
+                $("body").click(function(){
+                    parent.document.location.href = "http://jczimm.com/omega";
+                });
+                $("*").css("cursor","pointer");
+            }
+            $("#fps_counter").css({
+                "z-index": "100001",
+                "top": "initial",
+                "bottom": "0px"
             });
-            $("*").css("cursor","pointer");
-        }
         });
 
         Array.prototype.contains = function (obj) {
