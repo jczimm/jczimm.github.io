@@ -942,6 +942,8 @@ function keyPress(event) {
 		// the "f" key
 		case 102:
 			
+			stats.domElement.style.top = "initial";
+
 			// Toggle FPS display.
 			var stpos = stats.domElement.style.bottom;
 			if (stpos == "0px") {
