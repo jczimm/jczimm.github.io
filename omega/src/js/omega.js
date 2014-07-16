@@ -943,11 +943,11 @@ function keyPress(event) {
 		case 102:
 			
 			// Toggle FPS display.
-			var stpos = stats.domElement.style.top;
+			var stpos = stats.domElement.style.bottom;
 			if (stpos == "0px") {
-				stats.domElement.style.top = "-200px"
+				stats.domElement.style.bottom = "-200px"
 			} else {
-				stats.domElement.style.top = "0px"
+				stats.domElement.style.bottom = "0px"
 			}
 			break;
     }
