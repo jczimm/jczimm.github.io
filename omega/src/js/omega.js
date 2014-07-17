@@ -1451,11 +1451,9 @@ function render_game() {
                     if (rand < 0.008) {
                         object.name = "gold";
                         object.material.color.setHex(0xFFE100);
-                        console.log(object.scale);
                     } else {
                         object.name = "life";
                         object.material.color.setHex(0x6FE800);
-                        console.log(object.scale);
                     }
                 }
 
