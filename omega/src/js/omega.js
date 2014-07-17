@@ -1176,7 +1176,9 @@ function init() {
     scene.add(objs);
 
     for (i = 0; i < 200; i++) {
-    	var obs = generateObstacle();
+    	var obs;
+    	if(Math.random < 0.01) obs = generateObstacle();
+    	else obs = generateItem();
         obs.position.z = -i * (fogdepth / 200);
         obs.position.x = Math.random() * 5000 - 2500;
         obs.position.y = Math.random() * 3000 - 1500;
