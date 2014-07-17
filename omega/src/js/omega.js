@@ -1,3 +1,15 @@
+var $_GET = location.search.substr(1).split("&").reduce( function( obj, val ){
+    if( !val ) return obj;
+    var pair = val.split("=");
+    obj[pair[0]] = pair[1];
+    return obj;
+}, {} );
+$(document).ready(function(){
+    if ($_GET["ios"] === "true") {
+    	
+    }
+});
+
 // # Omega
 //
 // [Play Omega](http://jczimm.com/omega)
@@ -433,7 +445,7 @@ function updateUI() {
     html('op_sensitivity', 'controls sensitivity : ' + sens_list[sensitivity]);
     sen = sens_values[sensitivity];
     html('op_1stperson', 'automatic 1st/3rd person : ' + (autoswitch ? "yes" : "no"));
-    html('op_controls', 'controls : ' + (controls == 0 ? "mouse" : controls == 1 ? "arrows / WASD" : "expert (arrows+ZC, WASD+,/)"));
+    html('op_controls', 'controls : ' + (controls == 0 ? "mouse" : controls == 1 ? "arrows / WASD" : controls == 2 ? "expert (arrows+ZC, WASD+,/)"));
     html('op_yinvert', 'invert Y axis : ' + (yinvert == 0 ? "no" : "yes"));
     html('op_difficulty', 'difficulty: ' + (mode == 1 ? "normal" : "hard"));
 	
