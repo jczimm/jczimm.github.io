@@ -946,7 +946,7 @@ function keyPress(event) {
 					paused = false;
 					
 					// Unmute music.
-					if (sound) sound.unmute();
+					if (sound) sound.play();
 				} else {
 
 					// Show pause icon.
@@ -956,7 +956,7 @@ function keyPress(event) {
 					paused = true;
 					
 					// Mute music.
-					if (sound) sound.mute();
+					if (sound) sound.pause();
 				}
 			}
 			break;
