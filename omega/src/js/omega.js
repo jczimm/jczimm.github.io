@@ -1567,14 +1567,16 @@ function render_game() {
             drawSector(50, 50, 50, sp, 0, "#992200");
         }
 
-        // Display cooldown timer in HUD.
-        if(cooldown > 0) cooldown--;
-        var calc = (Math.abs(0.5*cooldown-50)-20)*0.7,
-        	pos = 30-(calc/2+5);
-        try {
-        	if(cooldown !== 0) drawSector(pos, pos, calc, 0, 0, null, "#007891");
-        	else drawSector(pos, pos, calc, 0, 0, null, "#0000FF");
-        } catch(err) {}
+		if(owned_items.contains("brakes")){
+	        // Display cooldown timer in HUD.
+	        if(cooldown > 0) cooldown--;
+	        var calc = (Math.abs(0.5*cooldown-50)-20)*0.7,
+	        	pos = 30-(calc/2+5);
+	        try {
+	        	if(cooldown !== 0) drawSector(pos, pos, calc, 0, 0, null, "#007891");
+	        	else drawSector(pos, pos, calc, 0, 0, null, "#0000FF");
+	        } catch(err) {}
+		}
 
     }
 
