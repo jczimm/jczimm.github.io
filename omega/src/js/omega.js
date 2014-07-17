@@ -52,6 +52,8 @@ var pause, paused, oldspeed, playing;
 var mode = 1,
     expert = false;
 
+var cooldown = 0;
+
 // Keycode
 var kc;
 
@@ -456,8 +458,8 @@ function updateUI() {
 
 // ## Drawing
 
-// Function for drawing a sector (notably used in the HUD).
-function drawSector(centerX, centerY, r, a1, a2, color) {
+// Function for drawing a sector (used in the HUD).
+function drawSector(centerX, centerY, r, a1, a2, color, c2) {
     ctx.save();
 
     var startingAngle = a1;
@@ -482,7 +484,7 @@ function drawSector(centerX, centerY, r, a1, a2, color) {
     ctx.moveTo(centerX, centerY);
     ctx.arc(centerX, centerY, r * 0.60, 0, Math.PI * 2, false);
     ctx.closePath();
-    ctx.fillStyle = "#ff0000";
+    ctx.fillStyle = c2 || "#ff0000";
     ctx.fill();
 
 
@@ -491,7 +493,7 @@ function drawSector(centerX, centerY, r, a1, a2, color) {
         ctx.moveTo(centerX, centerY);
         ctx.arc(centerX, centerY, r * 0.60 * (health / 100), 0, Math.PI * 2, false);
         ctx.closePath();
-        ctx.fillStyle = "#ffffff";
+        ctx.fillStyle =  c2 || "#ffffff";
         ctx.fill();
     }
 
@@ -922,12 +924,16 @@ function keyPress(event) {
 			
 				// Toggle pause.
 				if (paused) {
+
+					// Hide pause icon.
 					$("#pause-icon").fadeOut();
 					paused = false;
 					
 					// Unmute music.
 					if (sound) sound.unmute();
 				} else {
+
+					// Show pause icon.
 					$("#pause-icon").fadeIn(400, function () {
 						$("#pause-icon").finish();
 					});
@@ -960,17 +966,18 @@ function keyPress(event) {
 // Function called when brakes are enabled.
 function brake(event) {
     switch (event.keyCode) {
-		// When the SHIFT key is pressed,
+		// If the SHIFT key is pressed,
 		case 16:
 			
-			// and if the player owns brakes,
-			if (owned_items.contains("brakes") && !paused) {
+			// and if the player owns brakes, the game is not paused, and the cooldown timer is happy,
+			if (owned_items.contains("brakes") && !paused && cooldown === 0) {
 			
-				// halve the speed
+				// halve the speed.
 				speed /= 2;
-			
-				// and take away some health, based on which mode the player is playing (normal or expert).
-				health -= expert ? 3 : 10;
+
+				// Cooldown timer
+				cooldown = 200;
+
 			}
 			break;
     }
@@ -979,7 +986,7 @@ function brake(event) {
 // Function called when the mouse changes position on the screen.
 function onDocumentMouseMove(event) {
 	
-	// Update some variables.
+	// Update some global variables.
     mouseX = (event.clientX - windowHalfX) / windowX * 2;
     mouseY = (event.clientY - windowHalfY) / windowY * 2;
 }
@@ -1280,6 +1287,7 @@ var rand;
 function render_game() {
 
     if (!paused) {
+
         if (speed > 0) {
             clight = speed / speedlimit;
             bdy.style.backgroundColor = '#000';
@@ -1554,12 +1562,22 @@ function render_game() {
         //engine_lt.opacity=engine_rt.opacity = engop;
 
         ctx.clearRect(0, 0, 300, 300);
-        var sp = speed / speedlimit * Math.PI * 2;
+        var sp = speed / speedlimit * Math.PI * 2.5;
         if (speed > 0) {
             drawSector(50, 50, 50, 0, sp, "#00dd44");
         } else {
             drawSector(50, 50, 50, sp, 0, "#992200");
         }
+
+        // Display cooldown timer in HUD.
+        if(cooldown > 0) cooldown--;
+        var calc = (Math.abs(0.5*cooldown-50)-20)*0.7,
+        	pos = 30-(calc/2+5);
+        try {
+        	if(cooldown !== 0) drawSector(pos, pos, calc, 0, 0, null, "#007891");
+        	else drawSector(pos, pos, calc, 0, 0, null, "#0000FF");
+        } catch(err) {}
+
     }
 
 }

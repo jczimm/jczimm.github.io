@@ -1,7 +1,9 @@
 * {
 	-moz-user-select: none;
 	-webkit-user-select: none;
+  -ms-user-select: none;
 }
+
 body {
 	background-color: #000;
 	padding:0;
@@ -9,6 +11,11 @@ body {
 	font-weight: bold;
 	overflow:hidden;
 	font-family: 'Jockey One', sans-serif;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
 }
 
 #overlay {
