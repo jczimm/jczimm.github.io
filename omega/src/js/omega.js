@@ -1451,11 +1451,11 @@ function render_game() {
                     if (rand < 0.008) {
                         object.name = "gold";
                         object.material.color.setHex(0xFFE100);
-                        object.lookAt(new THREE.Vector3(shipX * 0.5, shipY * 0.25, -1000));
+                        object.scale(0.7);
                     } else {
                         object.name = "life";
                         object.material.color.setHex(0x6FE800);
-                        object.lookAt(new THREE.Vector3(shipX * 0.5, shipY * 0.25, -1000));
+                        object.scale(0.7);
                     }
                 }
 
