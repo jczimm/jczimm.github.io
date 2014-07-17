@@ -52,7 +52,8 @@ var pause, paused, oldspeed, playing;
 var mode = 1,
     expert = false;
 
-var cooldown = 0;
+var cooldown = 0,
+	brakesEff = 1;
 
 // Keycode
 var kc;
@@ -98,18 +99,12 @@ function bind(id) {
 
 // Function for setting an element's CSS `display` property to `block`. (Showing an element)
 function show(id) {
-    if (document.getElementById(id)) {
-        var o = document.getElementById(id);
-        o.style.display = 'block';
-    }
+    $("#"+id).fadeIn(170, "easeInOutQuad");
 }
 
 // Function for setting an element's CSS `display` property to `none`. (Hiding an element)
 function hide(id) {
-    if (document.getElementById(id)) {
-        var o = document.getElementById(id);
-        o.style.display = 'none';
-    }
+    $("#"+id).fadeOut(170, "easeInOutQuad");
 }
 
 // Function for setting the `innerHtml` of an element. (Writing HTML to an element)
@@ -973,10 +968,13 @@ function brake(event) {
 			if (owned_items.contains("brakes") && !paused && cooldown === 0) {
 			
 				// halve the speed.
-				speed /= 2;
+				speed /= 2*brakesEff;
 
 				// Cooldown timer
 				cooldown = 200;
+
+				// Wear down the brakes.
+				brakesEff *= 0.88;
 
 			}
 			break;
