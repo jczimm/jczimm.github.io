@@ -1175,16 +1175,14 @@ function init() {
     objs = new THREE.Object3D();
     scene.add(objs);
 
-    for (i = 0; i < 200; i++) {
-    	var obs;
-    	if (Math.random() < 0.01) obs = generateItem();
-        else obs = generateObstacle();
+    /*for (i = 0; i < 200; i++) {
+    	var obs = generateObstacle();
         obs.position.z = -i * (fogdepth / 200);
         obs.position.x = Math.random() * 5000 - 2500;
         obs.position.y = Math.random() * 3000 - 1500;
         obs.rotation.x = Math.random() * Math.PI;
         obs.rotation.y = Math.random() * Math.PI;
-    }
+    }*/
 
     // SHIP
 
