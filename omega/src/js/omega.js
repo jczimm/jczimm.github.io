@@ -547,6 +547,27 @@ function generateObstacle() {
 
 }
 
+// Generate a single item.
+function generateItem() {
+    var geometry = new THREE.IcosahedronGeometry(50);
+
+    var material = new THREE.MeshPhongMaterial({
+        color: 0xffffff,
+        specular: 0xffffff,
+        shininess: 150,
+        opacity: 1,
+        shading: THREE.FlatShading
+    });
+    var mesh = new THREE.Mesh(geometry, material);
+
+    mesh.matrixAutoUpdate = true;
+    mesh.updateMatrix();
+    objs.add(mesh);
+
+    return mesh;
+
+}
+
 // Generate the selected ship.
 function generateShip(type) {
     var _ship;
@@ -1155,7 +1176,9 @@ function init() {
     scene.add(objs);
 
     for (i = 0; i < 200; i++) {
-        var obs = generateObstacle();
+    	var obs;
+    	if (Math.random() < 0.01) obs = generateItem();
+        else obs = generateObstacle();
         obs.position.z = -i * (fogdepth / 200);
         obs.position.x = Math.random() * 5000 - 2500;
         obs.position.y = Math.random() * 3000 - 1500;
