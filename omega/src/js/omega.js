@@ -1476,7 +1476,7 @@ function render_game() {
 
                 case "life":
                     if (vis) {
-                        health += 20;
+                        health += health < 130 ? 20 : 0;
                         object.visible = false;
                         // TODO: play some healing sound
                     }
