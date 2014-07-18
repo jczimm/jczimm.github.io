@@ -1169,12 +1169,12 @@ function init() {
     window.addEventListener('keydown', keyDown, true);
     window.addEventListener('keypress', keyPress, true);
     window.addEventListener('mousemove', onDocumentMouseMove, false);
-    $(window)
-    .mousedown(function(){
+    $(window).mousedown(function(){
     	startPos.x = currentMousePos.x;
     	startPos.y = currentMousePos.y;
-    })
-    .mouseup(function(){
+    });
+    
+    $(window).mouseup(function(){
     	stopPos.x = currentMousePos.x;
     	stopPos.y = currentMousePos.y;
     	xDiff = Math.abs(startPos.x - stopPos.x);
