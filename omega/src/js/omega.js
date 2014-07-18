@@ -838,7 +838,7 @@ function generateShip03() {
         position.y = 22;
         rotation.x = 0.18;
         rotation.z = Math.PI / 2;
-        rotation.y = Math.PI / 2;
+        rotation.x = Math.PI / 2;
     }
     THREE.GeometryUtils.merge(mergedGeo, mesh_wings);
 
