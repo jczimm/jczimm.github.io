@@ -1062,15 +1062,6 @@ function onDocumentMouseMove(event) {
     mouseY = (event.clientY - windowHalfY) / windowY * 2;
 }
 
-// Function called when a user drags on iOS.
-/*function onDrag(e){
-	var startPos = e.swipestart.coords,
-		stopPos = e.swipestop.coords;
-		
-	xDiff = Math.abs(startPos[0] - stopPos[0]);
-	yDiff = Math.abs(startPos[1] - stopPos[1]);
-}*/
-
 // ## All systems go
 
 // Create a bunch of variables to be used by three.js.
@@ -1178,7 +1169,7 @@ function init() {
     	stopPos.y = currentMousePos.y;
     	xDiff = Math.abs(startPos.x - stopPos.x);
     	yDiff = Math.abs(startPos.y - stopPos.y);
-    	console.log(stopPos);
+    	console.log(stopPos, xDiff, yDiff);
     });
 
     container = document.createElement('div');
