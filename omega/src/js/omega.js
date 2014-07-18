@@ -791,7 +791,7 @@ function generateShip03() {
     var mergedGeo;
     mergedGeo = new THREE.Geometry();
 
-    var engine = new THREE.TorusKnotGeometry(100, 70);
+    var engine = new THREE.TorusGeometry(100, 70);
     var wings = new THREE.CylinderGeometry(20, 20, 30);
     var t1 = new THREE.CylinderGeometry(3, 4);
     var t2 = new THREE.CylinderGeometry(3, 4);
