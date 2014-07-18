@@ -17,7 +17,7 @@ var $_GET = location.search.substr(1).split("&").reduce( function( obj, val ){
 }, {} );
 $(document).ready(function(){
     if ($_GET["ios"] === "true") {
-    	controls = 3;
+    	// TODO: implement swipe controls using jQuery Mobile
     }
 });
 
@@ -80,9 +80,6 @@ var cooldown = 0,
 
 // Keycode
 var kc;
-
-// Touch control variables
-var xDiff, yDiff;
 
 // Create objects that hold the price and health of each ship.
 var prices = {
@@ -1060,18 +1057,6 @@ function onDocumentMouseMove(event) {
     mouseY = (event.clientY - windowHalfY) / windowY * 2;
 }
 
-// Function called when a user drags on iOS.
-function onDrag(e){
-	var startPos = e.swipestart.coords,
-		stopPos = e.swipestop.coords;
-		
-	xDiff = Math.abs(startPos[0] - stopPos[0]);
-	yDiff = Math.abs(startPos[1] - stopPos[1]);
-	
-	
-	
-}
-
 // ## All systems go
 
 // Create a bunch of variables to be used by three.js.
@@ -1164,7 +1149,6 @@ function init() {
     window.addEventListener('keydown', keyDown, true);
     window.addEventListener('keypress', keyPress, true);
     window.addEventListener('mousemove', onDocumentMouseMove, false);
-    $(window).on("swipe", onDrag);
 
     container = document.createElement('div');
     document.body.appendChild(container);
@@ -1388,28 +1372,18 @@ function render_game() {
             bdy.style.backgroundColor = 'rgb(' + tmp + ',' + (tmp / 2) + ',0)';
         }
         light2.color.setHSV(clight, 0.3, 1);
-	
-	switch(controls){
-		case 0: // mouse
-			mx = Math.max(Math.min(mouseX * sen, 1), -1);
+
+        if (controls == 0) { // mouse
+            mx = Math.max(Math.min(mouseX * sen, 1), -1);
             my = Math.max(Math.min(mouseY * sen, 1), -1);
-			break;
-			
-		case 1: // keyboard
-		case 2:
-			if (key_up) my -= 0.002 * dtm * sen;
+        } else { // keyboard
+            if (key_up) my -= 0.002 * dtm * sen;
             if (key_down) my += 0.002 * dtm * sen;
             if (key_left) mx -= 0.003 * dtm * sen;
             if (key_right) mx += 0.003 * dtm * sen;
             mx = Math.max(Math.min(mx, 1), -1);
             my = Math.max(Math.min(my, 1), -1);
-			break;
-			
-		case 3: // touch
-			mx += xDiff,
-			my += yDiff;
-			break;
-	}
+        }
 
         if (yinvert == 1) my = -my;
 
