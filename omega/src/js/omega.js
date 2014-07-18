@@ -204,6 +204,7 @@ function introReset(gamecompleted) {
     speed = 0;
     view = 2;
     status = 0;
+    cooldown = 0;
 	
 	// Fetch highscore from storage, fallback if it doesn't exist yet.
     hiscore = $.jStorage.get("omhiscore");
@@ -1073,7 +1074,7 @@ var dtm, track, next_frame, phase;
 var zcamera = zcamera2 = 0;
 var p = [];
 
-$(document).ready(function(){
+$(initdy(function(){
 
 	// Prevent scrolling in one other way (for extra protection).
 	$('body').on('wheel.modal mousewheel.modal', function () {
