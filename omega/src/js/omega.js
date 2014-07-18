@@ -1074,7 +1074,7 @@ var dtm, track, next_frame, phase;
 var zcamera = zcamera2 = 0;
 var p = [];
 
-$(initdy(function(){
+$(document).ready(function(){
 
 	// Prevent scrolling in one other way (for extra protection).
 	$('body').on('wheel.modal mousewheel.modal', function () {
