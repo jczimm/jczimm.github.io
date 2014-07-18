@@ -1169,7 +1169,7 @@ function init() {
     	stopPos.y = currentMousePos.y;
     	xDiff = Math.abs(startPos.x - stopPos.x);
     	yDiff = Math.abs(startPos.y - stopPos.y);
-    	console.log(stopPos, xDiff, yDiff);
+    	console.log(startPos, stopPos);
     });
 
     container = document.createElement('div');
