@@ -908,6 +908,11 @@ function keyDown(event) {
 		case 191:
 			key_turn_right = true;
 			break;
+			
+		// the ENTER key
+		case 13:
+			$("#start").click();
+			break;
 		
 		// the ESCAPE key
 		case 27:
