@@ -1172,13 +1172,13 @@ function init() {
     $(window).mousedown(function(){
     	startPos.x = currentMousePos.x;
     	startPos.y = currentMousePos.y;
-    });
-    
-    $(window).mouseup(function(){
+    	console.log(startPos);
+    }).mouseup(function(){
     	stopPos.x = currentMousePos.x;
     	stopPos.y = currentMousePos.y;
     	xDiff = Math.abs(startPos.x - stopPos.x);
     	yDiff = Math.abs(startPos.y - stopPos.y);
+    	console.log(stopPos);
     });
 
     container = document.createElement('div');
