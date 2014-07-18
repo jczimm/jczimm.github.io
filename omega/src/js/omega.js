@@ -792,7 +792,7 @@ function generateShip03() {
     mergedGeo = new THREE.Geometry();
 
     var engine = new THREE.TorusGeometry(100, 70);
-    var wings = new THREE.CylinderGeometry(20, 20, 30);
+    var wings = new THREE.CylinderGeometry(20, 20, 30, 4, 1, true);
     var t1 = new THREE.CylinderGeometry(3, 4);
     var t2 = new THREE.CylinderGeometry(3, 4);
 
@@ -839,7 +839,7 @@ function generateShip03() {
         rotation.x = 0.18;
         rotation.z = Math.PI / 2;
     }
-    //THREE.GeometryUtils.merge(mergedGeo, mesh_wings);
+    THREE.GeometryUtils.merge(mergedGeo, mesh_wings);
 
     with(mesh_t1) {
         position.x = 10;
