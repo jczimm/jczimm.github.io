@@ -82,7 +82,8 @@ var cooldown = 0,
 var kc;
 
 // Touch control variables
-var xDiff, yDiff;
+var xDiff, yDiff,
+	startPos = stopPos = {};
 
 // Create objects that hold the price and health of each ship.
 var prices = {
@@ -1061,16 +1062,13 @@ function onDocumentMouseMove(event) {
 }
 
 // Function called when a user drags on iOS.
-function onDrag(e){
+/*function onDrag(e){
 	var startPos = e.swipestart.coords,
 		stopPos = e.swipestop.coords;
 		
 	xDiff = Math.abs(startPos[0] - stopPos[0]);
 	yDiff = Math.abs(startPos[1] - stopPos[1]);
-	
-	
-	
-}
+}*/
 
 // ## All systems go
 
@@ -1164,7 +1162,17 @@ function init() {
     window.addEventListener('keydown', keyDown, true);
     window.addEventListener('keypress', keyPress, true);
     window.addEventListener('mousemove', onDocumentMouseMove, false);
-    $(window).on("swipe", onDrag);
+    $(window)
+    .mousedown(function(){
+    	startPos.x = window.event.clientX;
+    	startPos.y = window.event.clientY;
+    })
+    .mouseup(function(){
+    	stopPos.x = window.event.clientX;
+    	stopPos.y = window.event.clientY;
+    	xDiff = Math.abs(startPos.x - stopPos.x);
+    	yDiff = Math.abs(startPos.y - stopPos.y);
+    });
 
     container = document.createElement('div');
     document.body.appendChild(container);
@@ -1406,7 +1414,7 @@ function render_game() {
 			break;
 			
 		case 3: // touch
-			mx += xDiff,
+			mx += xDiff;
 			my += yDiff;
 			break;
 	}
