@@ -1,3 +1,14 @@
+/*
+TODO:
+========
+
+╔ Add achievement system
+╚══ achievement ideas:
+  + "spot" (reach) planets (═Add planets that show up at difference distances/scores═)
+
+
+*/
+
 var $_GET = location.search.substr(1).split("&").reduce( function( obj, val ){
     if( !val ) return obj;
     var pair = val.split("=");
@@ -6,7 +17,7 @@ var $_GET = location.search.substr(1).split("&").reduce( function( obj, val ){
 }, {} );
 $(document).ready(function(){
     if ($_GET["ios"] === "true") {
-    	
+    	// TODO: implement swipe controls using jQuery Mobile
     }
 });
 
@@ -243,7 +254,7 @@ function onWindowResize() {
     camera.aspect = windowX / windowY;
     camera.updateProjectionMatrix();
     renderer.setSize(windowX, windowY);
-    fullscreen = (windowX == window.outerWidth)
+    fullscreen = (windowX == window.outerWidth);
 }
 
 // Function for fetching the value of a key from storage.
@@ -434,7 +445,24 @@ function buttonClick(e) {
 			$.jStorage.set("music", music);
 			break;
 			
-		//case "leaderboard"
+		// If the element is the "achievements" button in the start menu,
+		case "achievements":
+
+			// open the achievements map.
+			$("#achiev-map").attr("class", "expanded");
+			setTimeout(function(){
+				$("#close_map").fadeIn(200);
+			}, 500);
+			break;
+
+		// If the element is the × button on the achievements map,
+		case "close_map":
+
+			// close the achievements map.
+			$("#close_map").fadeOut(200);
+			$("#achiev-map").attr("class", "hidden");
+			break;
+
     }
 }
 
@@ -445,7 +473,7 @@ function updateUI() {
     html('op_sensitivity', 'controls sensitivity : ' + sens_list[sensitivity]);
     sen = sens_values[sensitivity];
     html('op_1stperson', 'automatic 1st/3rd person : ' + (autoswitch ? "yes" : "no"));
-    html('op_controls', 'controls : ' + (controls == 0 ? "mouse" : controls == 1 ? "arrows / WASD" : controls == 2 ? "expert (arrows+ZC, WASD+,/)"));
+    html('op_controls', 'controls : ' + (controls == 0 ? "mouse" : controls == 1 ? "arrows / WASD" : controls == 2 ? "expert (arrows+ZC, WASD+,/)" : ""));
     html('op_yinvert', 'invert Y axis : ' + (yinvert == 0 ? "no" : "yes"));
     html('op_difficulty', 'difficulty: ' + (mode == 1 ? "normal" : "hard"));
 	
@@ -1045,6 +1073,12 @@ var zcamera = zcamera2 = 0;
 var p = [];
 
 $(document).ready(function(){
+
+	// Prevent scrolling in one other way (for extra protection).
+	$('body').on('wheel.modal mousewheel.modal', function () {
+      return false;
+    });
+
 	// Display the intro, passing `false` for `gamecompleted`.
 	introReset(false);
 	
@@ -1070,6 +1104,9 @@ $(document).ready(function(){
 	bind("hugo");
 	
 	bind("brakes");
+
+	bind("achievements");
+	bind("close_map");
 	
 	bdy = document.getElementById("body");
 	
@@ -1671,7 +1708,6 @@ function buyItem(item) {
 function updateShop() {
     var i = owned_items.length;
     while (i--) html(owned_items[i], owned_items[i]);
-    //bdy.innerHTML = bdy.innerHTML.replace("☉","<object type='image/svg+xml' data='www.fileformat.info/info/unicode/char/1f71a/alchemical_symbol_for_gold.svg'></object>");
 }
 
 /*function loadNeedle() {

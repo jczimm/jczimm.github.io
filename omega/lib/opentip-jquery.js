@@ -497,7 +497,8 @@ Opentip = (function() {
     this._searchAndActivateCloseButtons();
     this._startEnsureTriggerElement();
     this.adapter.css(this.container, {
-      zIndex: Opentip.lastZIndex++
+      zIndex: Opentip.lastZIndex++,
+      opacity: 0.85
     });
     this._setupObservers("-hidden", "-hiding", "-showing", "-visible", "showing", "visible");
     if (this.options.fixed && !this.options.target) {
@@ -1476,7 +1477,7 @@ Opentip.debug = false;
 
 Opentip.lastId = 0;
 
-Opentip.lastZIndex = 100;
+Opentip.lastZIndex = 2000;
 
 Opentip.tips = [];
 
