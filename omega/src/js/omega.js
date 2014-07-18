@@ -1171,12 +1171,12 @@ function init() {
     window.addEventListener('mousemove', onDocumentMouseMove, false);
     $(window)
     .mousedown(function(){
-    	startPos.x = currentMousePosition.x;
-    	startPos.y = currentMousePosition.y;
+    	startPos.x = currentMousePos.x;
+    	startPos.y = currentMousePos.y;
     })
     .mouseup(function(){
-    	stopPos.x = currentMousePosition.x;
-    	stopPos.y = currentMousePosition.y;
+    	stopPos.x = currentMousePos.x;
+    	stopPos.y = currentMousePos.y;
     	xDiff = Math.abs(startPos.x - stopPos.x);
     	yDiff = Math.abs(startPos.y - stopPos.y);
     });
