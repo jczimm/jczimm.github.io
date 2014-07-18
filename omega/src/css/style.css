@@ -133,6 +133,11 @@ span {text-shadow: 0 0 2px white, 0 0px 10px white; letter-spacing:0.05em; -ms-u
 
 #achiev-map > table > tbody > tr > td {
     text-align: center;
+    background-image: url(https://cloud.githubusercontent.com/assets/5208059/3631573/8cc7a428-0eb8-11e4-8759-71034cce0fcf.png);
+}
+
+#achiev-map > table > tbody > tr > td.discovered {
+    background-image: none;
 }
 
 #achiev-map.hidden {
