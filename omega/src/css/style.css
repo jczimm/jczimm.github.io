@@ -135,10 +135,21 @@ span {text-shadow: 0 0 2px white, 0 0px 10px white; letter-spacing:0.05em; -ms-u
     text-align: center;
 }
 
+#achiev-map > table > tbody > tr > td > img {
+    display: block;
+    width: 50%;
+    height: 50%;
+}
+
 #achiev-map.hidden {
     width: 0;
     height: 0;
     font-size: 0;
+}
+
+#achiev-map.hidden > table > tbody > tr > td > img {
+    width: 0;
+    height: 0;
 }
 
 #achiev-map.expanded {
