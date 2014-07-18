@@ -453,8 +453,11 @@ function buttonClick(e) {
 			
 		// If the element is the "achievements" button in the start menu,
 		case "achievements":
-
-			// open the achievements map.
+			
+			// update the achievements map
+			updateMap();
+			
+			// and open it.
 			$("#achiev-map").attr("class", "expanded");
 			setTimeout(function(){
 				$("#close_map").fadeIn(200);
@@ -1155,6 +1158,9 @@ function init() {
 	
 	// Update the shop interface (duh).
     updateShop();
+    
+    // Update the achievements map (duh again).
+    updateMap();
 
     window.addEventListener('keyup', keyUp, true);
     window.addEventListener('keydown', keyDown, true);
@@ -1747,6 +1753,17 @@ function buyItem(item) {
 function updateShop() {
     var i = owned_items.length;
     while (i--) html(owned_items[i], owned_items[i]);
+}
+
+function updateMap(){
+	$("#achiev-map > table > tbody > tr > td").html("<img src='https://cloud.githubusercontent.com/assets/5208059/3631573/8cc7a428-0eb8-11e4-8759-71034cce0fcf.png' />");
+	
+	var planets = {
+		mars: "5208059/3631705/f187acae-0eb9-11e4-979e-0a3cf9896292.png"
+	};
+	$("#achiev-map > table > tbody > tr > td.discovered").forEach(function($el){
+		$el.html("<img src='https://cloud.githubusercontent.com/assets/" + planets[$el.data("planet")] +"' />");
+	});
 }
 
 /*function loadNeedle() {
