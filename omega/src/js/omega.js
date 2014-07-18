@@ -827,7 +827,7 @@ function generateShip03() {
     var mesh_t2 = new THREE.Mesh(t2, white_material);
 
     with(mesh_engine) {
-        //rotation.x = Math.PI / 2;
+        rotation.x = Math.PI / 2;
         scale.x = 0.11;
         scale.y = 0.44;
         scale.z = 0.24;
@@ -837,21 +837,21 @@ function generateShip03() {
     with(mesh_wings) {
         position.y = 22;
         rotation.x = 0.18;
-        //rotation.z = Math.PI / 2;
+        rotation.z = Math.PI / 2;
     }
-    THREE.GeometryUtils.merge(mergedGeo, mesh_wings);
+    //THREE.GeometryUtils.merge(mergedGeo, mesh_wings);
 
     with(mesh_t1) {
         position.x = 10;
         position.z = -81.27;
-        //rotation.x = Math.PI / 2;
+        rotation.x = Math.PI / 2;
     }
     THREE.GeometryUtils.merge(mergedGeo, mesh_t1);
 
     with(mesh_t2) {
         position.x = -10;
         position.z = -81.27;
-        //rotation.x = Math.PI / 2;
+        rotation.x = Math.PI / 2;
     }
     THREE.GeometryUtils.merge(mergedGeo, mesh_t2);
 
