@@ -1761,8 +1761,8 @@ function updateMap(){
 	var planets = {
 		mars: "5208059/3631705/f187acae-0eb9-11e4-979e-0a3cf9896292.png"
 	};
-	$("#achiev-map > table > tbody > tr > td.discovered").forEach(function($el){
-		$el.html("<img src='https://cloud.githubusercontent.com/assets/" + planets[$el.data("planet")] +"' />");
+	$("#achiev-map > table > tbody > tr > td.discovered").each(function(){
+		$(this).html("<img src='https://cloud.githubusercontent.com/assets/" + planets[$(this).data("planet")] +"' />");
 	});
 }
 
