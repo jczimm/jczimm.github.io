@@ -1414,8 +1414,8 @@ function render_game() {
 			break;
 			
 		case 3: // touch
-			mx += xDiff;
-			my += yDiff;
+			mx = xDiff;
+			my = yDiff;
 			break;
 	}
 
