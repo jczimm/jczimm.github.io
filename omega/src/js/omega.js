@@ -1161,20 +1161,20 @@ function init() {
     window.addEventListener('mousemove', onDocumentMouseMove, false);
     var mouseDown = false;
     $(window).on('mousedown', function(e){
-    	if(!mousedown){
+    	if(!mouseDown){
 	    	startPos.x = e.pageX;
 	    	startPos.y = e.pageY;
 	    	console.log(startPos);
-	    	mousedown = true;
+	    	mouseDown = true;
     	}
     }).on('mouseup', function(e){
-    	if(mousedown){
+    	if(mouseDown){
     		stopPos.x = e.pageX;
 	    	stopPos.y = e.pageY;
 	    	xDiff = Math.abs(startPos.x - stopPos.x);
 	    	yDiff = Math.abs(startPos.y - stopPos.y);
 	    	console.log(startPos, stopPos);
-	    	mousedown = false;
+	    	mouseDown = false;
     	}
     });
 
