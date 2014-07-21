@@ -1279,7 +1279,7 @@ function init() {
 
     // RENDERER
     
-    renderer = false? new THREE.WebGLRenderer({
+    renderer = Detector.webgl? new THREE.WebGLRenderer({
         antialias: true
     }) : new THREE.CanvasRenderer();
 
