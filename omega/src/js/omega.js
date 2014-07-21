@@ -1159,23 +1159,45 @@ function init() {
     window.addEventListener('keydown', keyDown, true);
     window.addEventListener('keypress', keyPress, true);
     window.addEventListener('mousemove', onDocumentMouseMove, false);
-    var lastMDTime, lastMUTime;
-    $(window).on('mousedown', function(e){
-    	if(Math.abs(lastMDTime - lastMUTime) > 10){
-	    	startPos.x = e.pageX;
-	    	startPos.y = e.pageY;
-	    	console.log(startPos);
-	    	mouseDown = true;
-	    	lastMDTime = +(new Date());
-    	}
-    }).on('mouseup', function(e){
-    	stopPos.x = e.pageX;
-    	stopPos.y = e.pageY;
-    	xDiff = Math.abs(startPos.x - stopPos.x);
-    	yDiff = Math.abs(startPos.y - stopPos.y);
-    	console.log(startPos, stopPos);
-    	lastMUTime = +(new Date());
-    });
+    document.addEventListener('touchstart', handleTouchStart, false);        
+	document.addEventListener('touchmove', handleTouchMove, false);
+	
+	var xDown = null;                                                        
+	var yDown = null;                                                        
+	
+	function handleTouchStart(evt) {                                         
+	    xDown = evt.touches[0].clientX;                                      
+	    yDown = evt.touches[0].clientY;                                      
+	};                                                
+	
+	function handleTouchMove(evt) {
+	    if ( ! xDown || ! yDown ) {
+	        return;
+	    }
+	
+	    var xUp = evt.touches[0].clientX;                                    
+	    var yUp = evt.touches[0].clientY;
+	
+	    var xDiff = xDown - xUp;
+	    var yDiff = yDown - yUp;
+	
+	    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+	        if ( xDiff > 0 ) {
+	            console.log("left");
+	        } else {
+	            console.log("right");
+	        }                       
+	    } else {
+	        if ( yDiff > 0 ) {
+	            console.log("up");
+	        } else { 
+	            console.log("down");
+	        }                                                                 
+	    }
+	    /* reset values */
+	    xDown = null;
+	    yDown = null;                                             
+	};
 
     container = document.createElement('div');
     document.body.appendChild(container);
