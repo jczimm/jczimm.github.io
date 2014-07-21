@@ -1166,11 +1166,11 @@ function init() {
     window.addEventListener('keydown', keyDown, true);
     window.addEventListener('keypress', keyPress, true);
     window.addEventListener('mousemove', onDocumentMouseMove, false);
-    $(window).mousedown(function(){
+    $(window).unbind('mousedown').mousedown(function(){
     	startPos.x = currentMousePos.x;
     	startPos.y = currentMousePos.y;
     	console.log(startPos);
-    }).mouseup(function(){
+    }).unbind('mouseup').mouseup(function(){
     	stopPos.x = currentMousePos.x;
     	stopPos.y = currentMousePos.y;
     	xDiff = Math.abs(startPos.x - stopPos.x);
