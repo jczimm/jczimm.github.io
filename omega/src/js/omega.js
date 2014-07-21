@@ -1170,7 +1170,7 @@ function init() {
     	startPos.x = e.pageX;
     	startPos.y = e.pageY;
     	console.log(startPos);
-    }).on('mouseup', function(){
+    }).on('mouseup', function(e){
     	stopPos.x = e.pageX;
     	stopPos.y = e.pageY;
     	xDiff = Math.abs(startPos.x - stopPos.x);
