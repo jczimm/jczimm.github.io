@@ -1183,15 +1183,15 @@ function init() {
 	
 	    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
 	        if ( xDiff > 0 ) {
-	            console.log("left");
+	            $("#score").text("left");
 	        } else {
-	            console.log("right");
+	            $("#score").text("right");
 	        }                       
 	    } else {
 	        if ( yDiff > 0 ) {
-	            console.log("up");
+	            $("#score").text("up");
 	        } else { 
-	            console.log("down");
+	            $("#score").text("down");
 	        }                                                                 
 	    }
 	    /* reset values */
