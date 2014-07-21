@@ -1159,23 +1159,22 @@ function init() {
     window.addEventListener('keydown', keyDown, true);
     window.addEventListener('keypress', keyPress, true);
     window.addEventListener('mousemove', onDocumentMouseMove, false);
-    var mouseDown = false;
+    var lastMDTime, lastMUTime;
     $(window).on('mousedown', function(e){
-    	if(!mouseDown){
+    	if(Math.abs(lastMDTime - lastMUTime) > 10){
 	    	startPos.x = e.pageX;
 	    	startPos.y = e.pageY;
 	    	console.log(startPos);
 	    	mouseDown = true;
+	    	lastMDTime = +(new Date());
     	}
     }).on('mouseup', function(e){
-    	if(mouseDown){
-    		stopPos.x = e.pageX;
-	    	stopPos.y = e.pageY;
-	    	xDiff = Math.abs(startPos.x - stopPos.x);
-	    	yDiff = Math.abs(startPos.y - stopPos.y);
-	    	console.log(startPos, stopPos);
-	    	mouseDown = false;
-    	}
+    	stopPos.x = e.pageX;
+    	stopPos.y = e.pageY;
+    	xDiff = Math.abs(startPos.x - stopPos.x);
+    	yDiff = Math.abs(startPos.y - stopPos.y);
+    	console.log(startPos, stopPos);
+    	lastMUTime = +(new Date());
     });
 
     container = document.createElement('div');
