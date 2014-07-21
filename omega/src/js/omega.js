@@ -1166,13 +1166,13 @@ function init() {
     window.addEventListener('keydown', keyDown, true);
     window.addEventListener('keypress', keyPress, true);
     window.addEventListener('mousemove', onDocumentMouseMove, false);
-    $(window).unbind('mousedown').mousedown(function(){
-    	startPos.x = currentMousePos.x;
-    	startPos.y = currentMousePos.y;
+    $(window).mousedown(function(e){
+    	startPos.x = e.pageX;
+    	startPos.y = e.pageY;
     	console.log(startPos);
-    }).unbind('mouseup').mouseup(function(){
-    	stopPos.x = currentMousePos.x;
-    	stopPos.y = currentMousePos.y;
+    }).mouseup(function(){
+    	stopPos.x = e.pageX;
+    	stopPos.y = e.pageY;
     	xDiff = Math.abs(startPos.x - stopPos.x);
     	yDiff = Math.abs(startPos.y - stopPos.y);
     	console.log(startPos, stopPos);
