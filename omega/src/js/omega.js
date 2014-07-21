@@ -1278,9 +1278,10 @@ function init() {
     if (owned_items.contains("brakes")) useBrakes();
 
     // RENDERER
-    renderer = new THREE.WebGLRenderer({
+    
+    renderer = false? new THREE.WebGLRenderer({
         antialias: true
-    }); // preserveDrawingBuffer: true
+    }) : new THREE.CanvasRenderer();
 
     var canvas = document.getElementById('hud');
     ctx = canvas.getContext('2d');
