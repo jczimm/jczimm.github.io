@@ -84,7 +84,6 @@ var kc;
 // Touch control variables
 var xDiff, yDiff,
 	startPos = stopPos = {};
-var currentMousePos = { x: -1, y: -1 };
 
 // Create objects that hold the price and health of each ship.
 var prices = {
@@ -1088,12 +1087,6 @@ var zcamera = zcamera2 = 0;
 var p = [];
 
 $(document).ready(function(){
-	
-	// For iOS drag calculations
-	$(document).mousemove(function(event) {
-	    currentMousePos.x = event.pageX;
-	    currentMousePos.y = event.pageY;
-	});
 
 	// Prevent scrolling in one other way (for extra protection).
 	$('body').on('wheel.modal mousewheel.modal', function () {
@@ -1131,6 +1124,18 @@ $(document).ready(function(){
 	
 	bdy = document.getElementById("body");
 	
+	$(window).on('mousedown', function(e){
+    	startPos.x = e.pageX;
+    	startPos.y = e.pageY;
+    	console.log(startPos);
+    }).on('mouseup', function(e){
+    	stopPos.x = e.pageX;
+    	stopPos.y = e.pageY;
+    	xDiff = Math.abs(startPos.x - stopPos.x);
+    	yDiff = Math.abs(startPos.y - stopPos.y);
+    	console.log(startPos, stopPos);
+    });
+	
 	// Action!
 	init();
 	animate();
@@ -1166,17 +1171,6 @@ function init() {
     window.addEventListener('keydown', keyDown, true);
     window.addEventListener('keypress', keyPress, true);
     window.addEventListener('mousemove', onDocumentMouseMove, false);
-    $(window).on('mousedown', function(e){
-    	startPos.x = e.pageX;
-    	startPos.y = e.pageY;
-    	console.log(startPos);
-    }).on('mouseup', function(e){
-    	stopPos.x = e.pageX;
-    	stopPos.y = e.pageY;
-    	xDiff = Math.abs(startPos.x - stopPos.x);
-    	yDiff = Math.abs(startPos.y - stopPos.y);
-    	console.log(startPos, stopPos);
-    });
 
     container = document.createElement('div');
     document.body.appendChild(container);
