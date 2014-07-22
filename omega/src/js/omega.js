@@ -184,6 +184,10 @@ function gameReset() {
     group2color.color.setRGB(1, 1, 0);
     group2.matrixAutoUpdate = true;
     group2.updateMatrix();
+    
+    // Reset the phases.
+    next_frame = 0;
+    phase = 1;
 }
 
 // Function for rending the intro.
