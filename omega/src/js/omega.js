@@ -1800,7 +1800,7 @@ function updateMap(){
 	$cells.filter(':not(.discovered)').find("img").attr('src', 'https://i.imgur.com/QXaG1yE.png');
 	
 	var planets = {
-		mercury: "OjHjz3l",
+		mercury: "xTQNwcA",
 		mars: "o9CWdbh"
 	};
 	
