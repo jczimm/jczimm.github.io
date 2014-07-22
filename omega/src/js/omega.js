@@ -1784,14 +1784,18 @@ function updateShop() {
 }
 
 function updateMap(){
-	$("#achiev-map > table > tbody > tr > td:not(.discovered)").find("img").attr('src', 'http://i.imgur.com/QXaG1yE.png');
+	var $cells = $("#achiev-map > table > tbody > tr > td");
+	
+	$cells.html("<img />");
+	$cells.filter(':not(.discovered)').find("img").attr('src', 'https://i.imgur.com/QXaG1yE.png');
 	
 	var planets = {
 		mercury: "OjHjz3l",
 		mars: "o9CWdbh"
 	};
+	
 	$("#achiev-map > table > tbody > tr > td.discovered").each(function(){
-		$(this).find("img").attr("src", "http://i.imgur.com/" + planets[$(this).data("planet")] +".png");
+		$(this).find("img").attr("src", "https://i.imgur.com/" + planets[$(this).data("planet")] +".png");
 	});
 }
 
