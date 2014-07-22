@@ -5,14 +5,16 @@
   </head>
   <body>
     <script>
-      var data = location.search.substr(1).split("&").reduce(function(obj, val){
-          if(!val) return obj;
-          var pair = val.split("=");
-          obj[pair[0]] = pair[1];
-          return obj;
-      }, {});
-      
-      window.open(data.url, '_self', "width="+data.w", height="+data.h);
+      window.onload = function(){
+        var data = location.search.substr(1).split("&").reduce(function(obj, val){
+            if(!val) return obj;
+            var pair = val.split("=");
+            obj[pair[0]] = pair[1];
+            return obj;
+        }, {});
+        
+        window.open(data.url, '_self', "width="+data.w", height="+data.h);
+      }
     </script>
   </body>
 </html>
