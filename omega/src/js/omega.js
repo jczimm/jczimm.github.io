@@ -1136,6 +1136,8 @@ $(document).ready(function(){
 // Initialize everything.
 function init() {
 	
+	initMap();
+	
 	// Fetch options from storage, if they are not set override them with the second argument.
     sensitivity = get("omsensitivity", 1);
     autoswitch = get("omautoswitch", 0);
@@ -1786,7 +1788,6 @@ function updateShop() {
 function updateMap(){
 	var $cells = $("#achiev-map > table > tbody > tr > td");
 	
-	$cells.html("<img />");
 	$cells.filter(':not(.discovered)').find("img").attr('src', 'https://i.imgur.com/QXaG1yE.png');
 	
 	var planets = {
@@ -1796,6 +1797,13 @@ function updateMap(){
 	
 	$("#achiev-map > table > tbody > tr > td.discovered").each(function(){
 		$(this).find("img").attr("src", "https://i.imgur.com/" + planets[$(this).data("planet")] +".png");
+	});
+}
+
+function initMap(){
+	var planets = ['mercury', 'mars'];
+	$("#achiev-map > table > tbody > tr > td").each(function(i){
+		$(this).html("<img "+ (planets[i] ? "data-planet='"+planets[i]+"'" : "") +"/>");
 	});
 }
 
