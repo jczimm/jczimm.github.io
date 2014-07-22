@@ -1604,7 +1604,9 @@ function render_game() {
 		                    break;
 		
 		                default:
-		                    if (speed > 25) health -= speed / (mode == 1 ? 1.3 : mode == 2 ? 0.8 : 1.3);
+		                    try {
+		                    	if (speed > 25) health -= speed / (mode == 1 ? 1.3 : mode == 2 ? 0.8 : 1.3);
+		                    } catch(e){}
 		                    speed = -3;
 		                    break;
 		        	}
