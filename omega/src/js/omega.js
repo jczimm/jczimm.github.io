@@ -1097,7 +1097,7 @@ $(document).ready(function(){
       return false;
     });
 
-	// Display the intro, passing `false` for `gamecompleted`.
+	// Render the intro, passing `false` for `gamecompleted`.
 	introReset(false);
 	
 	// Hide the pause icon.
@@ -1133,7 +1133,7 @@ $(document).ready(function(){
 	animate();
 });
 
-// Called to initialize everything.
+// Initialize everything.
 function init() {
 	
 	// Fetch options from storage, if they are not set override them with the second argument.
@@ -1583,30 +1583,32 @@ function render_game() {
             // Collision check
             if (Math.abs(ship.position.x - object.position.x) < 100 && Math.abs(ship.position.y - object.position.y) < 50 && Math.abs(ship.position.z - object.position.z) < 50) {
                 var vis = object.visible;
-                switch (object.name) {
-                case "gold":
-                    if (vis) {
-                        gold += 1;
-                        object.visible = false;
-                        // TODO: play some gold sound
-                    }
-                    break;
-
-                case "life":
-                    if (vis) {
-                        health += health < 130 ? 20 : 0;
-                        object.visible = false;
-                        // TODO: play some healing sound
-                    }
-                    break;
-
-                default:
-                    if (speed > 25) health -= speed / (mode == 1 ? 1.3 : mode == 2 ? 0.8 : 1.3);
-                    speed = -3;
-                    break;
-                }
+                if(phase !== 6){
+	                switch (object.name) {
+		                case "gold":
+		                    if (vis) {
+		                        gold += 1;
+		                        object.visible = false;
+		                        // TODO: play some gold sound
+		                    }
+		                    break;
+		
+		                case "life":
+		                    if (vis) {
+		                        health += health < 130 ? 20 : 0;
+		                        object.visible = false;
+		                        // TODO: play some healing sound
+		                    }
+		                    break;
+		
+		                default:
+		                    if (speed > 25) health -= speed / (mode == 1 ? 1.3 : mode == 2 ? 0.8 : 1.3);
+		                    speed = -3;
+		                    break;
+		        	}
+	        	}
             }
-
+            
         }
 
         html("gold", gold | 0);
