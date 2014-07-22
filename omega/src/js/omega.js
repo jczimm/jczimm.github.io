@@ -1094,7 +1094,7 @@ $(document).ready(function(){
 
 	// Prevent scrolling in one other way (for extra protection).
 	$('body').on('wheel.modal mousewheel.modal', function () {
-      return false;
+   		return false;
     });
 
 	// Render the intro, passing `false` for `gamecompleted`.
@@ -1787,6 +1787,13 @@ function updateShop() {
     while (i--) html(owned_items[i], owned_items[i]);
 }
 
+function initMap(){
+	var planets = ['mercury', 'mars'];
+	$("#achiev-map > table > tbody > tr > td").each(function(i){
+		$(this).html("<img "+ (planets[i] ? "data-planet='"+planets[i]+"'" : "") +"/>");
+	});
+}
+
 function updateMap(){
 	var $cells = $("#achiev-map > table > tbody > tr > td");
 	
@@ -1797,15 +1804,8 @@ function updateMap(){
 		mars: "o9CWdbh"
 	};
 	
-	$("#achiev-map > table > tbody > tr > td.discovered").each(function(){
-		$(this).find("img").attr("src", "https://i.imgur.com/" + planets[$(this).data("planet")] +".png");
-	});
-}
-
-function initMap(){
-	var planets = ['mercury', 'mars'];
-	$("#achiev-map > table > tbody > tr > td").each(function(i){
-		$(this).html("<img "+ (planets[i] ? "data-planet='"+planets[i]+"'" : "") +"/>");
+	$("#achiev-map > table > tbody > tr > td.discovered").find("img").each(function(){
+		$(this).attr("src", "https://i.imgur.com/" + planets[$(this).data("planet")] +".png");
 	});
 }
 
