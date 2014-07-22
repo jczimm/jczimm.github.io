@@ -1784,13 +1784,14 @@ function updateShop() {
 }
 
 function updateMap(){
-	$("#achiev-map > table > tbody > tr > td").html("<img src='https://cloud.githubusercontent.com/assets/5208059/3631573/8cc7a428-0eb8-11e4-8759-71034cce0fcf.png' />");
+	$("#achiev-map > table > tbody > tr > td:not(.discovered)").find("img").attr('src', 'http://i.imgur.com/QXaG1yE.png');
 	
 	var planets = {
-		mars: "5208059/3631705/f187acae-0eb9-11e4-979e-0a3cf9896292.png"
+		mercury: "OjHjz3l",
+		mars: "o9CWdbh"
 	};
 	$("#achiev-map > table > tbody > tr > td.discovered").each(function(){
-		$(this).html("<img src='https://cloud.githubusercontent.com/assets/" + planets[$(this).data("planet")] +"' />");
+		$(this).find("img").attr("src", "http://i.imgur.com/" + planets[$(this).data("planet")] +".png");
 	});
 }
 
