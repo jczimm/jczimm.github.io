@@ -587,7 +587,7 @@ function generateObstacle() {
         specular: 0xffffff,
         shininess: 150,
         opacity: 1,
-        shading: THREE.FlatShading
+        shading: THREE.SmoothShading
     });
     var mesh = new THREE.Mesh(geometry, material);
 
@@ -608,7 +608,7 @@ function generateItem() {
         specular: 0xffffff,
         shininess: 150,
         opacity: 1,
-        shading: THREE.FlatShading
+        shading: THREE.SmoothShading
     });
     var mesh = new THREE.Mesh(geometry, material);
 
@@ -657,7 +657,7 @@ function generateShip01() {
         specular: 0xffffff,
         shininess: 50,
         opacity: 1,
-        shading: THREE.FlatShading
+        shading: THREE.SmoothShading
     });
 
     // Building the space ship, LEGO style!
@@ -731,7 +731,7 @@ function generateShip02() {
         specular: 0xffffff,
         shininess: 50,
         opacity: 1,
-        shading: THREE.FlatShading
+        shading: THREE.FlatSmoothShadinging
     });
 
     // Building the space ship, LEGO style!
@@ -813,14 +813,14 @@ function generateShip03() {
         specular: 0xffffff,
         shininess: 50,
         opacity: 1,
-        shading: THREE.FlatShading
+        shading: THREE.SmoothShading
     });
     var black_material = new THREE.MeshPhongMaterial({
         color: 0x000000,
         specular: 0x000000,
         shininess: 50,
         opacity: 1,
-        shading: THREE.FlatShading
+        shading: THREE.SmoothShading
     });
     var trans_material = new THREE.MeshPhongMaterial({
         color: 0xffffff,
@@ -828,7 +828,7 @@ function generateShip03() {
         shininess: 50,
         opacity: 0.58,
         transparent: true,
-        shading: THREE.FlatShading
+        shading: THREE.SmoothShading
     });
 
     // Building the space ship, LEGO style!
@@ -1269,7 +1269,7 @@ function init() {
         color: 0xff0000,
         specular: 0xffffff,
         shininess: 150,
-        shading: THREE.FlatShading
+        shading: THREE.SmoothShading
     });
 
     group2 = new THREE.Mesh(mesh_tmp, group2color);
