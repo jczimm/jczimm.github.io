@@ -9,23 +9,6 @@ TODO:
 
 */
 
-
-/*
-
-
- var originPoint = PLAYER.position.clone();   
- for (var vertexIndex = 0; vertexIndex < PLAYER.geometry.vertices.length; vertexIndex++) {   
- var localVertex = PLAYER.geometry.vertices[vertexIndex].clone();  
- var globalVertex = PLAYER.matrix.multiplyVector3(localVertex);   
- var directionVector = globalVertex.subSelf(PLAYER.position); // RAY Casting Function   
- var ray = new THREE.Ray(PLAYER.position, directionVector.clone().normalize());   
- var collisionResults = ray.intersectObjects(ArrayOfCollideableObjects);  
- if (collisionResults.length > 0 && collisionResults[0].distance < directionVector.length()) {
- 	
- }  
-
-*/
-
 var $_GET = location.search.substr(1).split("&").reduce( function( obj, val ){
     if( !val ) return obj;
     var pair = val.split("=");
