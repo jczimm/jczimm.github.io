@@ -1761,12 +1761,12 @@ function render_game() {
 }
 
 
-function f(a) {
+/*function f(a) {
     var b = $.jStorage;
     b.set("gold", a);
     gold = b.get("gold");
     html("gold", gold | 0)
-}
+}*/
 
 function setShip(ship) {
     $.jStorage.set("owned_items", JSON.stringify(owned_items));
