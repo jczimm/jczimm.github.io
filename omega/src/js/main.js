@@ -20,9 +20,9 @@ TODO:
  var directionVector = globalVertex.subSelf(PLAYER.position); // RAY Casting Function   
  var ray = new THREE.Ray(PLAYER.position, directionVector.clone().normalize());   
  var collisionResults = ray.intersectObjects(ArrayOfCollideableObjects);  
-  if (collisionResults.length > 0 && collisionResults[0].distance < directionVector.length()) {   
- …..  
-  }  
+ if (collisionResults.length > 0 && collisionResults[0].distance < directionVector.length()) {
+ 	
+ }  
 
 */
 
@@ -1599,7 +1599,7 @@ function render_game() {
             }
 
             health = health == NaN ? 0 : health;
-            // Collision check
+			
             if (Math.abs(ship.position.x - object.position.x) < 100 && Math.abs(ship.position.y - object.position.y) < 50 && Math.abs(ship.position.z - object.position.z) < 50) {
                 var vis = object.visible;
                 if(phase !== 6){
@@ -1631,6 +1631,20 @@ function render_game() {
             }
             
         }
+        
+        // Collision check
+        var collisionResults;
+        var originPoint = ship.position.clone();   
+		for (vi = 0; vi < ship.geometry.vertices.length; vi++) {   
+			var localVertex = ship.geometry.vertices[vi].clone(),
+				globalVertex = ship.matrix.multiplyVector3(vi),
+				directionVector = globalVertex.subSelf(ship.position),
+				ray = new THREE.Ray(ship.position, directionVector.clone().normalize());   
+			
+			collisionResults = ray.intersectObjects(ArrayOfCollideableObjects);
+			
+		}
+		console.log(collisionResults);
 
         html("gold", gold | 0);
 
