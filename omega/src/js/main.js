@@ -657,7 +657,7 @@ function generateShip01() {
         specular: 0xffffff,
         shininess: 50,
         opacity: 1,
-        shading: THREE.SmoothShading
+        shading: THREE.FlatShading
     });
 
     // Building the space ship, LEGO style!
@@ -731,7 +731,7 @@ function generateShip02() {
         specular: 0xffffff,
         shininess: 50,
         opacity: 1,
-        shading: THREE.SmoothShading
+        shading: THREE.FlatShading
     });
 
     // Building the space ship, LEGO style!
@@ -813,14 +813,14 @@ function generateShip03() {
         specular: 0xffffff,
         shininess: 50,
         opacity: 1,
-        shading: THREE.SmoothShading
+        shading: THREE.FlatShading
     });
     var black_material = new THREE.MeshPhongMaterial({
         color: 0x000000,
         specular: 0x000000,
         shininess: 50,
         opacity: 1,
-        shading: THREE.SmoothShading
+        shading: THREE.FlatShading
     });
     var trans_material = new THREE.MeshPhongMaterial({
         color: 0xffffff,
@@ -828,7 +828,7 @@ function generateShip03() {
         shininess: 50,
         opacity: 0.58,
         transparent: true,
-        shading: THREE.SmoothShading
+        shading: THREE.FlatShading
     });
 
     // Building the space ship, LEGO style!
