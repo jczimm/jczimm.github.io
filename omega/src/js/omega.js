@@ -587,7 +587,7 @@ function generateObstacle() {
         specular: 0xffffff,
         shininess: 150,
         opacity: 1,
-        shading: THREE.SmoothShading
+        shading: THREE.FlatShading
     });
     var mesh = new THREE.Mesh(geometry, material);
 
@@ -608,7 +608,7 @@ function generateItem() {
         specular: 0xffffff,
         shininess: 150,
         opacity: 1,
-        shading: THREE.SmoothShading
+        shading: THREE.FlatShading
     });
     var mesh = new THREE.Mesh(geometry, material);
 
@@ -731,7 +731,7 @@ function generateShip02() {
         specular: 0xffffff,
         shininess: 50,
         opacity: 1,
-        shading: THREE.FlatSmoothShadinging
+        shading: THREE.SmoothShading
     });
 
     // Building the space ship, LEGO style!
@@ -1269,7 +1269,7 @@ function init() {
         color: 0xff0000,
         specular: 0xffffff,
         shininess: 150,
-        shading: THREE.SmoothShading
+        shading: THREE.FlatShading
     });
 
     group2 = new THREE.Mesh(mesh_tmp, group2color);
