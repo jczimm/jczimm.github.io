@@ -1633,7 +1633,7 @@ function render_game() {
         }
         
         // Collision check
-        var collisionResults;
+        /*var collisionResults;
         var originPoint = ship.position.clone();   
 		for (vi = 0; vi < ship.geometry.vertices.length; vi++) {   
 			var localVertex = ship.geometry.vertices[vi].clone(),
@@ -1644,7 +1644,7 @@ function render_game() {
 			collisionResults = ray.intersectObjects(ArrayOfCollideableObjects);
 			
 		}
-		console.log(collisionResults);
+		console.log(collisionResults);*/
 
         html("gold", gold | 0);
 
