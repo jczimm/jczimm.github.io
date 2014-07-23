@@ -587,7 +587,7 @@ function generateObstacle() {
         specular: 0xffffff,
         shininess: 150,
         opacity: 1,
-        shading: THREE.FlatShading
+        shading: THREE.NoShading
     });
     var mesh = new THREE.Mesh(geometry, material);
 
@@ -607,13 +607,14 @@ function generateItem() {
         color: 0xffffff,
         specular: 0xffffff,
         shininess: 150,
-        opacity: 1,
+        opacity: 0.8,
         shading: THREE.FlatShading
     });
     var mesh = new THREE.Mesh(geometry, material);
 
     mesh.matrixAutoUpdate = true;
     mesh.updateMatrix();
+    mesh.name = "item";
     objs.add(mesh);
 
     return mesh;
@@ -1287,7 +1288,17 @@ function init() {
     scene.add(objs);
 
     for (i = 0; i < 200; i++) {
-    	var obs = generateObstacle();
+    	var _rand = Math.random();
+    	var obs = _rand > 0.01 ? generateObstacle() : generateItem();
+    	if(obs.name == "item"){
+	    	if (_rand < 0.008) {
+	            obs.name = "gold";
+	            obs.material.color.setHex(0xFFE100);
+	        } else {
+	            obs.name = "life";
+	            obs.material.color.setHex(0x6FE800);
+	        }
+    	}
         obs.position.z = -i * (fogdepth / 200);
         obs.position.x = Math.random() * 5000 - 2500;
         obs.position.y = Math.random() * 3000 - 1500;
@@ -1568,7 +1579,7 @@ function render_game() {
                 }
 
                 //choose powerup
-                rand = Math.random();
+                /*rand = Math.random();
                 if (rand < 0.01) {
                     if (rand < 0.008) {
                         object.name = "gold";
@@ -1577,7 +1588,7 @@ function render_game() {
                         object.name = "life";
                         object.material.color.setHex(0x6FE800);
                     }
-                }
+                }*/
 
             }
 
