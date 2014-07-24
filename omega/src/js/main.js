@@ -217,7 +217,7 @@ function introReset(gamecompleted) {
 	
 	// Fetch highscore from storage, fallback if it doesn't exist yet.
     hiscore = $.jStorage.get("omhiscore");
-    if (hiscore == 0 || hiscore == undefined || hiscore == null) hiscore = 0;
+    if (hiscore == undefined || hiscore == null) hiscore = 0;
 	
 	// If a game has just been completed and its score is greater than the old score,
     if (gamecompleted && score > hiscore) {
@@ -250,6 +250,9 @@ function introReset(gamecompleted) {
 	// Kill the music.
     html("player", "");
     html("musicplayer", "");
+    
+    next_frame = 0;
+    
     SC.streamStopAll();
 }
 
