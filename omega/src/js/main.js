@@ -102,7 +102,8 @@ var healths = {
 // Create an object that holds the SoundCloud track id of to be played with each ship.
 var tracks = {
     "classic": 61866639,
-    "pioneer": 144286228
+    "pioneer": 144286228,
+    "hugo": 57222376
 }
 
 // Create a global variable for the owned items (ships, upgrades).  Fetches from storage, but if it's not set, it is initialized with the first ship.
