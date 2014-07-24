@@ -1102,15 +1102,15 @@ $(document).ready(function(){
     
     $(window).on('mousedown', function(e){
     	if(e.pageX < windowHalfX){ // left
-    		mx -= 1;
+    		mx -= 0.5;
     	} else if(e.pageX > windowHalfX){ // right
-    		mx += 1;
+    		mx += 0.5;
     	}
     	
     	if(e.pageY < windowHalfY){ // down
-			my -= 1;    		
+			my -= 0.5;    		
     	} else if(e.pageY > windowHalfY){ // up
-    		my += 1;
+    		my += 0.5;
     	}
     });
 
