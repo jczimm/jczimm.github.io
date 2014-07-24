@@ -1096,23 +1096,7 @@ var p = [];
 $(document).ready(function(){
 
 	// Prevent scrolling in one other way (for extra protection).
-	$('body').on('wheel.modal mousewheel.modal', function(){
-   		return false;
-    });
-    
-    $(window).on('mousedown', function(e){
-    	if(e.pageX < windowHalfX){ // left
-    		mx -= 0.5;
-    	} else if(e.pageX > windowHalfX){ // right
-    		mx += 0.5;
-    	}
-    	
-    	if(e.pageY < windowHalfY){ // down
-			my -= 0.5;    		
-    	} else if(e.pageY > windowHalfY){ // up
-    		my += 0.5;
-    	}
-    });
+	$('body').on('wheel.modal mousewheel.modal', function(){ return false; });
 
 	// Render the intro, passing `false` for `gamecompleted`.
 	introReset(false);
