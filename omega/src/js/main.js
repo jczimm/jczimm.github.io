@@ -187,6 +187,7 @@ function gameReset() {
     group2.updateMatrix();
     
     // Reset the phases.
+    track = 10000;
     next_frame = 0;
     phase = 1;
 }
@@ -250,8 +251,6 @@ function introReset(gamecompleted) {
 	// Kill the music.
     html("player", "");
     html("musicplayer", "");
-    
-    next_frame = 0;
     
     SC.streamStopAll();
 }
@@ -1169,45 +1168,6 @@ function init() {
     window.addEventListener('keydown', keyDown, true);
     window.addEventListener('keypress', keyPress, true);
     window.addEventListener('mousemove', onDocumentMouseMove, false);
-    document.addEventListener('touchstart', handleTouchStart, false);        
-	document.addEventListener('touchmove', handleTouchMove, false);
-	
-	var xDown = null;                                                        
-	var yDown = null;                                                        
-	
-	function handleTouchStart(evt) {                                         
-	    xDown = evt.touches[0].clientX;                                      
-	    yDown = evt.touches[0].clientY;                                      
-	};                                                
-	
-	function handleTouchMove(evt) {
-	    if ( ! xDown || ! yDown ) {
-	        return;
-	    }
-	
-	    var xUp = evt.touches[0].clientX;                                    
-	    var yUp = evt.touches[0].clientY;
-	
-	    var xDiff = xDown - xUp;
-	    var yDiff = yDown - yUp;
-	
-	    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
-	        if ( xDiff > 0 ) {
-	            $("#score").text("left");
-	        } else {
-	            $("#score").text("right");
-	        }                       
-	    } else {
-	        if ( yDiff > 0 ) {
-	            $("#score").text("up");
-	        } else { 
-	            $("#score").text("down");
-	        }                                                                 
-	    }
-	    /* reset values */
-	    xDown = null;
-	    yDown = null;                                             
-	};
 
     container = document.createElement('div');
     document.body.appendChild(container);
