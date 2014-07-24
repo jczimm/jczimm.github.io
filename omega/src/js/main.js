@@ -1096,8 +1096,22 @@ var p = [];
 $(document).ready(function(){
 
 	// Prevent scrolling in one other way (for extra protection).
-	$('body').on('wheel.modal mousewheel.modal', function () {
+	$('body').on('wheel.modal mousewheel.modal', function(){
    		return false;
+    });
+    
+    $(window).on('mousedown', function(e){
+    	if(e.pageX < windowHalfX){ // left
+    		mx -= 10;
+    	} else if(e.pageX > windowHalfX){ // right
+    		mx += 10;
+    	}
+    	
+    	if(e.pageY < windowHalfY){ // down
+			my -= 10;    		
+    	} else if(e.pageY > windowHalfY){ // up
+    		my += 10;
+    	}
     });
 
 	// Render the intro, passing `false` for `gamecompleted`.
@@ -1417,8 +1431,8 @@ function render_game() {
 
         if (yinvert == 1) my = -my;
 
-        shipX = shipX - (shipX - mx * 700) / 4;
-        shipY = shipY - (shipY - (-my) * 250) / 4;
+        shipX -= (shipX - mx * 700) / 4;
+        shipY -= (shipY - (-my) * 250) / 4;
 
         if (autoswitch) {
             if (speed < 15) {
