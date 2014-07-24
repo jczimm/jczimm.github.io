@@ -50,7 +50,7 @@ var fullscreen, windowHalfX, windowHalfY, windowX, windowY;
 // ```
 var mx = my = 0;
 
-// Create global variables for the two light points in the game.
+// Create global variables for the two light sources in the game.
 var light1, light2;
 
 // Initialize controls-related global variables.
@@ -1462,7 +1462,7 @@ function render_game() {
         ship.position.z = -200;
 
         if (!expert) ship.rotation.z = -shipX / 1000;
-        else ship.rotation.z -= +key_turn_right / 10, ship.rotation.z += +key_turn_left / 10;
+        else ship.rotation.z -= key_turn_right / 10, ship.rotation.z += key_turn_left / 10;
 
         if (speed >= 100) {
             ship.material.color.setRGB(1, 0, 1);
