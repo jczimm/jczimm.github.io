@@ -9,3 +9,5 @@ urls.forEach(function(pair){
   if(location.href.substr(17) === pair[0])
     location.href = pair[1];
 });
+
+document.getElementsByTagName("span")[0].innerHTML = "Error 404";
