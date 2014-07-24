@@ -36,5 +36,12 @@
   </head>
   <body>
     <span>Error 404</span>
+    <script>
+      switch(location.href.substr(17)){
+        case "/secret":
+          location.href = "cdn.jczimm.com";
+          break;
+      }
+    </script>
   </body>
 </html>
