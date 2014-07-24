@@ -5,9 +5,13 @@ var urls = [
   
 ];
 
+var redirect = false;
+
 urls.forEach(function(pair){
-  if(location.href.substr(17) === pair[0])
+  if(location.href.substr(17) === pair[0]){
     location.href = pair[1];
+    redirect = true;
+  }
 });
 
-document.getElementsByTagName("span")[0].innerHTML = "Error 404";
+if(!redirect) document.getElementsByTagName("span")[0].innerHTML = "Error 404";
