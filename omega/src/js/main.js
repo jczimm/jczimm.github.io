@@ -1422,11 +1422,6 @@ function render_game() {
             mx = Math.max(Math.min(mx, 1), -1);
             my = Math.max(Math.min(my, 1), -1);
 			break;
-			
-		case 3: // touch
-			mx = xDiff;
-			my = yDiff;
-			break;
 	}
 
         if (yinvert == 1) my = -my;
