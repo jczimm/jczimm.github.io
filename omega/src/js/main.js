@@ -201,6 +201,8 @@ function gameReset() {
 // Function for rending the intro.
 function introReset(gamecompleted) {
 	
+	if(mobile) $(".mobile-button").remove();
+	
 	// Hide the pause icon and sets a couple global variables.
     $("#pause-icon").hide();
     paused = playing = false;
