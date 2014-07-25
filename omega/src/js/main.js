@@ -147,7 +147,7 @@ function html(id, txt) {
 // Function for resetting the game on game start.
 function gameReset() {
 	
-	if(mobile) $("#overlay").css("pointer-events", "auto");
+	if(mobile) $("body").append("<span class='mobile-button'>[]</span>");
 
 	// Stream music with SoundCloud if `music` is enabled.
     if (music) SC.stream("/tracks/" + tracks[ship.name], function (_sound) {
