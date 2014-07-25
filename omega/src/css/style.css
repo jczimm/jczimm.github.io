@@ -169,3 +169,17 @@ span {text-shadow: 0 0 2px white, 0 0px 10px white; letter-spacing:0.05em; -ms-u
     font-size: 30px;
     display: none;
 }
+
+/* --- MOBILE --- */
+
+.mobile-button {
+    position: absolute;
+    z-index: 99999999;
+    top: 30px;
+    left: 30px;
+    cursor: pointer;
+}
+
+
+
+
