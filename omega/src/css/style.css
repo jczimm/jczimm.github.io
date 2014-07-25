@@ -180,6 +180,9 @@ span {text-shadow: 0 0 2px white, 0 0px 10px white; letter-spacing:0.05em; -ms-u
     right: 0;
     cursor: pointer;
     font-size: 300px;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
 }
 
 
