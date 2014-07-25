@@ -175,9 +175,12 @@ span {text-shadow: 0 0 2px white, 0 0px 10px white; letter-spacing:0.05em; -ms-u
 .mobile-button {
     position: absolute;
     z-index: 99999999;
-    top: 30px;
-    left: 30px;
+    top: 0;
+    left: 0;
+    right: 0;
+    left: 0;
     cursor: pointer;
+    font-size: 300px;
 }
 
 
