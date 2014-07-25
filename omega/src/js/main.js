@@ -148,7 +148,7 @@ function html(id, txt) {
 function gameReset() {
 	
 	if(mobile){
-		$("body").append("<span class='mobile-button'>QQQQQWEWQEWQEQWE</span>");
+		$("body").append("<span class='mobile-button'>QQQQQQQQQQQQQQQQQQQQQQQQQQQ</span>");
 		$(".mobile-button").click(buttonClick);
 	}
 	
