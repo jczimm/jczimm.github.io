@@ -9,6 +9,7 @@ TODO:
 
 */
 
+var mobile = false;
 var $_GET = location.search.substr(1).split("&").reduce( function( obj, val ){
     if( !val ) return obj;
     var pair = val.split("=");
@@ -17,7 +18,7 @@ var $_GET = location.search.substr(1).split("&").reduce( function( obj, val ){
 }, {} );
 $(document).ready(function(){
     if ($_GET["ios"] === "true") {
-    	controls = 3;
+    	mobile = true;
     }
 });
 
@@ -145,6 +146,8 @@ function html(id, txt) {
 
 // Function for resetting the game on game start.
 function gameReset() {
+	
+	if(mobile) $("#overlay").css("pointer-events", "auto");
 
 	// Stream music with SoundCloud if `music` is enabled.
     if (music) SC.stream("/tracks/" + tracks[ship.name], function (_sound) {
