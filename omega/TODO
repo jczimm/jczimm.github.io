@@ -6,3 +6,5 @@
 
 - Using Pusher for leaderboard, have the client only send a message to the server (event `updateHighscore`) if the
   highscore is greater than their own client highscore (to minimize calls)
+
+- Change music for Hugo to something more elctronic to fit in with other music (Player Suggested)
