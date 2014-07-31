@@ -88,7 +88,7 @@
 		background-color: #348cb2;
 		background-image: url("images/bg.jpg");
 		background-position: bottom left;
-		background-repeat: repeat-x;
+		background-repeat: repeat;
 		height: 100%;
 		left: 0;
 		opacity: 1;
@@ -107,7 +107,7 @@
 	}
 
 /* Overlay */
-	@-moz-keyframes overlay { 0% { opacity: 0; } 100% { opacity: 1; } }
+	/*@-moz-keyframes overlay { 0% { opacity: 0; } 100% { opacity: 1; } }
 	@-webkit-keyframes overlay { 0% { opacity: 0; } 100% { opacity: 1; } }
 	@-o-keyframes overlay { 0% { opacity: 0; } 100% { opacity: 1; } }
 	@-ms-keyframes overlay { 0% { opacity: 0; } 100% { opacity: 1; } }
@@ -130,7 +130,7 @@
 		position: fixed;
 		top: 0;
 		width: 100%;
-	}
+	}*/
 
 /* Main */
 
