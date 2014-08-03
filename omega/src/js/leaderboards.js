@@ -2,6 +2,9 @@ var leaderboardServer = new WebSocket('ws://underground.jczimm.com');
 
 leaderboardServer.onopen = function(){
 	console.log('.: Connected to the leaderboard server :.');
+	setInterval(function(){
+		ws.send("keepalive");
+    }, 30000);
 };
 
 leaderboardServer.onclose = function(){
@@ -14,5 +17,7 @@ leaderboardServer.onerror = function(e){
 
 function sendUserHighscore(user, score){
 	leaderboardServer = new WebSocket('ws://underground.jczimm.com');
-	leaderboardServer.send(JSON.stringify({user: user, score: score}));
+	leaderboardServer.onopen = function(){
+		leaderboardServer.send(JSON.stringify({type:"updateUserHighscore", user: user, score: score}));
+	}
 }
