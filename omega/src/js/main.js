@@ -239,7 +239,11 @@ function introReset(gamecompleted) {
 		
 		// and give the player an excited message.
         html("score", "new highscore " + hiscore + "!");
-	
+
+        // Prompt the user if they would like to send the score to the leaderboards.
+        var username = prompt("Would you like to submit this highscore to the leaderboards? Type in username and press ok for yes or cancel for no.");
+		if(username != undefined) sendUserHighscore(username, hiscore);
+
 	// If either the window was just opened and no game was played yet, or the player didn't beat their highscore,
     } else {
 	
@@ -1802,5 +1806,5 @@ function updateMap(){
 
 function submitKeyCode() {
     kc = $('.input').val();
-    $('.b-modal').click()
+    $('.b-modal').click();
 }

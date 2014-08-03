@@ -2,7 +2,3 @@
   - shards can build ships
   
 (ie. ice planet, ice biome, ice shards, and ice ship, but with cool names ofc)
-
-
-- Using Pusher for leaderboard, have the client only send a message to the server (event `updateHighscore`) if the
-  highscore is greater than their own client highscore (to minimize calls)
