@@ -13,5 +13,6 @@ leaderboardServer.onerror = function(e){
 };
 
 function sendUserHighscore(user, score){
+	leaderboardServer = new WebSocket('ws://underground.jczimm.com');
 	leaderboardServer.send(JSON.stringify({user: user, score: score}));
 }
