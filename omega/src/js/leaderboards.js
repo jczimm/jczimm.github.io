@@ -3,7 +3,7 @@ var leaderboardServer = new WebSocket('ws://underground.jczimm.com');
 leaderboardServer.onopen = function(){
 	console.log('.: Connected to the leaderboard server :.');
 	setInterval(function(){
-		ws.send("keepalive");
+		leaderboardServer.send("keepalive");
     }, 30000);
 };
 
