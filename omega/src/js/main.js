@@ -86,6 +86,8 @@ var kc;
 var xDiff, yDiff,
 	startPos = stopPos = {};
 
+var aeffect, anaglyph = false; // WIP!
+
 // Create objects that hold the price and health of each ship.
 var prices = {
     "classic": 0,
@@ -277,7 +279,9 @@ function onWindowResize() {
     windowHalfY = windowY / 2;
     camera.aspect = windowX / windowY;
     camera.updateProjectionMatrix();
-    renderer.setSize(windowX, windowY);
+
+    (anaglyph ? aeffect : renderer).setSize(windowX, windowY);
+
     fullscreen = (windowX == window.outerWidth);
 }
 
@@ -1279,10 +1283,15 @@ function init() {
     if (owned_items.contains("brakes")) useBrakes();
 
     // RENDERER
-    
-    renderer = Detector.webgl? new THREE.WebGLRenderer({
+
+    renderer = new THREE.WebGLRenderer({
         antialias: true
-    }) : new THREE.CanvasRenderer();
+    });
+
+    if(anaglyph){
+    	aeffect = new THREE.AnaglyphEffect(renderer);
+		aeffect.setSize(windowX, windowY);
+	}
 
     var canvas = document.getElementById('hud');
     ctx = canvas.getContext('2d');
@@ -1291,6 +1300,9 @@ function init() {
     renderer.sortObjects = false;
     container.appendChild(renderer.domElement);
 
+    window.addEventListener('resize', onWindowResize, false);
+    onWindowResize();
+
     // STATS
     stats = new Stats();
     stats.domElement.style.position = 'absolute';
@@ -1298,9 +1310,6 @@ function init() {
     stats.domElement.style.zIndex = 100;
     stats.domElement.style.opacity = 0.5;
     container.appendChild(stats.domElement);
-
-    window.addEventListener('resize', onWindowResize, false);
-    onWindowResize();
 
     tm = (new Date).getTime();
     track = 10000;
@@ -1374,7 +1383,7 @@ function render_intro() {
         }
     }
 
-    renderer.render(scene, camera);
+    (anaglyph ? aeffect : renderer).render(scene, camera);
     speed = 0.3;
 
     fov = 110;
@@ -1602,7 +1611,7 @@ function render_game() {
 
         if (health < 0 && speed > 0) introReset(true);
 
-        renderer.render(scene, camera);
+        (anaglyph ? aeffect : renderer).render(scene, camera);
 
         //var factor = track%100?Math.random()*100:factor;
         speed = speed + (dtm / (mode == 1 ? 300 : mode == 2 ? Math.random() * 100 : 300));
