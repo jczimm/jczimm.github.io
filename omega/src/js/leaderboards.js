@@ -5,11 +5,11 @@ leaderboardServer.onopen = function(){
 };
 
 leaderboardServer.onclose = function(){
-	console.log('.: Disconnected from the leaderboard server :.');
+	console.log('\': Disconnected from the leaderboard server :\'');
 };
 
 leaderboardServer.onerror = function(e){
-	throw e;
+	throw JSON.stringify(e);
 };
 
 function sendUserHighscore(user, score){
