@@ -86,21 +86,22 @@ canvas {
 .input {background-color:black; font-family:"Jockey One";}
 #submit-code {position:relative; height:50px; bottom:5px; font-size:16px; font-family:"Jockey One"; }
 
-span {text-shadow: 0 0 2px white, 0 0px 10px white; letter-spacing:0.05em; -ms-user-select: none; user-select: none; -webkit-user-select: none; -moz-user-select: none; -o-user-select: none; font-size:150%;  }
+span, li {text-shadow: 0 0 2px white, 0 0px 10px white; letter-spacing:0.05em; -ms-user-select: none; user-select: none; -webkit-user-select: none; -moz-user-select: none; -o-user-select: none; font-size:150%;  }
+li::marker {text-align: right}
 #hud {position:absolute; z-index:999; top:10px; right:15px; opacity:0.5;}
 #gold {position:absolute; z-index:999; top:10px; left:15px; color: #FFE100; opacity:0.95;}
 #news {position:absolute; z-index:999; top:10px; width: 100%; text-align: right; right: 15px; cursor: default; color: green;}
-#panel1, #panel2, #shop_panel {position:absolute; z-index:999; top:50%; left:0px; width:100%; text-align:center; color:white; font-size:30px;}
+#panel1, #panel2, #shop_panel, #leaderboard {position:absolute; z-index:999; top:50%; left:0px; width:100%; text-align:center; color:white; font-size:30px;}
 #panel1 {margin-top:-190px; line-height:220%;}
-#panel2 {margin-top:-190px; line-height:200%; display:none}
-#shop_panel {margin-top:-190px; line-height:200%; display:none}
+#panel2, #shop_panel {margin-top:-190px; line-height:200%; display:none}
 #shop_panel > table {margin:0px auto;}
 #omlogo {font-size:500%; letter-spacing:0px; opacity:0.95; cursor:default; z-index:1005;}
 #start {font-size:300%;}
 #options {font-size:150%;}
 #score  {position:absolute; top:10px; width:100%; text-align:center; font-size:250%; color:white; z-index:999; cursor:default; opacity:0.95;}
-#info {font-size:100%}
-#info a {text-decoration:none; color:white;}
+#leaderboard {position: absolute; margin: 0px auto; display: none; top: 140px;}
+#list {text-align: left; position: relative; left:40%;}
+#show_leaderboard, #lb_error {display:none;}
 #player {position:absolute; top:-100px; left:-100px }
 #musicplayer {position:absolute; left:0; top:0; display:none}
 

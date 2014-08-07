@@ -493,6 +493,16 @@ function buttonClick(e) {
             $("#achiev-map").attr("class", "hidden");
             break;
 
+        case "show_leaderboard":
+            hide('panel1');
+            fetchHighscores();
+            show('leaderboard');
+            break;
+
+        case "close_lb":
+            hide('leaderboard');
+            show('panel1');
+            break;
     }
 }
 
@@ -1144,6 +1154,9 @@ $(document).ready(function() {
     bind("achievements");
     bind("close_map");
 
+    bind("show_leaderboard");
+    bind("close_lb");
+
     bdy = document.getElementById("body");
 
     // Action!
@@ -1592,16 +1605,16 @@ function render_game() {
         // Collision check
         /*var collisionResults;
         var originPoint = ship.position.clone();   
-		for (vi = 0; vi < ship.geometry.vertices.length; vi++) {   
-			var localVertex = ship.geometry.vertices[vi].clone(),
-				globalVertex = ship.matrix.multiplyVector3(vi),
-				directionVector = globalVertex.subSelf(ship.position),
-				ray = new THREE.Ray(ship.position, directionVector.clone().normalize());   
-			
-			collisionResults = ray.intersectObjects(ArrayOfCollideableObjects);
-			
-		}
-		console.log(collisionResults);*/
+        for (vi = 0; vi < ship.geometry.vertices.length; vi++) {   
+            var localVertex = ship.geometry.vertices[vi].clone(),
+                globalVertex = ship.matrix.multiplyVector3(vi),
+                directionVector = globalVertex.subSelf(ship.position),
+                ray = new THREE.Ray(ship.position, directionVector.clone().normalize());   
+            
+            collisionResults = ray.intersectObjects(ArrayOfCollideableObjects);
+            
+        }
+        console.log(collisionResults);*/
 
         html("gold", gold | 0);
 
@@ -1794,6 +1807,13 @@ function updateMap() {
 
     $("#achiev-map > table > tbody > tr > td.discovered").find("img").each(function() {
         $(this).attr("src", "https://i.imgur.com/" + planets[$(this).data("planet")] + ".png");
+    });
+}
+
+function updateLeaderboard() {
+    $("#leaderboard > #list").empty();
+    leaderboard.forEach(function(doc, rank) {
+        $("#leaderboard > #list").append('<li>' + doc.user + " - " + doc.score + '</li>');
     });
 }
 
