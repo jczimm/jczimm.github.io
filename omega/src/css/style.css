@@ -92,8 +92,14 @@ li::marker {text-align: right}
 #gold {position:absolute; z-index:999; top:10px; left:15px; color: #FFE100; opacity:0.95;}
 #news {position:absolute; z-index:999; top:10px; width: 100%; text-align: right; right: 15px; cursor: default; color: green;}
 #panel1, #panel2, #shop_panel, #leaderboard {position:absolute; z-index:999; top:50%; left:0px; width:100%; text-align:center; color:white; font-size:30px;}
-#panel1 {margin-top:-190px; line-height:220%;}
-#panel2, #shop_panel {margin-top:-190px; line-height:200%; display:none}
+#panel1, #panel2, #shop_panel {margin-top:-190px; line-height:200%; display:none}
+#panel1 {
+    visibility: hidden;
+    -moz-transition: visibility 0.6s ease;
+    -o-transition: visibility 0.6s ease;
+    -webkit-transition: visibility 0.6s ease;
+    transition: visibility 0.6s ease;
+}
 #shop_panel > table {margin:0px auto;}
 #omlogo {font-size:500%; letter-spacing:0px; opacity:0.95; cursor:default; z-index:1005;}
 #start {font-size:300%;}

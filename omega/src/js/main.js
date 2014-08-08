@@ -207,14 +207,6 @@ function introReset(gamecompleted) {
     $("#pause-icon").hide();
     paused = playing = false;
 
-    // Fade out the music quickly.
-    if (sound) {
-        while (sound.volume) {
-            sound.setVolume(sound.volume - 5);
-        }
-        sound.volume += "";
-    }
-
     // Hide the ship (if it already exists).
     if (ship) ship.visible = false;
 
@@ -1124,6 +1116,10 @@ $(document).ready(function() {
     $('body').on('wheel.modal mousewheel.modal', function() {
         return false;
     });
+
+    // wtf?
+    $("#panel1").css("visibility", "initial");
+    $("#panel1").fadeIn(400);
 
     // Render the intro, passing `false` for `gamecompleted`.
     introReset(false);
