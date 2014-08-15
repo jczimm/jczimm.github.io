@@ -1,8 +1,13 @@
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
+var key = 'c8rpfwhlmfs9k9';
+
 // PeerJS object
-var peer = new Peer({
-    key: 'c8rpfwhlmfs9k9'
+var peer = new Peer(prompt("Choose a username: "), { key: key });
+
+// TODO: make a CSS prompt modal with Magnific Popup
+peer.on('unavailable-id', function(){
+	peer = new Peer(prompt("Sorry, that username is already taken"), { key: key });
 });
 
 peer.on('open', function() {
@@ -38,14 +43,14 @@ $(function() {
     // Retry if getUserMedia fails
     $('#step1-retry').click(function() {
         $('#step1-error').hide();
-        step1();
+        getStream();
     });
 
     // Get things started
-    step1();
+    getStream();
 });
 
-function step1() {
+function getStream() {
     // Get audio/video stream
     navigator.getUserMedia({
         audio: true,
