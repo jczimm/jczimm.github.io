@@ -22,6 +22,7 @@ peer.on('call', function(call) {
 });
 peer.on('error', function(err) {
     alert(err.message);
+    console.log(err);
     // Return to step 2 if error occurs
     step2();
 });
