@@ -16,7 +16,6 @@ peer.on('open', function() {
 
 // Receiving a call
 peer.on('call', function(call) {
-    // Answer the call automatically (instead of prompting user) for demo purposes
     call.answer(window.localStream);
     step3(call);
 });

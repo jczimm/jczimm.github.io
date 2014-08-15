@@ -1,27 +1,35 @@
-﻿.pure-button-success, .pure-button-error, .pure-button-warning, .pure-button-secondary {
+﻿@font-face {
+    font-family: 'CourierSans';
+    src: url('CourierSans/NotCourierSans-webfont.eot');
+    src: url('CourierSans/NotCourierSans-webfont.eot?#iefix') format('embedded-opentype'), url('CourierSans/NotCourierSans-webfont.woff') format('woff'), url('CourierSans/NotCourierSans-webfont.ttf') format('truetype'), url('CourierSans/NotCourierSans-webfont.svg#notcouriersansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+.button {
     color: white;
     border-radius: 4px;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
-.pure-button-success {
+.success {
     background: rgb(28, 184, 65);
     /* this is a green */
 }
-.pure-button-error {
+.error {
     background: rgb(202, 60, 60);
     /* this is a maroon */
 }
-.pure-button-warning {
+.warning {
     background: rgb(223, 117, 20);
     /* this is an orange */
 }
-.pure-button-secondary {
+.secondary {
     background: rgb(66, 184, 221);
     /* this is a light blue */
 }
 * {
     margin: 0;
     padding: 0;
+    font-family: CourierSans;
 }
 *, *:before, *:after {
     -moz-box-sizing: border-box;
@@ -52,15 +60,20 @@ html, body, .pure-g, video {
 #step1-error, #step2, #step3 {
     display: none;
 }
-#my-id {
+#my-id, #their-id {
     font-weight: bold;
+}
+#callform {
+	position: relative;
+	margin-top: 15px;
 }
 span {
     font-family: Courier, Monospace;
 }
 div[id^=step] {
-	position: absolute;
-	top: 10px;
-	left: 20px;
-	z-index: 999;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    padding-right: 20px;
+    z-index: 999;
 }
