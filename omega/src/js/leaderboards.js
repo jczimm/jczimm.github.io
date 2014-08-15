@@ -1,17 +1,27 @@
-var leaderboardServer = new WebSocket('ws://underground.jczimm.com');
+var leaderboardServer = new WebSocket('ws://underground.jczimm.com'),
+    waiting;
 
 leaderboardServer.onopen = function() {
+    if(waiting) clearInterval(waiting);
     console.log('.: Connected to the leaderboard server :.');
     fetchHighscores();
     $("#lb_connect").hide();
+    $("#lb_error").hide();
     $("#show_leaderboard").show();
 };
 
 leaderboardServer.onclose = function() {
     console.log('`: Disconnected from the leaderboard server :`');
+    $("#show_leaderboard").hide();
+    $("#lb_connect").hide();
+    $("#lb_error").show();
+    waiting = setInterval(function(){
+        leaderboardServer = new WebSocket('ws://underground.jczimm.com');
+    }, 5000);
 };
 
 leaderboardServer.onerror = function(e) {
+    $("#show_leaderboard").hide();
     $("#lb_connect").hide();
     $("#lb_error").show();
 };
