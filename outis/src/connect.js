@@ -2,8 +2,8 @@ navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia 
 
 var key = 'c8rpfwhlmfs9k9';
 
-var hashids = new Hashids(+new Date()+"", 0, "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz0123456789"),
-    username = hashids.encrypt(1,2,3);
+var hashids = new Hashids(+new Date() + "", 0, "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz0123456789"),
+    username = hashids.encrypt(1, 2, 3);
 
 // PeerJS object
 var peer = new Peer(username, {
@@ -22,12 +22,23 @@ peer.on('call', function(call) {
 });
 peer.on('error', function(err) {
     console.log(err.message);
+
+    switch(err.type){
+    	case "peer-unavailable":
+    		alert('unable to connect');
+    		break;
+    }
+
     // Return to step 2 if error occurs
     step2();
 });
 
-// Click handlers setup
+// Handlers setup
 $(function() {
+    $("video").on('contextmenu', function(e) {
+        return false;
+    });
+
     $('#make-call').click(function() {
         // Initiate a call!
         var call = peer.call($('#callto-id').val(), window.localStream);
