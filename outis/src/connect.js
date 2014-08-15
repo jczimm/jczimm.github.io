@@ -40,9 +40,10 @@ $(function() {
 
     $('#make-call').click(function() {
         var who = $('#callto-id').val();
-        if (who === userID)
+        if (who === userID) {
         	alert("cannot call self!");
-        else if (who !== "")
+        	$("#callto-id").val("").focus();
+        } else if (who !== "")
             var call = peer.call(who, window.localStream);
 
         step3(call);
