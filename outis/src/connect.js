@@ -47,6 +47,7 @@ $(function() {
 
     $('#end-call').click(function() {
         window.existingCall.close();
+        $("#their-video").prop('src', '');
         step2();
     });
 
