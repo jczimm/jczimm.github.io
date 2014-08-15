@@ -3,12 +3,11 @@ navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia 
 var key = 'c8rpfwhlmfs9k9';
 
 // PeerJS object
-var peer = new Peer(prompt("Choose a username: "), { key: key });
+var peer = new Peer(prompt("Choose a username: "), {
+    key: key
+});
 
 // TODO: make a CSS prompt modal with Magnific Popup
-peer.on('unavailable-id', function(){
-	peer = new Peer(prompt("Sorry, that username is already taken"), { key: key });
-});
 
 peer.on('open', function() {
     $('#my-id').text(peer.id);
@@ -21,8 +20,13 @@ peer.on('call', function(call) {
     step3(call);
 });
 peer.on('error', function(err) {
-    alert(err.message);
-    console.log(err);
+    switch (err) {
+        case "unavailable-id":
+            peer = new Peer(prompt("Sorry, that username is already taken"), {
+                key: key
+            });
+            break;
+    }
     // Return to step 2 if error occurs
     step2();
 });
