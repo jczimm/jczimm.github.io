@@ -39,8 +39,11 @@ $(function() {
     });
 
     $('#make-call').click(function() {
-        // Initiate a call!
-        var call = peer.call($('#callto-id').val(), window.localStream);
+        var who = $('#callto-id').val();
+        if (who === userID)
+        	alert("cannot call self!");
+        else if (who !== "")
+            var call = peer.call(who, window.localStream);
 
         step3(call);
     });
