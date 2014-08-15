@@ -22,8 +22,8 @@
         <div id="step1">
             <p>Please click "allow" on the top of the screen so we can access your webcam and microphone for calls.</p>
             <div id="step1-error">
-                <p>Failed to access the webcam and microphone. Make sure to run this demo on an http server and click allow when asked for permission by the browser.</p>
-                <a href="#" class="pure-button pure-button-error" id="step1-retry">Try again</a>
+                <p>Failed to access the webcam and microphone.</p>
+                <a href="#" class="button error" id="step1-retry">Try again</a>
             </div>
         </div>
 
@@ -40,6 +40,14 @@
         </div>
 
         <!-- Call in progress -->
+        <div id="calling">
+            <p>Calling
+                <span id="their-id">...</span>
+                ...
+            </p>
+            <p><a href="#" class="button error" id="end-call">Cancel</a>
+            </p>
+        </div>
         <div id="step3">
             <p>Currently in call with
                 <span id="their-id">...</span>

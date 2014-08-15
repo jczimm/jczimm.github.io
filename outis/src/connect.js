@@ -3,10 +3,10 @@ navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia 
 var key = 'c8rpfwhlmfs9k9';
 
 var hashids = new Hashids(+new Date() + "", 0, "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz0123456789"),
-    username = hashids.encrypt(1, 2, 3);
+    userID = hashids.encrypt(1, 2, 3);
 
 // PeerJS object
-var peer = new Peer(username, {
+var peer = new Peer(userID, {
     key: key
 });
 
@@ -22,10 +22,10 @@ peer.on('call', function(call) {
 peer.on('error', function(err) {
     console.log(err.message);
 
-    switch(err.type){
-    	case "peer-unavailable":
-    		alert('unable to connect');
-    		break;
+    switch (err.type) {
+        case "peer-unavailable":
+            alert('unable to connect');
+            break;
     }
 
     // Return to step 2 if error occurs
@@ -78,25 +78,26 @@ function getStream() {
 }
 
 function step2() {
-    $('#step1, #step3').hide();
+    $('#step1, #calling, #step3').hide();
     $('#step2').show();
 }
 
 function step3(call) {
     // Hang up on an existing call if present
-    if (window.existingCall) {
+    if (window.existingCall)
         window.existingCall.close();
-    }
 
     // Wait for stream on the call, then set peer video display
     call.on('stream', function(stream) {
         $('#their-video').prop('src', URL.createObjectURL(stream));
+        $("#calling").hide();
+        $("#step3").show();
     });
 
     // UI stuff
     window.existingCall = call;
     $('#their-id').text(call.peer);
     call.on('close', step2);
-    $('#step1, #step2').hide();
-    $('#step3').show();
+    $('#step1, #step2, #step3').hide();
+    $('#calling').show();
 }
