@@ -85,7 +85,9 @@
         $(page)
             .find("input")
             .click(function() {
-                $("input").focus();
+                setTimeout(function() {
+                    $("input").focus();
+                }, 50);
             });
     });
     </script>
