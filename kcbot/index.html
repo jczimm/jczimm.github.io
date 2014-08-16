@@ -16,7 +16,7 @@
         width: 100%;
     }
     #chat {
-        margin-bottom: 100px;
+        margin-bottom: 50px;
     }
     input[disabled] {
         background-color: #eee;
@@ -24,7 +24,7 @@
     #send {
         position: relative;
         right: 0;
-        width: 130px;
+        width: 65px;
         margin-bottom: -45px;
         margin-right: 0;
         bottom: 45px;
@@ -41,7 +41,7 @@
         <div class="app-content">
             <div id="chat" class="app-section"></div>
             <div id="form">
-                <input class="app-input">
+                <input placeholder="type here..." class="app-input">
                 <div id="send" class="app-button green">Send</div>
             </div>
         </div>
@@ -56,7 +56,9 @@
     server.onmessage = function(m) {
         if (m.data !== "ping") {
             bot(m.data);
-            $("input").prop("disabled", false);
+            $("input")
+                .prop("disabled", false)
+                .attr("placeholder", "type here...");
         }
     };
 
@@ -79,12 +81,15 @@
     App.controller("main", function(page) {
         $(page)
             .find("#chat")
-            .html("<b>Ask me questions, I am a robot! :]</b><hr />");
+            .html("<b>Ask me questions!  Type \"what?\" or \"try again\" if what I say doesn't make sense. :]</b><hr />");
 
         $(page)
             .find("#send")
             .click(function() {
-                $("input").prop("disabled", true);
+                $("input")
+                    .prop("disabled", true)
+                    .attr("placeholder", "waiting for bot...");
+
                 var text = $("input").val();
                 if (text !== "") {
                     server.send(text);
@@ -97,7 +102,7 @@
             .find("input")
             .css({
                 "display": "inline",
-                "width": "calc(100% - 130px)"
+                "width": "calc(100% - 65px)"
             })
             .click(function() {
                 setTimeout(function() {
