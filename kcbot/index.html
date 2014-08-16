@@ -18,10 +18,6 @@
     #chat {
         margin-bottom: 100px;
     }
-    input {
-        display: inline;
-        width: calc(100% - 130px);
-    }
     input[disabled] {
         background-color: #eee;
     }
@@ -99,6 +95,10 @@
 
         $(page)
             .find("input")
+            .css({
+                "display": "inline",
+                "width": "calc(100% - 130px)"
+            })
             .click(function() {
                 setTimeout(function() {
                     $("input").focus();
