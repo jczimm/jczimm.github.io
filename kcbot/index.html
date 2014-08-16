@@ -10,7 +10,10 @@
                                    minimal-ui">
     <link rel="stylesheet" href="//cdn.kik.com/app/2.0.1/app.min.css">
     <style>
-    /* put your styles here */
+    #form {
+        position: fixed;
+        bottom: 0;
+    }
     </style>
 </head>
 
@@ -22,8 +25,10 @@
         </div>
         <div class="app-content">
             <div id="chat" class="app-section"></div>
-            <input class="app-input left">
-            <div id="send" class="app-button right green">Send</div>
+            <div id="form">
+                <input class="app-input">
+                <div id="send" class="app-button green">Send</div>
+            </div>
         </div>
     </div>
 
