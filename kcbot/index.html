@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Robot</title>
+    <meta name="viewport" content="width=device-width,
+                                   initial-scale=1.0,
+                                   maximum-scale=1.0,
+                                   user-scalable=no,
+                                   minimal-ui">
+    <link rel="stylesheet" href="//cdn.kik.com/app/2.0.1/app.min.css">
+    <style>
+    /* put your styles here */
+    </style>
+</head>
+
+<body>
+
+    <div class="app-page" data-page="main">
+        <div class="app-topbar">
+            <div class="app-title">Robot</div>
+        </div>
+        <div class="app-content">
+            <div id="chat" class="app-section"></div>
+            <input class="app-input">
+            <div class="app-button right green"></div>
+        </div>
+    </div>
+
+    <script src="//zeptojs.com/zepto.min.js"></script>
+    <script src="//cdn.kik.com/app/2.0.1/app.min.js"></script>
+
+    <script>
+    App.controller("main", function(page, text) {
+        $(page)
+            .find("#chat")
+            .append("<p>" + text + "</p>");
+
+        $(page)
+            .find("#")
+    });
+
+    try {
+        App.restore();
+    } catch (err) {
+        App.load("main");
+    }
+
+    var server = new WebSocket("ws://kcbot.herokuapp.com");
+
+    server.onmessage = function(m) {
+        if (m.data !== "ping")
+            App.load("main", m.data);
+    };
+    </script>
+
+</body>
+
+</html>
