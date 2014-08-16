@@ -34,27 +34,36 @@
     var server = new WebSocket("ws://kcbot.herokuapp.com");
 
     server.onmessage = function(m) {
-        if (m.data !== "ping")
-            App.load("main", {text: m.data});
+        if (m.data !== "ping") write(m.data);
     };
 
     server.onopen = function() {
         try {
             App.restore();
         } catch (err) {
-            App.load("main", {text: "<b>Talk to me! I am a robot! :)</b>"});
+            App.load("main");
         }
     }
 
-    App.controller("main", function(page, data) {
+    function them(text) {
+        $("#chat").append(text ? "<p>" + text + "</p>" : "");
+    }
+
+    function me(text) {
+        $("#chat").append(text ? "<p>" + text + "</p>" : "");
+    }
+
+    App.controller("main", function(page) {
         $(page)
             .find("#chat")
-            .append(data.text ? "<p>" + data.text + "</p>" : "");
+            .html("<b>Talk to me, I am a robot! :]</b>");
 
         $(page)
             .find("#send")
             .click(function() {
-                server.send($("input").val());
+                var text = $("input").val();
+                server.send(text);
+                me(text);
                 $("input").val("");
             });
     });
