@@ -21,6 +21,9 @@
     input[disabled] {
         background-color: #eee;
     }
+    input, #send {
+        display: inline;
+    }
     </style>
 </head>
 
@@ -46,8 +49,10 @@
     var server = new WebSocket("ws://kcbot.herokuapp.com");
 
     server.onmessage = function(m) {
-        if (m.data !== "ping") bot(m.data);
-        $("input").prop("disabled", false);
+        if (m.data !== "ping") {
+            bot(m.data);
+            $("input").prop("disabled", false);
+        }
     };
 
     server.onopen = function() {
@@ -69,7 +74,7 @@
     App.controller("main", function(page) {
         $(page)
             .find("#chat")
-            .html("<b>Talk to me, I am a robot! :]</b><hr />");
+            .html("<b>Ask me questions, I am a robot! :]</b><hr />");
 
         $(page)
             .find("#send")
