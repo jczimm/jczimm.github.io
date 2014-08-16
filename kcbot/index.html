@@ -52,7 +52,7 @@
     }
 
     function bot(text) {
-        $("#chat").append(text ? "<q>" + text + "</q>" : "");
+        $("#chat").append(text ? "<p><b>" + text + "</b></p>" : "");
     }
 
     function me(text) {
@@ -62,7 +62,7 @@
     App.controller("main", function(page) {
         $(page)
             .find("#chat")
-            .html("<b>Talk to me, I am a robot! :]</b>");
+            .html("<b>Talk to me, I am a robot! :]</b><hr />");
 
         $(page)
             .find("#send")
