@@ -15,9 +15,11 @@
         bottom: 0;
         width: 100%;
     }
-
-    #chat{
+    #chat {
         margin-bottom: 100px;
+    }
+    input[disabled] {
+        background-color: #eee;
     }
     </style>
 </head>
@@ -71,12 +73,19 @@
         $(page)
             .find("#send")
             .click(function() {
+                $("input").prop("disabled", true);
                 var text = $("input").val();
                 if (text !== "") {
                     server.send(text);
                     me(text);
                     $("input").val("");
                 }
+            });
+
+        $(page)
+            .find("input")
+            .click(function() {
+                $("input").focus();
             });
     });
     </script>
