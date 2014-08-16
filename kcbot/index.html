@@ -34,7 +34,7 @@
     var server = new WebSocket("ws://kcbot.herokuapp.com");
 
     server.onmessage = function(m) {
-        if (m.data !== "ping") write(m.data);
+        if (m.data !== "ping") bot(m.data);
     };
 
     server.onopen = function() {
@@ -45,8 +45,8 @@
         }
     }
 
-    function them(text) {
-        $("#chat").append(text ? "<p>" + text + "</p>" : "");
+    function bot(text) {
+        $("#chat").append(text ? "<blockquote>" + text + "</blockquote>" : "");
     }
 
     function me(text) {
