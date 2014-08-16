@@ -22,7 +22,7 @@
         </div>
         <div class="app-content">
             <div id="chat" class="app-section"></div>
-            <input class="app-input">
+            <input class="app-input left">
             <div id="send" class="app-button right green">Send</div>
         </div>
     </div>
@@ -35,21 +35,21 @@
 
     server.onmessage = function(m) {
         if (m.data !== "ping")
-            App.load("main", m.data);
+            App.load("main", {text: m.data});
     };
 
     server.onopen = function() {
         try {
             App.restore();
         } catch (err) {
-            App.load("main");
+            App.load("main", {text: "<b>Talk to me! I am a robot! :)</b>"});
         }
     }
 
-    App.controller("main", function(page, text) {
+    App.controller("main", function(page, data) {
         $(page)
             .find("#chat")
-            .append(text ? "<p>" + text + "</p>" : "");
+            .append(data.text ? "<p>" + data.text + "</p>" : "");
 
         $(page)
             .find("#send")
