@@ -47,6 +47,7 @@
 
     server.onmessage = function(m) {
         if (m.data !== "ping") bot(m.data);
+        $("input").prop("disabled", false);
     };
 
     server.onopen = function() {
@@ -87,7 +88,7 @@
             .click(function() {
                 setTimeout(function() {
                     $("input").focus();
-                }, 500);
+                }, 1000);
             });
     });
     </script>
