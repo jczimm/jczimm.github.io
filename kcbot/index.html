@@ -46,7 +46,7 @@
     }
 
     function bot(text) {
-        $("#chat").append(text ? "<blockquote>" + text + "</blockquote>" : "");
+        $("#chat").append(text ? "<q>" + text + "</q>" : "");
     }
 
     function me(text) {
@@ -62,9 +62,11 @@
             .find("#send")
             .click(function() {
                 var text = $("input").val();
-                server.send(text);
-                me(text);
-                $("input").val("");
+                if (text !== "") {
+                    server.send(text);
+                    me(text);
+                    $("input").val("");
+                }
             });
     });
     </script>
