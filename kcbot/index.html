@@ -23,7 +23,7 @@
         <div class="app-content">
             <div id="chat" class="app-section"></div>
             <input class="app-input">
-            <div class="app-button right green"></div>
+            <div id="send" class="app-button right green">Send</div>
         </div>
     </div>
 
@@ -31,27 +31,33 @@
     <script src="//cdn.kik.com/app/2.0.1/app.min.js"></script>
 
     <script>
-    App.controller("main", function(page, text) {
-        $(page)
-            .find("#chat")
-            .append("<p>" + text + "</p>");
-
-        $(page)
-            .find("#")
-    });
-
-    try {
-        App.restore();
-    } catch (err) {
-        App.load("main");
-    }
-
     var server = new WebSocket("ws://kcbot.herokuapp.com");
 
     server.onmessage = function(m) {
         if (m.data !== "ping")
             App.load("main", m.data);
     };
+
+    server.onopen = function() {
+        try {
+            App.restore();
+        } catch (err) {
+            App.load("main");
+        }
+    }
+
+    App.controller("main", function(page, text) {
+        $(page)
+            .find("#chat")
+            .append(text ? "<p>" + text + "</p>" : "");
+
+        $(page)
+            .find("#send")
+            .click(function() {
+                server.send($("input").val());
+                $("input").val("");
+            });
+    });
     </script>
 
 </body>
