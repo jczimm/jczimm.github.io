@@ -49,7 +49,7 @@
         <div class="app-content">
             <div id="chat" class="app-section"></div>
             <div id="form">
-                <div id="tryagain" class="app-button green">What?</div>
+                <div id="tryagain" class="app-button secondary">What?</div>
                 <input placeholder="type here..." class="app-input">
                 <div id="send" class="app-button green">Send</div>
             </div>
@@ -125,7 +125,9 @@
             .find("input")
             .css({
                 "display": "inline",
-                "width": "calc(100% - 65px)"
+                "position": "relative",
+                "left": "54px",
+                "width": "calc(100% - 65px - 54px)"
             })
             .click(function() {
                 setTimeout(function() {
