@@ -22,13 +22,20 @@
     input[disabled] {
         background-color: #eee;
     }
-    #send {
+    #send, #tryagain {
         position: relative;
+        margin-bottom: -45px;
+        bottom: 45px;
+    }
+    #send {
         right: 0;
         width: 65px;
-        margin-bottom: -45px;
         margin-right: 0;
-        bottom: 45px;
+    }
+    #tryagain {
+        left: 0;
+        width: 54px;
+        margin-left: 0;
     }
     </style>
 </head>
@@ -42,6 +49,7 @@
         <div class="app-content">
             <div id="chat" class="app-section"></div>
             <div id="form">
+                <div id="tryagain" class="app-button green">What?</div>
                 <input placeholder="type here..." class="app-input">
                 <div id="send" class="app-button green">Send</div>
             </div>
@@ -86,7 +94,7 @@
     App.controller("main", function(page) {
         $(page)
             .find("#chat")
-            .html("<b>Ask me questions!  Type \"what?\" or \"try again\" if what I say doesn't make sense. :]</b><hr />");
+            .html("<b>Ask me questions!  Click <kbd>What?</kbd> if what I say doesn't make sense. :]</b><hr />");
 
         $(page)
             .find("#send")
@@ -102,6 +110,16 @@
                     $("input").val("");
                 }
             });
+
+        $(page)
+            .find("#tryagain")
+            .click(function(){
+                $("input")
+                    .val("");
+                    .prop("disabled", true)
+                    .attr("placeholder", "waiting for bot...");
+                server.send('sysWhatTryAgainIDontUnderstand');
+            })
 
         $(page)
             .find("input")
