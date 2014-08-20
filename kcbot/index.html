@@ -8,7 +8,7 @@
                                    maximum-scale=1.0,
                                    user-scalable=no,
                                    minimal-ui">
-    <link rel="stylesheet" href="//cdn.kik.com/app/2.0.1/app.min.css">
+    <link rel="stylesheet" href="https://cdn.kik.com/app/2.0.1/app.min.css">
     <style>
     #form {
         position: fixed;
@@ -30,7 +30,7 @@
         margin-right: 0;
     }
     #tryagain {
-        position: relative;
+        position: absolute;
         bottom: 0;
         width: 50px;
         margin-left: 0;
@@ -54,8 +54,10 @@
         </div>
     </div>
 
-    <script src="//zeptojs.com/zepto.min.js"></script>
-    <script src="//cdn.kik.com/app/2.0.1/app.min.js"></script>
+    <script src="http://zeptojs.com/zepto.min.js"></script>
+    <script src="https://cdn.kik.com/app/2.0.1/app.min.js"></script>
+
+    <script src="https://cdn.rawgit.com/tancredi/7234273/raw/2bf64a536af63ba3751900949e063d9a6d70a38e/animateScrollTo.js"></script>
 
     <script>
     var server = new WebSocket("ws://kcbot.herokuapp.com");
@@ -111,7 +113,7 @@
 
         $(page)
             .find("#tryagain")
-            .click(function(){
+            .click(function() {
                 $("input").val("");
                 $("input")
                     .prop("disabled", true)
