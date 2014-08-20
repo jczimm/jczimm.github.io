@@ -114,12 +114,12 @@
         $(page)
             .find("#tryagain")
             .click(function(){
+                $("input").val("");
                 $("input")
-                    .val("");
                     .prop("disabled", true)
                     .attr("placeholder", "waiting for bot...");
                 server.send('sysWhatTryAgainIDontUnderstand');
-            })
+            });
 
         $(page)
             .find("input")
