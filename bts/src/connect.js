@@ -107,28 +107,6 @@ function oncall(call) {
     call.on('close', promptCall);
     $('#ask-allow, #make-call, #call').hide();
     $('#calling').show();
-
-function step3(call) {
-    if (call) {
-        // Hang up on any existing call
-        if (window.existingCall)
-            window.existingCall.close();
-
-        // Wait for stream on the call, then set peer video display
-        call.on('stream', function(stream) {
-            $('#their-video').prop('src', URL.createObjectURL(stream));
-            $("#calling").hide();
-            $("#step3").show();
-            $('.their-id').text(call.peer);
-        });
-
-        // UI stuff
-        window.existingCall = call;
-        $('.their-id').text(call.peer);
-        call.on('close', step2);
-        $('#step1, #step2, #step3').hide();
-        $('#calling').show();
-    }
 }
 
 function setTheirVideo(src) {
