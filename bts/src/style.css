@@ -47,7 +47,6 @@ html, body, .pure-g, video {
     bottom: 0;
     width: 50%;
     height: 100%;
-    background-color: #eee;
 }
 #their-video {
     width: 50%;
@@ -56,7 +55,6 @@ html, body, .pure-g, video {
     right: 0;
     top: 0;
     bottom: 0;
-    background-color: #eee;
 }
 #ask-allow-error, #make-call, #calling, #call {
     display: none;
@@ -77,4 +75,5 @@ span {
     left: 20px;
     margin-right: 20px;
     z-index: 999;
+    color: #eee;
 }
