@@ -1,7 +1,5 @@
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
-var ee = new EventEmitter();
-
 var key = 'c8rpfwhlmfs9k9';
 
 var hashids = new Hashids(+new Date() + "", 0, "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz0123456789"),
