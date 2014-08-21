@@ -36,10 +36,11 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
-html, body, .pure-g, video {
+html, body {
     height: 100%;
     background-color: #000;
 }
+
 #my-video {
     position: absolute;
     left: 0;
@@ -56,6 +57,16 @@ html, body, .pure-g, video {
     top: 0;
     bottom: 0;
 }
+
+#loading {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
 #ask-allow-error, #make-call, #calling, #call {
     display: none;
 }

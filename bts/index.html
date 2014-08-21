@@ -5,6 +5,7 @@
     <title>Better Than Shouting (BTS)</title>
     <link href="src/style.css" rel="stylesheet">
 
+    <script src="//api.turnservers.com/api.js?key=LEwOiBsiqwhpNfTYHKvdSECvNXSCAImp"></script>
     <script src="lib/peer.min.js"></script>
     <script src="lib/jquery.min.js"></script>
     <script src="lib/hashids.min.js"></script>
@@ -15,8 +16,13 @@
 <body>
     <div id="wrapper">
 
-        <video id="my-video" muted="true" autoplay></video>
-        <video id="their-video" autoplay></video>
+        <div id="videos">
+            <video id="my-video" muted="true" autoplay></video>
+            <video id="their-video" autoplay></video>
+            <div id="loading-box">
+                <iframe src="loading" id="loading" seamless="seamless" frameborder="0"></iframe>
+            </div>
+        </div>
 
         <!-- Get local audio/video stream -->
         <div id="ask-allow" class="section">

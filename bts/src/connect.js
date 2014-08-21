@@ -5,9 +5,19 @@ var key = 'c8rpfwhlmfs9k9';
 var hashids = new Hashids(+new Date() + "", 0, "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz0123456789"),
     userID = hashids.encrypt(1, 2, 3);
 
+var stunServer, turnServer, turnServerCred;
+turnserversDotComAPI.iceServers(function(data) {
+    stunServer = data[0].url;
+    turnServer = data[1].url, turnServerCred = data[1].credential;
+});
+
 // PeerJS object
 var peer = new Peer(userID, {
-    key: key
+    key: key,
+    config: {'iceServers': [
+        { url: stunServer },
+        { url: turnServer, credential: turnServerCred }
+    ]}
 });
 
 peer.on('open', function() {
