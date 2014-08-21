@@ -40,7 +40,7 @@ $(function() {
         return false;
     });
 
-    $('#make-call').click(function() {
+    $('#make-call-button').click(function() {
         var who = $('#callto-id').val();
         if (who === userID) {
             alert("cannot call self!");
