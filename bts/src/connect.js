@@ -96,6 +96,7 @@ function step3(call) {
         $('#their-video').prop('src', URL.createObjectURL(stream));
         $("#calling").hide();
         $("#step3").show();
+        $('#their-id').text(call.peer);
     });
 
     // UI stuff
