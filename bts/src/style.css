@@ -57,7 +57,7 @@ html, body, .pure-g, video {
     bottom: 0;
     background-color: #eee;
 }
-#step1-error, #step2, #calling, #step3 {
+#ask-allow-error, #make-call, #calling, #call {
     display: none;
 }
 #my-id, #their-id {
@@ -70,7 +70,7 @@ html, body, .pure-g, video {
 span {
     font-family: Courier, Monospace;
 }
-div[id^=step], #calling {
+.section {
     position: relative;
     top: 10px;
     left: 20px;
