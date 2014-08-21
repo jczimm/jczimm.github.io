@@ -38,6 +38,7 @@
 }
 html, body, .pure-g, video {
     height: 100%;
+    background-color: #000;
 }
 #my-video {
     position: absolute;
