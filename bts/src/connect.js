@@ -1,5 +1,7 @@
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
+var ee = new EventEmitter();
+
 var key = 'c8rpfwhlmfs9k9';
 
 var hashids = new Hashids(+new Date() + "", 0, "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz0123456789"),
@@ -17,8 +19,9 @@ peer.on('open', function() {
 // Receiving a call
 peer.on('call', function(call) {
     call.answer(window.localStream);
-    step3(call);
+    oncall(call);
 });
+
 peer.on('error', function(err) {
     console.log(err.message);
 
@@ -28,8 +31,7 @@ peer.on('error', function(err) {
             break;
     }
 
-    // Return to step 2 if error occurs
-    step2();
+    promptCall();
 });
 
 // Handlers setup
@@ -41,23 +43,23 @@ $(function() {
     $('#make-call').click(function() {
         var who = $('#callto-id').val();
         if (who === userID) {
-        	alert("cannot call self!");
-        	$("#callto-id").val("").focus();
+            alert("cannot call self!");
+            $("#callto-id").val("").focus();
         } else if (who !== "")
             var call = peer.call(who, window.localStream);
 
-        step3(call);
+        oncall(call);
     });
 
-    $('#end-call').click(function() {
+    $('.end-call').click(function() {
         window.existingCall.close();
-        $("#their-video").prop('src', '');
-        step2();
+        setTheirVideo('');
+        promptCall();
     });
 
     // Retry if getUserMedia fails
-    $('#step1-retry').click(function() {
-        $('#step1-error').hide();
+    $('#ask-allow-retry').click(function() {
+        $('#ask-allow-error').hide();
         getStream();
     });
 
@@ -75,34 +77,38 @@ function getStream() {
         $('#my-video').prop('src', URL.createObjectURL(stream));
 
         window.localStream = stream;
-        step2();
+        promptCall();
     }, function() {
-        $('#step1-error').show();
+        $('#ask-allow-error').show();
     });
 }
 
-function step2() {
-    $('#step1, #calling, #step3').hide();
-    $('#step2').show();
+function promptCall() {
+    $('#ask-allow, #calling, #call').hide();
+    $('#make-call').show();
 }
 
-function step3(call) {
+function oncall(call) {
     // Hang up on an existing call if present
     if (window.existingCall)
         window.existingCall.close();
 
     // Wait for stream on the call, then set peer video display
     call.on('stream', function(stream) {
-        $('#their-video').prop('src', URL.createObjectURL(stream));
+        setTheirVideo(URL.createObjectURL(stream));
         $("#calling").hide();
-        $("#step3").show();
-        $('#their-id').text(call.peer);
+        $("#call").show();
+        $('.their-id').text(call.peer);
     });
 
     // UI stuff
     window.existingCall = call;
-    $('#their-id').text(call.peer);
-    call.on('close', step2);
-    $('#step1, #step2, #step3').hide();
+    $('.their-id').text(call.peer);
+    call.on('close', promptCall);
+    $('#ask-allow, #make-call, #call').hide();
     $('#calling').show();
+}
+
+function setTheirVideo(src) {
+    $('#their-video').prop('src', src);
 }
