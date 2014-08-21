@@ -11,7 +11,7 @@ var peer = new Peer(userID, {
 });
 
 peer.on('open', function() {
-    $('#my-id').text(peer.id);
+    $('.my-id').text(peer.id);
 });
 
 // Receiving a call
