@@ -41,15 +41,15 @@ $(function() {
     $('#make-call').click(function() {
         var who = $('#callto-id').val();
         if (who === userID) {
-        	alert("cannot call self!");
-        	$("#callto-id").val("").focus();
+            alert("cannot call self!");
+            $("#callto-id").val("").focus();
         } else if (who !== "")
             var call = peer.call(who, window.localStream);
 
         step3(call);
     });
 
-    $('#end-call').click(function() {
+    $('.end-call').click(function() {
         window.existingCall.close();
         $("#their-video").prop('src', '');
         step2();
@@ -87,22 +87,24 @@ function step2() {
 }
 
 function step3(call) {
-    // Hang up on an existing call if present
-    if (window.existingCall)
-        window.existingCall.close();
+    if (call) {
+        // Hang up on any existing call
+        if (window.existingCall)
+            window.existingCall.close();
 
-    // Wait for stream on the call, then set peer video display
-    call.on('stream', function(stream) {
-        $('#their-video').prop('src', URL.createObjectURL(stream));
-        $("#calling").hide();
-        $("#step3").show();
-        $('#their-id').text(call.peer);
-    });
+        // Wait for stream on the call, then set peer video display
+        call.on('stream', function(stream) {
+            $('#their-video').prop('src', URL.createObjectURL(stream));
+            $("#calling").hide();
+            $("#step3").show();
+            $('.their-id').text(call.peer);
+        });
 
-    // UI stuff
-    window.existingCall = call;
-    $('#their-id').text(call.peer);
-    call.on('close', step2);
-    $('#step1, #step2, #step3').hide();
-    $('#calling').show();
+        // UI stuff
+        window.existingCall = call;
+        $('.their-id').text(call.peer);
+        call.on('close', step2);
+        $('#step1, #step2, #step3').hide();
+        $('#calling').show();
+    }
 }
