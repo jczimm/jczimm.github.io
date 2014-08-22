@@ -53,6 +53,7 @@ html, body {
     width: 50%;
     height: 100%;
     position: absolute;
+    z-index: 800;
     right: 0;
     top: 0;
     bottom: 0;

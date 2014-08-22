@@ -39,6 +39,7 @@ peer.on('error', function(err) {
             break;
     }
 
+    offloading();
     promptCall();
 });
 
@@ -53,10 +54,10 @@ $(function() {
         if (who === userID) {
             alert("cannot call self!");
             $("#callto-id").val("").focus();
-        } else if (who !== "")
+        } else if (who !== "") {
             var call = peer.call(who, window.localStream);
-
-        oncall(call);
+            oncall(call);
+        }
     });
 
     $('.end-call').click(function() {
@@ -97,12 +98,14 @@ function promptCall() {
 }
 
 function oncall(call) {
+    onloading();
     // Hang up on an existing call if present
     if (window.existingCall)
         window.existingCall.close();
 
     // Wait for stream on the call, then set peer video display
     call.on('stream', function(stream) {
+        offloading();
         setTheirVideo(URL.createObjectURL(stream));
         $("#calling").hide();
         $("#call").show();
@@ -119,4 +122,12 @@ function oncall(call) {
 
 function setTheirVideo(src) {
     $('#their-video').prop('src', src);
+}
+
+function onloading() {
+    $("#loading").prop('src', 'loading');
+}
+
+function offloading() {
+    $("#loading").prop('src', '');
 }
