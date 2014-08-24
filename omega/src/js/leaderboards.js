@@ -1,4 +1,6 @@
-var leaderboardServer = new WebSocket('ws://underground.jczimm.com'),
+var uri = 'ws://undrgnd.jczimm.com';
+
+var leaderboardServer = new WebSocket(uri),
     waiting;
 
 leaderboardServer.onopen = function() {
@@ -16,7 +18,7 @@ leaderboardServer.onclose = function() {
     $("#lb_connect").hide();
     $("#lb_error").show();
     waiting = setInterval(function(){
-        leaderboardServer = new WebSocket('ws://underground.jczimm.com');
+        leaderboardServer = new WebSocket(uri);
     }, 5000);
 };
 
