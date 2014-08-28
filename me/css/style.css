@@ -54,11 +54,12 @@
 	@keyframes wrapper { 0% { opacity: 0; } 100% { opacity: 1; } }
 
 	#wrapper {
-		-moz-animation: wrapper 3s forwards;
+		-moz-animation: wrapper 3s forwards, ;
 		-webkit-animation: wrapper 3s forwards;
 		-o-animation: wrapper 3s forwards;
 		-ms-animation: wrapper 3s forwards;
 		animation: wrapper 3s forwards;
+
 		height: 100%;
 		left: 0;
 		opacity: 0;
@@ -184,6 +185,7 @@
 		display: inline-block;
 		opacity: 0;
 		position: relative;
+		z-index: 2;
 		text-align: center;
 		top: -1em;
 		vertical-align: middle;
@@ -357,7 +359,23 @@
 					}
 
 				#header nav a span {
+					margin-top: 0;
 					display: none;
+					text-transform: uppercase;
+					font-family: Courier, Monospace;
+					position: absolute;
+					margin-left: -20px;
+		
+					-moz-transitition: margin-top 0.5s ease-in;
+					-webkit-transition: margin-top 0.5s ease-in;
+					-o-transition: margin-top 0.5s ease-in;
+					-ms-transition: margin-top 0.5s ease-in;
+					transition: margin-top 0.5s ease-in;
+				}
+
+				#header nav a:hover > span, #header nav a:active > span {
+					margin-top: 5px;
+					display: inline;
 				}
 
 /* Footer */
@@ -374,6 +392,18 @@
 		left: 0;
 		line-height: 8em;
 		position: absolute;
+		z-index: 1;
 		text-align: center;
 		width: 100%;
 	}
+
+#main.itsGoingDown, #bg.itsGoingDown {
+	position: absolute;
+	top: calc(100% * -1);
+
+	-moz-transitition: top 0.5s ease-in;
+	-webkit-transition: top 0.5s ease-in;
+	-o-transition: top 0.5s ease-in;
+	-ms-transition: top 0.5s ease-in;
+	transition: top 0.5s ease-in;
+}

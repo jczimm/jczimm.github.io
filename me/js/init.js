@@ -5,36 +5,53 @@
 */
 
 // Skel.
-	skel.init({
-		reset: 'full',
-		breakpoints: {
-			'global': { range: '*', href: 'me/css/style.css', lockViewport: true, viewport: 'minimal-ui' },
-			'wide': { range: '-1680', href: 'me/css/style-wide.css' },
-			'normal': { range: '-1280', href: 'me/css/style-normal.css' },
-			'mobile': { range: '-640', href: 'me/css/style-mobile.css' },
-			'mobilep': { range: '-360', href: 'me/css/style-mobilep.css' }
-		}
-	});
+skel.init({
+    reset: 'full',
+    breakpoints: {
+        'global': {
+            range: '*',
+            href: 'me/css/style.css',
+            lockViewport: true,
+            viewport: 'minimal-ui'
+        },
+        'wide': {
+            range: '-1680',
+            href: 'me/css/style-wide.css'
+        },
+        'normal': {
+            range: '-1280',
+            href: 'me/css/style-normal.css'
+        },
+        'mobile': {
+            range: '-640',
+            href: 'me/css/style-mobile.css'
+        },
+        'mobilep': {
+            range: '-360',
+            href: 'me/css/style-mobilep.css'
+        }
+    }
+});
 
 // Events (JS).
-	
-	// Remove "loading" class once the page has fully loaded.
-		window.onload = function() {
-			document.body.className = '';
-		};
 
-	// Prevent scrolling on touch.
-		window.ontouchmove = function() {
-			return false;
-		};
+// Remove "loading" class once the page has fully loaded.
+window.onload = function() {
+    document.body.className = '';
+};
 
-	// Fix scroll position on orientation change.
-		window.onorientationchange = function() {
-			document.body.scrollTop = 0;
-		};
+// Prevent scrolling on touch.
+window.ontouchmove = function() {
+    return false;
+};
 
-	// Catch all errors
-		window.onerror = function(){};
+// Fix scroll position on orientation change.
+window.onorientationchange = function() {
+    document.body.scrollTop = 0;
+};
+
+// Catch all errors
+window.onerror = function() {};
 
 /*
 
@@ -60,3 +77,12 @@
 			});
 
 */
+
+function itsGoingDown() {
+    $("body").css('background', '#333');
+    $('#wrapper > *').attr('class', 'itsGoingDown');
+
+    setTimeout(function() {
+        location.href = 'http://undrgnd.jczimm.com';
+    }, 1500);
+}
