@@ -19,7 +19,7 @@ body {
 #container {
     left: calc(50% - 150px);
     top: calc(50% - 150px);
-    position: relative;
+    position: absolute;
     overflow: hidden;
 }
 #logo {
