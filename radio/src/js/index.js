@@ -1,11 +1,24 @@
-(function () {
+/*
 
-    var NUM_PARTICLES = 150,
-        NUM_BANDS = 128,
-        SMOOTHING = 0.2;
+  Music is by The XX
+  @see http://thexx.info
 
-    var tracks = ['music/Rain.mp3', 'http://s.cdpn.io/1715/the_xx_-_intro.mp3', 'music/Apollo.mp3'],
-        MP3_PATH = tracks[Math.floor(Math.random() * tracks.length)];
+  This is best viewed in Chrome since there is a bug in Safari
+  when using getByteFrequencyData with MediaElementAudioSource
+
+  @see http://goo.gl/6WLx1
+ */
+
+(function() {
+    var ALPHA, AudioAnalyser, COLORS, MP3_PATH, NUM_BANDS, NUM_PARTICLES, Particle, SMOOTHING;
+
+    NUM_PARTICLES = 150;
+
+    NUM_BANDS = 128;
+
+    SMOOTHING = 0.2;
+
+    MP3_PATH = 'http://173.48.23.157:8000/stream';
 
     var SCALE = {
         MIN: 5.0,
@@ -32,10 +45,10 @@
         MAX: 1.25
     };
 
-    var COLORS = ['#69D2E7', '#1B676B', '#BEF202', '#EBE54D', '#00CDAC', '#1693A5', '#F9D423', '#FF4E50', '#E7204E', '#0CCABA', '#FF006F'];
+    COLORS = ['#69D2E7', '#1B676B', '#BEF202', '#EBE54D', '#00CDAC', '#1693A5', '#F9D423', '#FF4E50', '#E7204E', '#0CCABA', '#FF006F'];
 
-    var AudioAnalyser = (function () {
-        AudioAnalyser.AudioContext = this.AudioContext || this.webkitAudioContext;
+    AudioAnalyser = (function() {
+        AudioAnalyser.AudioContext = self.AudioContext || self.webkitAudioContext;
 
         AudioAnalyser.enabled = AudioAnalyser.AudioContext != null;
 
@@ -47,37 +60,37 @@
             if (typeof this.audio === 'string') {
                 src = this.audio;
                 this.audio = new Audio();
-                this.audio.controls = true;
+                this.audio.controls = false;
                 this.audio.src = src;
             }
             this.context = new AudioAnalyser.AudioContext();
-            this.jsNode = this.context.createJavaScriptNode(2048, 1, 1);
+            this.jsNode = this.context.createScriptProcessor(2048, 1, 1);
             this.analyser = this.context.createAnalyser();
             this.analyser.smoothingTimeConstant = this.smoothing;
             this.analyser.fftSize = this.numBands * 2;
             this.bands = new Uint8Array(this.analyser.frequencyBinCount);
-            this.audio.addEventListener('canplay', (function (_this) {
-                return function () {
+            this.audio.addEventListener('canplay', (function(_this) {
+                return function() {
                     _this.source = _this.context.createMediaElementSource(_this.audio);
                     _this.source.connect(_this.analyser);
                     _this.analyser.connect(_this.jsNode);
                     _this.jsNode.connect(_this.context.destination);
                     _this.source.connect(_this.context.destination);
-                    return _this.jsNode.onaudioprocess = function () {
+                    return _this.jsNode.onaudioprocess = function() {
                         _this.analyser.getByteFrequencyData(_this.bands);
                         if (!_this.audio.paused) {
-                            return typeof _this.onUpdate === 'function' ? _this.onUpdate(_this.bands) : void 0;
+                            return typeof _this.onUpdate === "function" ? _this.onUpdate(_this.bands) : void 0;
                         }
                     };
                 };
             })(this));
         }
 
-        AudioAnalyser.prototype.start = function () {
+        AudioAnalyser.prototype.start = function() {
             return this.audio.play();
         };
 
-        AudioAnalyser.prototype.stop = function () {
+        AudioAnalyser.prototype.stop = function() {
             return this.audio.pause();
         };
 
@@ -85,14 +98,14 @@
 
     })();
 
-    var Particle = (function () {
+    Particle = (function() {
         function Particle(x, y) {
             this.x = x != null ? x : 0;
             this.y = y != null ? y : 0;
             this.reset();
         }
 
-        Particle.prototype.reset = function () {
+        Particle.prototype.reset = function() {
             this.level = 1 + floor(random(4));
             this.scale = random(SCALE.MIN, SCALE.MAX);
             this.alpha = random(ALPHA.MIN, ALPHA.MAX);
@@ -112,15 +125,16 @@
             return this.energy = 0.0;
         };
 
-        Particle.prototype.move = function () {
+        Particle.prototype.move = function() {
             this.rotation += this.spin;
             return this.y -= this.speed * this.level;
         };
 
-        Particle.prototype.draw = function (ctx) {
-            var power = exp(this.energy),
-                scale = this.scale * power,
-                alpha = this.alpha * this.energy * 1.5;
+        Particle.prototype.draw = function(ctx) {
+            var alpha, power, scale;
+            power = exp(this.energy);
+            scale = this.scale * power;
+            alpha = this.alpha * this.energy * 1.5;
             this.decayScale = max(this.decayScale, scale);
             this.decayAlpha = max(this.decayAlpha, alpha);
             this.smoothedScale += (this.decayScale - this.smoothedScale) * 0.3;
@@ -148,7 +162,7 @@
 
     Sketch.create({
         particles: [],
-        setup: function () {
+        setup: function() {
             var analyser, error, i, intro, particle, warning, x, y, _i, _ref;
             for (i = _i = 0, _ref = NUM_PARTICLES - 1; _i <= _ref; i = _i += 1) {
                 x = random(this.width);
@@ -160,8 +174,8 @@
             if (AudioAnalyser.enabled) {
                 try {
                     analyser = new AudioAnalyser(MP3_PATH, NUM_BANDS, SMOOTHING);
-                    analyser.onUpdate = (function (_this) {
-                        return function (bands) {
+                    analyser.onUpdate = (function(_this) {
+                        return function(bands) {
                             var _j, _len, _ref1, _results;
                             _ref1 = _this.particles;
                             _results = [];
@@ -174,7 +188,6 @@
                     })(this);
                     analyser.start();
                     var player = analyser.audio;
-                    player.id = 'player';
                     document.body.appendChild(player);
                     intro = document.getElementById('intro');
                     intro.style.display = 'none';
@@ -190,7 +203,7 @@
                 return warning.style.display = 'block';
             }
         },
-        draw: function () {
+        draw: function() {
             var particle, _i, _len, _ref, _results;
             this.globalCompositeOperation = 'lighter';
             _ref = this.particles;
@@ -211,18 +224,17 @@
 
 }).call(this);
 
+
 SC.initialize({
     client_id: "f63662c368fb9d962d8bf670bc6303f8"
 });
 
-function playSC(url){
+function playSC(url) {
     var id = "f63662c368fb9d962d8bf670bc6303f8";
-    $.getJSON("https://api.sndcdn.com/resolve?url="+url+"&_status_code_map%5B302%5D=200&_status_format=json&client_id="+id, function(data){
-        SC.get(data["location"].match(/\/tracks\/\d+/), {}, function(sound){
-            $("#player").attr("src", sound.stream_url+"?client_id=f63662c368fb9d962d8bf670bc6303f8");
+    $.getJSON("https://api.sndcdn.com/resolve?url=" + url + "&_status_code_map%5B302%5D=200&_status_format=json&client_id=" + id, function(data) {
+        SC.get(data["location"].match(/\/tracks\/\d+/), {}, function(sound) {
+            $("#player").attr("src", sound.stream_url + "?client_id=f63662c368fb9d962d8bf670bc6303f8");
         });
     });
     document.getElementById("player").play();
 }
-
-
