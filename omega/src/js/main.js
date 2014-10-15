@@ -1811,9 +1811,10 @@ function updateMap() {
 }
 
 function updateLeaderboard() {
-    $("#leaderboard > #list").empty();
+    var $list = $("#leaderboard > #list");
+    $list.empty();
     leaderboard.forEach(function(doc, rank) {
-        $("#leaderboard > #list").append('<li>' + doc.user + " - " + doc.score + '</li>');
+        $list.append('<li>' + doc.user + " - " + doc.score + '</li>');
     });
 }
 
