@@ -1,0 +1,4383 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>main.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>main.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*
+TODO:
+========
+
+╔ Add achievement system
+╚══ achievement ideas:
+  + "spot" (reach) planets (═Add planets that show up at difference distances/scores═)
+
+
+*/</span>
+
+<span class="hljs-keyword">var</span> mobile = <span class="hljs-literal">false</span>;
+<span class="hljs-keyword">var</span> $_GET = location.search.substr(<span class="hljs-number">1</span>).split(<span class="hljs-string">"&amp;"</span>).reduce(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(obj, val)</span> </span>{
+    <span class="hljs-keyword">if</span> (!val) <span class="hljs-keyword">return</span> obj;
+    <span class="hljs-keyword">var</span> pair = val.split(<span class="hljs-string">"="</span>);
+    obj[pair[<span class="hljs-number">0</span>]] = pair[<span class="hljs-number">1</span>];
+    <span class="hljs-keyword">return</span> obj;
+}, {});
+$(<span class="hljs-built_in">document</span>).ready(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">if</span> ($_GET[<span class="hljs-string">"ios"</span>] === <span class="hljs-string">"true"</span>) {
+        mobile = <span class="hljs-literal">true</span>;
+    }
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <h1 id="omega">Omega</h1>
+<p><a href="http://jczimm.com/omega">Play Omega</a></p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <h2 id="initialize-global-variables">Initialize global variables</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Initialize a global variable that will be used to determine whether the game is currently being played.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> status = <span class="hljs-number">0</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Create global variables for the ship’s health, the ship’s speed, other speed-related variables, the current game view, the time, the game score, the highscore, and gold.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> health, speed, maxspeed, speedlimit, view, tm, score, hiscore, gold;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Initialize the <code>X</code> and <code>Y</code> position of the ship relative to the center of the screen.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> shipX = shipY = <span class="hljs-number">0</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Browser window-related variables.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> fullscreen, windowHalfX, windowHalfY, windowX, windowY;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Initalize factors in the algorithm for <code>shipX</code> and <code>shipY</code> (respectively).</p>
+<p><strong>Algorithm:</strong></p>
+<pre><code class="lang-javascript">shipX = shipX - (shipX - mx * <span class="hljs-number">700</span>) / <span class="hljs-number">4</span>;
+shipY = shipY - (shipY - (-my) * <span class="hljs-number">250</span>) / <span class="hljs-number">4</span>;
+</code></pre>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> mx = my = <span class="hljs-number">0</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Create global variables for the two light sources in the game.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> light1, light2;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Initialize controls-related global variables.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> sensitivity = <span class="hljs-number">1</span>,
+    sen = <span class="hljs-number">1</span>,
+    autoswitch = <span class="hljs-number">0</span>,
+    controls = <span class="hljs-number">0</span>,
+    yinvert = <span class="hljs-number">0</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>Initialize music global variables.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> music = <span class="hljs-number">0</span>,
+    sound;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>Create a variable to be made into an alias for <code>document.getElementById(&quot;body&quot;)</code> on document ready.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> bdy;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>Initialize keyboard-control-related global variables.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> key_up = key_down = key_left = key_right = key_space = key_turn_left = key_turn_right = <span class="hljs-literal">false</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>Create global variables for playing modes.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> pause, paused, oldspeed, playing;
+<span class="hljs-keyword">var</span> mode = <span class="hljs-number">1</span>,
+    expert = <span class="hljs-literal">false</span>;
+
+<span class="hljs-keyword">var</span> cooldown = <span class="hljs-number">0</span>,
+    brakesEff = <span class="hljs-number">1</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>Keycode</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> kc;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>Touch control variables</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> xDiff, yDiff,
+    startPos = stopPos = {};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>Create objects that hold the price and health of each ship.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> prices = {
+    <span class="hljs-string">"classic"</span>: <span class="hljs-number">0</span>,
+    <span class="hljs-string">"pioneer"</span>: <span class="hljs-number">30</span>,
+    <span class="hljs-string">"hugo"</span>: <span class="hljs-number">150</span>,
+    <span class="hljs-string">"brakes"</span>: <span class="hljs-number">150</span>
+}
+
+<span class="hljs-keyword">var</span> healths = {
+    <span class="hljs-string">"classic"</span>: <span class="hljs-number">100</span>,
+    <span class="hljs-string">"pioneer"</span>: <span class="hljs-number">120</span>,
+    <span class="hljs-string">"hugo"</span>: <span class="hljs-number">80</span>
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>Create an object that holds the SoundCloud track id of to be played with each ship.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> tracks = {
+    <span class="hljs-string">"classic"</span>: <span class="hljs-number">61866639</span>,
+    <span class="hljs-string">"pioneer"</span>: <span class="hljs-number">144286228</span>,
+    <span class="hljs-string">"hugo"</span>: <span class="hljs-number">57222376</span>
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>Create a global variable for the owned items (ships, upgrades).  Fetches from storage, but if it’s not set, it is initialized with the first ship.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> owned_items = [<span class="hljs-string">"classic"</span>];
+<span class="hljs-keyword">if</span> (!$.jStorage.get(<span class="hljs-string">"owned_items"</span>)) $.jStorage.set(<span class="hljs-string">"owned_items"</span>, <span class="hljs-built_in">JSON</span>.stringify(owned_items));
+<span class="hljs-keyword">else</span> owned_items = <span class="hljs-built_in">JSON</span>.parse($.jStorage.get(<span class="hljs-string">"owned_items"</span>));</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>Initialize arrays with sensitivity values.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> sens_list = [<span class="hljs-string">"low"</span>, <span class="hljs-string">"default"</span>, <span class="hljs-string">"high"</span>, <span class="hljs-string">"very high"</span>, <span class="hljs-string">"extreme"</span>];
+<span class="hljs-keyword">var</span> sens_values = [<span class="hljs-number">1</span>, <span class="hljs-number">1.3</span>, <span class="hljs-number">1.6</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>];</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <h2 id="back-bone-functions">Back-bone Functions</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>Function for binding an element to <code>buttonClick(e)</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bind</span><span class="hljs-params">(id)</span> </span>{
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">document</span>.getElementById(id)) {
+        <span class="hljs-keyword">var</span> o = <span class="hljs-built_in">document</span>.getElementById(id);
+        o.addEventListener(<span class="hljs-string">'click'</span>, buttonClick, <span class="hljs-literal">false</span>);
+    }
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>Function for setting an element’s CSS <code>display</code> property to <code>block</code>. (Showing an element)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">show</span><span class="hljs-params">(id)</span> </span>{
+    $(<span class="hljs-string">"#"</span> + id).fadeIn(<span class="hljs-number">170</span>, <span class="hljs-string">"easeInOutQuad"</span>);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <p>Function for setting an element’s CSS <code>display</code> property to <code>none</code>. (Hiding an element)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hide</span><span class="hljs-params">(id)</span> </span>{
+    $(<span class="hljs-string">"#"</span> + id).fadeOut(<span class="hljs-number">170</span>, <span class="hljs-string">"easeInOutQuad"</span>);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <p>Function for setting the <code>innerHtml</code> of an element. (Writing HTML to an element)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">html</span><span class="hljs-params">(id, txt)</span> </span>{
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">document</span>.getElementById(id)) {
+        <span class="hljs-keyword">var</span> o = <span class="hljs-built_in">document</span>.getElementById(id);
+        o.innerHTML = txt;
+    }
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <p>Function for resetting the game on game start.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">gameReset</span><span class="hljs-params">()</span> </span>{
+
+    <span class="hljs-keyword">if</span> (mobile) {
+        $(<span class="hljs-string">"body"</span>).append(<span class="hljs-string">"&lt;span class='mobile-button'&gt;QQQQQQQQQQQQQQQQQQQQQQQQQQQ&lt;/span&gt;"</span>);
+        $(<span class="hljs-string">".mobile-button"</span>).click(buttonClick);
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-27">&#182;</a>
+              </div>
+              <p>Stream music with SoundCloud if <code>music</code> is enabled.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (music) SC.stream(<span class="hljs-string">"/tracks/"</span> + tracks[ship.name], <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(_sound)</span> </span>{
+        sound = _sound;
+        _sound.play();
+    });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-28">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-28">&#182;</a>
+              </div>
+              <p>Set health based on ship.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    health = healths[ship.name];</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-29">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-29">&#182;</a>
+              </div>
+              <p>Initialize a bunch of global variables.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    playing = <span class="hljs-literal">true</span>;
+    speed = <span class="hljs-number">0</span>;
+    score = <span class="hljs-number">0</span>;
+    status = <span class="hljs-number">1</span>;
+    shipX = <span class="hljs-number">0</span>;
+    shipY = <span class="hljs-number">0</span>;
+    view = <span class="hljs-number">1</span>;
+    score = <span class="hljs-number">0</span>;
+    maxspeed = <span class="hljs-number">52</span>;
+    speedlimit = <span class="hljs-number">100</span>;
+    zcamera2 = <span class="hljs-number">0</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-30">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-30">&#182;</a>
+              </div>
+              <p>Initalize asteroid plane at the start of the game.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>, l = objs.children.length; i &lt; l; i++) {
+        <span class="hljs-keyword">var</span> obj = objs.children[i];
+        obj.position.x = <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">5000</span> - <span class="hljs-number">2500</span>;
+        obj.position.y = -<span class="hljs-number">300</span>;
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-31">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-31">&#182;</a>
+              </div>
+              <p>Write down the <code>score</code> and <code>gold</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    html(<span class="hljs-string">"score"</span>, score);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-32">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-32">&#182;</a>
+              </div>
+              <p><em>Note:</em> <code>gold | 0</code> is equivalent to <code>Math.floor(gold)</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    html(<span class="hljs-string">"gold"</span>, gold | <span class="hljs-number">0</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-33">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-33">&#182;</a>
+              </div>
+              <p>Set the color of asteroids.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    group2color.color.setRGB(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>);
+    group2.matrixAutoUpdate = <span class="hljs-literal">true</span>;
+    group2.updateMatrix();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-34">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-34">&#182;</a>
+              </div>
+              <p>Reset the phases.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    track = <span class="hljs-number">10000</span>;
+    next_frame = <span class="hljs-number">0</span>;
+    phase = <span class="hljs-number">1</span>;
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-35">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-35">&#182;</a>
+              </div>
+              <p>Function for rending the intro.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">introReset</span><span class="hljs-params">(gamecompleted)</span> </span>{
+
+    <span class="hljs-keyword">if</span> (mobile) $(<span class="hljs-string">".mobile-button"</span>).remove();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-36">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-36">&#182;</a>
+              </div>
+              <p>Hide the pause icon and sets a couple global variables.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    $(<span class="hljs-string">"#pause-icon"</span>).hide();
+    paused = playing = <span class="hljs-literal">false</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-37">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-37">&#182;</a>
+              </div>
+              <p>Hide the ship (if it already exists).</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (ship) ship.visible = <span class="hljs-literal">false</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-38">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-38">&#182;</a>
+              </div>
+              <p>Initialize some more variables.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    speed = <span class="hljs-number">0</span>;
+    view = <span class="hljs-number">2</span>;
+    status = <span class="hljs-number">0</span>;
+    cooldown = <span class="hljs-number">0</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-39">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-39">&#182;</a>
+              </div>
+              <p>Fetch highscore from storage, fallback if it doesn’t exist yet.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    hiscore = $.jStorage.get(<span class="hljs-string">"omhiscore"</span>);
+    <span class="hljs-keyword">if</span> (hiscore == <span class="hljs-literal">undefined</span> || hiscore == <span class="hljs-literal">null</span>) hiscore = <span class="hljs-number">0</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-40">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-40">&#182;</a>
+              </div>
+              <p>If a game has just been completed and its score is greater than the old score,</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (gamecompleted &amp;&amp; score &gt; hiscore) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-41">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-41">&#182;</a>
+              </div>
+              <p>set the new highscore,</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        hiscore = score;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-42">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-42">&#182;</a>
+              </div>
+              <p>throw it into storage,</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        $.jStorage.set(<span class="hljs-string">"omhiscore"</span>, hiscore);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-43">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-43">&#182;</a>
+              </div>
+              <p>and give the player an excited message.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        html(<span class="hljs-string">"score"</span>, <span class="hljs-string">"new highscore "</span> + hiscore + <span class="hljs-string">"!"</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-44">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-44">&#182;</a>
+              </div>
+              <p>Prompt the user if they would like to send the score to the leaderboards.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">var</span> username = prompt(<span class="hljs-string">"Would you like to submit this highscore to the leaderboards? Type in a username and press ok for yes or cancel for no."</span>);
+
+        <span class="hljs-keyword">while</span> (username === <span class="hljs-string">""</span>)
+            username = prompt(<span class="hljs-string">"Invalid username.\nType in a username and press ok for yes or cancel for no."</span>);
+        
+        <span class="hljs-keyword">if</span> (username !== <span class="hljs-literal">null</span>) sendUserHighscore(username, hiscore);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-45">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-45">&#182;</a>
+              </div>
+              <p>If either the window was just opened and no game was played yet, or the player didn’t beat their highscore,</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    } <span class="hljs-keyword">else</span> {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-46">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-46">&#182;</a>
+              </div>
+              <p>just give them the default highscore header.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        html(<span class="hljs-string">"score"</span>, (score &gt; <span class="hljs-number">0</span> &amp;&amp; gamecompleted ? <span class="hljs-string">"score "</span> + score + <span class="hljs-string">" | "</span> : <span class="hljs-string">""</span>) + <span class="hljs-string">"highscore "</span> + hiscore);
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-47">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-47">&#182;</a>
+              </div>
+              <p>Throw <code>gold</code> into storage if a game was just completed.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (gamecompleted) $.jStorage.set(<span class="hljs-string">"gold"</span>, gold);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-48">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-48">&#182;</a>
+              </div>
+              <p>Make sure everything that needs to be hidden is hidden.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    hide(<span class="hljs-string">"hud"</span>);
+    hide(<span class="hljs-string">"panel2"</span>);
+    hide(<span class="hljs-string">"shop_panel"</span>);
+    show(<span class="hljs-string">"panel1"</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-49">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-49">&#182;</a>
+              </div>
+              <p>Kill the music.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    html(<span class="hljs-string">"player"</span>, <span class="hljs-string">""</span>);
+    html(<span class="hljs-string">"musicplayer"</span>, <span class="hljs-string">""</span>);
+
+    SC.streamStopAll();
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-50">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-50">&#182;</a>
+              </div>
+              <p>Function to called when the window resizes.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onWindowResize</span><span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-51">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-51">&#182;</a>
+              </div>
+              <p>Adjust window variables and <code>camera</code> aspect ratio.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    windowX = <span class="hljs-built_in">window</span>.innerWidth;
+    windowY = <span class="hljs-built_in">window</span>.innerHeight - <span class="hljs-number">5</span>;
+    windowHalfX = windowX / <span class="hljs-number">2</span>;
+    windowHalfY = windowY / <span class="hljs-number">2</span>;
+    camera.aspect = windowX / windowY;
+    camera.updateProjectionMatrix();
+    renderer.setSize(windowX, windowY);
+    fullscreen = (windowX == <span class="hljs-built_in">window</span>.outerWidth);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-52">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-52">&#182;</a>
+              </div>
+              <p>Function for fetching the value of a key from storage.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">get</span><span class="hljs-params">(id, def)</span> </span>{
+    <span class="hljs-keyword">if</span> ($.jStorage.get(id) !== <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> $.jStorage.get(id);
+    <span class="hljs-keyword">else</span> {
+        $.jStorage.set(id, def);
+        <span class="hljs-keyword">return</span> def;
+    }
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-53">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-53">&#182;</a>
+              </div>
+              <p>Function for throwing a key with a value into storage.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">set</span><span class="hljs-params">(id, v)</span> </span>{
+    $.jStorage.set(id);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-54">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-54">&#182;</a>
+              </div>
+              <h2 id="user-interface">User-interface</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-55">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-55">&#182;</a>
+              </div>
+              <p>Universal function for button clicks (called when any <code>.click</code> element is clicked).</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buttonClick</span><span class="hljs-params">(e)</span> </span>{
+
+    <span class="hljs-keyword">switch</span> (e.currentTarget.id) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-56">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-56">&#182;</a>
+              </div>
+              <p>If the element is the start button,</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-string">"start"</span>:</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-57">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-57">&#182;</a>
+              </div>
+              <p>reset the game to be played, start playing the game,</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            gameReset();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-58">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-58">&#182;</a>
+              </div>
+              <p>show the heads-up display and</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            show(<span class="hljs-string">"hud"</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-59">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-59">&#182;</a>
+              </div>
+              <p>the score box,</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            show(<span class="hljs-string">"score"</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-60">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-60">&#182;</a>
+              </div>
+              <p>and hide the start menu.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            hide(<span class="hljs-string">"panel1"</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-61">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-61">&#182;</a>
+              </div>
+              <p>Show the ship.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            ship.visible = <span class="hljs-literal">true</span>;
+            <span class="hljs-keyword">break</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-62">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-62">&#182;</a>
+              </div>
+              <p>If the element is the shop button,</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-string">"shop"</span>:</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-63">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-63">&#182;</a>
+              </div>
+              <p>hide the start menu</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            hide(<span class="hljs-string">"panel1"</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-64">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-64">&#182;</a>
+              </div>
+              <p>and the options menu,</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            hide(<span class="hljs-string">"panel2"</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-65">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-65">&#182;</a>
+              </div>
+              <p>and show the shop panel.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            show(<span class="hljs-string">"shop_panel"</span>);
+            <span class="hljs-keyword">break</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-66">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-66">&#182;</a>
+              </div>
+              <p>If the element is the button to select the <strong>classic</strong> in the shop panel,</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-string">"classic"</span>:</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-67">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-67">&#182;</a>
+              </div>
+              <p>set the ship to <code>&quot;classic&quot;</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            setShip(<span class="hljs-string">"classic"</span>);
+            <span class="hljs-keyword">break</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-68">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-68">&#182;</a>
+              </div>
+              <p>If the element is the button to select the <strong>pioneer</strong> in the shop panel,</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-string">"pioneer"</span>:</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-69">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-69">&#182;</a>
+              </div>
+              <p>check to make sure the player owns it first.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span> (owned_items.contains(<span class="hljs-string">"pioneer"</span>)) setShip(<span class="hljs-string">"pioneer"</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-70">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-70">&#182;</a>
+              </div>
+              <p>If they don’t, try to buy it and set it, but if there is not sufficient gold nothing happens.</p>
+<p><em>Note</em>: <code>buyItem(ship)</code> either buys the ship and returns <code>true</code> or returns <code>false</code> if there are not sufficient credits.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (buyItem(<span class="hljs-string">"pioneer"</span>)) setShip(<span class="hljs-string">"pioneer"</span>);
+            <span class="hljs-keyword">break</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-71">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-71">&#182;</a>
+              </div>
+              <p>If the element is the button to select the <strong>brakes</strong> in the shop panel,</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-string">"brakes"</span>:</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-72">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-72">&#182;</a>
+              </div>
+              <p>check to make sure the player owns it first.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span> (owned_items.contains(<span class="hljs-string">"brakes"</span>)) useBrakes();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-73">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-73">&#182;</a>
+              </div>
+              <p>If they don’t, try to buy it and set it, but if there is not sufficient gold nothing happens.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (buyItem(<span class="hljs-string">"brakes"</span>)) useBrakes();
+            <span class="hljs-keyword">break</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-74">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-74">&#182;</a>
+              </div>
+              <p>If the element is the button to select the <strong>hugo</strong> in the shop panel,</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-string">"hugo"</span>:</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-75">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-75">&#182;</a>
+              </div>
+              <p>check to make sure the player owns it first.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span> (owned_items.contains(<span class="hljs-string">"hugo"</span>)) setShip(<span class="hljs-string">"hugo"</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-76">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-76">&#182;</a>
+              </div>
+              <p>If they don’t, try to buy it and set it, but if there is not sufficient gold nothing happens.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (buyItem(<span class="hljs-string">"hugo"</span>)) setShip(<span class="hljs-string">"hugo"</span>);
+            <span class="hljs-keyword">break</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-77">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-77">&#182;</a>
+              </div>
+              <p>If the element is the options button,</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-string">"options"</span>:</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-78">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-78">&#182;</a>
+              </div>
+              <p>hide the start menu</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            hide(<span class="hljs-string">"panel1"</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-79">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-79">&#182;</a>
+              </div>
+              <p>and show the options menu.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            show(<span class="hljs-string">"panel2"</span>);
+            <span class="hljs-keyword">break</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-80">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-80">&#182;</a>
+              </div>
+              <p>If the element is the “controls sensitivity” option,</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-string">"op_sensitivity"</span>:</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-81">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-81">&#182;</a>
+              </div>
+              <p>increment <code>sensitivity</code> by one,</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            sensitivity++;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-82">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-82">&#182;</a>
+              </div>
+              <p>and if it’s now <code>1</code> cycle it back to <code>0</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span> (sensitivity &gt; <span class="hljs-number">4</span>) sensitivity = <span class="hljs-number">0</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-83">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-83">&#182;</a>
+              </div>
+              <p>Update the user interface.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            updateUI();
+            <span class="hljs-keyword">break</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-84">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-84">&#182;</a>
+              </div>
+              <p>If the element is the “automatic 1st/3rd person” option,</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-string">"op_1stperson"</span>:</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-85">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-85">&#182;</a>
+              </div>
+              <p>toggle <code>autoswitch</code> between <code>0</code> and <code>1</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            autoswitch = <span class="hljs-number">1</span> - autoswitch;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-86">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-86">&#182;</a>
+              </div>
+              <p>Update the user interface.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            updateUI();
+            <span class="hljs-keyword">break</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-87">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-87">&#182;</a>
+              </div>
+              <p>If the element is the “controls” option,</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-string">"op_controls"</span>:</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-88">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-88">&#182;</a>
+              </div>
+              <p>cycle <code>controls</code> from <code>0</code> to <code>2</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            controls = controls == <span class="hljs-number">0</span> ? <span class="hljs-number">1</span> : controls == <span class="hljs-number">1</span> ? <span class="hljs-number">2</span> : <span class="hljs-number">0</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-89">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-89">&#182;</a>
+              </div>
+              <p>Set <code>expert</code> to <code>true</code> if <code>controls</code> is “expert(arrows”..etc, and <code>false</code> otherwise.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            expert = controls == <span class="hljs-number">2</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-90">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-90">&#182;</a>
+              </div>
+              <p>Update the user interface.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            updateUI();
+            <span class="hljs-keyword">break</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-91">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-91">&#182;</a>
+              </div>
+              <p>If the element is the “invert Y” option,</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-string">"op_yinvert"</span>:</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-92">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-92">&#182;</a>
+              </div>
+              <p>toggle <code>yinvert</code> between <code>0</code> and <code>1</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            yinvert = <span class="hljs-number">1</span> - yinvert;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-93">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-93">&#182;</a>
+              </div>
+              <p>Update the user interface.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            updateUI();
+            <span class="hljs-keyword">break</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-94">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-94">&#182;</a>
+              </div>
+              <p>If the element is the “difficulty” option,</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-string">"op_difficulty"</span>:</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-95">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-95">&#182;</a>
+              </div>
+              <p>toggle <code>mode</code> between <code>1</code> and <code>2</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            mode = mode == <span class="hljs-number">1</span> ? <span class="hljs-number">2</span> : mode == <span class="hljs-number">2</span> ? <span class="hljs-number">1</span> : <span class="hljs-number">1</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-96">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-96">&#182;</a>
+              </div>
+              <p>Update the user interface.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            updateUI();
+            <span class="hljs-keyword">break</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-97">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-97">&#182;</a>
+              </div>
+              <p>If the element is the close options button,</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-string">"close_panel2"</span>:</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-98">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-98">&#182;</a>
+              </div>
+              <p>hide the options panel</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            hide(<span class="hljs-string">"panel2"</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-99">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-99">&#182;</a>
+              </div>
+              <p>and show the start menu.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            show(<span class="hljs-string">"panel1"</span>);
+            <span class="hljs-keyword">break</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-100">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-100">&#182;</a>
+              </div>
+              <p>If the element is the close shop button,</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-string">"close_shop"</span>:</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-101">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-101">&#182;</a>
+              </div>
+              <p>hide the shop panel</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            hide(<span class="hljs-string">"shop_panel"</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-102">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-102">&#182;</a>
+              </div>
+              <p>and show the start menu.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            show(<span class="hljs-string">"panel1"</span>);
+            <span class="hljs-keyword">break</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-103">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-103">&#182;</a>
+              </div>
+              <p>If the element is the “in game music” option in the start menu,</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-string">"music"</span>:</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-104">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-104">&#182;</a>
+              </div>
+              <p>toggle <code>mode</code> between <code>0</code> and <code>1</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            music = <span class="hljs-number">1</span> - music;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-105">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-105">&#182;</a>
+              </div>
+              <p>Write “off” or “on” to <code>#music</code> based on <code>music</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            html(<span class="hljs-string">'music'</span>, <span class="hljs-string">'in-game music '</span> + (music == <span class="hljs-number">0</span> ? <span class="hljs-string">"off"</span> : <span class="hljs-string">"on"</span>));</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-106">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-106">&#182;</a>
+              </div>
+              <p>and throw <code>music</code> into storage.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            $.jStorage.set(<span class="hljs-string">"music"</span>, music);
+            <span class="hljs-keyword">break</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-107">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-107">&#182;</a>
+              </div>
+              <p>If the element is the “achievements” button in the start menu,</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-string">"achievements"</span>:</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-108">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-108">&#182;</a>
+              </div>
+              <p>update the achievements map</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            updateMap();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-109">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-109">&#182;</a>
+              </div>
+              <p>and open it.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            $(<span class="hljs-string">"#achiev-map"</span>).attr(<span class="hljs-string">"class"</span>, <span class="hljs-string">"expanded"</span>);
+            setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+                $(<span class="hljs-string">"#close_map"</span>).fadeIn(<span class="hljs-number">200</span>);
+            }, <span class="hljs-number">500</span>);
+            <span class="hljs-keyword">break</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-110">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-110">&#182;</a>
+              </div>
+              <p>If the element is the × button on the achievements map,</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-string">"close_map"</span>:</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-111">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-111">&#182;</a>
+              </div>
+              <p>close the achievements map.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            $(<span class="hljs-string">"#close_map"</span>).fadeOut(<span class="hljs-number">200</span>);
+            $(<span class="hljs-string">"#achiev-map"</span>).attr(<span class="hljs-string">"class"</span>, <span class="hljs-string">"hidden"</span>);
+            <span class="hljs-keyword">break</span>;
+
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"show_leaderboard"</span>:
+            hide(<span class="hljs-string">'panel1'</span>);
+            fetchHighscores();
+            show(<span class="hljs-string">'leaderboard'</span>);
+            <span class="hljs-keyword">break</span>;
+
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"close_lb"</span>:
+            hide(<span class="hljs-string">'leaderboard'</span>);
+            show(<span class="hljs-string">'panel1'</span>);
+            <span class="hljs-keyword">break</span>;
+    }
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-112">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-112">&#182;</a>
+              </div>
+              <p>Function for creating and updating the user interface.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">updateUI</span><span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-113">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-113">&#182;</a>
+              </div>
+              <p>Write values to the their options buttons.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    html(<span class="hljs-string">'op_sensitivity'</span>, <span class="hljs-string">'controls sensitivity : '</span> + sens_list[sensitivity]);
+    sen = sens_values[sensitivity];
+    html(<span class="hljs-string">'op_1stperson'</span>, <span class="hljs-string">'automatic 1st/3rd person : '</span> + (autoswitch ? <span class="hljs-string">"yes"</span> : <span class="hljs-string">"no"</span>));
+    html(<span class="hljs-string">'op_controls'</span>, <span class="hljs-string">'controls : '</span> + (controls == <span class="hljs-number">0</span> ? <span class="hljs-string">"mouse"</span> : controls == <span class="hljs-number">1</span> ? <span class="hljs-string">"arrows / WASD"</span> : controls == <span class="hljs-number">2</span> ? <span class="hljs-string">"expert (arrows+ZC, WASD+,/)"</span> : <span class="hljs-string">""</span>));
+    html(<span class="hljs-string">'op_yinvert'</span>, <span class="hljs-string">'invert Y axis : '</span> + (yinvert == <span class="hljs-number">0</span> ? <span class="hljs-string">"no"</span> : <span class="hljs-string">"yes"</span>));
+    html(<span class="hljs-string">'op_difficulty'</span>, <span class="hljs-string">'difficulty: '</span> + (mode == <span class="hljs-number">1</span> ? <span class="hljs-string">"normal"</span> : <span class="hljs-string">"hard"</span>));</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-114">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-114">&#182;</a>
+              </div>
+              <p>Throw a bunch of options into storage.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    $.jStorage.set(<span class="hljs-string">"omsensitivity"</span>, sensitivity);
+    $.jStorage.set(<span class="hljs-string">"omautoswitch"</span>, autoswitch);
+    $.jStorage.set(<span class="hljs-string">"omcontrols"</span>, controls);
+    $.jStorage.set(<span class="hljs-string">"omyinvert"</span>, yinvert);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-115">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-115">&#182;</a>
+              </div>
+              <p>Stylize text that contains the current ship</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    $(<span class="hljs-string">"span:contains("</span> + ship.name + <span class="hljs-string">")"</span>).addClass(<span class="hljs-string">"sel"</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-116">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-116">&#182;</a>
+              </div>
+              <p>and the items that have not yet been bought.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    $(<span class="hljs-string">"span:contains(☉)"</span>).css(<span class="hljs-string">"color"</span>, <span class="hljs-string">"white"</span>);
+
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-117">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-117">&#182;</a>
+              </div>
+              <h2 id="drawing">Drawing</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-118">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-118">&#182;</a>
+              </div>
+              <p>Function for drawing a sector (used in the HUD).</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">drawSector</span><span class="hljs-params">(centerX, centerY, r, a1, a2, color, c2)</span> </span>{
+    ctx.save();
+
+    <span class="hljs-keyword">var</span> startingAngle = a1;
+    <span class="hljs-keyword">var</span> arcSize = a2 - a1;
+    <span class="hljs-keyword">var</span> endingAngle = a2;
+
+    ctx.beginPath();
+    ctx.moveTo(centerX, centerY);
+    ctx.arc(centerX, centerY, r, startingAngle, endingAngle, <span class="hljs-literal">false</span>);
+    ctx.closePath();
+    ctx.fillStyle = color;
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.moveTo(centerX, centerY);
+    ctx.arc(centerX, centerY, r * <span class="hljs-number">0.65</span>, <span class="hljs-number">0</span>, <span class="hljs-built_in">Math</span>.PI * <span class="hljs-number">2</span>, <span class="hljs-literal">false</span>);
+    ctx.closePath();
+    ctx.fillStyle = <span class="hljs-string">"#000000"</span>;
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.moveTo(centerX, centerY);
+    ctx.arc(centerX, centerY, r * <span class="hljs-number">0.60</span>, <span class="hljs-number">0</span>, <span class="hljs-built_in">Math</span>.PI * <span class="hljs-number">2</span>, <span class="hljs-literal">false</span>);
+    ctx.closePath();
+    ctx.fillStyle = c2 || <span class="hljs-string">"#ff0000"</span>;
+    ctx.fill();
+
+
+    <span class="hljs-keyword">if</span> (health &gt; <span class="hljs-number">0</span>) {
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        ctx.arc(centerX, centerY, r * <span class="hljs-number">0.60</span> * (health / <span class="hljs-number">100</span>), <span class="hljs-number">0</span>, <span class="hljs-built_in">Math</span>.PI * <span class="hljs-number">2</span>, <span class="hljs-literal">false</span>);
+        ctx.closePath();
+        ctx.fillStyle = c2 || <span class="hljs-string">"#ffffff"</span>;
+        ctx.fill();
+    }
+
+    ctx.restore();
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-119">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-119">&#182;</a>
+              </div>
+              <h3 id="geometry-colors">Geometry / Colors</h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-120">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-120">&#182;</a>
+              </div>
+              <p>A simple rgb color utility function.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">rgbColor</span><span class="hljs-params">(r, g, b)</span> </span>{
+    <span class="hljs-keyword">return</span> b + (<span class="hljs-number">256</span> * g) | <span class="hljs-number">0</span> + (<span class="hljs-number">256</span> * <span class="hljs-number">256</span> * r) | <span class="hljs-number">0</span>;
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-121">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-121">&#182;</a>
+              </div>
+              <p>Return a ring of cubes.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">generateCubesRing</span><span class="hljs-params">(cubes, y, radius, spreading, depthspread, sizeVariance)</span> </span>{
+
+    <span class="hljs-keyword">var</span> mergedGeo = <span class="hljs-keyword">new</span> THREE.Geometry(); <span class="hljs-comment">// container</span>
+
+    <span class="hljs-keyword">var</span> geometry = <span class="hljs-keyword">new</span> THREE.CubeGeometry(<span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>);
+    <span class="hljs-keyword">var</span> mesh = <span class="hljs-keyword">new</span> THREE.Mesh(geometry);
+
+    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; cubes; i++) {
+        mesh.scale.x = mesh.scale.y = mesh.scale.z = <span class="hljs-number">1</span> + <span class="hljs-built_in">Math</span>.random() * sizeVariance;
+
+        mesh.position.x = <span class="hljs-built_in">Math</span>.cos(i / cubes * <span class="hljs-built_in">Math</span>.PI * <span class="hljs-number">2</span>) * radius + <span class="hljs-built_in">Math</span>.random() * spreading - spreading / <span class="hljs-number">2</span>;
+        mesh.position.y = y + <span class="hljs-built_in">Math</span>.random() * (depthspread);
+        mesh.position.z = <span class="hljs-built_in">Math</span>.sin(i / cubes * <span class="hljs-built_in">Math</span>.PI * <span class="hljs-number">2</span>) * radius + <span class="hljs-built_in">Math</span>.random() * spreading - spreading / <span class="hljs-number">2</span>;
+
+        mesh.rotation.x = <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">360</span> * (<span class="hljs-built_in">Math</span>.PI / <span class="hljs-number">180</span>);
+        mesh.rotation.y = <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">360</span> * (<span class="hljs-built_in">Math</span>.PI / <span class="hljs-number">180</span>);
+        THREE.GeometryUtils.merge(mergedGeo, mesh);
+    }
+
+    <span class="hljs-keyword">return</span> mergedGeo;
+
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-122">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-122">&#182;</a>
+              </div>
+              <p>Generate a single asteroid.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">generateObstacle</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">var</span> geometry = <span class="hljs-keyword">new</span> THREE.SphereGeometry(<span class="hljs-number">50</span>, <span class="hljs-number">5</span>, <span class="hljs-number">3</span>);
+
+    <span class="hljs-keyword">var</span> material = <span class="hljs-keyword">new</span> THREE.MeshPhongMaterial({
+        color: <span class="hljs-number">0xffffff</span>,
+        specular: <span class="hljs-number">0xffffff</span>,
+        shininess: <span class="hljs-number">150</span>,
+        opacity: <span class="hljs-number">1</span>,
+        shading: THREE.FlatShading
+    });
+    <span class="hljs-keyword">var</span> mesh = <span class="hljs-keyword">new</span> THREE.Mesh(geometry, material);
+
+    mesh.matrixAutoUpdate = <span class="hljs-literal">true</span>;
+    mesh.updateMatrix();
+    objs.add(mesh);
+
+    <span class="hljs-keyword">return</span> mesh;
+
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-123">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-123">&#182;</a>
+              </div>
+              <p>Generate a single item.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">generateItem</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">var</span> geometry = <span class="hljs-keyword">new</span> THREE.IcosahedronGeometry(<span class="hljs-number">50</span>);
+
+    <span class="hljs-keyword">var</span> material = <span class="hljs-keyword">new</span> THREE.MeshPhongMaterial({
+        color: <span class="hljs-number">0xffffff</span>,
+        specular: <span class="hljs-number">0xffffff</span>,
+        shininess: <span class="hljs-number">150</span>,
+        opacity: <span class="hljs-number">1</span>,
+        shading: THREE.FlatShading
+    });
+    <span class="hljs-keyword">var</span> mesh = <span class="hljs-keyword">new</span> THREE.Mesh(geometry, material);
+
+    mesh.matrixAutoUpdate = <span class="hljs-literal">true</span>;
+    mesh.updateMatrix();
+    objs.add(mesh);
+
+    <span class="hljs-keyword">return</span> mesh;
+
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-124">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-124">&#182;</a>
+              </div>
+              <p>Generate the selected ship.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">generateShip</span><span class="hljs-params">(type)</span> </span>{
+    <span class="hljs-keyword">var</span> _ship;
+    <span class="hljs-keyword">switch</span> (type) {
+        <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+            _ship = generateShip01();
+            _ship.name = <span class="hljs-string">"classic"</span>;
+            <span class="hljs-keyword">return</span> _ship;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+            _ship = generateShip02();
+            _ship.name = <span class="hljs-string">"pioneer"</span>;
+            <span class="hljs-keyword">return</span> _ship;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:
+            _ship = generateShip03();
+            _ship.name = <span class="hljs-string">"hugo"</span>;
+            <span class="hljs-keyword">return</span> _ship;
+            <span class="hljs-keyword">break</span>;
+    }
+
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-125">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-125">&#182;</a>
+              </div>
+              <p>Generate the <strong>classic</strong> (used in <code>generateShip(type)</code>).</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">generateShip01</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">var</span> mergedGeo;
+    mergedGeo = <span class="hljs-keyword">new</span> THREE.Geometry();
+
+    <span class="hljs-keyword">var</span> geometry_cube = <span class="hljs-keyword">new</span> THREE.CubeGeometry(<span class="hljs-number">50</span>, <span class="hljs-number">10</span>, <span class="hljs-number">50</span>);
+    <span class="hljs-keyword">var</span> geometry_cyl = <span class="hljs-keyword">new</span> THREE.CylinderGeometry(<span class="hljs-number">50</span>, <span class="hljs-number">35</span>, <span class="hljs-number">50</span>, <span class="hljs-number">8</span>, <span class="hljs-number">1</span>);
+    <span class="hljs-keyword">var</span> geometry_cyl2 = <span class="hljs-keyword">new</span> THREE.CylinderGeometry(<span class="hljs-number">50</span>, <span class="hljs-number">40</span>, <span class="hljs-number">50</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>);
+
+    <span class="hljs-keyword">var</span> material = <span class="hljs-keyword">new</span> THREE.MeshPhongMaterial({
+        color: <span class="hljs-number">0xffffff</span>,
+        specular: <span class="hljs-number">0xffffff</span>,
+        shininess: <span class="hljs-number">50</span>,
+        opacity: <span class="hljs-number">1</span>,
+        shading: THREE.FlatShading
+    });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-126">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-126">&#182;</a>
+              </div>
+              <p>Building the space ship, LEGO style!</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    <span class="hljs-keyword">var</span> mesh = <span class="hljs-keyword">new</span> THREE.Mesh(geometry_cube, material);
+    <span class="hljs-keyword">var</span> mesh2 = <span class="hljs-keyword">new</span> THREE.Mesh(geometry_cyl, material);
+    <span class="hljs-keyword">var</span> mesh3 = <span class="hljs-keyword">new</span> THREE.Mesh(geometry_cyl2, material);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-127">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-127">&#182;</a>
+              </div>
+              <p>body</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    mesh2.position.x = <span class="hljs-number">0</span>;
+    mesh2.position.y = <span class="hljs-number">0</span>;
+    mesh2.position.z = <span class="hljs-number">0</span>;
+    mesh2.rotation.x = <span class="hljs-built_in">Math</span>.PI / <span class="hljs-number">2</span>;
+    mesh2.rotation.y = <span class="hljs-built_in">Math</span>.PI / <span class="hljs-number">2</span>;
+    mesh2.scale.x = <span class="hljs-number">0.25</span>;
+    THREE.GeometryUtils.merge(mergedGeo, mesh2);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-128">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-128">&#182;</a>
+              </div>
+              <p>sidewings</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    mesh3.position.x = <span class="hljs-number">0</span>;
+    mesh3.position.y = <span class="hljs-number">0</span>;
+    mesh3.position.z = <span class="hljs-number">16</span>;
+    mesh3.rotation.x = <span class="hljs-built_in">Math</span>.PI / <span class="hljs-number">2</span>;
+    mesh3.rotation.y = <span class="hljs-built_in">Math</span>.PI / <span class="hljs-number">2</span>;
+    mesh3.scale.x = <span class="hljs-number">0.1</span>;
+    mesh3.scale.y = <span class="hljs-number">0.5</span>;
+    mesh3.scale.z = <span class="hljs-number">1.6</span>;
+    THREE.GeometryUtils.merge(mergedGeo, mesh3);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-129">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-129">&#182;</a>
+              </div>
+              <p>wings up</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    mesh.position.y = <span class="hljs-number">10</span>;
+    mesh.position.z = <span class="hljs-number">12</span>;
+    mesh.scale.x = <span class="hljs-number">0.015</span>;
+    mesh.scale.y = <span class="hljs-number">0.4</span>;
+    mesh.scale.z = <span class="hljs-number">0.25</span>;
+    mesh.rotation.y = <span class="hljs-number">0</span>;
+    mesh.rotation.x = -<span class="hljs-built_in">Math</span>.PI / <span class="hljs-number">10</span>;
+
+    mesh.position.x = <span class="hljs-number">20</span>;
+    mesh.rotation.z = -<span class="hljs-built_in">Math</span>.PI / <span class="hljs-number">20</span>;
+    THREE.GeometryUtils.merge(mergedGeo, mesh);
+
+    mesh.position.x = -<span class="hljs-number">20</span>;
+    mesh.rotation.z = <span class="hljs-built_in">Math</span>.PI / <span class="hljs-number">20</span>;
+    THREE.GeometryUtils.merge(mergedGeo, mesh);
+
+
+    mergedGeo.computeFaceNormals();
+    <span class="hljs-keyword">var</span> group = <span class="hljs-keyword">new</span> THREE.Mesh(mergedGeo, material);
+    group.matrixAutoUpdate = <span class="hljs-literal">true</span>;
+    group.updateMatrix();
+
+    scene.add(group);
+
+    <span class="hljs-keyword">return</span> group;
+
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-130">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-130">&#182;</a>
+              </div>
+              <p>Generate the <strong>pioneer</strong> (used in <code>generateShip(type)</code>).</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">generateShip02</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">var</span> mergedGeo;
+    mergedGeo = <span class="hljs-keyword">new</span> THREE.Geometry();
+
+    <span class="hljs-keyword">var</span> t1 = <span class="hljs-keyword">new</span> THREE.CylinderGeometry(<span class="hljs-number">7</span>, <span class="hljs-number">5</span>, <span class="hljs-number">75</span>, <span class="hljs-number">10</span>);
+    <span class="hljs-keyword">var</span> t2 = <span class="hljs-keyword">new</span> THREE.CylinderGeometry(<span class="hljs-number">7</span>, <span class="hljs-number">5</span>, <span class="hljs-number">75</span>, <span class="hljs-number">10</span>);
+
+    <span class="hljs-keyword">var</span> geometry_cyl = <span class="hljs-keyword">new</span> THREE.CylinderGeometry(<span class="hljs-number">30</span>, <span class="hljs-number">20</span>, <span class="hljs-number">60</span>, <span class="hljs-number">8</span>, <span class="hljs-number">1</span>);
+    <span class="hljs-keyword">var</span> geometry_cyl2 = <span class="hljs-keyword">new</span> THREE.CylinderGeometry(<span class="hljs-number">30</span>, <span class="hljs-number">30</span>, <span class="hljs-number">50</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>);
+
+    <span class="hljs-keyword">var</span> material = <span class="hljs-keyword">new</span> THREE.MeshPhongMaterial({
+        color: <span class="hljs-number">0xffffff</span>,
+        specular: <span class="hljs-number">0xffffff</span>,
+        shininess: <span class="hljs-number">50</span>,
+        opacity: <span class="hljs-number">1</span>,
+        shading: THREE.FlatShading
+    });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-131">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-131">&#182;</a>
+              </div>
+              <p>Building the space ship, LEGO style!</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    <span class="hljs-keyword">var</span> mesh_t1 = <span class="hljs-keyword">new</span> THREE.Mesh(t1, material);
+    <span class="hljs-keyword">var</span> mesh_t2 = <span class="hljs-keyword">new</span> THREE.Mesh(t2, material);
+
+    <span class="hljs-keyword">var</span> mesh2 = <span class="hljs-keyword">new</span> THREE.Mesh(geometry_cyl, material);
+    <span class="hljs-keyword">var</span> mesh3 = <span class="hljs-keyword">new</span> THREE.Mesh(geometry_cyl2, material);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-132">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-132">&#182;</a>
+              </div>
+              <p>body</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    mesh2.position.x = <span class="hljs-number">0</span>;
+    mesh2.position.y = <span class="hljs-number">0</span>;
+    mesh2.position.z = <span class="hljs-number">0</span>;
+    mesh2.rotation.x = <span class="hljs-built_in">Math</span>.PI / <span class="hljs-number">2</span>;
+    mesh2.rotation.y = <span class="hljs-built_in">Math</span>.PI / <span class="hljs-number">2</span>;
+    mesh2.scale.x = <span class="hljs-number">0.25</span>;
+    THREE.GeometryUtils.merge(mergedGeo, mesh2);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-133">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-133">&#182;</a>
+              </div>
+              <p>connectors</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    mesh3.position.x = <span class="hljs-number">5</span>;
+    mesh3.position.y = <span class="hljs-number">0</span>;
+    mesh3.position.z = <span class="hljs-number">16</span>;
+    mesh3.rotation.x = <span class="hljs-built_in">Math</span>.PI / <span class="hljs-number">2</span>;
+    mesh3.rotation.y = <span class="hljs-built_in">Math</span>.PI / <span class="hljs-number">2</span>;
+    mesh3.scale.x = <span class="hljs-number">0.1</span>;
+    mesh3.scale.y = <span class="hljs-number">0.5</span>;
+    mesh3.scale.z = <span class="hljs-number">1.6</span>;
+    THREE.GeometryUtils.merge(mergedGeo, mesh3);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-134">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-134">&#182;</a>
+              </div>
+              <p>thruster 1</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    mesh_t1.position.x = <span class="hljs-number">50</span>;
+    mesh_t1.position.y = <span class="hljs-number">0</span>;
+    mesh_t1.position.z = <span class="hljs-number">0</span>;
+    mesh_t1.scale.x = <span class="hljs-number">1</span>;
+    mesh_t1.scale.y = <span class="hljs-number">1</span>;
+    mesh_t1.scale.z = <span class="hljs-number">1</span>;
+    mesh_t1.rotation.y = <span class="hljs-built_in">Math</span>.PI / <span class="hljs-number">2</span>;
+    mesh_t1.rotation.x = <span class="hljs-built_in">Math</span>.PI / <span class="hljs-number">2</span>;
+    mesh_t1.rotation.z = <span class="hljs-number">0</span>;
+    THREE.GeometryUtils.merge(mergedGeo, mesh_t1);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-135">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-135">&#182;</a>
+              </div>
+              <p>thruster 2</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    mesh_t2.position.x = -<span class="hljs-number">50</span>;
+    mesh_t2.position.y = <span class="hljs-number">0</span>;
+    mesh_t2.position.z = <span class="hljs-number">0</span>;
+    mesh_t2.scale.x = <span class="hljs-number">1</span>;
+    mesh_t2.scale.y = <span class="hljs-number">1</span>;
+    mesh_t2.scale.z = <span class="hljs-number">1</span>;
+    mesh_t2.rotation.y = <span class="hljs-built_in">Math</span>.PI / <span class="hljs-number">2</span>;
+    mesh_t2.rotation.x = <span class="hljs-built_in">Math</span>.PI / <span class="hljs-number">2</span>;
+    mesh_t2.rotation.z = <span class="hljs-number">0</span>;
+    THREE.GeometryUtils.merge(mergedGeo, mesh_t2);
+
+
+    mergedGeo.computeFaceNormals();
+    <span class="hljs-keyword">var</span> group = <span class="hljs-keyword">new</span> THREE.Mesh(mergedGeo, material);
+    group.matrixAutoUpdate = <span class="hljs-literal">true</span>;
+    group.updateMatrix();
+
+    scene.add(group);
+
+    <span class="hljs-keyword">return</span> group;
+
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-136">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-136">&#182;</a>
+              </div>
+              <p>Generate the <strong>hugo</strong> (used in <code>generateShip(type)</code>).</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">generateShip03</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">var</span> mergedGeo;
+    mergedGeo = <span class="hljs-keyword">new</span> THREE.Geometry();
+
+    <span class="hljs-keyword">var</span> engine = <span class="hljs-keyword">new</span> THREE.TorusGeometry(<span class="hljs-number">100</span>, <span class="hljs-number">70</span>);
+    <span class="hljs-keyword">var</span> wings = <span class="hljs-keyword">new</span> THREE.CylinderGeometry(<span class="hljs-number">20</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>, <span class="hljs-literal">true</span>);
+    <span class="hljs-keyword">var</span> t1 = <span class="hljs-keyword">new</span> THREE.CylinderGeometry(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>);
+    <span class="hljs-keyword">var</span> t2 = <span class="hljs-keyword">new</span> THREE.CylinderGeometry(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>);
+
+    <span class="hljs-keyword">var</span> white_material = <span class="hljs-keyword">new</span> THREE.MeshPhongMaterial({
+        color: <span class="hljs-number">0xffffff</span>,
+        specular: <span class="hljs-number">0xffffff</span>,
+        shininess: <span class="hljs-number">50</span>,
+        opacity: <span class="hljs-number">1</span>,
+        shading: THREE.FlatShading
+    });
+    <span class="hljs-keyword">var</span> black_material = <span class="hljs-keyword">new</span> THREE.MeshPhongMaterial({
+        color: <span class="hljs-number">0x000000</span>,
+        specular: <span class="hljs-number">0x000000</span>,
+        shininess: <span class="hljs-number">50</span>,
+        opacity: <span class="hljs-number">1</span>,
+        shading: THREE.FlatShading
+    });
+    <span class="hljs-keyword">var</span> trans_material = <span class="hljs-keyword">new</span> THREE.MeshPhongMaterial({
+        color: <span class="hljs-number">0xffffff</span>,
+        specular: <span class="hljs-number">0xffffff</span>,
+        shininess: <span class="hljs-number">50</span>,
+        opacity: <span class="hljs-number">0.58</span>,
+        transparent: <span class="hljs-literal">true</span>,
+        shading: THREE.FlatShading
+    });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-137">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-137">&#182;</a>
+              </div>
+              <p>Building the space ship, LEGO style!</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    <span class="hljs-keyword">var</span> mesh_engine = <span class="hljs-keyword">new</span> THREE.Mesh(engine, black_material);
+    <span class="hljs-keyword">var</span> mesh_wings = <span class="hljs-keyword">new</span> THREE.Mesh(wings, white_material);
+    <span class="hljs-keyword">var</span> mesh_t1 = <span class="hljs-keyword">new</span> THREE.Mesh(t1, white_material);
+    <span class="hljs-keyword">var</span> mesh_t2 = <span class="hljs-keyword">new</span> THREE.Mesh(t2, white_material);
+
+    <span class="hljs-keyword">with</span>(mesh_engine) {
+        rotation.x = <span class="hljs-built_in">Math</span>.PI / <span class="hljs-number">2</span>;
+        scale.x = <span class="hljs-number">0.11</span>;
+        scale.y = <span class="hljs-number">0.44</span>;
+        scale.z = <span class="hljs-number">0.24</span>;
+    }
+    THREE.GeometryUtils.merge(mergedGeo, mesh_engine);
+
+    <span class="hljs-keyword">with</span>(mesh_wings) {
+        position.y = <span class="hljs-number">22</span>;
+        rotation.x = <span class="hljs-number">0.18</span>;
+        rotation.z = <span class="hljs-built_in">Math</span>.PI / <span class="hljs-number">2</span>;
+        rotation.x = <span class="hljs-built_in">Math</span>.PI / <span class="hljs-number">2</span>;
+    }
+    THREE.GeometryUtils.merge(mergedGeo, mesh_wings);
+
+    <span class="hljs-keyword">with</span>(mesh_t1) {
+        position.x = <span class="hljs-number">10</span>;
+        position.z = -<span class="hljs-number">81.27</span>;
+        rotation.x = <span class="hljs-built_in">Math</span>.PI / <span class="hljs-number">2</span>;
+    }
+    THREE.GeometryUtils.merge(mergedGeo, mesh_t1);
+
+    <span class="hljs-keyword">with</span>(mesh_t2) {
+        position.x = -<span class="hljs-number">10</span>;
+        position.z = -<span class="hljs-number">81.27</span>;
+        rotation.x = <span class="hljs-built_in">Math</span>.PI / <span class="hljs-number">2</span>;
+    }
+    THREE.GeometryUtils.merge(mergedGeo, mesh_t2);
+
+    mergedGeo.computeFaceNormals();
+    <span class="hljs-keyword">var</span> group = <span class="hljs-keyword">new</span> THREE.Mesh(mergedGeo, black_material);
+    group.matrixAutoUpdate = <span class="hljs-literal">true</span>;
+    group.rotation.x = -<span class="hljs-built_in">Math</span>.PI;
+    group.updateMatrix();
+
+    scene.add(group);
+
+    <span class="hljs-keyword">return</span> group;
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-138">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-138">&#182;</a>
+              </div>
+              <h2 id="input">Input</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-139">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-139">&#182;</a>
+              </div>
+              <p>Function called on keydown.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">keyDown</span><span class="hljs-params">(event)</span> </span>{
+    <span class="hljs-keyword">switch</span> (<span class="hljs-string">"keyDown "</span>, event.keyCode) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-140">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-140">&#182;</a>
+              </div>
+              <p>the up-key</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-number">38</span>:
+        <span class="hljs-keyword">case</span> <span class="hljs-number">87</span>:
+            key_up = <span class="hljs-literal">true</span>;
+            <span class="hljs-keyword">break</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-141">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-141">&#182;</a>
+              </div>
+              <p>the down-key</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-number">40</span>:
+        <span class="hljs-keyword">case</span> <span class="hljs-number">83</span>:
+            key_down = <span class="hljs-literal">true</span>;
+            <span class="hljs-keyword">break</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-142">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-142">&#182;</a>
+              </div>
+              <p>the left-key</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-number">37</span>:
+        <span class="hljs-keyword">case</span> <span class="hljs-number">65</span>:
+            key_left = <span class="hljs-literal">true</span>;
+            <span class="hljs-keyword">break</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-143">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-143">&#182;</a>
+              </div>
+              <p>the right-key</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-number">39</span>:
+        <span class="hljs-keyword">case</span> <span class="hljs-number">68</span>:
+            key_right = <span class="hljs-literal">true</span>;
+            <span class="hljs-keyword">break</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-144">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-144">&#182;</a>
+              </div>
+              <p>the “z” or “,” key</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-number">90</span>:
+        <span class="hljs-keyword">case</span> <span class="hljs-number">188</span>:
+            key_turn_left = <span class="hljs-literal">true</span>;
+            <span class="hljs-keyword">break</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-145">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-145">&#182;</a>
+              </div>
+              <p>the “c” or “/“ key</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-number">67</span>:
+        <span class="hljs-keyword">case</span> <span class="hljs-number">191</span>:
+            key_turn_right = <span class="hljs-literal">true</span>;
+            <span class="hljs-keyword">break</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-146">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-146">&#182;</a>
+              </div>
+              <p>the ENTER key</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-number">13</span>:
+            $(<span class="hljs-string">"#start"</span>).click();
+            <span class="hljs-keyword">break</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-147">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-147">&#182;</a>
+              </div>
+              <p>the ESCAPE key</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-number">27</span>:
+            materials.opacity = <span class="hljs-number">0</span>;
+            bdy.style.backgroundColor = <span class="hljs-string">'#000000'</span>;
+            introReset(<span class="hljs-literal">false</span>);
+            <span class="hljs-keyword">break</span>;
+    }
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-148">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-148">&#182;</a>
+              </div>
+              <p>Function called on keyup.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">keyUp</span><span class="hljs-params">(event)</span> </span>{
+    <span class="hljs-keyword">switch</span> (event.keyCode) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-149">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-149">&#182;</a>
+              </div>
+              <p>the up-key</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-number">38</span>:
+        <span class="hljs-keyword">case</span> <span class="hljs-number">87</span>:
+            key_up = <span class="hljs-literal">false</span>;
+            <span class="hljs-keyword">break</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-150">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-150">&#182;</a>
+              </div>
+              <p>the down-key</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-number">40</span>:
+        <span class="hljs-keyword">case</span> <span class="hljs-number">83</span>:
+            key_down = <span class="hljs-literal">false</span>;
+            <span class="hljs-keyword">break</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-151">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-151">&#182;</a>
+              </div>
+              <p>the left-key</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-number">37</span>:
+        <span class="hljs-keyword">case</span> <span class="hljs-number">65</span>:
+            key_left = <span class="hljs-literal">false</span>;
+            <span class="hljs-keyword">break</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-152">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-152">&#182;</a>
+              </div>
+              <p>the right-key</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-number">39</span>:
+        <span class="hljs-keyword">case</span> <span class="hljs-number">68</span>:
+            key_right = <span class="hljs-literal">false</span>;
+            <span class="hljs-keyword">break</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-153">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-153">&#182;</a>
+              </div>
+              <p>the “z” or “,” key</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-number">90</span>:
+        <span class="hljs-keyword">case</span> <span class="hljs-number">188</span>:
+            key_turn_left = <span class="hljs-literal">false</span>;
+            <span class="hljs-keyword">break</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-154">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-154">&#182;</a>
+              </div>
+              <p>the “c” or “,” key</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-number">67</span>:
+        <span class="hljs-keyword">case</span> <span class="hljs-number">191</span>:
+            key_turn_right = <span class="hljs-literal">false</span>;
+            <span class="hljs-keyword">break</span>;
+    }
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-155">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-155">&#182;</a>
+              </div>
+              <p>Function called on keypress.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">keyPress</span><span class="hljs-params">(event)</span> </span>{
+    <span class="hljs-keyword">switch</span> (event.keyCode) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-156">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-156">&#182;</a>
+              </div>
+              <p>the “p” key</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-number">112</span>:</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-157">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-157">&#182;</a>
+              </div>
+              <p>Toggle between 1st and 3rd person.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span> (view == <span class="hljs-number">2</span>) {
+                view = <span class="hljs-number">1</span>;
+                zcamera2 = <span class="hljs-number">0</span>;
+            } <span class="hljs-keyword">else</span> {
+                view = <span class="hljs-number">2</span>;
+                zcamera2 = -<span class="hljs-number">220</span>;
+
+            }
+            <span class="hljs-keyword">break</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-158">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-158">&#182;</a>
+              </div>
+              <p>the SPACE key</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-number">32</span>:
+            <span class="hljs-keyword">if</span> (playing) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-159">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-159">&#182;</a>
+              </div>
+              <p>Toggle pause.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                <span class="hljs-keyword">if</span> (paused) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-160">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-160">&#182;</a>
+              </div>
+              <p>Hide pause icon.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                    $(<span class="hljs-string">"#pause-icon"</span>).fadeOut();
+                    paused = <span class="hljs-literal">false</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-161">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-161">&#182;</a>
+              </div>
+              <p>Unmute music.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                    <span class="hljs-keyword">if</span> (sound) sound.play();
+                } <span class="hljs-keyword">else</span> {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-162">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-162">&#182;</a>
+              </div>
+              <p>Show pause icon.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                    $(<span class="hljs-string">"#pause-icon"</span>).fadeIn(<span class="hljs-number">400</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+                        $(<span class="hljs-string">"#pause-icon"</span>).finish();
+                    });
+                    paused = <span class="hljs-literal">true</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-163">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-163">&#182;</a>
+              </div>
+              <p>Mute music.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                    <span class="hljs-keyword">if</span> (sound) sound.pause();
+                }
+            }
+            <span class="hljs-keyword">break</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-164">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-164">&#182;</a>
+              </div>
+              <p>the “f” key</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-number">102</span>:</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-165">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-165">&#182;</a>
+              </div>
+              <p>need to find a better way to init…</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            stats.domElement.style.zIndex = <span class="hljs-number">1001</span>;
+            stats.domElement.style.top = <span class="hljs-string">"initial"</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-166">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-166">&#182;</a>
+              </div>
+              <p>Toggle FPS display.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">var</span> stpos = stats.domElement.style.bottom;
+            <span class="hljs-keyword">if</span> (stpos == <span class="hljs-string">"0px"</span>) {
+                stats.domElement.style.bottom = <span class="hljs-string">"-200px"</span>
+            } <span class="hljs-keyword">else</span> {
+                stats.domElement.style.bottom = <span class="hljs-string">"0px"</span>
+            }
+            <span class="hljs-keyword">break</span>;
+    }
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-167">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-167">&#182;</a>
+              </div>
+              <p>Function called when brakes are enabled.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">brake</span><span class="hljs-params">(event)</span> </span>{
+    <span class="hljs-keyword">switch</span> (event.keyCode) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-168">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-168">&#182;</a>
+              </div>
+              <p>If the SHIFT key is pressed,</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">case</span> <span class="hljs-number">16</span>:</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-169">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-169">&#182;</a>
+              </div>
+              <p>and if the player owns brakes, the game is not paused, and the cooldown timer is happy,</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span> (owned_items.contains(<span class="hljs-string">"brakes"</span>) &amp;&amp; !paused &amp;&amp; cooldown === <span class="hljs-number">0</span>) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-170">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-170">&#182;</a>
+              </div>
+              <p>halve the speed.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                speed /= <span class="hljs-number">2</span> * brakesEff;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-171">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-171">&#182;</a>
+              </div>
+              <p>Cooldown timer</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                cooldown = <span class="hljs-number">200</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-172">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-172">&#182;</a>
+              </div>
+              <p>Wear down the brakes.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                brakesEff *= <span class="hljs-number">0.88</span>;
+
+            }
+            <span class="hljs-keyword">break</span>;
+    }
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-173">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-173">&#182;</a>
+              </div>
+              <p>Function called when the mouse changes position on the screen.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onDocumentMouseMove</span><span class="hljs-params">(event)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-174">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-174">&#182;</a>
+              </div>
+              <p>Update some global variables.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    mouseX = (event.clientX - windowHalfX) / windowX * <span class="hljs-number">2</span>;
+    mouseY = (event.clientY - windowHalfY) / windowY * <span class="hljs-number">2</span>;
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-175">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-175">&#182;</a>
+              </div>
+              <h2 id="all-systems-go">All systems go</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-176">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-176">&#182;</a>
+              </div>
+              <p>Create a bunch of variables to be used by three.js.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> container, ctx, stats;
+<span class="hljs-keyword">var</span> camera, scene, renderer;
+
+<span class="hljs-keyword">var</span> geometry, dust;
+<span class="hljs-keyword">var</span> group2, group2color
+<span class="hljs-keyword">var</span> ship;
+<span class="hljs-keyword">var</span> mouseX = <span class="hljs-number">0</span>,
+    mouseY = <span class="hljs-number">0</span>;
+
+<span class="hljs-keyword">var</span> particles = [];
+
+<span class="hljs-keyword">var</span> objs, background;
+
+<span class="hljs-keyword">var</span> fov = <span class="hljs-number">80</span>;
+<span class="hljs-keyword">var</span> fogdepth = <span class="hljs-number">3500</span>;
+<span class="hljs-keyword">var</span> dtm, track, next_frame, phase;
+<span class="hljs-keyword">var</span> zcamera = zcamera2 = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">var</span> p = [];
+
+$(<span class="hljs-built_in">document</span>).ready(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-177">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-177">&#182;</a>
+              </div>
+              <p>Prevent scrolling in one other way (for extra protection).</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    $(<span class="hljs-string">'body'</span>).on(<span class="hljs-string">'wheel.modal mousewheel.modal'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-178">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-178">&#182;</a>
+              </div>
+              <p>wtf?</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    $(<span class="hljs-string">"#panel1"</span>).css(<span class="hljs-string">"visibility"</span>, <span class="hljs-string">"initial"</span>);
+    $(<span class="hljs-string">"#panel1"</span>).fadeIn(<span class="hljs-number">400</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-179">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-179">&#182;</a>
+              </div>
+              <p>Render the intro, passing <code>false</code> for <code>gamecompleted</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    introReset(<span class="hljs-literal">false</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-180">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-180">&#182;</a>
+              </div>
+              <p>Hide the pause icon.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    $(<span class="hljs-string">"#pause-icon"</span>).hide();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-181">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-181">&#182;</a>
+              </div>
+              <p>Bind all buttons to <code>buttonClick(e)</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    bind(<span class="hljs-string">"start"</span>);
+    bind(<span class="hljs-string">"shop"</span>);
+    bind(<span class="hljs-string">"options"</span>);
+    bind(<span class="hljs-string">"op_sensitivity"</span>);
+    bind(<span class="hljs-string">"close_panel2"</span>);
+    bind(<span class="hljs-string">"close_shop"</span>);
+    bind(<span class="hljs-string">"op_1stperson"</span>);
+    bind(<span class="hljs-string">"op_controls"</span>);
+    bind(<span class="hljs-string">"op_yinvert"</span>);
+    bind(<span class="hljs-string">"op_difficulty"</span>);
+
+    bind(<span class="hljs-string">"music"</span>);
+
+    bind(<span class="hljs-string">"classic"</span>);
+    bind(<span class="hljs-string">"pioneer"</span>);
+    bind(<span class="hljs-string">"hugo"</span>);
+
+    bind(<span class="hljs-string">"brakes"</span>);
+
+    bind(<span class="hljs-string">"achievements"</span>);
+    bind(<span class="hljs-string">"close_map"</span>);
+
+    bind(<span class="hljs-string">"show_leaderboard"</span>);
+    bind(<span class="hljs-string">"close_lb"</span>);
+
+    bdy = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"body"</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-182">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-182">&#182;</a>
+              </div>
+              <p>Action!</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    init();
+    animate();
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-183">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-183">&#182;</a>
+              </div>
+              <p>Initialize everything.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span><span class="hljs-params">()</span> </span>{
+
+    initMap();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-184">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-184">&#182;</a>
+              </div>
+              <p>Fetch options from storage, if they are not set override them with the second argument.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    sensitivity = get(<span class="hljs-string">"omsensitivity"</span>, <span class="hljs-number">1</span>);
+    autoswitch = get(<span class="hljs-string">"omautoswitch"</span>, <span class="hljs-number">0</span>);
+    controls = get(<span class="hljs-string">"omcontrols"</span>, <span class="hljs-number">0</span>);
+    expert = controls == <span class="hljs-number">2</span>;
+    yinvert = get(<span class="hljs-string">"omyinvert"</span>, <span class="hljs-number">0</span>);
+    music = get(<span class="hljs-string">"music"</span>, <span class="hljs-number">0</span>);
+
+    gold = get(<span class="hljs-string">"gold"</span>, <span class="hljs-number">0</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-185">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-185">&#182;</a>
+              </div>
+              <p>Display gold count, rounded down.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    html(<span class="hljs-string">"gold"</span>, gold | <span class="hljs-number">0</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-186">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-186">&#182;</a>
+              </div>
+              <p>a WIP!</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    sail = get(<span class="hljs-string">"sail"</span>, <span class="hljs-number">0</span>);
+    html(<span class="hljs-string">"sail"</span>, sail);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-187">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-187">&#182;</a>
+              </div>
+              <p>Update the shop interface (duh).</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    updateShop();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-188">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-188">&#182;</a>
+              </div>
+              <p>Update the achievements map (duh again).</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    updateMap();
+
+    <span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">'keyup'</span>, keyUp, <span class="hljs-literal">true</span>);
+    <span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">'keydown'</span>, keyDown, <span class="hljs-literal">true</span>);
+    <span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">'keypress'</span>, keyPress, <span class="hljs-literal">true</span>);
+    <span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">'mousemove'</span>, onDocumentMouseMove, <span class="hljs-literal">false</span>);
+
+    container = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'div'</span>);
+    <span class="hljs-built_in">document</span>.body.appendChild(container);
+
+    camera = <span class="hljs-keyword">new</span> THREE.PerspectiveCamera(<span class="hljs-number">90</span>, <span class="hljs-built_in">window</span>.innerWidth / <span class="hljs-built_in">window</span>.innerHeight, <span class="hljs-number">1</span>, fogdepth);
+    camera.position.z = <span class="hljs-number">0</span>;
+
+    scene = <span class="hljs-keyword">new</span> THREE.Scene();
+
+    SC.initialize({
+        client_id: <span class="hljs-string">'ab0d4ac1a41f37a6194543220ea2193f'</span>
+    });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-189">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-189">&#182;</a>
+              </div>
+              <p>LIGHTS / FOG</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    light1 = <span class="hljs-keyword">new</span> THREE.DirectionalLight(<span class="hljs-number">0xddddff</span>);
+    light1.position.set(<span class="hljs-number">2</span>, -<span class="hljs-number">3</span>, <span class="hljs-number">1.5</span>);
+    light1.position.normalize();
+    scene.add(light1);
+
+    light2 = <span class="hljs-keyword">new</span> THREE.DirectionalLight();
+    light2.color.setHSV(<span class="hljs-built_in">Math</span>.random(), <span class="hljs-number">0.75</span>, <span class="hljs-number">1</span>);
+    light2.position.set(-<span class="hljs-number">1.5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>);
+    light2.position.normalize();
+    scene.add(light2);
+
+    scene.fog = <span class="hljs-keyword">new</span> THREE.Fog(<span class="hljs-number">0x000000</span>, <span class="hljs-number">1</span>, fogdepth);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-190">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-190">&#182;</a>
+              </div>
+              <p>DUST</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    dust = <span class="hljs-keyword">new</span> THREE.Geometry();
+    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">2000</span>; i++) {
+        <span class="hljs-keyword">var</span> r = <span class="hljs-number">850</span> + <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">2100</span>;
+        <span class="hljs-keyword">var</span> a = <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">2</span> * <span class="hljs-built_in">Math</span>.PI;
+        vector = <span class="hljs-keyword">new</span> THREE.Vector3(<span class="hljs-built_in">Math</span>.cos(a) * r, <span class="hljs-built_in">Math</span>.sin(a) * r, <span class="hljs-built_in">Math</span>.random() * fogdepth);
+        dust.vertices.push(<span class="hljs-keyword">new</span> THREE.Vertex(vector));
+    }
+
+    materials = <span class="hljs-keyword">new</span> THREE.ParticleBasicMaterial({
+        size: <span class="hljs-number">15</span>,
+        opacity: <span class="hljs-number">0.1</span>
+    });
+    materials.color.setRGB(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);
+
+    particles[<span class="hljs-number">0</span>] = <span class="hljs-keyword">new</span> THREE.ParticleSystem(dust, materials);
+    particles[<span class="hljs-number">0</span>].position.z = <span class="hljs-number">0</span>;
+    scene.add(particles[<span class="hljs-number">0</span>]);
+
+    particles[<span class="hljs-number">1</span>] = <span class="hljs-keyword">new</span> THREE.ParticleSystem(dust, materials);
+    particles[<span class="hljs-number">1</span>].position.z = -fogdepth;
+    scene.add(particles[<span class="hljs-number">1</span>]);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-191">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-191">&#182;</a>
+              </div>
+              <p>BACKGROUND</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    background = <span class="hljs-keyword">new</span> THREE.Object3D();
+    scene.add(background);
+
+    <span class="hljs-keyword">var</span> mesh_tmp = generateCubesRing(<span class="hljs-number">300</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1200</span>, <span class="hljs-number">200</span>, <span class="hljs-number">1500</span>, <span class="hljs-number">5</span>);
+
+    mesh_tmp.computeFaceNormals();
+    group2color = <span class="hljs-keyword">new</span> THREE.MeshPhongMaterial({
+        color: <span class="hljs-number">0xff0000</span>,
+        specular: <span class="hljs-number">0xffffff</span>,
+        shininess: <span class="hljs-number">150</span>,
+        shading: THREE.FlatShading
+    });
+
+    group2 = <span class="hljs-keyword">new</span> THREE.Mesh(mesh_tmp, group2color);
+    group2color.color.setRGB(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>);
+    group2.matrixAutoUpdate = <span class="hljs-literal">true</span>;
+    group2.updateMatrix();
+    background.add(group2);
+
+    group2.position.z = -fogdepth;
+    group2.rotation.x = <span class="hljs-built_in">Math</span>.PI / <span class="hljs-number">2</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-192">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-192">&#182;</a>
+              </div>
+              <p>OBJECTS</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    objs = <span class="hljs-keyword">new</span> THREE.Object3D();
+    scene.add(objs);
+
+    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">200</span>; i++) {
+        <span class="hljs-keyword">var</span> obs = generateObstacle();
+        obs.position.z = -i * (fogdepth / <span class="hljs-number">200</span>);
+        obs.position.x = <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">5000</span> - <span class="hljs-number">2500</span>;
+        obs.position.y = <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">3000</span> - <span class="hljs-number">1500</span>;
+        obs.rotation.x = <span class="hljs-built_in">Math</span>.random() * <span class="hljs-built_in">Math</span>.PI;
+        obs.rotation.y = <span class="hljs-built_in">Math</span>.random() * <span class="hljs-built_in">Math</span>.PI;
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-193">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-193">&#182;</a>
+              </div>
+              <p>SHIP</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    <span class="hljs-keyword">if</span> (!$.jStorage.get(<span class="hljs-string">"ship"</span>)) $.jStorage.set(<span class="hljs-string">"ship"</span>, <span class="hljs-number">1</span>);
+    ship = generateShip($.jStorage.get(<span class="hljs-string">"ship"</span>));</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-194">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-194">&#182;</a>
+              </div>
+              <p>UPGRADES</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    <span class="hljs-keyword">if</span> (owned_items.contains(<span class="hljs-string">"brakes"</span>)) useBrakes();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-195">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-195">&#182;</a>
+              </div>
+              <p>RENDERER</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    renderer = Detector.webgl ? <span class="hljs-keyword">new</span> THREE.WebGLRenderer({
+        antialias: <span class="hljs-literal">true</span>
+    }) : <span class="hljs-keyword">new</span> THREE.CanvasRenderer();
+
+    <span class="hljs-keyword">var</span> canvas = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'hud'</span>);
+    ctx = canvas.getContext(<span class="hljs-string">'2d'</span>);
+
+    renderer.autoClear = <span class="hljs-literal">true</span>;
+    renderer.sortObjects = <span class="hljs-literal">false</span>;
+    container.appendChild(renderer.domElement);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-196">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-196">&#182;</a>
+              </div>
+              <p>STATS</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    stats = <span class="hljs-keyword">new</span> Stats();
+    stats.domElement.style.position = <span class="hljs-string">'absolute'</span>;
+    stats.domElement.style.top = <span class="hljs-string">'-200px'</span>;
+    stats.domElement.style.zIndex = <span class="hljs-number">100</span>;
+    stats.domElement.style.opacity = <span class="hljs-number">0.5</span>;
+    container.appendChild(stats.domElement);
+
+    <span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">'resize'</span>, onWindowResize, <span class="hljs-literal">false</span>);
+    onWindowResize();
+
+    tm = (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>).getTime();
+    track = <span class="hljs-number">10000</span>;
+    next_frame = <span class="hljs-number">0</span>;
+    phase = <span class="hljs-number">1</span>;
+
+    updateUI();
+    html(<span class="hljs-string">'music'</span>, <span class="hljs-string">'in-game music '</span> + (music == <span class="hljs-number">0</span> ? <span class="hljs-string">"off"</span> : <span class="hljs-string">"on"</span>));
+
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-197">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-197">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">animate</span><span class="hljs-params">()</span> </span>{
+    requestAnimationFrame(animate);
+
+    <span class="hljs-keyword">var</span> ntm = (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>).getTime();
+    dtm = ntm - tm;
+    tm = ntm;
+
+    <span class="hljs-keyword">if</span> (status == <span class="hljs-number">0</span>) {
+        render_intro();
+    } <span class="hljs-keyword">else</span> {
+        render_game();
+    }
+
+    stats.update();
+
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-198">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-198">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">render_intro</span><span class="hljs-params">()</span> </span>{
+
+    clight = (tm / <span class="hljs-number">100000</span>) % <span class="hljs-number">1</span>;
+    light2.color.setHSV(clight, <span class="hljs-number">0.4</span>, <span class="hljs-number">1</span>);
+
+    zcamera2 = zcamera = -<span class="hljs-number">220</span>;
+    xratio = <span class="hljs-number">1</span>;
+    yratio = <span class="hljs-number">1</span>;
+
+    camera.position = {
+        x: shipX * xratio,
+        y: shipY * yratio,
+        z: zcamera
+    };
+
+    group2.position.z += speed;
+    group2.rotation.y = -<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime() * <span class="hljs-number">0.0004</span>;
+    <span class="hljs-keyword">if</span> (group2.position.z &gt; <span class="hljs-number">0</span>) {
+        group2.position.z = -fogdepth;
+        group2color.color.setHSV(<span class="hljs-built_in">Math</span>.random(), <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);
+    }
+
+    camera.lookAt(<span class="hljs-keyword">new</span> THREE.Vector3(shipX * <span class="hljs-number">0.5</span>, shipY * <span class="hljs-number">0.25</span>, -<span class="hljs-number">1000</span>));
+
+    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>, l = objs.children.length; i &lt; l; i++) {
+
+        <span class="hljs-keyword">var</span> object = objs.children[i];
+
+        object.rotation.x += <span class="hljs-number">0.01</span>;
+        object.rotation.y += <span class="hljs-number">0.005</span>;
+
+        object.position.z += speed;
+        <span class="hljs-keyword">if</span> (object.position.z &gt; <span class="hljs-number">100</span>) {
+            object.position.z -= fogdepth;
+            object.position.x = <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">3000</span> - <span class="hljs-number">1500</span>;
+            object.position.y = <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">3000</span> - <span class="hljs-number">1500</span>;
+        }
+    }
+
+    renderer.render(scene, camera);
+    speed = <span class="hljs-number">0.3</span>;
+
+    fov = <span class="hljs-number">110</span>;
+
+    camera.fov = fov;
+    camera.updateProjectionMatrix();
+
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-199">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-199">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+<span class="hljs-keyword">var</span> rand;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">render_game</span><span class="hljs-params">()</span> </span>{
+
+    <span class="hljs-keyword">if</span> (!paused) {
+
+        <span class="hljs-keyword">if</span> (speed &gt; <span class="hljs-number">0</span>) {
+            clight = speed / speedlimit;
+            bdy.style.backgroundColor = <span class="hljs-string">'#000'</span>;
+        } <span class="hljs-keyword">else</span> {
+            clight = <span class="hljs-number">0</span>;
+            tmp = -((<span class="hljs-built_in">Math</span>.random() * speed * <span class="hljs-number">100</span>) | <span class="hljs-number">0</span>);
+            bdy.style.backgroundColor = <span class="hljs-string">'rgb('</span> + tmp + <span class="hljs-string">','</span> + (tmp / <span class="hljs-number">2</span>) + <span class="hljs-string">',0)'</span>;
+        }
+        light2.color.setHSV(clight, <span class="hljs-number">0.3</span>, <span class="hljs-number">1</span>);
+
+        <span class="hljs-keyword">switch</span> (controls) {
+            <span class="hljs-keyword">case</span> <span class="hljs-number">0</span>: <span class="hljs-comment">// mouse</span>
+                mx = <span class="hljs-built_in">Math</span>.max(<span class="hljs-built_in">Math</span>.min(mouseX * sen, <span class="hljs-number">1</span>), -<span class="hljs-number">1</span>);
+                my = <span class="hljs-built_in">Math</span>.max(<span class="hljs-built_in">Math</span>.min(mouseY * sen, <span class="hljs-number">1</span>), -<span class="hljs-number">1</span>);
+                <span class="hljs-keyword">break</span>;
+
+            <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>: <span class="hljs-comment">// keyboard</span>
+            <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+                <span class="hljs-keyword">if</span> (key_up) my -= <span class="hljs-number">0.002</span> * dtm * sen;
+                <span class="hljs-keyword">if</span> (key_down) my += <span class="hljs-number">0.002</span> * dtm * sen;
+                <span class="hljs-keyword">if</span> (key_left) mx -= <span class="hljs-number">0.003</span> * dtm * sen;
+                <span class="hljs-keyword">if</span> (key_right) mx += <span class="hljs-number">0.003</span> * dtm * sen;
+                mx = <span class="hljs-built_in">Math</span>.max(<span class="hljs-built_in">Math</span>.min(mx, <span class="hljs-number">1</span>), -<span class="hljs-number">1</span>);
+                my = <span class="hljs-built_in">Math</span>.max(<span class="hljs-built_in">Math</span>.min(my, <span class="hljs-number">1</span>), -<span class="hljs-number">1</span>);
+                <span class="hljs-keyword">break</span>;
+        }
+
+        <span class="hljs-keyword">if</span> (yinvert == <span class="hljs-number">1</span>) my = -my;
+
+        shipX -= (shipX - mx * <span class="hljs-number">700</span>) / <span class="hljs-number">4</span>;
+        shipY -= (shipY - (-my) * <span class="hljs-number">250</span>) / <span class="hljs-number">4</span>;
+
+        <span class="hljs-keyword">if</span> (autoswitch) {
+            <span class="hljs-keyword">if</span> (speed &lt; <span class="hljs-number">15</span>) {
+                view = <span class="hljs-number">1</span>;
+                zcamera2 = <span class="hljs-number">0</span>;
+            } <span class="hljs-keyword">else</span> {
+                view = <span class="hljs-number">2</span>;
+                zcamera2 = -<span class="hljs-number">220</span>;
+            }
+        }
+
+        <span class="hljs-keyword">if</span> (view == <span class="hljs-number">1</span>) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-200">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-200">&#182;</a>
+              </div>
+              <p>3rd</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            xratio = <span class="hljs-number">1.1</span>;
+            yratio = <span class="hljs-number">0.5</span>;
+        } <span class="hljs-keyword">else</span> {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-201">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-201">&#182;</a>
+              </div>
+              <p>1st</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            xratio = <span class="hljs-number">1</span>;
+            yratio = <span class="hljs-number">1</span>;
+        }
+
+        zcamera = zcamera - (zcamera - zcamera2) / <span class="hljs-number">10</span>;
+
+        camera.position = {
+            x: shipX * xratio,
+            y: shipY * yratio,
+            z: zcamera
+        };
+
+        ship.position.x = shipX;
+        ship.position.y = shipY;
+        ship.position.z = -<span class="hljs-number">200</span>;
+
+        <span class="hljs-keyword">if</span> (!expert) ship.rotation.z = -shipX / <span class="hljs-number">1000</span>;
+        <span class="hljs-keyword">else</span> ship.rotation.z -= key_turn_right / <span class="hljs-number">10</span>, ship.rotation.z += key_turn_left / <span class="hljs-number">10</span>;
+
+        <span class="hljs-keyword">if</span> (speed &gt;= <span class="hljs-number">100</span>) {
+            ship.material.color.setRGB(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>);
+            ship.material.color.setRGB(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>);
+        } <span class="hljs-keyword">else</span> {
+            ship.material.color.setRGB(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);
+        }
+
+        group2.position.z += speed;
+        group2.rotation.y = -<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime() * <span class="hljs-number">0.0004</span>;
+        <span class="hljs-keyword">if</span> (group2.position.z &gt; <span class="hljs-number">0</span>) {
+            group2.position.z = -<span class="hljs-number">4000</span>;
+            group2color.color.setHSV(clight, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);
+        }
+
+        camera.lookAt(<span class="hljs-keyword">new</span> THREE.Vector3(shipX * <span class="hljs-number">0.5</span>, shipY * <span class="hljs-number">0.25</span>, -<span class="hljs-number">1000</span>));</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-202">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-202">&#182;</a>
+              </div>
+              <p>Dust</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        particles[<span class="hljs-number">0</span>].position.z += speed;
+        <span class="hljs-keyword">if</span> (particles[<span class="hljs-number">0</span>].position.z &gt; <span class="hljs-number">100</span>) {
+            particles[<span class="hljs-number">0</span>].position.z -= fogdepth * <span class="hljs-number">2</span>;
+        }
+        particles[<span class="hljs-number">1</span>].position.z += speed;
+        <span class="hljs-keyword">if</span> (particles[<span class="hljs-number">1</span>].position.z &gt; <span class="hljs-number">100</span>) {
+            particles[<span class="hljs-number">1</span>].position.z -= fogdepth * <span class="hljs-number">2</span>;
+        }
+
+        <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>, l = objs.children.length; i &lt; l; i++) {
+
+            <span class="hljs-keyword">var</span> object = objs.children[i];
+
+            object.rotation.x += <span class="hljs-number">0.01</span>;
+            object.rotation.y += <span class="hljs-number">0.005</span>;
+
+            object.position.z += speed;
+            <span class="hljs-keyword">if</span> (object.position.z &gt; <span class="hljs-number">100</span>) {
+                object.position.z -= fogdepth;
+                next_frame++;
+
+                <span class="hljs-keyword">switch</span> (phase) {
+                    <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>: <span class="hljs-comment">// asteroids field</span>
+                        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Math</span>.random() &lt; <span class="hljs-number">0.97</span>) {
+                            object.position.x = <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">3000</span> - <span class="hljs-number">1500</span>;
+                            object.position.y = <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">3000</span> - <span class="hljs-number">1500</span>;
+                        } <span class="hljs-keyword">else</span> {
+                            object.position.x = ship.position.x;
+                            object.position.y = ship.position.y;
+                        }
+                        <span class="hljs-keyword">break</span>;
+                    <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+                        object.position.x = <span class="hljs-built_in">Math</span>.cos(next_frame / p[<span class="hljs-number">0</span>]) * p[<span class="hljs-number">1</span>] + <span class="hljs-built_in">Math</span>.cos(next_frame / p[<span class="hljs-number">2</span>]) * p[<span class="hljs-number">3</span>];
+                        object.position.y = <span class="hljs-built_in">Math</span>.sin(next_frame / p[<span class="hljs-number">4</span>]) * p[<span class="hljs-number">5</span>] + <span class="hljs-built_in">Math</span>.sin(next_frame / p[<span class="hljs-number">6</span>]) * p[<span class="hljs-number">7</span>];
+                        <span class="hljs-keyword">break</span>;
+                    <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:
+                        object.position.x = <span class="hljs-built_in">Math</span>.cos(next_frame / p[<span class="hljs-number">0</span>]) * p[<span class="hljs-number">1</span>] + <span class="hljs-built_in">Math</span>.cos(next_frame / p[<span class="hljs-number">2</span>]) * p[<span class="hljs-number">3</span>];
+                        object.position.y = <span class="hljs-built_in">Math</span>.sin(next_frame / p[<span class="hljs-number">4</span>]) * p[<span class="hljs-number">5</span>] + <span class="hljs-built_in">Math</span>.sin(next_frame / p[<span class="hljs-number">6</span>]) * p[<span class="hljs-number">7</span>];
+                        <span class="hljs-keyword">break</span>;
+                    <span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:
+                        <span class="hljs-keyword">var</span> r = <span class="hljs-built_in">Math</span>.cos(next_frame / p[<span class="hljs-number">0</span>]) * <span class="hljs-number">2000</span>;
+                        object.position.x = <span class="hljs-built_in">Math</span>.cos(next_frame / p[<span class="hljs-number">1</span>]) * r;
+                        object.position.y = <span class="hljs-built_in">Math</span>.sin(next_frame / p[<span class="hljs-number">1</span>]) * r;
+                        <span class="hljs-keyword">break</span>;
+                    <span class="hljs-keyword">case</span> <span class="hljs-number">5</span>:
+                        object.position.x = <span class="hljs-built_in">Math</span>.cos(next_frame / p[<span class="hljs-number">0</span>]) * p[<span class="hljs-number">1</span>] + <span class="hljs-built_in">Math</span>.cos(next_frame / p[<span class="hljs-number">2</span>]) * p[<span class="hljs-number">3</span>];
+                        object.position.y = <span class="hljs-built_in">Math</span>.sin(next_frame / p[<span class="hljs-number">4</span>]) * p[<span class="hljs-number">5</span>] + <span class="hljs-built_in">Math</span>.sin(next_frame / p[<span class="hljs-number">6</span>]) * p[<span class="hljs-number">7</span>];
+                        <span class="hljs-keyword">break</span>;
+                    <span class="hljs-keyword">case</span> <span class="hljs-number">6</span>:
+                        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Math</span>.random() &lt; <span class="hljs-number">0.95</span>) {
+                            object.position.x = ship.position.x;
+                            object.position.y = ship.position.y;
+                        } <span class="hljs-keyword">else</span> {
+                            object.position.x = <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">3000</span> - <span class="hljs-number">1500</span>;
+                            object.position.y = <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">3000</span> - <span class="hljs-number">1500</span>;
+                        }
+                        <span class="hljs-keyword">break</span>;
+                }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-203">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-203">&#182;</a>
+              </div>
+              <p>choose powerup</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                rand = <span class="hljs-built_in">Math</span>.random();
+                <span class="hljs-keyword">if</span> (rand &lt; <span class="hljs-number">0.01</span>) {
+                    <span class="hljs-keyword">if</span> (rand &lt; <span class="hljs-number">0.008</span>) {
+                        object.name = <span class="hljs-string">"gold"</span>;
+                        object.material.color.setHex(<span class="hljs-number">0xFFE100</span>);
+                    } <span class="hljs-keyword">else</span> {
+                        object.name = <span class="hljs-string">"life"</span>;
+                        object.material.color.setHex(<span class="hljs-number">0x6FE800</span>);
+                    }
+                }
+
+            }
+
+            health = health == <span class="hljs-literal">NaN</span> ? <span class="hljs-number">0</span> : health;
+
+            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Math</span>.abs(ship.position.x - object.position.x) &lt; <span class="hljs-number">100</span> &amp;&amp; <span class="hljs-built_in">Math</span>.abs(ship.position.y - object.position.y) &lt; <span class="hljs-number">50</span> &amp;&amp; <span class="hljs-built_in">Math</span>.abs(ship.position.z - object.position.z) &lt; <span class="hljs-number">50</span>) {
+                <span class="hljs-keyword">var</span> vis = object.visible;
+                <span class="hljs-keyword">if</span> (phase !== <span class="hljs-number">6</span>) {
+                    <span class="hljs-keyword">switch</span> (object.name) {
+                        <span class="hljs-keyword">case</span> <span class="hljs-string">"gold"</span>:
+                            <span class="hljs-keyword">if</span> (vis) {
+                                gold += <span class="hljs-number">1</span>;
+                                object.visible = <span class="hljs-literal">false</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-204">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-204">&#182;</a>
+              </div>
+              <p>TODO: play some gold sound</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                            }
+                            <span class="hljs-keyword">break</span>;
+
+                        <span class="hljs-keyword">case</span> <span class="hljs-string">"life"</span>:
+                            <span class="hljs-keyword">if</span> (vis) {
+                                health += health &lt; <span class="hljs-number">130</span> ? <span class="hljs-number">20</span> : <span class="hljs-number">0</span>;
+                                object.visible = <span class="hljs-literal">false</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-205">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-205">&#182;</a>
+              </div>
+              <p>TODO: play some healing sound</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                            }
+                            <span class="hljs-keyword">break</span>;
+
+                        <span class="hljs-keyword">default</span>:
+                            <span class="hljs-keyword">try</span> {
+                                <span class="hljs-keyword">if</span> (speed &gt; <span class="hljs-number">25</span>) health -= speed / (mode == <span class="hljs-number">1</span> ? <span class="hljs-number">1.3</span> : mode == <span class="hljs-number">2</span> ? <span class="hljs-number">0.8</span> : <span class="hljs-number">1.3</span>);
+                            } <span class="hljs-keyword">catch</span> (e) {}
+                            speed = -<span class="hljs-number">3</span>;
+                            <span class="hljs-keyword">break</span>;
+                    }
+                }
+            }
+
+        }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-206">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-206">&#182;</a>
+              </div>
+              <p>Collision check</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-comment">/*var collisionResults;
+        var originPoint = ship.position.clone();   
+        for (vi = 0; vi &lt; ship.geometry.vertices.length; vi++) {   
+            var localVertex = ship.geometry.vertices[vi].clone(),
+                globalVertex = ship.matrix.multiplyVector3(vi),
+                directionVector = globalVertex.subSelf(ship.position),
+                ray = new THREE.Ray(ship.position, directionVector.clone().normalize());   
+            
+            collisionResults = ray.intersectObjects(ArrayOfCollideableObjects);
+            
+        }
+        console.log(collisionResults);*/</span>
+
+        html(<span class="hljs-string">"gold"</span>, gold | <span class="hljs-number">0</span>);
+
+        <span class="hljs-keyword">if</span> (health &lt; <span class="hljs-number">0</span> &amp;&amp; speed &gt; <span class="hljs-number">0</span>) introReset(<span class="hljs-literal">true</span>);
+
+        renderer.render(scene, camera);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-207">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-207">&#182;</a>
+              </div>
+              <p>var factor = track%100?Math.random()*100:factor;</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        speed = speed + (dtm / (mode == <span class="hljs-number">1</span> ? <span class="hljs-number">300</span> : mode == <span class="hljs-number">2</span> ? <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">100</span> : <span class="hljs-number">300</span>));
+        <span class="hljs-keyword">if</span> (speed &gt; maxspeed) {
+            speed = maxspeed;
+            maxspeed = <span class="hljs-built_in">Math</span>.min(maxspeed + (dtm / <span class="hljs-number">1500</span>), <span class="hljs-number">100</span>);
+        }
+
+        <span class="hljs-keyword">if</span> (speed &gt; <span class="hljs-number">25</span>) {
+            score++;
+            html(<span class="hljs-string">"score"</span>, score);
+        }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-208">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-208">&#182;</a>
+              </div>
+              <p>html(“score”,Math.floor(speed)+” “+Math.floor(maxspeed)+” “+speedlimit);</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-209">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-209">&#182;</a>
+              </div>
+              <p>Dust</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        materials.opacity = speed / maxspeed;
+
+        track -= speed;
+        <span class="hljs-keyword">if</span> (track &lt; <span class="hljs-number">0</span>) {
+            track = <span class="hljs-number">5000</span> + <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">5000</span>;
+            gold += <span class="hljs-number">0.16</span>;
+
+            phase = (<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">5</span>) + <span class="hljs-number">1</span> | <span class="hljs-number">0</span>;
+            phase = (phase == <span class="hljs-number">5</span> ? (<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">5</span>) + <span class="hljs-number">1</span> | <span class="hljs-number">0</span> : phase);
+
+            <span class="hljs-keyword">switch</span> (phase) {
+                <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+                    <span class="hljs-keyword">break</span>;
+
+                <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>: <span class="hljs-comment">// twirl 1</span>
+                    p[<span class="hljs-number">0</span>] = <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">3</span> + <span class="hljs-number">0.01</span>;
+                    p[<span class="hljs-number">1</span>] = <span class="hljs-number">300</span> + <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">900</span>;
+                    p[<span class="hljs-number">4</span>] = p[<span class="hljs-number">0</span>];
+                    p[<span class="hljs-number">5</span>] = <span class="hljs-number">300</span> + <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">900</span>;
+
+                    p[<span class="hljs-number">2</span>] = <span class="hljs-number">8</span> + <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">77</span>; <span class="hljs-comment">// x secondary</span>
+                    p[<span class="hljs-number">3</span>] = <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">500</span>; <span class="hljs-comment">// x secondary</span>
+                    p[<span class="hljs-number">6</span>] = <span class="hljs-number">8</span> + <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">77</span>; <span class="hljs-comment">// y secondary</span>
+                    p[<span class="hljs-number">7</span>] = <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">400</span>; <span class="hljs-comment">// y secondary</span>
+
+                    <span class="hljs-keyword">break</span>;
+
+                <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>: <span class="hljs-comment">// snake</span>
+                    p[<span class="hljs-number">0</span>] = <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">30</span> + <span class="hljs-number">7</span>;
+                    p[<span class="hljs-number">1</span>] = <span class="hljs-number">300</span> + <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">900</span>;
+                    p[<span class="hljs-number">4</span>] = p[<span class="hljs-number">0</span>];
+                    p[<span class="hljs-number">5</span>] = <span class="hljs-number">300</span> + <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">700</span>;
+
+                    p[<span class="hljs-number">2</span>] = <span class="hljs-number">8</span> + <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">77</span>; <span class="hljs-comment">// x secondary</span>
+                    p[<span class="hljs-number">3</span>] = <span class="hljs-number">200</span> + <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">1000</span>; <span class="hljs-comment">// x secondary</span>
+                    p[<span class="hljs-number">6</span>] = <span class="hljs-number">8</span> + <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">77</span>; <span class="hljs-comment">// y secondary</span>
+                    p[<span class="hljs-number">7</span>] = <span class="hljs-number">200</span> + <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">1000</span>; <span class="hljs-comment">// y secondary</span>
+
+                    <span class="hljs-keyword">break</span>;
+
+                <span class="hljs-keyword">case</span> <span class="hljs-number">4</span>: <span class="hljs-comment">// plane</span>
+                    p[<span class="hljs-number">0</span>] = <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">3</span> + <span class="hljs-number">0.01</span>;
+                    p[<span class="hljs-number">1</span>] = (<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">500</span> + <span class="hljs-number">40</span>) * (<span class="hljs-built_in">Math</span>.random() &gt; <span class="hljs-number">0.5</span> ? <span class="hljs-number">1</span> : -<span class="hljs-number">1</span>);
+                    <span class="hljs-keyword">break</span>;
+
+                <span class="hljs-keyword">case</span> <span class="hljs-number">5</span>: <span class="hljs-comment">// twirl 2</span>
+                    p[<span class="hljs-number">0</span>] = <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">3</span> + <span class="hljs-number">0.01</span>;
+                    p[<span class="hljs-number">1</span>] = <span class="hljs-number">300</span> + <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">500</span>;
+                    p[<span class="hljs-number">4</span>] = p[<span class="hljs-number">0</span>];
+                    p[<span class="hljs-number">5</span>] = <span class="hljs-number">300</span> + <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">500</span>;
+
+                    p[<span class="hljs-number">2</span>] = <span class="hljs-number">8</span> + <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">77</span>; <span class="hljs-comment">// x secondary</span>
+                    p[<span class="hljs-number">3</span>] = <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">900</span>; <span class="hljs-comment">// x secondary</span>
+                    p[<span class="hljs-number">6</span>] = <span class="hljs-number">8</span> + <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">77</span>; <span class="hljs-comment">// y secondary</span>
+                    p[<span class="hljs-number">7</span>] = <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">800</span>; <span class="hljs-comment">// y secondary</span>
+
+                    <span class="hljs-keyword">break</span>;
+            }
+
+        }
+
+        fov = fov - (fov - (<span class="hljs-number">65</span> + speed / <span class="hljs-number">2</span>)) / <span class="hljs-number">4</span>;
+
+        camera.fov = fov;
+        camera.updateProjectionMatrix();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-210">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-210">&#182;</a>
+              </div>
+              <p>engines
+engine_lt.scale.x=engine_lt.scale.y=engine_rt.scale.x=engine_rt.scale.y = (70/fov)/5 ;
+var engop = Math.random()/10+0.9
+engine_lt.opacity=engine_rt.opacity = engop;</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        ctx.clearRect(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">300</span>, <span class="hljs-number">300</span>);
+        <span class="hljs-keyword">var</span> sp = speed / speedlimit * <span class="hljs-built_in">Math</span>.PI * <span class="hljs-number">2.5</span>;
+        <span class="hljs-keyword">if</span> (speed &gt; <span class="hljs-number">0</span>) {
+            drawSector(<span class="hljs-number">50</span>, <span class="hljs-number">50</span>, <span class="hljs-number">50</span>, <span class="hljs-number">0</span>, sp, <span class="hljs-string">"#00dd44"</span>);
+        } <span class="hljs-keyword">else</span> {
+            drawSector(<span class="hljs-number">50</span>, <span class="hljs-number">50</span>, <span class="hljs-number">50</span>, sp, <span class="hljs-number">0</span>, <span class="hljs-string">"#992200"</span>);
+        }
+
+        <span class="hljs-keyword">if</span> (owned_items.contains(<span class="hljs-string">"brakes"</span>)) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-211">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-211">&#182;</a>
+              </div>
+              <p>Display cooldown timer in HUD.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span> (cooldown &gt; <span class="hljs-number">0</span>) cooldown--;
+            <span class="hljs-keyword">var</span> calc = (<span class="hljs-built_in">Math</span>.abs(<span class="hljs-number">0.5</span> * cooldown - <span class="hljs-number">50</span>) - <span class="hljs-number">20</span>) * <span class="hljs-number">0.7</span>,
+                pos = <span class="hljs-number">30</span> - (calc / <span class="hljs-number">2</span> + <span class="hljs-number">5</span>);
+            <span class="hljs-keyword">try</span> {
+                <span class="hljs-keyword">if</span> (cooldown !== <span class="hljs-number">0</span>) drawSector(pos, pos, calc, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-literal">null</span>, <span class="hljs-string">"#007891"</span>);
+                <span class="hljs-keyword">else</span> drawSector(pos, pos, calc, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-literal">null</span>, <span class="hljs-string">"#0000FF"</span>);
+            } <span class="hljs-keyword">catch</span> (err) {}
+        }
+
+    }
+
+}
+
+
+<span class="hljs-comment">/*function f(a) {
+    var b = $.jStorage;
+    b.set("gold", a);
+    gold = b.get("gold");
+    html("gold", gold | 0)
+}*/</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setShip</span><span class="hljs-params">(ship)</span> </span>{
+    $.jStorage.set(<span class="hljs-string">"owned_items"</span>, <span class="hljs-built_in">JSON</span>.stringify(owned_items));
+    <span class="hljs-keyword">switch</span> (ship) {
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"classic"</span>:
+            $.jStorage.set(<span class="hljs-string">"ship"</span>, <span class="hljs-number">1</span>);
+            <span class="hljs-built_in">window</span>.location.reload();
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"pioneer"</span>:
+            $.jStorage.set(<span class="hljs-string">"ship"</span>, <span class="hljs-number">2</span>);
+            <span class="hljs-built_in">window</span>.location.reload();
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"hugo"</span>:
+            $.jStorage.set(<span class="hljs-string">"ship"</span>, <span class="hljs-number">3</span>);
+            <span class="hljs-built_in">window</span>.location.reload();
+            <span class="hljs-keyword">break</span>;
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useBrakes</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">'keydown'</span>, brake, <span class="hljs-literal">true</span>);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transact</span><span class="hljs-params">(amount)</span> </span>{
+    <span class="hljs-keyword">if</span> (gold &gt;= amount) {
+        gold -= amount;
+        html(<span class="hljs-string">"gold"</span>, gold | <span class="hljs-number">0</span>);
+        $.jStorage.set(<span class="hljs-string">"gold"</span>, gold);
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    } <span class="hljs-keyword">else</span> {
+        alert(<span class="hljs-string">"Bummer, ya don't have enough loot.  Get back to work!"</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buyItem</span><span class="hljs-params">(item)</span> </span>{
+    <span class="hljs-keyword">if</span> (transact(prices[item]) &amp;&amp; !owned_items.contains(item)) {
+        owned_items.push(item);
+        $.jStorage.set(<span class="hljs-string">"owned_items"</span>, <span class="hljs-built_in">JSON</span>.stringify(owned_items));
+        updateShop();
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">updateShop</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">var</span> i = owned_items.length;
+    <span class="hljs-keyword">while</span> (i--) html(owned_items[i], owned_items[i]);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">initMap</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">var</span> planets = [<span class="hljs-string">'mercury'</span>, <span class="hljs-string">'mars'</span>];
+    $(<span class="hljs-string">"#achiev-map &gt; table &gt; tbody &gt; tr &gt; td"</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(i)</span> </span>{
+        $(<span class="hljs-keyword">this</span>).html(<span class="hljs-string">"&lt;img "</span> + (planets[i] ? <span class="hljs-string">"data-planet='"</span> + planets[i] + <span class="hljs-string">"'"</span> : <span class="hljs-string">""</span>) + <span class="hljs-string">"/&gt;"</span>);
+    });
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">updateMap</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">var</span> $cells = $(<span class="hljs-string">"#achiev-map &gt; table &gt; tbody &gt; tr &gt; td"</span>);
+
+    $cells.filter(<span class="hljs-string">':not(.discovered)'</span>).find(<span class="hljs-string">"img"</span>).attr(<span class="hljs-string">'src'</span>, <span class="hljs-string">'https://i.imgur.com/QXaG1yE.png'</span>);
+
+    <span class="hljs-keyword">var</span> planets = {
+        mercury: <span class="hljs-string">"xTQNwcA"</span>,
+        mars: <span class="hljs-string">"o9CWdbh"</span>
+    };
+
+    $(<span class="hljs-string">"#achiev-map &gt; table &gt; tbody &gt; tr &gt; td.discovered"</span>).find(<span class="hljs-string">"img"</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        $(<span class="hljs-keyword">this</span>).attr(<span class="hljs-string">"src"</span>, <span class="hljs-string">"https://i.imgur.com/"</span> + planets[$(<span class="hljs-keyword">this</span>).data(<span class="hljs-string">"planet"</span>)] + <span class="hljs-string">".png"</span>);
+    });
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">updateLeaderboard</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">var</span> $list = $(<span class="hljs-string">"#leaderboard &gt; #list"</span>);
+    $list.empty();
+    leaderboard.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(doc, rank)</span> </span>{
+        $list.append(<span class="hljs-string">'&lt;li&gt;'</span> + doc.user + <span class="hljs-string">" - "</span> + doc.score + <span class="hljs-string">'&lt;/li&gt;'</span>);
+    });
+}
+
+<span class="hljs-comment">/*function loadNeedle() {
+    $.ajax({
+        url: "omega-assets/needle.js",
+        success: function (js) {
+            eval(js);
+        },
+        error: function (a, b, c) {
+
+        }
+    });
+}*/</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">submitKeyCode</span><span class="hljs-params">()</span> </span>{
+    kc = $(<span class="hljs-string">'.input'</span>).val();
+    $(<span class="hljs-string">'.b-modal'</span>).click();
+}</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

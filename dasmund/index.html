@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Das Mund</title>
+	<style>
+	* { margin: 0; padding: 0; overflow: hidden; background: #000; }
+	html, body { height: 100%; width: 100%; }
+	#vid1, #vid2/*, #map*/ { height: calc(100% + 10vh); width: 50%; position: absolute; }
+	/*#map { left: 0; }*/
+	#vid2 { right: 0; }
+	#vid1 { left: 0; }
+	#overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 5; background: none; }
+	</style>
+</head>
+
+<body>
+
+<object type="application/x-shockwave-flash" id="vid1" data="http://static-cdn1.ustream.tv/swf/live/viewer:299.swf?vrsl=c:688&amp;amp;ulbr=100" width="100%" height="100%" style="visibility: visible;"><param name="wmode" value="direct"><param name="allowfullscreen" value="true"><param name="bgcolor" value="#000"><param name="allowscriptaccess" value="always"><param name="flashvars" value="cid=9408562&amp;locale=en_US&amp;sessionid=false&amp;autoplay=true&amp;enablejsapi=1&amp;sv=6&amp;ts=1413338149586"></object>
+
+<!--<iframe id="map" src="index_portal.html" seamless="seamless" frameborder="0" scrolling="no"></iframe>-->
+
+<object type="application/x-shockwave-flash" id="vid2" data="http://static-cdn1.ustream.tv/swf/live/viewerqos:7.swf" width="100%" height="100%" style="visibility: visible;"><param name="wmode" value="direct"><param name="allowfullscreen" value="true"><param name="bgcolor" value="#000"><param name="allowscriptaccess" value="always"><param name="flashvars" value="cid=17074538&amp;locale=en_US&amp;sessionid=false&amp;autoplay=true&amp;enablejsapi=1&amp;sv=6&amp;ts=1413338928425"></object>
+
+<div id="overlay"></div>
+
+</body>
+
+</html>
