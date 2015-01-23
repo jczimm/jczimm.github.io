@@ -41,16 +41,16 @@ function GameObjectController(main) {
     this.sway = 0;
     this.shake = 0;
 
-    this.light1= new THREE.PointLight( 0xffffff, 1, 3000 );
+    this.light1 = new THREE.PointLight( 0xffffff, 1, 3000 );
     this.light1.position.set( 1000, 0, 0 );
 
-    this.light2= new THREE.PointLight( 0xffffff, 2, 3000 );
+    this.light2 = new THREE.PointLight( 0xffffff, 2, 3000 );
     this.light2.position.set( 0, 1000, 0 );
 
-    this.light3= new THREE.PointLight( 0xffffff, 1, 3000 );
+    this.light3 = new THREE.PointLight( 0xffffff, 1, 3000 );
     this.light3.position.set( 0, 0, 1000 );
 
-    this.light4= new THREE.PointLight( 0xffffff, 1, 3000 );
+    this.light4 = new THREE.PointLight( 0xffffff, 1, 3000 );
     this.light4.position.set( 0, -1000, 0 );
 
     this.main.state.scene.add( this.light1 );
@@ -99,11 +99,11 @@ GameObjectController.prototype.manageMissfire = function (dt) {
             this.missfireActive = false;
             this.avatar.missfire(false);
         }
-    }else{
+    } else {
 
     }
 
-    if(this.missfireCounter < 0)this.missfireCounter = 0;
+    if(this.missfireCounter < 0) this.missfireCounter = 0;
 };
 
 GameObjectController.prototype.ambientCameraMovement = function (dt) {
@@ -157,6 +157,11 @@ GameObjectController.prototype.checkHits = function () {
         }
     }
 };
+
+GameObjectController.prototype.addAmbientLight = function (color) {
+    this.main.state.scene.add( new THREE.AmbientLight( color ) );
+};
+
 
 GameObjectController.prototype.changeFogColor = function (color) {
     this.main.state.scene.fog = new THREE.Fog( color, 1, 2000 );
