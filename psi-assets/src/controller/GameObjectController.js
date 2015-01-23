@@ -158,8 +158,12 @@ GameObjectController.prototype.checkHits = function () {
     }
 };
 
-GameObjectController.prototype.changeFog = function (color) {
+GameObjectController.prototype.changeFogColor = function (color) {
     this.main.state.scene.fog = new THREE.Fog( color, 1, 2000 );
+};
+
+GameObjectController.prototype.changeFogDense = function (color, density) {
+    this.main.state.scene.fog = new THREE.FogExp2( color, density );
 };
 
 GameObjectController.prototype.addScore = function (val) {
@@ -167,8 +171,7 @@ GameObjectController.prototype.addScore = function (val) {
 };
 
 GameObjectController.prototype.spawnDieParticles = function (baddie) {
-    var i;
-    var particle;
+    var i, particle;
 
     this.shake += 0.2;
 
