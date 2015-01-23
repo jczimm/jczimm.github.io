@@ -21,7 +21,7 @@ SandIntroChunk.prototype.build = function() {
         // basic baddies: pos, size, note(0-14)
         
         {time:0.0, action:function(game){ game.addScore(500); } },
-        {time:1.0, action:function(game){ game.changeFogDense(0xe9c8ab, 10); } },
+        {time:1.0, action:function(game){ game.changeFogDense(0xe9c8ab, 1); } },
         {time:3.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(0,800,0), 5, 0) ) } },
                
         {time:6.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(0,800,0), 5, 5) ) } },
