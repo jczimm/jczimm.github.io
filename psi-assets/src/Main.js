@@ -50,7 +50,7 @@ var Shaders = {
 
 function Loader() {
 	this.assets = {};
-};
+}
 
 Loader.prototype.load = function( assets ) {
 	var self = this;

@@ -21,6 +21,7 @@ Level.prototype.update = function(dt) {
 
 Level.prototype.build = function() {
     this.chunks = [
+        new SandIntroChunk(this),
         new IntroChunk(this),
         new SparseChunk(this),
         new FourthNoteChunk(this),
@@ -29,7 +30,8 @@ Level.prototype.build = function() {
         new ChorusChunk(this),
         new ClimaxChunk(this),
 		new BigChunk(this),
-		new ArpChunk(this)
+		new ArpChunk(this),
+        new SandIntroChunk(this)
     ];
 };
 

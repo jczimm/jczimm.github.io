@@ -158,6 +158,10 @@ GameObjectController.prototype.checkHits = function () {
     }
 };
 
+GameObjectController.prototype.changeFog = function (color) {
+    this.main.state.scene.fog = new THREE.Fog( color, 1, 2000 );
+};
+
 GameObjectController.prototype.addScore = function (val) {
     this.main.state.uiController.addScore(val);
 };
@@ -339,7 +343,7 @@ GameObjectController.prototype.checkInput = function () {
 };
 
 GameObjectController.prototype.attack = function (type) {
-    if(this.missfireActive == true)return;
+    if(this.missfireActive == true) return;
 
     if( this.enabledKeys[type] == false ) return;
 
