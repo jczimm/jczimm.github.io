@@ -23,7 +23,7 @@ SandIntroChunk.prototype.build = function() {
         {time:0.0, action:function(game){ game.addScore(500); } },
         {time:1.0, action:function(game){
             game.changeFogColor(0xe9c8ab);
-            game.addAmbientLight(0xddcaab);
+            //game.addAmbientLight(0xddcaab);
         } },
         {time:3.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(0,800,0), 5, 0) ) } },
                
