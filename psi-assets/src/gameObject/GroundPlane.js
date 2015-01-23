@@ -4,7 +4,7 @@ function GroundPlane() {
     this.pos = new THREE.Vector3(0, this.size * 0.3, 0);
     this.rotation = new THREE.Vector3(-Math.PI / 2, 0, 0);
 
-    this.wireMat = new THREE.MeshBasicMaterial({ color:0xeeeeee, wireframe:true, transparent:true });
+    this.wireMat = new THREE.MeshBasicMaterial({ color:0xffffff, wireframe:true, transparent:true });
     this.wireMat.opacity = 0.5;
 
     this.wire = new THREE.Mesh(new THREE.PlaneGeometry(this.size, this.size, this.segs, this.segs), this.wireMat);

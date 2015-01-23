@@ -23,21 +23,21 @@ SandIntroChunk.prototype.build = function() {
         {time:0.0, action:function(game){ game.addScore(500); } },
         {time:1.0, action:function(game){
             game.changeFogColor(0xe9c8ab);
-            game.addAmbientLight(0x543735);
+            game.addAmbientLight(0x443735);
         } },
         {time:3.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(0,800,0), 5, 0) ) } },
                
-        {time:6.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(0,800,0), 5, 5) ) } },
+        {time:6.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-100,800,0), 5, 0) ) } },
         
-        {time:9.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-100,800,0), 5, 0) ) } },
-        {time:9.75, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(100,800,0), 5, 5) ) } },
+        {time:9.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-50,800,0), 5, 0) ) } },
+        {time:10.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(100,800,0), 5, 1) ) } },
 
-		{time:11.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(0,800,0), 5, 1) ) } },
+		{time:11.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-10,800,0), 5, 2) ) } },
 
-		{time:14.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-100,800,0), 5, 0) ) } },
-		{time:14.75, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-100,800,0), 5, 5) ) } },
-        {time:15.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-100,800,0), 5, 1) ) } },
-
+		{time:13.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-30,800,0), 5, 3) ) } },
+		{time:14.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-50,800,0), 5, 5) ) } },
+        {time:16.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-70,800,0), 5, 1) ) } },
+        // main sandstorm melody will start here
 	    {time:20.0, action:function(game){ game.moveCamera(new THREE.Vector3(150,-200, 200), new THREE.Vector3(0,0,0), 1.5) } },
 
 		{time:18.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(0,800,0), 5, 2) ) } },
