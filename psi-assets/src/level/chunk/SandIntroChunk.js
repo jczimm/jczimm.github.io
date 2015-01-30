@@ -34,7 +34,7 @@ SandIntroChunk.prototype.build = function() {
 
 		{time:11.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-10,800,0), 5, 2) ) } },
 
-		{time:13.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-30,800,0), 5, 3) ) } },
+		{time:13.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-30,800,0), 5, 5) ) } },
 		{time:14.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-50,800,0), 5, 5) ) } },
         {time:16.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-70,800,0), 5, 1) ) } },
         // main sandstorm melody will start here
