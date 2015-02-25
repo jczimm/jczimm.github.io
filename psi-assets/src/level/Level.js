@@ -1,3 +1,6 @@
+// note sounds ordered by pitch:
+// 0, 4, 1, 3, 2, 5, 9, 6, 8, 7, 10, 14, 11, 13, 12
+
 /**
  * Created with JetBrains WebStorm.
  * User: Roushey
