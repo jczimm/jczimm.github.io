@@ -25,37 +25,44 @@ SandIntroChunk.prototype.build = function() {
             game.changeFogColor(0xe9c8ab);
             game.addAmbientLight(0x443735);
         } },
-        {time:3.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(0,800,0), 5, 0) ) } },
+        {time:3.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(0,800,0), 3, 0) ) } },
                
-        {time:6.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-100,800,0), 5, 0) ) } },
+        {time:6.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-100,800,0), 3, 0) ) } },
         
-        {time:9.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-50,800,0), 5, 0) ) } },
-        {time:10.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(100,800,0), 5, 1) ) } },
+        {time:9.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-50,800,0), 4, 0) ) } },
+        {time:10.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(100,800,0), 5, 4) ) } },
 
-		{time:11.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-10,800,0), 5, 2) ) } },
+		{time:11.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-10,800,0), 6, 0) ) } },
 
-		{time:13.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-30,800,0), 5, 5) ) } },
-		{time:14.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-50,800,0), 5, 5) ) } },
-        {time:16.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-70,800,0), 5, 1) ) } },
+		{time:13.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-30,800,0), 5, 0) ) } },
+		{time:14.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-50,800,0), 3, 0) ) } },
+        {time:16.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-70,800,0), 3, 5) ) } },
         // main sandstorm melody will start here
-	    {time:20.0, action:function(game){ game.moveCamera(new THREE.Vector3(150,-200, 200), new THREE.Vector3(0,0,0), 1.5) } },
+	    {time:20.0, action:function(game){ game.moveCamera(new THREE.Vector3(150, -200, 200), new THREE.Vector3(0,0,0), 1.5) } },
 
-		{time:18.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(0,800,0), 5, 2) ) } },
+		{time:18.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(100,800,0), 5, 0) ) } },
+		{time:18.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(100,800,0), 5, 0) ) } },
+        {time:19.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(100,800,0), 5, 0) ) } },
+        {time:20.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-100,800,0), 5, 5) 0) } },
 
-		{time:20.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(100,800,0), 5, 7) ) } },
-        {time:20.75, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-100,800,0), 5, 10) ) } },
-        {time:21.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(0,800,0), 5, 5) ) } },
 
-        {time:24.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-150,800,0), 5, 5) ) } },
-        {time:24.75, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(100,800,0), 5, 2) ) } },
-        {time:25.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-100,800,0), 5, 5) ) } },
-        {time:26.25, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(150,800,0), 5, 1) ) } },
-        
-        {time:29.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(100,800,0), 5, 11) ) } },
-        {time:29.75, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-100,800,0), 5, 12) ) } },
-        {time:30.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(100,800,0), 5, 10) ) } },
-        
-        {time:36.0, action:function(game){ game.moveCamera(new THREE.Vector3(-150,-200, 200), new THREE.Vector3(0,0,0), 1.5) } },
+        {time:23.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-100,800,0), 5, 0) ) } },
+        {time:23.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-100,800,0), 5, 0) ) } },
+        {time:24.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-100,800,0), 5, 0) ) } },
+        {time:24.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(100,800,0), 5, 0) ) } },
+
+
+        {time:27.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-30,800,0), 5, 0) ) } },
+        {time:27.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(30,800,0), 5, 4) ) } },
+        {time:28.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-50,800,0), 5, 1) ) } },
+        {time:28.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(50,800,0), 5, 0) ) } },
+
+        {time:29.75, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-70,800,0), 5, 12) ) } },
+        {time:29.5, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-70,800,0), 5, 12) ) } },
+        {time:28.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(150,800,0), 5, 12) ) } },
+        {time:30.0, action:function(game){ game.makeBaddie( new Baddie(new THREE.Vector3(-70,800,0), 5, 12) ) } },
+                
+        {time:36.0, action:function(game){ game.moveCamera(new THREE.Vector3(-150,-200, 200), new THREE.Vector3(0,0,0), 1.0) } },
 
         {time:33.0, action:function(game){ game.makeLinkedBaddies( [
             new Baddie(new THREE.Vector3(100,800,0), 5, 2),
@@ -70,7 +77,7 @@ SandIntroChunk.prototype.build = function() {
             new Baddie(new THREE.Vector3(-100,900,0), 5, 5) ])}},
         
         // reset camera to default position. (time)
-        {time:42.0, action:function(game){ game.defaultCamera(1.5)} },
+        {time:42.0, action:function(game){ game.defaultCamera(5)} },
 
         // this is an easy way to add 'padding' to the end of a chunk
         {time:42.0, action:function(game){ }}
