@@ -11,9 +11,10 @@ Avoid asteroids, collect gold, and pick up powerups along the way. Fly the pione
 ### [Psi](http://jczimm.com/psi)
 Intercept crystals, defeat bosses, and unlock new biomes<sup>1</sup>.
 
+
+<sup>1</sup>_Coming soon!_
+
 ## Miscellaneous
 
 ### [Better Than Shouting](http://jczimm.com/bts)
 Experimental peer-to-peer video chat.
-
-<sup>1</sup>_Coming soon!_
