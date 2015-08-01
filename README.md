@@ -1,5 +1,6 @@
 jczimm.com
 ================
+[![StyleCI](https://styleci.io/repos/18230420/shield?style=flat-square)](https://styleci.io/repos/18230420)
 
 ## Games
 
