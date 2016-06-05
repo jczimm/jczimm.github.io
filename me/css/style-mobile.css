@@ -47,3 +47,8 @@
 		#header nav a:active {
 			font-size: 1em;
 		}
+
+		#header nav a > span {
+			margin-top: 5px;
+			display: inline;
+		}
