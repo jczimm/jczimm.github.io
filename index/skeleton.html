@@ -22,6 +22,7 @@
         <div class="cursor _header"></div>
         <h1>jczimm</h1>
         <ul>
+          <!-- <li style="visibility: hidden" aria-hidden="true"><a></a></li> -->
           <li>
             <a href="https://github.com/jczimm" aria-label="GitHub" target="_blank">
                 <span>GitHub</span>
@@ -67,8 +68,10 @@
       link = links[i];
       // for each link:
 
-      link.addEventListener('mouseover', onLinkMouseover);
-      link.addEventListener('mouseout', onLinkMouseout);
+      link.addEventListener('mouseover', moveCursorToLink);
+      link.addEventListener('focus', moveCursorToLink);
+      link.addEventListener('mouseout', moveCursorFromLink);
+      link.addEventListener('unfocus', moveCursorFromLink);
       // when the link is tapped, assume that any that will be clicked
       // will have been tapped
       link.addEventListener('touchstart', function() { wasTouching = true; });
@@ -89,24 +92,54 @@
             else
               location.href = url;
           }, 200);
+          // reset `wasTouching` b/c user might use different input for next link
           wasTouching = false;
           return false;
         }
       });
     }
 
-    var mouseWasOver = false;
-    function onLinkMouseover() {
+    var mouseWasOver = false,
+        currLink;
+    function moveCursorToLink() {
       cursor.style.top = this.offsetTop + 'px';
-      cursor.classList = 'cursor';
+      cursor.className = 'cursor';
+      this.className = 'selected';
+      if (currLink) currLink.className = '';
+      currLink = this;
       mouseWasOver = true;
     }
 
-    function onLinkMouseout() {
+    function moveCursorFromLink() {
       cursor.style.top = '';
-      cursor.classList = 'cursor _header';
+      cursor.className = 'cursor _header';
+      currLink.className = '';
+      currLink = null;
       mouseWasOver = false;
     }
+
+    document.addEventListener('keydown', function onKeydown(e) {
+      console.log(e);
+      // if arrow key pressed, move the cursor
+      var keyCode = e.keyCode;
+      if (!currLink) return;
+
+      if (keyCode === 38) { // up
+          var prevLink = currLink.parentElement.previousElementSibling.querySelector('a');
+          if (!prevLink) return;
+          moveCursorFromLink.apply(currLink);
+          moveCursorToLink.apply(prevLink);
+          return;
+      }
+
+      if (keyCode === 40) { // down
+          var nextLink = currLink.parentElement.nextElementSibling.querySelector('a');
+          if (!nextLink) return;
+          moveCursorFromLink.apply(currLink);
+          moveCursorToLink.apply(nextLink);
+          return;
+      }
+    });
     </script>
   </body>
 </html>
