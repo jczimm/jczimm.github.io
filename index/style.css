@@ -1,0 +1,90 @@
+* {
+	box-sizing: content-box;
+}
+
+html, body {
+	height: 100%;
+	/*overflow: hidden;*/
+}
+
+body {
+	font-size: 2.5em;
+	background-color: #1B435D;
+	/*background: linear-gradient(#fff, #fff, #D5EEFF);
+	background-repeat: no-repeat;
+  background-attachment: fixed;*/
+}
+
+.wrapper {
+	position: relative;
+	width: 60%;
+	margin: auto;
+}
+
+.list {
+	position: relative;
+	/*padding: 1em;*/
+	/*margin-left: 0.5em;*/
+	/*margin-top: -1.16em;*/
+}
+
+.list ul {
+	list-style: none;
+	padding: 0;
+}
+
+.img {
+	position: relative;
+	margin-top: 1.5em;
+	/*display: none;*/
+	/*margin-left: 1.5em;*/
+}
+
+.img img {
+	position: relative;
+	width: 4em;
+}
+
+h1 {
+	font-family: "Work Sans";
+	/*position: relative;
+	left: -1.3em;
+	padding-left: 0.5em;
+	border-left: solid 0.8em #FF895D;*/
+	/*color: #1B435D;*/
+	color: #78BBE6;
+}
+
+a {
+	text-decoration: none;
+	/*color: #78BBE6;*/
+	color: #D5EEFF;
+	width: 7.2em;
+	display: block;
+}
+
+a:hover, a:active {
+	/*color: #1B435D;*/
+	color: #FF895D;
+}
+
+span {
+	font-family: "Work Sans";
+}
+
+.cursor {
+	display: inline-block;
+	position: absolute;
+	transition: 0.2s top ease-out,
+							0.2s height ease-out;
+	left: -2em;
+	top: 0.9em;
+	width: 1em;
+	height: 1em;
+	background-color: #FF895D;
+}
+
+.cursor._header {
+	height: 2em;
+	top: 0.15em;
+}

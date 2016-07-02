@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html amp lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>jczimm (Jacob Zimmerman)</title>
+    <link rel="canonical" href="http://jczimm.com" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <meta name="description" content="[insert creative slogan here, update on blog, etc.]" />
+    <meta name="keywords" content="jczimm" />
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Work+Sans|Open+Sans">
+    <!-- styles are added in ./build -->
+    <style amp-custom></style>
+    <!-- these tags are removed in ./build -->
+    <!--BEGIN_DEV--><link rel="stylesheet" type="text/css" href="style.css"><link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css"><!--END_DEV-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="list">
+        <div class="cursor _header"></div>
+        <h1>jczimm</h1>
+        <ul>
+          <li>
+            <a href="https://github.com/jczimm" aria-label="GitHub" target="_blank">
+                <span>GitHub</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://keybase.io/jczimm" aria-label="KeyBase" target="_blank">
+                <span>KeyBase</span>
+            </a>
+          </li>
+          <li>
+            <a href="http://blog.jczimm.com" aria-label="Blog">
+                <span>Blog</span>
+            </a>
+          </li>
+          <li>
+            <a href="http://soundcloud.com/jczimm" aria-label="SoundCloud" target="_blank">
+                <span>SoundCloud</span>
+            </a>
+          </li>
+          <li>
+              <a href="mailto:jczimm@jczimm.com" aria-label="Email" target="_blank">
+                  <span>Email</span>
+              </a>
+          </li>
+        </ul>
+      </div>
+      <!-- <div class="img">
+        <img src="../branding/new-jj.png" />
+      </div> -->
+    </div>
+    <script>
+    // EventListener | CC0 | github.com/jonathantneal/EventListener
+    this.Element&&Element.prototype.attachEvent&&!Element.prototype.addEventListener&&function(){function e(e,t){Window.prototype[e]=HTMLDocument.prototype[e]=Element.prototype[e]=t}function t(e){t.interval&&document.body&&(t.interval=clearInterval(t.interval),document.dispatchEvent(new CustomEvent("DOMContentLoaded")))}e("addEventListener",function(e,t){var n=this,r=n.addEventListener.listeners=n.addEventListener.listeners||{},a=r[e]=r[e]||[];a.length||n.attachEvent("on"+e,a.event=function(e){var t=n.document&&n.document.documentElement||n.documentElement||{scrollLeft:0,scrollTop:0};e.currentTarget=n,e.pageX=e.clientX+t.scrollLeft,e.pageY=e.clientY+t.scrollTop,e.preventDefault=function(){e.returnValue=!1},e.relatedTarget=e.fromElement||null,e.stopImmediatePropagation=function(){c=!1,e.cancelBubble=!0},e.stopPropagation=function(){e.cancelBubble=!0},e.target=e.srcElement||n,e.timeStamp=+new Date;var r={};for(var o in e)r[o]=e[o];for(var i,o=0,l=[].concat(a),c=!0;c&&(i=l[o]);++o)for(var s,v=0;s=a[v];++v)if(s==i){s.call(n,r);break}}),a.push(t)}),e("removeEventListener",function(e,t){for(var n,r=this,a=r.addEventListener.listeners=r.addEventListener.listeners||{},o=a[e]=a[e]||[],i=o.length-1;n=o[i];--i)if(n==t){o.splice(i,1);break}!o.length&&o.event&&r.detachEvent("on"+e,o.event)}),e("dispatchEvent",function(e){var t=this,n=e.type,r=t.addEventListener.listeners=t.addEventListener.listeners||{},a=r[n]=r[n]||[];try{return t.fireEvent("on"+n,e)}catch(o){return void(a.event&&a.event(e))}}),Object.defineProperty(Window.prototype,"CustomEvent",{get:function(){var e=this;return function(t,n){var r,a=e.document.createEventObject();a.type=t;for(r in n)"cancelable"==r?a.returnValue=!n.cancelable:"bubbles"==r?a.cancelBubble=!n.bubbles:"detail"==r&&(a.detail=n.detail);return a}}}),t.interval=setInterval(t,1),window.addEventListener("load",t)}(),(!this.CustomEvent||"object"==typeof this.CustomEvent)&&function(){this.CustomEvent=function(e,t){var n;t=t||{bubbles:!1,cancelable:!1,detail:void 0};try{n=document.createEvent("CustomEvent"),n.initCustomEvent(e,t.bubbles,t.cancelable,t.detail)}catch(r){n=document.createEvent("Event"),n.initEvent(e,t.bubbles,t.cancelable),n.detail=t.detail}return n}}();
+    </script>
+    <script>
+    var cursor = document.getElementsByClassName('cursor')[0];
+    var links = document.getElementsByTagName('a'), link;
+
+    var wasTouching = false;
+
+    for (var i = 0; i < links.length; i++) {
+      link = links[i];
+      // for each link:
+
+      link.addEventListener('mouseover', onLinkMouseover);
+      link.addEventListener('mouseout', onLinkMouseout);
+      // when the link is tapped, assume that any that will be clicked
+      // will have been tapped
+      link.addEventListener('touchstart', function() { wasTouching = true; });
+      // when the link has been clicked (by touchscreen/mouse),
+      // let's be sure to display the mouseover effect; let's
+      // display it after click if any of the links were tapped before
+      link.addEventListener('click', function(event) {
+        // if the device doesn't support mouseover before click,
+        // let's wait for the mouseover effect to display before
+        // going to the page linked
+        if (wasTouching) {
+          var thislink = event.target.parentElement,
+              url = thislink.getAttribute('href');
+          event.preventDefault();
+          setTimeout(function() {
+            if (thislink.getAttribute('target') === '_blank')
+              window.open(url);
+            else
+              location.href = url;
+          }, 200);
+          wasTouching = false;
+          return false;
+        }
+      });
+    }
+
+    var mouseWasOver = false;
+    function onLinkMouseover() {
+      cursor.style.top = this.offsetTop + 'px';
+      cursor.classList = 'cursor';
+      mouseWasOver = true;
+    }
+
+    function onLinkMouseout() {
+      cursor.style.top = '';
+      cursor.classList = 'cursor _header';
+      mouseWasOver = false;
+    }
+    </script>
+  </body>
+</html>
