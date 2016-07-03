@@ -60,7 +60,7 @@ a {
 	display: block;
 }
 
-a:active, a:focus, a.selected {
+a.selected, a:active {
 	/*color: #1B435D;*/
 	color: #FF895D;
 }

@@ -71,7 +71,12 @@
       link.addEventListener('mouseover', moveCursorToLink);
       link.addEventListener('focus', moveCursorToLink);
       link.addEventListener('mouseout', moveCursorFromLink);
-      link.addEventListener('unfocus', moveCursorFromLink);
+      link.addEventListener('blur', moveCursorFromLink);
+
+      link.addEventListener('mousemove', function() {
+        moveCursorFromLink();
+        moveCursorToLink.apply(this);
+      });
       // when the link is tapped, assume that any that will be clicked
       // will have been tapped
       link.addEventListener('touchstart', function() { wasTouching = true; });
@@ -101,40 +106,56 @@
 
     var mouseWasOver = false,
         currLink;
+    var handling; // to let only one event be handled (mouse/focus)
     function moveCursorToLink() {
-      cursor.style.top = this.offsetTop + 'px';
+      if (handling) return;
+
+      handling = true;
+      // move cursor element to link
       cursor.className = 'cursor';
+      cursor.style.top = this.offsetTop + 'px';
+      // style this link, set it up for tab-to-select
       this.className = 'selected';
-      if (currLink) currLink.className = '';
+      this.focus();
+
       currLink = this;
       mouseWasOver = true;
+      handling = false;
     }
 
     function moveCursorFromLink() {
+      if (handling) return;
+
+      handling = true;
       cursor.style.top = '';
       cursor.className = 'cursor _header';
-      currLink.className = '';
+      if (currLink) currLink.className = '';
       currLink = null;
       mouseWasOver = false;
+      handling = false;
     }
 
     document.addEventListener('keydown', function onKeydown(e) {
-      console.log(e);
       // if arrow key pressed, move the cursor
       var keyCode = e.keyCode;
       if (!currLink) return;
 
       if (keyCode === 38) { // up
-          var prevLink = currLink.parentElement.previousElementSibling.querySelector('a');
-          if (!prevLink) return;
+          var prevLIElement = currLink.parentElement.previousElementSibling;
+          if (!prevLIElement) return;
+
+          var prevLink = prevLIElement.querySelector('a');
           moveCursorFromLink.apply(currLink);
           moveCursorToLink.apply(prevLink);
           return;
       }
 
       if (keyCode === 40) { // down
-          var nextLink = currLink.parentElement.nextElementSibling.querySelector('a');
-          if (!nextLink) return;
+          var nextLIElement = currLink.parentElement.nextElementSibling;
+          if (!nextLIElement) return;
+
+          var nextLink = nextLIElement.querySelector('a');
+
           moveCursorFromLink.apply(currLink);
           moveCursorToLink.apply(nextLink);
           return;
