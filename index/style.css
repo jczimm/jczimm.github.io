@@ -58,6 +58,7 @@ a {
 	color: #D5EEFF;
 	width: 7.2em;
 	display: block;
+	cursor: default;
 }
 
 a.selected, a:active {
