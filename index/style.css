@@ -58,6 +58,7 @@ a {
 	color: #D5EEFF;
 	width: 7.2em;
 	display: block;
+	cursor: default;
 }
 
 a.selected, a:active {
@@ -66,7 +67,12 @@ a.selected, a:active {
 }
 
 span {
-	font-family: "Work Sans";
+	font-family: Inconsolata;
+}
+
+.icon {
+	position: absolute;
+  margin-top: 0.15em;
 }
 
 .cursor {
