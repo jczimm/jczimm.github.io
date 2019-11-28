@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: jczimm.com
+Token: a6284d77119bfa04ae72d9afc017e8482c11889eceeb385789938174e6ebbe24
