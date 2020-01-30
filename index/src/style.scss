@@ -1,0 +1,345 @@
+@import "compass/css3";
+
+@mixin content-repeat($char, $n) {
+  $str: "";
+  @for $i from 1 through $n {
+    $str: $str + $char;
+  }
+  content: $str;
+}
+
+// @import url('https://fonts.googleapis.com/css?family=Helvetica+Neue:400i,400,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Assistant:200,300,400,700,800&display=swap');
+
+html, body {
+  // background: blue;
+  // font-size: 2em;
+  // zoom: 1.125;
+  // height: 100%;
+}
+body {
+  // max-width: 40em;
+  position: relative;
+  margin-bottom: 0;
+  > * {
+    margin: 2.5em 0;
+  }
+}
+
+// body {
+//   display: flex;
+//   flex-direction: column;
+//   main, nav {
+//     font-size: 3.2vh;
+//     flex: 1;
+//   }
+// }
+main, nav {
+  // font-family: Arial, sans-serif;
+  font-family: Assistant, Arial, sans-serif;
+  // font-size: 1.125 * 1.618rem;
+}
+main {
+  position: relative;
+  padding: 0 1em;
+  // margin-bottom: 0; // 1.25em;
+  h1 {
+    // font-family: Arial, sans-serif;
+    font-family: Assistant, Arial, sans-serif;
+    // text-align: right;
+    // font-size: 1.125 * 1.618rem;
+    // font-size: 2.5rem;
+    // font-weight: 400;
+  }
+  p {
+    font-size: 1.333em;
+    // text-align: right;
+    // line-height: 1.2;
+    font-weight: 300;
+    // span.em2 {
+      // font-weight: 400;
+      // font-style: italic;
+    // }
+    // b {
+    //   font-variant: small-caps;
+    //   // text-transform: lowercase;
+    //   // font-size: 1.2em;
+    // }
+  }
+}
+.links-gateway-wrapper {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  // margin-top: -2px;
+  padding: 1em 0;
+  
+  // border-left: 2px solid #eee;
+  // border-right: 2px solid #eee;
+  // padding: 2em 0;
+  
+  $sel: ".links-gateway.-ghost";
+  $curr-sel: ".links-gateway.-ghost";
+  // $curr-color: blue;
+  $numlevels: 20;
+  @for $i from 0 through $numlevels {
+    #{$curr-sel} {
+      $val: 1.0 - $i / $numlevels;
+      // opacity: $val;
+      // transform: rotateX(-75deg); // rotateY($val * 100deg);
+      // transform: rotateZ($val * -3deg);
+      > div {
+        font-size: percentage($val); // + sin(1 - $val) * 0.2);
+        transform: rotateZ($val * -36deg); // rotateZ(sin(1 - $val) * 3.5deg + $val * -36deg);
+        // $curr-color: desaturate($curr-color, percentage(1 - $val));
+        // color: $curr-color;
+      }
+    }
+    $curr-sel: $curr-sel" + "$sel;
+  }
+}
+.links-gateway {
+  width: 100%;
+  // position: absolute;
+  // overflow: hidden;
+  
+  // // idea 2: rising from a bookshelf
+  // &:before {
+  //   content: "";
+  //   display: block;
+  //   width: 7em;
+  //   height: calc(100% + 2em);
+  //   background: #ddd;
+  //   position: absolute;
+  //   left: -4px;
+  //   top: -0.75em;
+  //   opacity: 1;
+  //   transition: 0.25s opacity linear;
+  //   padding-left: 3em;
+  //   border-left: 4px solid #aaa;
+  //   // border-top: 0;
+  //   // box-sizing: border-box;
+  //   z-index: -2;
+  // }
+  
+  > div {
+    &.link {
+      line-height: 2; // 1.5;
+      // border-bottom: 2px solid #444;
+      
+      // // idea 1: associating across bookshelves
+      // &:after {
+      //   content: "";
+      //   display: block;
+      //   position: absolute;
+      //   width: 100%;
+      //   height: 2px;
+      //   background: #ccc;
+      //   /* bottom: -4px; */
+      //   left: 0;
+      //   z-index: -2;
+      //   /* margin-top: -1px;*/
+      //   opacity: 1;
+      //   transition: 0.25s opacity linear;
+      // }
+      a {
+        span {
+          background: white;
+          padding: 0.25em;
+          border: 2px solid #444;
+        }
+        // background: white;
+        
+        // transform: translateX(-50%);
+        
+        display: inline-block;
+        // border-radius: 150%;
+        
+        text-transform: uppercase;
+        font-weight: 700;
+        // font-family: monospace;
+      }
+      // border-bottom: 1px solid currentColor;
+
+      // $custom-bg: (
+      //   "code": "👨‍💻",
+      //   "projects": "🔨",
+      //   "notebook": "💭",
+      //   "writing": "🖋",
+      //   "music": "🎵",
+      //   "email": "✉",
+      //   "keys": "🗝"
+      // );
+      // @each $name, $str in $custom-bg {
+      //   &.#{$name}:before {
+      //     @include content-repeat($str, 50);
+      //   }
+      // }
+
+      /*&:before {
+        @include content-repeat(".", 200);
+        max-width: 100%;
+        max-height: 2em;
+        overflow: hidden;
+        color: #000;
+
+        // content: "";
+        // border-bottom: 2px dotted currentColor;
+        // width: 100%;
+        // padding-top: 1.25em;
+        position: absolute;
+        left: 0;
+        z-index: -1;
+      }*/
+      
+//       // idea 1: associating across bookshelves
+      // Default Offsets
+      // $offsets: 1 83%, 2 40%, 3 10%, 4 70%, 5 34%, 6 56%, 7 20%;
+      
+      // "Brain"
+      $offsets: 1 71.3917%, 2 29.1568%, 3 85.7287%, 4 18.2285%, 5 77.6284%, 6 50.1602%, 7 22.2296%;
+      // "Stack"
+      // $offsets: 1 50%, 2 48%, 3 47%, 4 49%, 5 48%, 6 46%, 7 48%; 
+      // "Apart"
+      // $offsets: 1 2%, 2 86%, 3 4%, 4 88%, 5 2%, 6 84%, 7 3%; 
+      @each $i, $offset in $offsets {
+        &:nth-of-type(#{$i}) { padding-left: $offset; }
+      }
+    }
+    
+    &.avatar {
+      position: absolute;
+      $size: 0.75em;
+      left: calc(50% - 1.5em); // calc(50% - #{$size / 2});
+      top: calc(50% - #{$size / 2}); // - 1em);
+      display: block;
+      padding: 0 1em 0 1.75em;
+      // box-sizing: content-box;
+      // background: red;
+      
+      // idea 1, idea 2
+      // opacity: 0;
+      // transition: 0.25s opacity linear;
+      > div {
+        background: white;
+        border: 2px solid #444;
+        border-radius: 150%;
+        height: $size;
+        width: $size;
+        cursor: pointer;
+        transform: translateX(-50%);
+      }
+    }
+  }
+  &:not(.-ghost) > div a {
+    // text-decoration: underline;
+    // font-weight: bold;
+    // background: #000;
+    // margin-top: 0.3em;
+    // padding: 0 0.3em;
+    // color: #fff;
+    // border: 1px solid #000;
+    // border-bottom: 0;
+  }
+  &.-ghost {
+    pointer-events: none;
+    z-index: -1;
+    // top: 0;
+    // width: 100%;
+    > div a {
+      color: #fff;
+      z-index: -1;
+      // font-style: italic;
+      // border: 0.1em solid #fff;
+      span { background: #000 !important; }
+    }
+  }
+  > svg.edges {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    > line {
+      stroke: #444;
+      stroke-width: 2px;
+    }
+  }
+}
+// .links-gateway.ready {
+//   // // idea 2: rising from a bookshelf
+//   // &:before {
+//   //   opacity: 0;
+//   // }
+//   > div {
+//     // idea 1: associating across bookshelves
+//     &.link:after {
+//       opacity: 0;
+//     }
+//     &.avatar {
+//       opacity: 1;
+//     }
+//   }
+// }
+
+aside {
+  position: relative;
+  float: right;
+  background: #fff;
+  > a {
+    &, &:hover {
+      text-decoration: none;
+    }
+    svg {
+      width: 1em;
+      fill: #ddd;
+    }
+  }
+}
+footer {
+  font-family: Assistant, Arial, sans-serif;
+  font-weight: 300;
+  font-size: 0.83em;
+  text-align: center;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+}
+.-crop-marks {
+  border: 1px solid transparent; // prevent margin-collapse
+}
+.-crop-marks:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: -0.5em; // -1em; // -0.5em -1.5em;
+  border: 1em solid black;
+  
+  // icon originally from Ikonate (https://github.com/mikolajdobrucki/ikonate/blob/master/icons/plus.svg)
+  border-image-source: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path stroke="black" d="M20 12L4 12M12 4L12 20"/></svg>');
+  pointer-events: none;
+  z-index: -2;
+}
+
+@media only screen and (max-width: 760px) {
+  // main {
+  //   margin-bottom: 0;
+  // }
+  // .links-gateway-wrapper {
+  //   margin-top: -2px;
+  // }
+  body {
+    margin-top: 20px;
+  }
+  main {
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+}

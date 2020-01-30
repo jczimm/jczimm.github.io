@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-	<loc>http://jczimm.com/omega</loc>
+	<loc>https://jczimm.com</loc>
 	<priority>5</priority>
 </url>
 <url>
-	<loc>http://jczimm.com/psi</loc>
+	<loc>https://jczimm.com/breaktheblock</loc>
 	<priority>4</priority>
-</url>
-<url>
-	<loc>http://jczimm.com</loc>
-	<priority>3</priority>
 </url>
 </urlset>
