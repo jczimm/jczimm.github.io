@@ -197,6 +197,15 @@
         $('body').trigger('resize')
       });
 
+	  // Redirect from fyp-writing/* to mcp-writing/*
+      (function() {
+        var pathname = window.location.pathname;
+        if (pathname.startsWith('/fyp-writing/')) {
+          var newPath = pathname.replace('/fyp-writing/', '/mcp-writing/');
+          window.location.href = newPath + window.location.search + window.location.hash;
+        }
+      })();
+
     </script>
 
     
